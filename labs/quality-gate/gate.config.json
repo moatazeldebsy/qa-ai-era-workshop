@@ -1,0 +1,6 @@
+{
+  "$comment": "Lab 7 - release readiness thresholds. Change them and re-run `npm run gate` to see the decision change.",
+  "tests": { "maxFailed": 0, "required": true },
+  "llmEval": { "minPassRate": 1.0, "required": false },
+  "performance": { "maxP95Ms": { "books": 200, "cart": 300 }, "maxErrorRate": 0.01, "required": false }
+}

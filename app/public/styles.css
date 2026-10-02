@@ -1,0 +1,15 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #1f2937; background: #f6f7f9; }
+body { margin: 0 auto; max-width: 960px; padding: 16px; }
+header { border-bottom: 1px solid #e5e7eb; margin-bottom: 16px; }
+h1 { color: #1f3bd6; margin-bottom: 0; }
+.tagline { color: #6b7280; margin-top: 4px; }
+main { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+section { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+ul { padding-left: 0; list-style: none; }
+.book { display: grid; grid-template-columns: 1fr auto; gap: 4px 8px; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+.book .author { color: #6b7280; font-size: 0.9em; }
+.book button { grid-row: 1 / span 2; grid-column: 2; align-self: center; }
+button { background: #1f3bd6; color: #fff; border: 0; border-radius: 6px; padding: 6px 12px; cursor: pointer; }
+button:disabled { background: #9ca3af; cursor: not-allowed; }
+input { width: 100%; box-sizing: border-box; padding: 6px; margin: 4px 0 8px; }
+#cart-error { color: #b91c1c; }

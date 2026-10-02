@@ -1,0 +1,35 @@
+{
+  "name": "qa-ai-era-workshop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QA Engineering in the AI Era - a hands-on workshop with a demo app and runnable labs",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22"
+  },
+  "scripts": {
+    "start": "node app/src/server.js",
+    "start:buggy": "ASSISTANT_MODE=buggy node app/src/server.js",
+    "start:bug-cart": "BUG_MODE=cart node app/src/server.js",
+    "test": "playwright test --project=e2e --project=api",
+    "test:e2e": "playwright test --project=e2e",
+    "test:api": "playwright test --project=api",
+    "test:flaky": "playwright test --project=flaky --repeat-each=10",
+    "test:unit": "node --test \"app/test/*.test.js\"",
+    "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
+    "eval:llm:view": "promptfoo view",
+    "perf:smoke": "k6 run labs/k6/smoke.js",
+    "metrics": "python3 labs/metrics/quality_metrics.py labs/metrics/data",
+    "gate": "node labs/quality-gate/gate.mjs",
+    "testgen": "node labs/ai-testgen/generate.mjs",
+    "docs": "mkdocs serve"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.131.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "promptfoo": "^0.123.1"
+  }
+}

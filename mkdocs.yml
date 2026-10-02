@@ -1,0 +1,104 @@
+site_name: QA Engineering in the AI Era
+site_description: A hands-on workshop for QA engineers, developers and engineering leaders - higher quality, faster feedback, smarter testing, greater impact.
+site_url: https://moatazeldebsy.github.io/qa-ai-era-workshop/
+repo_url: https://github.com/moatazeldebsy/qa-ai-era-workshop
+repo_name: moatazeldebsy/qa-ai-era-workshop
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    logo: material/robot-happy-outline
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.path
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+
+extra_css:
+  - stylesheets/extra.css
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Get Started:
+    - Overview: index.md
+    - Setup: getting-started.md
+    - Agendas & Tracks: agendas.md
+    - Facilitator Guide: facilitator-guide.md
+  - Modules:
+    - modules/index.md
+    - 1. The Evolving Role: modules/01-evolving-role.md
+    - 2. AI-Powered Testing: modules/02-ai-powered-testing.md
+    - 3. Tools & Technologies: modules/03-tools-and-technologies.md
+    - 4. Process & Practices: modules/04-process-and-practices.md
+    - 5. Quality Focus Areas for AI: modules/05-quality-focus-areas.md
+    - 6. Skills & Mindset: modules/06-skills-and-mindset.md
+    - 7. Success Metrics: modules/07-success-metrics.md
+    - 8. The Future: modules/08-the-future.md
+  - Labs:
+    - labs/index.md
+    - 1. E2E with Playwright: labs/lab-01-playwright-e2e.md
+    - 2. API Testing: labs/lab-02-api-testing.md
+    - 3. AI-Assisted Test Generation: labs/lab-03-ai-test-generation.md
+    - 4. Flaky Tests: labs/lab-04-flaky-tests.md
+    - 5. Performance with k6: labs/lab-05-performance-k6.md
+    - 6. Evaluating an LLM Feature: labs/lab-06-llm-evaluation.md
+    - 7. Quality Gates in CI: labs/lab-07-quality-gate.md
+    - 8. Measuring What Matters: labs/lab-08-metrics.md
+  - Reference:
+    - Demo App: reference/demo-app.md
+    - Cheat Sheet: reference/cheat-sheet.md
+    - Glossary: reference/glossary.md
+    - Further Reading: reference/further-reading.md

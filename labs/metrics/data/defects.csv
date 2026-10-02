@@ -1,0 +1,13 @@
+id,found_in,severity,component,escaped_test_layer
+BUG-1,unit,minor,cart,
+BUG-2,api,major,cart,
+BUG-3,e2e,minor,catalogue,
+BUG-4,production,major,checkout,api
+BUG-5,llm-eval,major,assistant,
+BUG-6,api,minor,catalogue,
+BUG-7,production,critical,checkout,e2e
+BUG-8,unit,minor,cart,
+BUG-9,llm-eval,critical,assistant,
+BUG-10,production,minor,catalogue,unit
+BUG-11,code-review,minor,assistant,
+BUG-12,api,major,cart,

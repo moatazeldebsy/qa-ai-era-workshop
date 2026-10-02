@@ -1,0 +1,101 @@
+name: CI
+
+# The workshop's own pipeline, and the reference for Lab 7. It runs every
+# automated lab in feedback-speed order, then hands the evidence to the quality
+# gate, which makes the single pass/fail decision.
+#
+# Evidence steps use continue-on-error so a failing suite still reaches the
+# gate; the gate (and therefore the job) fails if any required check failed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  K6_VERSION: v2.3.0
+  PROMPTFOO_DISABLE_TELEMETRY: '1'
+  FORCE_COLOR: '1'
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Install k6
+        run: |
+          curl -fsSL "https://github.com/grafana/k6/releases/download/${K6_VERSION}/k6-${K6_VERSION}-linux-amd64.tar.gz" \
+            | tar -xz --strip-components=1 -C /usr/local/bin "k6-${K6_VERSION}-linux-amd64/k6"
+          k6 version
+
+      # ── 1. Fastest feedback first ─────────────────────────────────────────
+      - name: Unit tests
+        run: npm run test:unit
+
+      # ── 2. API + E2E (Labs 1, 2) → test-results/junit.xml ─────────────────
+      - name: API and E2E tests
+        id: functional
+        continue-on-error: true
+        run: npm test
+
+      # The remaining labs need the app running.
+      - name: Start the demo app
+        run: |
+          LOG_REQUESTS=false nohup node app/src/server.js > app.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf localhost:3210/health && exit 0; sleep 1; done
+          cat app.log; exit 1
+
+      # ── 3. LLM evaluation (Lab 6) → test-results/llm-eval.json ────────────
+      - name: LLM evaluation
+        id: llm-eval
+        continue-on-error: true
+        run: npm run eval:llm
+
+      # ── 4. Performance smoke (Lab 5) → test-results/k6-summary.json ────────
+      - name: Performance smoke
+        id: perf
+        continue-on-error: true
+        run: npm run perf:smoke
+
+      # ── 5. Metrics (Lab 8) — informational ────────────────────────────────
+      - name: Quality metrics
+        run: npm run metrics
+
+      # ── 6. One decision (Lab 7) ───────────────────────────────────────────
+      - name: Quality gate
+        run: npm run gate
+
+      - name: Upload reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: reports
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

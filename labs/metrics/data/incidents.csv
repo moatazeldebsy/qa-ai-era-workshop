@@ -1,0 +1,7 @@
+id,service,severity,started_at,detected_at,resolved_at,detected_by,caused_by_deploy
+INC-101,checkout,sev2,2026-09-10T10:20:00Z,2026-09-10T10:24:00Z,2026-09-10T11:00:00Z,synthetic-monitor,D-12
+INC-102,catalogue,sev3,2026-09-08T18:00:00Z,2026-09-08T19:15:00Z,2026-09-08T20:50:00Z,customer-report,
+INC-103,assistant,sev2,2026-09-15T15:15:00Z,2026-09-15T15:17:00Z,2026-09-15T15:45:00Z,llm-eval-canary,D-19
+INC-104,checkout,sev1,2026-09-20T06:10:00Z,2026-09-20T06:13:00Z,2026-09-20T06:45:00Z,alert,D-25
+INC-105,catalogue,sev3,2026-09-24T19:45:00Z,2026-09-24T21:45:00Z,2026-09-24T23:00:00Z,customer-report,D-31
+INC-106,assistant,sev3,2026-09-30T06:00:00Z,2026-09-30T06:05:00Z,2026-09-30T06:20:00Z,llm-eval-canary,
