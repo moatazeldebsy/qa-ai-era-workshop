@@ -1666,6 +1666,14 @@
 <td>Upgrade Node to 22.22+ (<code>nvm install 24</code>).</td>
 </tr>
 <tr>
+<td><code>npm warn EBADENGINE Unsupported engine … required: { node: '&gt;=22.22' }</code></td>
+<td>Your shell is on an older Node. Run <code>nvm use</code> in the repo root (it reads <code>.nvmrc</code>), then <code>npm install</code> again. The warnings are npm telling you promptfoo won't run on that version.</td>
+</tr>
+<tr>
+<td><code>npm audit</code> reports 3 high-severity issues</td>
+<td>All three are in <strong>promptfoo's</strong> dependencies (<code>braces</code>, <code>node-forge</code>, and promptfoo itself through them), which have no patched release yet. promptfoo is a dev tool run locally against the demo app, and nothing from it ships in the app. Don't run <code>npm audit fix --force</code>: it downgrades promptfoo. <code>basic-ftp</code> is already pinned to a fixed version via <code>overrides</code> in <code>package.json</code>.</td>
+</tr>
+<tr>
 <td><code>browserType.launch: Executable doesn't exist</code></td>
 <td><code>npx playwright install chromium</code></td>
 </tr>
