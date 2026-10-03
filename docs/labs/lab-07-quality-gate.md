@@ -104,7 +104,7 @@ Argue it out. Should a 90% eval pass rate block a release? Should performance be
   run: npm run gate            # the only step that decides pass/fail
 ```
 
-The steps follow the labs, fastest feedback first: doctor → unit → API & E2E → LLM eval → red team → agent tools → performance smoke → metrics → gate. On GitHub the gate's table appears in the run summary. Open the repo's **Actions** tab to see a real run, or push a branch with a failing test to see a blocked one.
+The steps follow the labs, fastest feedback first: doctor → unit → API & E2E → agent tools → LLM eval → red team → performance smoke → metrics → gate. On GitHub the gate's table appears in the run summary. Open the repo's **Actions** tab to see a real run, or push a branch with a failing test to see a blocked one.
 
 ## The whole lab, end to end
 

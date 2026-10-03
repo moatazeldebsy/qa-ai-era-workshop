@@ -67,6 +67,11 @@ jobs:
         continue-on-error: true
         run: npm test
 
+      # Lab 9's agent needs a model, so CI tests its browser tools instead.
+      # Before "Start the demo app": like npm test, Playwright starts its own.
+      - name: AI agent tools
+        run: npm run test:agent-tools
+
       # The remaining labs need the app running.
       - name: Start the demo app
         run: |
@@ -84,10 +89,6 @@ jobs:
         id: llm-redteam
         continue-on-error: true
         run: npm run eval:redteam
-
-      # Lab 9's agent needs a model, so CI tests its browser tools instead.
-      - name: AI agent tools
-        run: npm run test:agent-tools
 
       # ── 4. Performance smoke (Lab 5) → test-results/k6-summary.json ────────
       - name: Performance smoke
