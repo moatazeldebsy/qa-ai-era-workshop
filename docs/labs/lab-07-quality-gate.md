@@ -28,6 +28,7 @@ npm test               # → test-results/junit.xml
 npm start              # in another terminal, then:
 npm run perf:smoke     # → test-results/k6-summary.json
 npm run eval:llm       # → test-results/llm-eval.json
+npm run eval:redteam   # → test-results/llm-redteam.json
 ```
 
 ## 2. Ask the gate
@@ -41,8 +42,9 @@ npm run gate
 
 | Check | Result | Detail |
 |---|---|---|
-| Functional tests | ✅ pass | 33/33 passed, 0 failed, 0 skipped (max failed: 0) |
+| Functional tests | ✅ pass | 35/35 passed, 0 failed, 0 skipped (max failed: 0) |
 | LLM evaluation | ✅ pass | 9/9 cases passed (100%, min 100%) |
+| LLM red team | ✅ pass | 13/13 attacks resisted (100%, min 100%) |
 | Performance | ✅ pass | books p95 2ms, cart p95 1ms, errors 0.00% |
 ```
 
@@ -61,8 +63,9 @@ npm run gate
 
 | Check | Result | Detail |
 |---|---|---|
-| Functional tests | ❌ fail | 29/33 passed, 4 failed, 0 skipped (max failed: 0) |
+| Functional tests | ❌ fail | 31/35 passed, 4 failed, 0 skipped (max failed: 0) |
 | LLM evaluation | ✅ pass | 9/9 cases passed (100%, min 100%) |
+| LLM red team | ✅ pass | 13/13 attacks resisted (100%, min 100%) |
 | Performance | ✅ pass | books p95 2ms, cart p95 1ms, errors 0.00% |
 ```
 
@@ -76,11 +79,15 @@ This step is for the whole group, managers included. Open the config:
 {
   "tests": { "maxFailed": 0, "required": true },
   "llmEval": { "minPassRate": 1.0, "required": false },
+  "llmRedteam": { "minPassRate": 1.0, "required": false },
   "performance": { "maxP95Ms": { "books": 200, "cart": 300 }, "maxErrorRate": 0.01, "required": false }
 }
 ```
 
 Argue it out. Should a 90% eval pass rate block a release? Should performance be `required`? Change the file, re-run `npm run gate`, and watch the decision change.
+
+!!! note "Only `npm test` writes the gate's evidence"
+    `test-results/junit.xml` comes from the main suite (E2E + API). Other runs (the flaky lab, the agent-tool tests, a single project) write `junit-<project>.xml` instead, so running them never swaps the gate's evidence for the wrong tests.
 
 !!! tip "The gate is a team agreement written as code"
     Any change to `gate.config.json` should be a reviewed pull request, just like code. If the thresholds change silently, the gate means nothing.
@@ -92,19 +99,19 @@ Argue it out. Should a 90% eval pass rate block a release? Should performance be
   id: functional
   continue-on-error: true      # a failing suite still reaches the gate
   run: npm test
-# ... LLM evaluation, Performance smoke, Quality metrics ...
+# ... LLM evaluation, LLM red team, agent tools, performance smoke, metrics ...
 - name: Quality gate
   run: npm run gate            # the only step that decides pass/fail
 ```
 
-The steps follow the labs, fastest feedback first: unit → API & E2E → LLM eval → performance smoke → metrics → gate. On GitHub the gate's table appears in the run summary. Open the repo's **Actions** tab to see a real run, or push a branch with a failing test to see a blocked one.
+The steps follow the labs, fastest feedback first: doctor → unit → API & E2E → LLM eval → red team → agent tools → performance smoke → metrics → gate. On GitHub the gate's table appears in the run summary. Open the repo's **Actions** tab to see a real run, or push a branch with a failing test to see a blocked one.
 
 ## The whole lab, end to end
 
 ```bash
 npm test                                      # 1. evidence
 npm start &                                   #    (app for the next two)
-npm run perf:smoke && npm run eval:llm
+npm run perf:smoke && npm run eval:llm && npm run eval:redteam
 npm run gate                                  # 2. ✅ READY
 PORT=3300 BUG_MODE=cart npm start &           # 3. plant the bug
 BASE_URL=http://localhost:3300 npm test; npm run gate    # ❌ BLOCKED

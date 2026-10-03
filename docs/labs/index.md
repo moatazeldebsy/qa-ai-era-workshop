@@ -1,6 +1,6 @@
 # Labs
 
-Eight hands-on labs on the [demo app](../reference/demo-app.md). Each lab has a **core** part (do this) and **stretch goals** (if you finish early), and ends with **debrief questions** for the group.
+Nine hands-on labs on the [demo app](../reference/demo-app.md). Each lab has a **core** part (do this) and **stretch goals** (if you finish early), and ends with **debrief questions** for the group.
 
 Finish the [Quickstart](../getting-started.md) first.
 
@@ -14,10 +14,11 @@ Finish the [Quickstart](../getting-started.md) first.
 | 6 | [Evaluating an LLM feature](lab-06-llm-evaluation.md) | 45 min | All | 5 |
 | 7 | [Quality gates in CI](lab-07-quality-gate.md) | 35 min | All | 4 |
 | 8 | [Measuring what matters](lab-08-metrics.md) | 30 min | All | 7 |
+| 9 | [An AI agent tests the shop](lab-09-ai-agent.md) | 45 min | All | 8 |
 
 ## Conventions
 
 - Commands run from the repo root.
 - `npm start` runs the app on <http://localhost:3210>. The Playwright labs start it for you.
 - Results land in `test-results/`, which the quality gate in Lab 7 reads.
-- Every lab works **without an API key**. Where a real model adds something, it is marked *optional*.
+- Labs 1–8 work **without an API key**; where a real model adds something, it is marked *optional*. Lab 9 needs either an API key or Claude Code / Copilot agent mode.

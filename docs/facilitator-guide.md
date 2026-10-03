@@ -4,9 +4,9 @@ Notes for whoever runs the workshop.
 
 ## Before the day
 
-- [ ] Send the [Quickstart](getting-started.md) page a week ahead and ask everyone to post the output of `npm test` in the event channel. Chase anyone who doesn't.
-- [ ] Have a fallback: a cloud dev environment (Codespaces works; the repo has no special requirements) for people whose laptops are locked down.
-- [ ] Decide whether you'll show the real-model mode. If so, use **one** facilitator API key on your machine. Don't hand keys out.
+- [ ] Send the [Quickstart](getting-started.md) page a week ahead and ask everyone to post the output of `npm run doctor` and `npm test` in the event channel. Chase anyone who doesn't.
+- [ ] Point locked-down laptops at **GitHub Codespaces**: the repo's dev container installs everything (*Code → Codespaces → Create codespace*). Try it yourself once; the first build takes about 5 minutes.
+- [ ] Decide how you'll run [Lab 9](labs/lab-09-ai-agent.md): a facilitator demo with **one** API key on your machine (don't hand keys out), or attendees on route B with their own Claude Code or Copilot.
 - [ ] Print or share the [Cheat Sheet](reference/cheat-sheet.md).
 - [ ] Run every lab yourself on the venue network the day before.
 
@@ -26,11 +26,14 @@ Notes for whoever runs the workshop.
 | 6 | An LLM feature needs a regression suite | Switch the app to `buggy` mode and re-run the same eval |
 | 7 | The gate is a team agreement, not a tool | Ask managers to change a threshold and defend it |
 | 8 | Metrics hide things | Ask: "Our MTTD is 35 min. Is that good?" Then show the per-source breakdown |
+| 9 | Agents need an oracle | Run the same charter with `--no-oracle` side by side and compare the findings |
+| 1 | Automated a11y checks are incomplete | Delete the search label: axe still passes, the label-based tests fail |
 
 ## Common problems
 
 | Problem | Fix |
 |---|---|
+| Anything at all | Start with `npm run doctor`: it names the problem and the fix |
 | Port clash | `PORT=3300 npm test` / `PORT=3300 npm start` |
 | Corporate proxy blocks browser download | `PLAYWRIGHT_DOWNLOAD_HOST` to an internal mirror, or use Codespaces |
 | Old Node | `nvm install 24` |

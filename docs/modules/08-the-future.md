@@ -70,6 +70,14 @@ Share and compare.
 
 <div class="grid cards" markdown>
 
+-   **Lab 9 — An AI agent tests the shop**
+
+    ---
+
+    Give Claude a goal and a browser, then judge its findings, and see why it needs an oracle.
+
+    [→ Lab 9](../labs/lab-09-ai-agent.md)
+
 -   **Agendas & Tracks**
 
     ---

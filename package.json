@@ -8,6 +8,7 @@
     "node": ">=22.22"
   },
   "scripts": {
+    "doctor": "node scripts/doctor.mjs",
     "start": "node app/src/server.js",
     "start:buggy": "ASSISTANT_MODE=buggy node app/src/server.js",
     "start:bug-cart": "BUG_MODE=cart node app/src/server.js",
@@ -17,11 +18,14 @@
     "test:flaky": "playwright test --project=flaky --repeat-each=10",
     "test:unit": "node --test \"app/test/*.test.js\"",
     "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
+    "eval:redteam": "promptfoo eval -c labs/llm-eval/redteam.yaml --no-cache",
     "eval:llm:view": "promptfoo view",
     "perf:smoke": "k6 run labs/k6/smoke.js",
     "metrics": "python3 labs/metrics/quality_metrics.py labs/metrics/data",
     "gate": "node labs/quality-gate/gate.mjs",
     "testgen": "node labs/ai-testgen/generate.mjs",
+    "agent": "node labs/ai-agent/explore.mjs",
+    "test:agent-tools": "playwright test --project=agent-tools",
     "docs": "mkdocs serve"
   },
   "dependencies": {
@@ -29,6 +33,7 @@
     "express": "^5.2.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
     "promptfoo": "^0.123.1"
   },

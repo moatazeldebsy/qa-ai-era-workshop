@@ -2,7 +2,7 @@
 
 **Higher quality · Faster feedback · Smarter testing · Greater impact**
 
-A hands-on workshop for QA engineers, SDETs, developers and engineering leaders. It has eight modules, eight runnable labs and a demo app with an AI assistant you can break on purpose.
+A hands-on workshop for QA engineers, SDETs, developers and engineering leaders. It has eight modules, nine runnable labs and a demo app with an AI assistant you can break on purpose.
 
 📖 **Workshop site:** <https://moatazeldebsy.github.io/qa-ai-era-workshop/>
 
@@ -16,18 +16,20 @@ cd qa-ai-era-workshop
 nvm use                                  # Node 24 (22.22+ works)
 npm install
 npx playwright install --with-deps chromium
-npm test                                 # 33 E2E + API tests against the demo app
+npm run doctor                           # is this machine ready?
+npm test                                 # 35 E2E + API tests against the demo app
 npm start                                # http://localhost:3210
 ```
 
-Step by step, including k6 and Python: [Quickstart](docs/getting-started.md).
+Step by step, including k6 and Python: [Quickstart](docs/getting-started.md). Nothing to install? [Open in GitHub Codespaces](https://codespaces.new/moatazeldebsy/qa-ai-era-workshop).
+
 
 ## What's inside
 
 | | |
 |---|---|
 | **8 modules** (`docs/modules/`) | The evolving role · AI-powered testing · Tools & technologies · Process & practices · Quality focus areas for AI · Skills & mindset · Success metrics · The future |
-| **8 labs** (`docs/labs/`, `labs/`) | Playwright E2E · API testing · AI-assisted test generation · Flaky tests · k6 performance · LLM evaluation with promptfoo · Quality gates in CI · Quality and delivery metrics |
+| **9 labs** (`docs/labs/`, `labs/`) | Playwright E2E + accessibility · API testing · AI-assisted test generation · Flaky tests · k6 performance · LLM evaluation + red teaming with promptfoo · Quality gates in CI · Quality and delivery metrics · An AI agent tests the shop |
 | **Demo app** (`app/`) | *Quality Books*: catalogue, cart, a slow widget, and an AI support assistant with `mock`, `buggy` and `claude` modes |
 | **CI** (`.github/workflows/ci.yml`) | Runs every lab and a quality gate on each push |
 
@@ -50,6 +52,9 @@ labs/
   llm-eval/          Lab 6 — promptfoo eval suite
   quality-gate/      Lab 7 — gate script and thresholds
   metrics/           Lab 8 — metrics script and sample data
+  ai-agent/          Lab 9 — agent, browser tools, charters, product rules
+scripts/doctor.mjs   setup checker (npm run doctor)
+.devcontainer/       GitHub Codespaces / dev container
 docs/                workshop site (MkDocs Material)
 ```
 

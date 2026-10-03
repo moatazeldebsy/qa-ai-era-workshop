@@ -99,6 +99,7 @@ nav:
     - 6. Evaluating an LLM Feature: labs/lab-06-llm-evaluation.md
     - 7. Quality Gates in CI: labs/lab-07-quality-gate.md
     - 8. Measuring What Matters: labs/lab-08-metrics.md
+    - 9. An AI Agent Tests the Shop: labs/lab-09-ai-agent.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

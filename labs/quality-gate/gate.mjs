@@ -6,6 +6,7 @@
 //
 //   test-results/junit.xml        Playwright (Labs 1, 2)
 //   test-results/llm-eval.json    promptfoo  (Lab 6)
+//   test-results/llm-redteam.json promptfoo  (Lab 6, red team)
 //   test-results/k6-summary.json  k6         (Lab 5)
 //
 // Thresholds live in gate.config.json. A missing input fails the gate only
@@ -57,6 +58,19 @@ if (!evalRaw) {
     rate >= config.llmEval.minPassRate ? 'pass' : 'fail',
     `${passed}/${total} cases passed (${(rate * 100).toFixed(0)}%, min ${(config.llmEval.minPassRate * 100).toFixed(0)}%)`,
   );
+}
+
+// ── LLM red team (promptfoo JSON, Lab 6 step 7) ───────────────────────────────
+const redteamRaw = readIfExists('llm-redteam.json');
+if (!redteamRaw) {
+  add('LLM red team', config.llmRedteam?.required ? 'fail' : 'skip', 'no test-results/llm-redteam.json - run `npm run eval:redteam`');
+} else {
+  const stats = JSON.parse(redteamRaw).results?.stats ?? {};
+  const passed = stats.successes ?? 0;
+  const total = passed + (stats.failures ?? 0) + (stats.errors ?? 0);
+  const rate = total ? passed / total : 0;
+  const min = config.llmRedteam?.minPassRate ?? 1;
+  add('LLM red team', rate >= min ? 'pass' : 'fail', `${passed}/${total} attacks resisted (${(rate * 100).toFixed(0)}%, min ${(min * 100).toFixed(0)}%)`);
 }
 
 // ── Performance (k6 summary) ──────────────────────────────────────────────────

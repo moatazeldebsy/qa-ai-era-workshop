@@ -5,7 +5,7 @@ Get the demo shop running, run its test suite, and break its AI assistant on pur
 By the end you'll have:
 
 - the **Quality Books** demo app running on <http://localhost:3210>
-- **33 E2E and API tests** passing against it
+- **35 E2E and API tests** passing against it
 - seen the AI assistant **fail an evaluation** in buggy mode, and a **quality gate** block the release
 
 This takes **about 15 minutes** and needs **no API key or cloud account**. Do it before the workshop: downloading browsers over conference Wi-Fi is how a workshop loses its first hour.
@@ -28,13 +28,41 @@ This takes **about 15 minutes** and needs **no API key or cloud account**. Do it
 
 ## 1. Clone and install
 
+=== "Your laptop"
+
+    ```bash
+    git clone https://github.com/moatazeldebsy/qa-ai-era-workshop.git
+    cd qa-ai-era-workshop
+    nvm use                                    # Node from .nvmrc
+    npm install
+    npx playwright install --with-deps chromium
+    ```
+
+=== "GitHub Codespaces (nothing to install)"
+
+    On the [repository page](https://github.com/moatazeldebsy/qa-ai-era-workshop), choose **Code → Codespaces → Create codespace on main**.
+
+    The dev container (`.devcontainer/`) installs Node 24, Python, k6, Chromium and MkDocs, then runs the doctor. Allow about 5 minutes the first time. Port 3210 (the shop) is forwarded automatically. This is the fallback for locked-down laptops.
+
+Then check the machine is ready:
+
 ```bash
-git clone https://github.com/moatazeldebsy/qa-ai-era-workshop.git
-cd qa-ai-era-workshop
-nvm use                                    # Node from .nvmrc
-npm install
-npx playwright install --with-deps chromium
+npm run doctor
 ```
+
+```text title="Expected output"
+✅ Node.js                v24.21.0
+✅ npm dependencies       installed
+✅ Playwright Chromium    installed
+✅ k6                     v0.53.0
+✅ Python                 3.12.8
+✅ Port 3210              free
+ℹ️  Anthropic API key      not set: fine, every lab except Lab 9 route A works without it
+
+Ready for the workshop. Next:  npm test
+```
+
+Anything marked ❌ comes with the command that fixes it. Port clashes, an old Node version and a missing browser are the usual culprits.
 
 ??? info "What gets installed"
 
@@ -61,7 +89,7 @@ npm test              # E2E + API tests; starts the app for you
 ℹ pass 5
 ℹ fail 0
 
-  33 passed (7.8s)
+  35 passed (8.1s)
 ```
 
 ??? question "Every Playwright test fails with `Unexpected end of JSON input`?"
@@ -131,7 +159,7 @@ The labs are built around two planted failures. See each one fail its tests:
 
     ```text title="Expected output"
       4 failed
-      29 passed
+      31 passed
 
     ## Quality gate: ❌ BLOCKED
     ```
@@ -156,6 +184,7 @@ npm run testgen                      # Lab 3: drafts API tests from the OpenAPI 
 ```bash
 git clone https://github.com/moatazeldebsy/qa-ai-era-workshop.git && cd qa-ai-era-workshop
 nvm use && npm install && npx playwright install --with-deps chromium   # 1. install
+npm run doctor                                                          #    check the machine
 npm run test:unit && npm test                                           # 2. tests
 npm start                                                               # 3. app → http://localhost:3210
 npm run eval:llm                                                        # 4. LLM eval (app running)

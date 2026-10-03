@@ -18,4 +18,4 @@ Eight modules, one per theme of the map. Each one is 20-30 minutes of presentati
 | 5 | [Quality Focus Areas for AI](05-quality-focus-areas.md) | AI features bring new failure modes | 6 |
 | 6 | [Skills & Mindset](06-skills-and-mindset.md) | New skills for a new era | — |
 | 7 | [Success Metrics](07-success-metrics.md) | Measure what matters | 8 |
-| 8 | [The Future](08-the-future.md) | More intelligent, more autonomous, more human | — |
+| 8 | [The Future](08-the-future.md) | More intelligent, more autonomous, more human | 9 |

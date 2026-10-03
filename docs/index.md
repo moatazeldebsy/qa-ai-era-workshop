@@ -2,7 +2,7 @@
 
 **Higher quality · Faster feedback · Smarter testing · Greater impact**
 
-A hands-on workshop for QA engineers, SDETs, developers and engineering leaders. Each module covers one part of how quality engineering is changing, and eight runnable labs put it into practice on a small demo shop that includes an AI support assistant.
+A hands-on workshop for QA engineers, SDETs, developers and engineering leaders. Each module covers one part of how quality engineering is changing, and nine runnable labs put it into practice on a small demo shop that includes an AI support assistant, which an AI agent then tests in the last lab.
 
 ![QA Engineering in the AI Era: the eight themes of this workshop](assets/qa-ai-era-mindmap.png)
 
@@ -23,7 +23,7 @@ A hands-on workshop for QA engineers, SDETs, developers and engineering leaders.
 
     ---
 
-    Install, run 33 tests, and break the AI assistant on purpose. About 15 minutes, no API key.
+    Install, run 35 tests, and break the AI assistant on purpose. About 15 minutes, no API key.
 
     [→ Quickstart](getting-started.md)
 
@@ -35,11 +35,11 @@ A hands-on workshop for QA engineers, SDETs, developers and engineering leaders.
 
     [→ Modules](modules/index.md)
 
--   :material-flask-outline: **8 Labs**
+-   :material-flask-outline: **9 Labs**
 
     ---
 
-    Step-by-step and hands-on: Playwright, API tests, AI test generation, k6, LLM evals, quality gates, metrics.
+    Step-by-step and hands-on: Playwright and accessibility, API tests, AI test generation, k6, LLM evals and red teaming, quality gates, metrics, and an AI agent testing the shop.
 
     [→ Labs](labs/index.md)
 
@@ -59,7 +59,7 @@ The audience is deliberately mixed. Every module ends with **takeaways per role*
 
 === "QA engineers & SDETs"
 
-    All eight labs. Focus on Labs 1-7: automation, AI-assisted generation, flakiness, LLM evaluation and quality gates.
+    All nine labs. Focus on Labs 1-7 and 9: automation, AI-assisted generation, flakiness, LLM evaluation, quality gates and AI agents.
 
 === "Developers"
 
@@ -67,7 +67,7 @@ The audience is deliberately mixed. Every module ends with **takeaways per role*
 
 === "Managers & leads"
 
-    Modules 1, 4, 6, 7 and 8, plus Labs 7 and 8. Read the gate output and the metrics, and decide what "ready to release" means for your team.
+    Modules 1, 4, 6, 7 and 8, plus Labs 7, 8 and 9. Read the gate output and the metrics, and decide what "ready to release" means for your team.
 
 ## The demo app in one paragraph
 

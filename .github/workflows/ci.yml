@@ -53,6 +53,10 @@ jobs:
             | tar -xz --strip-components=1 -C /usr/local/bin "k6-${K6_VERSION}-linux-amd64/k6"
           k6 version
 
+      # Same check a learner runs first (k6 and Python are installed above).
+      - name: Workshop doctor
+        run: npm run doctor
+
       # ── 1. Fastest feedback first ─────────────────────────────────────────
       - name: Unit tests
         run: npm run test:unit
@@ -75,6 +79,15 @@ jobs:
         id: llm-eval
         continue-on-error: true
         run: npm run eval:llm
+
+      - name: LLM red team
+        id: llm-redteam
+        continue-on-error: true
+        run: npm run eval:redteam
+
+      # Lab 9's agent needs a model, so CI tests its browser tools instead.
+      - name: AI agent tools
+        run: npm run test:agent-tools
 
       # ── 4. Performance smoke (Lab 5) → test-results/k6-summary.json ────────
       - name: Performance smoke

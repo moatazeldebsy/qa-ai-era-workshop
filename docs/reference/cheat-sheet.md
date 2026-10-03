@@ -4,6 +4,7 @@
 
 | Task | Command |
 |---|---|
+| Check the machine | `npm run doctor` |
 | Start the app | `npm start` (→ <http://localhost:3210>) |
 | … with the buggy assistant | `npm run start:buggy` |
 | … with the cart regression | `npm run start:bug-cart` |
@@ -17,6 +18,10 @@
 | AI test generation | `npm run testgen` (or `-- --print`) |
 | Performance smoke | `npm run perf:smoke` |
 | LLM eval / viewer | `npm run eval:llm` / `npm run eval:llm:view` |
+| LLM red team | `npm run eval:redteam` |
+| AI agent explores | `npm run agent -- free-shipping` (`--headed`, `--no-oracle`) |
+| Agent's tools, tested | `npm run test:agent-tools` |
+| Accessibility checks | `npx playwright test --project=e2e accessibility` |
 | Quality gate | `npm run gate` |
 | Metrics | `npm run metrics` |
 | Docs site | `mkdocs serve` |

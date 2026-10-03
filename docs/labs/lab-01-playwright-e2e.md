@@ -4,9 +4,10 @@ Write browser tests that are readable, survive UI changes, and are quick to debu
 
 By the end you'll have:
 
-- run the shop's **9 end-to-end tests** and read their HTML report
+- run the shop's **11 end-to-end tests** and read their HTML report
 - seen why **role- and label-based locators** survive changes that break CSS selectors
 - written a **new journey test** and debugged a failure with a **Playwright trace**
+- caught an **accessibility regression** with axe-core and a keyboard-only test
 
 **Time:** 40 min · **Tracks:** QA, Dev · **Module:** [3. Tools & Technologies](../modules/03-tools-and-technologies.md)
 
@@ -30,7 +31,7 @@ npx playwright show-report
 ```
 
 ```text title="Expected output"
-  9 passed (4.1s)
+  11 passed (5.2s)
 ```
 
 The report lists every test with its steps. Failed tests get a screenshot and a trace.
@@ -64,7 +65,7 @@ Change the markup without changing what the user sees, then re-run:
 npm run test:e2e
 ```
 
-Still **9 passed**. Now change the label text *Search books* to *Find*. The tests go red, as they should: the user-visible contract changed. Undo your edits.
+Still **11 passed**. Now change the label text *Search books* to *Find*. The tests go red, as they should: the user-visible contract changed. Undo your edits.
 
 ## 4. Write a test
 
@@ -84,7 +85,7 @@ Add a test to `shop.spec.js` for this rule:
     ```
 
 ```text title="Expected output"
-  10 passed
+  12 passed
 ```
 
 ## 5. Debug a failure with a trace
@@ -98,6 +99,48 @@ npx playwright show-trace test-results/playwright/*charges-shipping*/trace.zip
 
 The trace viewer shows every action, a DOM snapshot before and after each one, the network calls, and the console. It's the first thing to open when a test fails in CI, where `trace: 'retain-on-failure'` keeps it for you. Undo the change.
 
+## 6. Check accessibility
+
+`labs/playwright/tests/accessibility.spec.js` runs **axe-core**, which checks the page against the WCAG 2.1 A and AA rules, and drives the cart with the keyboard only:
+
+```js title="labs/playwright/tests/accessibility.spec.js"
+const results = await new AxeBuilder({ page })
+  .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+  .analyze();
+expect(results.violations.map((v) => `${v.impact}: ${v.id} - ${v.help} ...`)).toEqual([]);
+```
+
+Both pass on the shop as shipped. Now break it, in two ways.
+
+=== "Experiment A: remove the page language"
+
+    In `app/public/index.html`, change `<html lang="en">` to `<html>`, then:
+
+    ```bash
+    npx playwright test --project=e2e accessibility
+    ```
+
+    ```text title="Expected output"
+    +   "serious: html-has-lang - <html> element must have a lang attribute (<html>)",
+      1 failed
+      1 passed
+    ```
+
+    axe names the rule, its impact and the exact element. Screen readers use `lang` to pick a voice and pronunciation. Undo the change.
+
+=== "Experiment B: remove the search label"
+
+    In `app/public/index.html`, delete the line `<label for="search">Search books</label>`, then:
+
+    ```bash
+    npx playwright test --project=e2e
+    ```
+
+    The axe test **still passes**: axe accepts the placeholder as the field's accessible name. But the keyboard test and the search tests **fail**, because `getByLabel('Search books')` no longer finds anything. A placeholder disappears as soon as you type, so it's a poor label. Two lessons: automated checks are incomplete, and accessible markup and resilient tests are the same thing. Undo the change.
+
+!!! note "Automated checks find about a third of issues"
+    axe-core catches what a machine can check: missing labels, low contrast, invalid ARIA. Keyboard flows, focus order, and whether alt text actually makes sense still need a person, or at least a test like the keyboard one here.
+
 ## The whole lab, end to end
 
 ```bash
@@ -106,6 +149,7 @@ npx playwright show-report                        #    read the report
 # 3. change markup, re-run, undo
 # 4. add the author-search test, re-run
 npx playwright show-trace test-results/playwright/<test>/trace.zip   # 5. debug
+npx playwright test --project=e2e accessibility    # 6. a11y: break the label, re-run
 ```
 
 ## Stretch goals
