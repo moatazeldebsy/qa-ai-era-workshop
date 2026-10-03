@@ -72,7 +72,24 @@ In pairs: compare the model's top 8 risks to your own list. Which did it miss? W
 === "Managers & leads"
     Measure AI's impact by **kept vs discarded** generated tests and by escaped defects, not by "tests generated". Volume is the easy number and the wrong one.
 
-## Practise it
+## Next steps
 
-- [Lab 3: AI-assisted test generation](../labs/lab-03-ai-test-generation.md)
-- [Lab 4: Flaky tests](../labs/lab-04-flaky-tests.md)
+<div class="grid cards" markdown>
+
+-   **Lab 3 — AI-assisted test generation**
+
+    ---
+
+    Generate tests from the OpenAPI spec, then review them like a senior engineer.
+
+    [→ Lab 3](../labs/lab-03-ai-test-generation.md)
+
+-   **Lab 4 — Flaky tests**
+
+    ---
+
+    Prove a flaky test's cause and fix it properly, not with retries.
+
+    [→ Lab 4](../labs/lab-04-flaky-tests.md)
+
+</div>

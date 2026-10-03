@@ -69,6 +69,24 @@ In pairs, write five questions designed to make the Quality Books assistant misb
 === "Managers & leads"
     No LLM feature ships without an eval suite in CI and a named owner for its quality. Ask for the eval pass rate the way you'd ask for test results.
 
-## Practise it
+## Next steps
 
-- [Lab 6: Evaluating an LLM feature](../labs/lab-06-llm-evaluation.md)
+<div class="grid cards" markdown>
+
+-   **Lab 6 — Evaluating an LLM feature**
+
+    ---
+
+    An eval suite that catches hallucination, prompt leaks and off-topic answers.
+
+    [→ Lab 6](../labs/lab-06-llm-evaluation.md)
+
+-   **Module 6 — Skills & Mindset**
+
+    ---
+
+    The skills that keep compounding, whatever the next tool turns out to be.
+
+    [→ Module 6](06-skills-and-mindset.md)
+
+</div>

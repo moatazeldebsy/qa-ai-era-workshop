@@ -1,47 +1,79 @@
 # Lab 1 — E2E with Playwright
 
+Write browser tests that are readable, survive UI changes, and are quick to debug when they fail, and keep their number small.
+
+By the end you'll have:
+
+- run the shop's **9 end-to-end tests** and read their HTML report
+- seen why **role- and label-based locators** survive changes that break CSS selectors
+- written a **new journey test** and debugged a failure with a **Playwright trace**
+
 **Time:** 40 min · **Tracks:** QA, Dev · **Module:** [3. Tools & Technologies](../modules/03-tools-and-technologies.md)
 
-## Goal
+## Prerequisites
 
-Write browser tests that are **readable, resilient to UI change and fast to debug**, and keep them few.
+- The [Quickstart](../getting-started.md) is done and `npm test` is green.
+- No running app is needed: Playwright starts one on port 3210 for each run.
 
-## Files
+| File | What's in it |
+|---|---|
+| `labs/playwright/pages/ShopPage.js` | Page object; every locator is role-, label- or test-ID-based |
+| `labs/playwright/tests/shop.spec.js` | Catalogue and cart journeys |
+| `labs/playwright/tests/assistant.spec.js` | Assistant wiring, and a check that its output is never rendered as HTML |
+| `playwright.config.js` | Projects (`e2e`, `api`, `flaky`), reporters, auto-started app |
 
-- `labs/playwright/pages/ShopPage.js`: page object with role/label-based locators
-- `labs/playwright/tests/shop.spec.js`: catalogue and cart journeys
-- `labs/playwright/tests/assistant.spec.js`: assistant wiring and output safety
-- `playwright.config.js`: projects, reporters, auto-started app
+## 1. Run the suite
 
-## Steps
+```bash
+npm run test:e2e
+npx playwright show-report
+```
 
-**1. Run the suite.**
+```text title="Expected output"
+  9 passed (4.1s)
+```
+
+The report lists every test with its steps. Failed tests get a screenshot and a trace.
+
+## 2. Read the page object
+
+```js title="labs/playwright/pages/ShopPage.js"
+this.search = page.getByLabel('Search books');
+this.askButton = page.getByRole('button', { name: 'Ask' });
+this.total = page.getByTestId('total');
+```
+
+There is no CSS selector for anything a user can see. Role- and label-based locators find elements the way a user or a screen reader does. A test that can't find a button by its accessible name has also found an accessibility bug.
+
+!!! tip "Locator order of preference"
+    `getByRole` → `getByLabel` → `getByText` → `getByTestId` → CSS/XPath only as a last resort.
+
+## 3. Prove the resilience
+
+Change the markup without changing what the user sees, then re-run:
+
+=== "Rename a class"
+
+    In `app/public/app.js`, change `el('li', undefined, 'book')` to `el('li', undefined, 'card')`.
+
+=== "Wrap the search box"
+
+    In `app/public/index.html`, wrap `<input id="search" …>` in an extra `<div>`.
 
 ```bash
 npm run test:e2e
 ```
 
-Nine tests pass. Open the report with `npx playwright show-report`.
+Still **9 passed**. Now change the label text *Search books* to *Find*. The tests go red, as they should: the user-visible contract changed. Undo your edits.
 
-**2. Read the page object.** Notice there are no CSS selectors for things a user can see:
+## 4. Write a test
 
-```js
-this.search = page.getByLabel('Search books');
-this.askButton = page.getByRole('button', { name: 'Ask' });
-```
+Add a test to `shop.spec.js` for this rule:
 
-Role- and label-based locators find elements the way a user (or a screen reader) does. A test that can't find a button by its accessible name has also found an accessibility bug.
-
-**3. Prove the resilience.** In `app/public/styles.css` or `index.html`, rename the CSS class `book` to `card`, or wrap the search input in an extra `<div>`. Re-run: still green. Now change the label text *"Search books"* to *"Find"*: red. That's intended, because the user-visible contract changed.
-
-Undo your changes.
-
-**4. Write a test.** Add to `shop.spec.js`:
-
-> *Searching for an author's surname (case-insensitive) shows only their book.*
+> *Searching for an author's surname, in any case, shows only their book.*
 
 ??? success "One solution"
-    ```js
+    ```js title="labs/playwright/tests/shop.spec.js"
     test('search matches authors, case-insensitively', async ({ page }) => {
       const shop = new ShopPage(page);
       await shop.goto();
@@ -51,22 +83,61 @@ Undo your changes.
     });
     ```
 
-**5. Debug a failure with a trace.** Break a test on purpose (change `'34.89'` to `'34.88'`), run it, then:
-
-```bash
-npx playwright show-trace test-results/playwright/*/trace.zip
+```text title="Expected output"
+  10 passed
 ```
 
-Step through the actions, the DOM snapshots and the network calls. This is the first thing to open when a test fails in CI. Undo the change.
+## 5. Debug a failure with a trace
+
+Break a test on purpose: in the free-shipping test, change `'34.89'` to `'34.88'`. Then:
+
+```bash
+npm run test:e2e
+npx playwright show-trace test-results/playwright/*charges-shipping*/trace.zip
+```
+
+The trace viewer shows every action, a DOM snapshot before and after each one, the network calls, and the console. It's the first thing to open when a test fails in CI, where `trace: 'retain-on-failure'` keeps it for you. Undo the change.
+
+## The whole lab, end to end
+
+```bash
+npm run test:e2e                                  # 1. run
+npx playwright show-report                        #    read the report
+# 3. change markup, re-run, undo
+# 4. add the author-search test, re-run
+npx playwright show-trace test-results/playwright/<test>/trace.zip   # 5. debug
+```
 
 ## Stretch goals
 
 - Run in UI mode: `npx playwright test --project=e2e --ui`.
 - Add a mobile project to `playwright.config.js` with `devices['Pixel 7']` and run the suite on it.
-- Use `npx playwright codegen http://localhost:3210` (with `npm start` running) to record a journey, then refactor the generated code into the page object. Compare its locators to ours.
+- Start the app (`npm start`), record a journey with `npx playwright codegen http://localhost:3210`, then refactor the generated code into the page object. Compare its locators with ours.
 
 ## Debrief
 
-1. Which of the cart tests could be API tests instead? Why keep any of them as E2E?
-2. What did the trace show you that a screenshot wouldn't?
+1. Which cart tests could be API tests instead? Why keep any of them in the browser?
+2. What did the trace show that a screenshot wouldn't?
 3. How many E2E tests should a feature like the cart have?
+
+## Next steps
+
+<div class="grid cards" markdown>
+
+-   **Lab 2 — API testing**
+
+    ---
+
+    Move the business rules below the UI: faster, more cases, data-driven.
+
+    [→ Lab 2](lab-02-api-testing.md)
+
+-   **Lab 4 — Flaky tests**
+
+    ---
+
+    Why `waitForTimeout` makes tests lie, and the two proper fixes.
+
+    [→ Lab 4](lab-04-flaky-tests.md)
+
+</div>

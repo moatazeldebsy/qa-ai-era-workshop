@@ -75,6 +75,24 @@ On a sticky-note board, draw the six lifecycle stages from the diagram above. Ea
 === "Managers & leads"
     Fund the enablement work (pipelines, test environments, observability) as product work. A QA team measured on "bugs found" will optimise for finding bugs late.
 
-## Practise it
+## Next steps
 
-This module is conceptual. Its ideas run through every lab. Lab 7 (quality gates) and Lab 8 (metrics) are the most direct applications.
+<div class="grid cards" markdown>
+
+-   **Module 2 — AI-Powered Testing**
+
+    ---
+
+    Where AI saves real time in testing, and where it quietly makes things worse.
+
+    [→ Module 2](02-ai-powered-testing.md)
+
+-   **Lab 7 — Quality gates**
+
+    ---
+
+    The most direct application: quality as a team agreement, written as code.
+
+    [→ Lab 7](../labs/lab-07-quality-gate.md)
+
+</div>

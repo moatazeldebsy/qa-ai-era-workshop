@@ -4,7 +4,7 @@ Notes for whoever runs the workshop.
 
 ## Before the day
 
-- [ ] Send the [Setup](getting-started.md) page a week ahead and ask everyone to post the output of `npm test` in the event channel. Chase anyone who doesn't.
+- [ ] Send the [Quickstart](getting-started.md) page a week ahead and ask everyone to post the output of `npm test` in the event channel. Chase anyone who doesn't.
 - [ ] Have a fallback: a cloud dev environment (Codespaces works; the repo has no special requirements) for people whose laptops are locked down.
 - [ ] Decide whether you'll show the real-model mode. If so, use **one** facilitator API key on your machine. Don't hand keys out.
 - [ ] Print or share the [Cheat Sheet](reference/cheat-sheet.md).

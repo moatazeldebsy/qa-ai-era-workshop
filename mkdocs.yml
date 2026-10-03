@@ -27,9 +27,10 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  # One collapsible sidebar and a right-hand table of contents, as on
+  # docs.litellm.ai - no top tabs. Step pages use "## 1. ..." headings so
+  # every step shows up in the table of contents.
   features:
-    - navigation.tabs
-    - navigation.tabs.sticky
     - navigation.path
     - navigation.indexes
     - navigation.top
@@ -56,6 +57,7 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.inlinehilite
+  - pymdownx.keys
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences:
@@ -74,7 +76,7 @@ markdown_extensions:
 nav:
   - Get Started:
     - Overview: index.md
-    - Setup: getting-started.md
+    - Quickstart: getting-started.md
     - Agendas & Tracks: agendas.md
     - Facilitator Guide: facilitator-guide.md
   - Modules:

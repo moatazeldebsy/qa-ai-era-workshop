@@ -65,3 +65,25 @@ Fill in the self-assessment. Pair up and agree one concrete learning action each
 
 === "Managers & leads"
     Budget learning time explicitly, and use the self-assessment in career conversations.
+
+## Next steps
+
+<div class="grid cards" markdown>
+
+-   **Module 7 — Success Metrics**
+
+    ---
+
+    Measure what matters, and know what each metric hides.
+
+    [→ Module 7](07-success-metrics.md)
+
+-   **Labs**
+
+    ---
+
+    Put the skills to work on the demo app.
+
+    [→ Labs](../labs/index.md)
+
+</div>

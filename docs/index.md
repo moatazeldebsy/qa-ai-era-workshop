@@ -17,12 +17,41 @@ A hands-on workshop for QA engineers, SDETs, developers and engineering leaders.
 
 ## How the workshop is organised
 
-| | What | Format |
-|---|---|---|
-| **[Modules](modules/index.md)** | Eight themes, one per box in the map above | Concepts, discussion prompts, a short exercise, role-specific takeaways |
-| **[Labs](labs/index.md)** | Eight hands-on exercises on the demo app | Step-by-step, 20-45 minutes each, with stretch goals |
-| **[Agendas](agendas.md)** | Half-day, full-day and two-day formats | Pick by audience and time |
-| **[Reference](reference/cheat-sheet.md)** | Cheat sheet, glossary, reading list | For after the workshop |
+<div class="grid cards" markdown>
+
+-   :material-rocket-launch-outline: **Quickstart**
+
+    ---
+
+    Install, run 33 tests, and break the AI assistant on purpose. About 15 minutes, no API key.
+
+    [→ Quickstart](getting-started.md)
+
+-   :material-book-open-variant: **8 Modules**
+
+    ---
+
+    One per theme of the map: concepts, discussion, a short exercise and takeaways per role.
+
+    [→ Modules](modules/index.md)
+
+-   :material-flask-outline: **8 Labs**
+
+    ---
+
+    Step-by-step and hands-on: Playwright, API tests, AI test generation, k6, LLM evals, quality gates, metrics.
+
+    [→ Labs](labs/index.md)
+
+-   :material-calendar-clock: **Agendas**
+
+    ---
+
+    Half-day, full-day and two-day formats, with tracks for QA, developers and managers.
+
+    [→ Agendas & Tracks](agendas.md)
+
+</div>
 
 ## Three tracks, one workshop
 
@@ -44,5 +73,5 @@ The audience is deliberately mixed. Every module ends with **takeaways per role*
 
 **Quality Books** is a tiny bookshop: a catalogue, a cart with a free-shipping rule, a deliberately slow recommendations widget, and an **AI support assistant**. The assistant runs in `mock` mode by default (deterministic, no API key needed), in `buggy` mode (hallucinates, leaks its prompt, answers off-topic questions) for the evaluation lab, or against a real Claude model if you have an API key. `BUG_MODE=cart` plants a pricing regression for the quality-gate lab. See [Demo App](reference/demo-app.md).
 
-[Get set up :material-arrow-right:](getting-started.md){ .md-button .md-button--primary }
+[Start the Quickstart :material-arrow-right:](getting-started.md){ .md-button .md-button--primary }
 [Jump to the labs](labs/index.md){ .md-button }

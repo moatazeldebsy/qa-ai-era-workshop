@@ -75,6 +75,24 @@ For the Quality Books **assistant** feature, write the one-page strategy using t
 === "Managers & leads"
     Make overriding the gate possible but visible. Then review the overrides monthly.
 
-## Practise it
+## Next steps
 
-- [Lab 7: Quality gates in CI](../labs/lab-07-quality-gate.md)
+<div class="grid cards" markdown>
+
+-   **Lab 7 — Quality gates in CI**
+
+    ---
+
+    Turn test, eval and performance evidence into one release decision.
+
+    [→ Lab 7](../labs/lab-07-quality-gate.md)
+
+-   **Module 5 — Quality Focus Areas for AI**
+
+    ---
+
+    The new failure modes an AI feature brings into the process.
+
+    [→ Module 5](05-quality-focus-areas.md)
+
+</div>

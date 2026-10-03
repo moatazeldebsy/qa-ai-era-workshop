@@ -65,3 +65,25 @@ Share and compare.
 
 === "Managers & leads"
     Decide and document the autonomy boundaries for AI in your delivery process before a tool decides them for you.
+
+## Next steps
+
+<div class="grid cards" markdown>
+
+-   **Agendas & Tracks**
+
+    ---
+
+    Run this workshop with your team: half day, full day or two days.
+
+    [→ Agendas](../agendas.md)
+
+-   **Further Reading**
+
+    ---
+
+    Where to go next on testing practice, AI evaluation and delivery metrics.
+
+    [→ Further Reading](../reference/further-reading.md)
+
+</div>

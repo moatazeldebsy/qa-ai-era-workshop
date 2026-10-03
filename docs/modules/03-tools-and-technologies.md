@@ -81,8 +81,32 @@ List your team's tools against the "stack by job" table. For each, score Speed, 
 === "Managers & leads"
     Standardise on *outputs* (JUnit, SARIF, JSON) more than on tools; that is what lets a platform team build one quality gate for everyone.
 
-## Practise it
+## Next steps
 
-- [Lab 1: E2E with Playwright](../labs/lab-01-playwright-e2e.md)
-- [Lab 2: API testing](../labs/lab-02-api-testing.md)
-- [Lab 5: Performance with k6](../labs/lab-05-performance-k6.md)
+<div class="grid cards" markdown>
+
+-   **Lab 1 — E2E with Playwright**
+
+    ---
+
+    Resilient locators, page objects and traces.
+
+    [→ Lab 1](../labs/lab-01-playwright-e2e.md)
+
+-   **Lab 2 — API testing**
+
+    ---
+
+    Business rules below the UI, as data tables.
+
+    [→ Lab 2](../labs/lab-02-api-testing.md)
+
+-   **Lab 5 — Performance with k6**
+
+    ---
+
+    Thresholds that fail the build.
+
+    [→ Lab 5](../labs/lab-05-performance-k6.md)
+
+</div>

@@ -71,6 +71,24 @@ Choose the three metrics you'd put on your team's wall. For each, write who look
 === "Managers & leads"
     Never set a coverage target. Ask instead: "what escaped last month, and what did we change?"
 
-## Practise it
+## Next steps
 
-- [Lab 8: Measuring what matters](../labs/lab-08-metrics.md)
+<div class="grid cards" markdown>
+
+-   **Lab 8 — Measuring what matters**
+
+    ---
+
+    Compute MTTD, MTTR, DORA metrics and defect escape rate from raw data.
+
+    [→ Lab 8](../labs/lab-08-metrics.md)
+
+-   **Module 8 — The Future**
+
+    ---
+
+    Agents, autonomous quality systems, and what stays human.
+
+    [→ Module 8](08-the-future.md)
+
+</div>

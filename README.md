@@ -20,7 +20,7 @@ npm test                                 # 33 E2E + API tests against the demo a
 npm start                                # http://localhost:3210
 ```
 
-Full setup, including k6 and Python: [Setup](docs/getting-started.md).
+Step by step, including k6 and Python: [Quickstart](docs/getting-started.md).
 
 ## What's inside
 
