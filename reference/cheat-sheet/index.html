@@ -754,6 +754,8 @@
       
         
       
+        
+      
     
     
     
@@ -1014,6 +1016,34 @@
     
   
     8. Measuring What Matters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab-09-ai-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. An AI Agent Tests the Shop
   
 
     
@@ -1459,6 +1489,10 @@
 </thead>
 <tbody>
 <tr>
+<td>Check the machine</td>
+<td><code>npm run doctor</code></td>
+</tr>
+<tr>
 <td>Start the app</td>
 <td><code>npm start</code> (→ <a href="http://localhost:3210">http://localhost:3210</a>)</td>
 </tr>
@@ -1509,6 +1543,22 @@
 <tr>
 <td>LLM eval / viewer</td>
 <td><code>npm run eval:llm</code> / <code>npm run eval:llm:view</code></td>
+</tr>
+<tr>
+<td>LLM red team</td>
+<td><code>npm run eval:redteam</code></td>
+</tr>
+<tr>
+<td>AI agent explores</td>
+<td><code>npm run agent -- free-shipping</code> (<code>--headed</code>, <code>--no-oracle</code>)</td>
+</tr>
+<tr>
+<td>Agent's tools, tested</td>
+<td><code>npm run test:agent-tools</code></td>
+</tr>
+<tr>
+<td>Accessibility checks</td>
+<td><code>npx playwright test --project=e2e accessibility</code></td>
 </tr>
 <tr>
 <td>Quality gate</td>

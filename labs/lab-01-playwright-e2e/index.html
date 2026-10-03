@@ -756,6 +756,8 @@
       
         
       
+        
+      
     
     
     
@@ -931,6 +933,17 @@
     <span class="md-ellipsis">
       
         5. Debug a failure with a trace
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-check-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Check accessibility
       
     </span>
   </a>
@@ -1173,6 +1186,34 @@
     
   
     8. Measuring What Matters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab-09-ai-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. An AI Agent Tests the Shop
   
 
     
@@ -1462,6 +1503,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#6-check-accessibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Check accessibility
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-whole-lab-end-to-end" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1540,9 +1592,10 @@
 <p>Write browser tests that are readable, survive UI changes, and are quick to debug when they fail, and keep their number small.</p>
 <p>By the end you'll have:</p>
 <ul>
-<li>run the shop's <strong>9 end-to-end tests</strong> and read their HTML report</li>
+<li>run the shop's <strong>11 end-to-end tests</strong> and read their HTML report</li>
 <li>seen why <strong>role- and label-based locators</strong> survive changes that break CSS selectors</li>
 <li>written a <strong>new journey test</strong> and debugged a failure with a <strong>Playwright trace</strong></li>
+<li>caught an <strong>accessibility regression</strong> with axe-core and a keyboard-only test</li>
 </ul>
 <p><strong>Time:</strong> 40 min · <strong>Tracks:</strong> QA, Dev · <strong>Module:</strong> <a href="../../modules/03-tools-and-technologies/">3. Tools &amp; Technologies</a></p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
@@ -1580,7 +1633,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:e2e
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-report
 </code></pre></div>
-<div class="highlight"><span class="filename">Expected output</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  9 passed (4.1s)
+<div class="highlight"><span class="filename">Expected output</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>  11 passed (5.2s)
 </code></pre></div>
 <p>The report lists every test with its steps. Failed tests get a screenshot and a trace.</p>
 <h2 id="2-read-the-page-object">2. Read the page object<a class="headerlink" href="#2-read-the-page-object" title="Permanent link">&para;</a></h2>
@@ -1607,7 +1660,7 @@
 </div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:e2e
 </code></pre></div>
-<p>Still <strong>9 passed</strong>. Now change the label text <em>Search books</em> to <em>Find</em>. The tests go red, as they should: the user-visible contract changed. Undo your edits.</p>
+<p>Still <strong>11 passed</strong>. Now change the label text <em>Search books</em> to <em>Find</em>. The tests go red, as they should: the user-visible contract changed. Undo your edits.</p>
 <h2 id="4-write-a-test">4. Write a test<a class="headerlink" href="#4-write-a-test" title="Permanent link">&para;</a></h2>
 <p>Add a test to <code>shop.spec.js</code> for this rule:</p>
 <blockquote>
@@ -1624,7 +1677,7 @@
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">});</span>
 </code></pre></div>
 </details>
-<div class="highlight"><span class="filename">Expected output</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>  10 passed
+<div class="highlight"><span class="filename">Expected output</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>  12 passed
 </code></pre></div>
 <h2 id="5-debug-a-failure-with-a-trace">5. Debug a failure with a trace<a class="headerlink" href="#5-debug-a-failure-with-a-trace" title="Permanent link">&para;</a></h2>
 <p>Break a test on purpose: in the free-shipping test, change <code>'34.89'</code> to <code>'34.88'</code>. Then:</p>
@@ -1632,12 +1685,45 @@
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-trace<span class="w"> </span>test-results/playwright/*charges-shipping*/trace.zip
 </code></pre></div>
 <p>The trace viewer shows every action, a DOM snapshot before and after each one, the network calls, and the console. It's the first thing to open when a test fails in CI, where <code>trace: 'retain-on-failure'</code> keeps it for you. Undo the change.</p>
+<h2 id="6-check-accessibility">6. Check accessibility<a class="headerlink" href="#6-check-accessibility" title="Permanent link">&para;</a></h2>
+<p><code>labs/playwright/tests/accessibility.spec.js</code> runs <strong>axe-core</strong>, which checks the page against the WCAG 2.1 A and AA rules, and drives the cart with the keyboard only:</p>
+<div class="highlight"><span class="filename">labs/playwright/tests/accessibility.spec.js</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">AxeBuilder</span><span class="p">({</span><span class="w"> </span><span class="nx">page</span><span class="w"> </span><span class="p">})</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="p">.</span><span class="nx">withTags</span><span class="p">([</span><span class="s1">'wcag2a'</span><span class="p">,</span><span class="w"> </span><span class="s1">'wcag2aa'</span><span class="p">,</span><span class="w"> </span><span class="s1">'wcag21a'</span><span class="p">,</span><span class="w"> </span><span class="s1">'wcag21aa'</span><span class="p">])</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="p">.</span><span class="nx">analyze</span><span class="p">();</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nx">expect</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">violations</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">v</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">v</span><span class="p">.</span><span class="nx">impact</span><span class="si">}</span><span class="sb">: </span><span class="si">${</span><span class="nx">v</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">v</span><span class="p">.</span><span class="nx">help</span><span class="si">}</span><span class="sb"> ...`</span><span class="p">)).</span><span class="nx">toEqual</span><span class="p">([]);</span>
+</code></pre></div>
+<p>Both pass on the shop as shipped. Now break it, in two ways.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Experiment A: remove the page language</label><label for="__tabbed_2_2">Experiment B: remove the search label</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>In <code>app/public/index.html</code>, change <code>&lt;html lang="en"&gt;</code> to <code>&lt;html&gt;</code>, then:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--project<span class="o">=</span>e2e<span class="w"> </span>accessibility
+</code></pre></div>
+<div class="highlight"><span class="filename">Expected output</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>+   "serious: html-has-lang - &lt;html&gt; element must have a lang attribute (&lt;html&gt;)",
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  1 failed
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>  1 passed
+</code></pre></div>
+<p>axe names the rule, its impact and the exact element. Screen readers use <code>lang</code> to pick a voice and pronunciation. Undo the change.</p>
+</div>
+<div class="tabbed-block">
+<p>In <code>app/public/index.html</code>, delete the line <code>&lt;label for="search"&gt;Search books&lt;/label&gt;</code>, then:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--project<span class="o">=</span>e2e
+</code></pre></div>
+<p>The axe test <strong>still passes</strong>: axe accepts the placeholder as the field's accessible name. But the keyboard test and the search tests <strong>fail</strong>, because <code>getByLabel('Search books')</code> no longer finds anything. A placeholder disappears as soon as you type, so it's a poor label. Two lessons: automated checks are incomplete, and accessible markup and resilient tests are the same thing. Undo the change.</p>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Automated checks find about a third of issues</p>
+<p>axe-core catches what a machine can check: missing labels, low contrast, invalid ARIA. Keyboard flows, focus order, and whether alt text actually makes sense still need a person, or at least a test like the keyboard one here.</p>
+</div>
 <h2 id="the-whole-lab-end-to-end">The whole lab, end to end<a class="headerlink" href="#the-whole-lab-end-to-end" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:e2e<span class="w">                                  </span><span class="c1"># 1. run</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-report<span class="w">                        </span><span class="c1">#    read the report</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># 3. change markup, re-run, undo</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 4. add the author-search test, re-run</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-trace<span class="w"> </span>test-results/playwright/&lt;test&gt;/trace.zip<span class="w">   </span><span class="c1"># 5. debug</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:e2e<span class="w">                                  </span><span class="c1"># 1. run</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-report<span class="w">                        </span><span class="c1">#    read the report</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># 3. change markup, re-run, undo</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># 4. add the author-search test, re-run</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>npx<span class="w"> </span>playwright<span class="w"> </span>show-trace<span class="w"> </span>test-results/playwright/&lt;test&gt;/trace.zip<span class="w">   </span><span class="c1"># 5. debug</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--project<span class="o">=</span>e2e<span class="w"> </span>accessibility<span class="w">    </span><span class="c1"># 6. a11y: break the label, re-run</span>
 </code></pre></div>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ul>
