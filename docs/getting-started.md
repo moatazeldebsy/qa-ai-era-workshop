@@ -72,5 +72,7 @@ mkdocs serve      # http://127.0.0.1:8000
 |---|---|
 | Every Playwright test fails with `Unexpected end of JSON input` | Something else is on the port and Playwright reused it. Stop it, or run with `PORT=3300 npm test`. |
 | `promptfoo requires a supported Node.js runtime` | Upgrade Node to 22.22+ (`nvm install 24`). |
+| `npm warn EBADENGINE Unsupported engine … required: { node: '>=22.22' }` | Your shell is on an older Node. Run `nvm use` in the repo root (it reads `.nvmrc`), then `npm install` again. The warnings are npm telling you promptfoo won't run on that version. |
+| `npm audit` reports 3 high-severity issues | All three are in **promptfoo's** dependencies (`braces`, `node-forge`, and promptfoo itself through them), which have no patched release yet. promptfoo is a dev tool run locally against the demo app, and nothing from it ships in the app. Don't run `npm audit fix --force`: it downgrades promptfoo. `basic-ftp` is already pinned to a fixed version via `overrides` in `package.json`. |
 | `browserType.launch: Executable doesn't exist` | `npx playwright install chromium` |
 | k6 `connection refused` | The app isn't running. `npm start` in another terminal first. |
