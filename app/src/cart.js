@@ -30,8 +30,18 @@ export function priceCart(items, { bugMode = process.env.BUG_MODE } = {}) {
 
   const subtotal = round(lines.reduce((sum, l) => sum + l.lineTotal, 0));
   const shippingBase = bugMode === 'cart' ? Math.max(...lines.map((l) => l.lineTotal / l.quantity)) : subtotal;
-  const shipping = shippingBase >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+  const shipping = shippingFor(shippingBase);
   return { lines, subtotal, shipping, total: round(subtotal + shipping) };
+}
+
+/**
+ * The free-shipping rule on its own. No catalogue combination prices a cart at
+ * exactly 50.00 EUR, so the boundary is untestable through priceCart; this
+ * seam exists so a test can ask about 49.99, 50.00 and 50.01 directly
+ * (Learning Path, Topic 1: testability).
+ */
+export function shippingFor(subtotal) {
+  return subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
 }
 
 export class ValidationError extends Error {}

@@ -79,7 +79,10 @@ nav:
     - Quickstart: getting-started.md
     - Agendas & Tracks: agendas.md
     - Facilitator Guide: facilitator-guide.md
-  - Modules:
+  - Learning Path:
+    - learning-path/index.md
+    - 1. QA Engineering Foundations: learning-path/01-qa-foundations.md
+  - "Workshop: Modules":
     - modules/index.md
     - 1. The Evolving Role: modules/01-evolving-role.md
     - 2. AI-Powered Testing: modules/02-ai-powered-testing.md
@@ -89,7 +92,7 @@ nav:
     - 6. Skills & Mindset: modules/06-skills-and-mindset.md
     - 7. Success Metrics: modules/07-success-metrics.md
     - 8. The Future: modules/08-the-future.md
-  - Labs:
+  - "Workshop: Labs":
     - labs/index.md
     - 1. E2E with Playwright: labs/lab-01-playwright-e2e.md
     - 2. API Testing: labs/lab-02-api-testing.md

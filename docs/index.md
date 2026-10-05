@@ -19,6 +19,14 @@ A hands-on workshop for QA engineers, SDETs, developers and engineering leaders.
 
 <div class="grid cards" markdown>
 
+-   :material-school-outline: **Learning Path**
+
+    ---
+
+    Fourteen in-depth topics, from QA foundations to quality leadership. Each has theory, internals, trade-offs and a lab you can verify. Start with Topic 1.
+
+    [→ Learning Path](learning-path/index.md)
+
 -   :material-rocket-launch-outline: **Quickstart**
 
     ---

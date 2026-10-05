@@ -28,6 +28,7 @@ Step by step, including k6 and Python: [Quickstart](docs/getting-started.md). No
 
 | | |
 |---|---|
+| **Learning Path** (`docs/learning-path/`) | 14 in-depth topics, from QA foundations to quality strategy and leadership. Each covers theory, internals, scaling, security, cost, trade-offs and a lab you can verify. **Topic 1: QA Engineering Foundations** is available (`npm run foundations:test`). |
 | **8 modules** (`docs/modules/`) | The evolving role · AI-powered testing · Tools & technologies · Process & practices · Quality focus areas for AI · Skills & mindset · Success metrics · The future |
 | **9 labs** (`docs/labs/`, `labs/`) | Playwright E2E + accessibility · API testing · AI-assisted test generation · Flaky tests · k6 performance · LLM evaluation + red teaming with promptfoo · Quality gates in CI · Quality and delivery metrics · An AI agent tests the shop |
 | **Demo app** (`app/`) | *Quality Books*: catalogue, cart, a slow widget, and an AI support assistant with `mock`, `buggy` and `claude` modes |
@@ -44,6 +45,7 @@ Half day (AI in the QA toolbox), full day, or two days. See [Agendas & Tracks](d
 ```text
 app/                 demo app (Express) + unit tests + OpenAPI spec
 labs/
+  foundations/       Learning Path Topic 1 — oracles, risk register, bug hunt
   playwright/        Lab 1 — E2E tests and page object
   api/               Lab 2 — API tests
   ai-testgen/        Lab 3 — prompts, generator, review checklist

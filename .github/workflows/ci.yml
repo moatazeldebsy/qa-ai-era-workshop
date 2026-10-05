@@ -61,6 +61,13 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      # Learning Path, Topic 1: oracles, risk trace, and a planted-bug check.
+      - name: Foundations lab
+        run: |
+          npm run foundations:test
+          npm run foundations:risks
+          npm run foundations:bug-hunt
+
       # ── 2. API + E2E (Labs 1, 2) → test-results/junit.xml ─────────────────
       - name: API and E2E tests
         id: functional

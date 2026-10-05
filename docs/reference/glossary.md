@@ -32,6 +32,14 @@
 
 **Oracle** — The source of truth that tells a test what the right answer is (a spec, a rule, a reference implementation).
 
+**Error → fault → failure** — A person's mistake (error) leaves a defect in the code (fault), which shows up as wrong behaviour (failure) only when that code runs with a triggering input.
+
+**Invariant (property)** — A rule that must hold for every valid input, such as *total = subtotal + shipping*. It lets one test check thousands of inputs without knowing each expected value.
+
+**Testability** — How easy it is to find out whether something works: controllability (can you set up the state?), observability (can you see the result?) and isolation (can you test it alone?).
+
+**Verification / validation** — Building the product right (does it match the spec?) versus building the right product (does it meet the real need?).
+
 **Prompt injection** — Input crafted to make a model ignore its instructions, e.g. to leak its system prompt or take unintended actions.
 
 **Quality gate** — Automated, pre-agreed release criteria evaluated on test evidence; blocks the release when not met.

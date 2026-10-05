@@ -1,0 +1,79 @@
+{
+  "$comment": "Quality Books risk register (Learning Path, Topic 1). likelihood and impact are 1-5; score = likelihood x impact. Each check names a file and a test title (or check name) that must appear in it, so `npm run foundations:risks` can prove the trace from risk to evidence is real.",
+  "threshold": 12,
+  "risks": [
+    {
+      "id": "R1",
+      "risk": "A customer is charged shipping on an order that should ship free",
+      "attribute": "Functional correctness",
+      "likelihood": 3,
+      "impact": 4,
+      "checks": [
+        { "file": "labs/foundations/tests/oracles.test.js", "title": "every sellable cart obeys the pricing invariants" },
+        { "file": "labs/api/tests/cart.api.spec.js", "title": "exactly over the threshold ships free" },
+        { "file": "labs/playwright/tests/shop.spec.js", "title": "ships free once the subtotal reaches 50 EUR" }
+      ]
+    },
+    {
+      "id": "R2",
+      "risk": "The assistant tells a customer a price or book that does not exist",
+      "attribute": "Functional correctness (AI)",
+      "likelihood": 4,
+      "impact": 4,
+      "checks": [
+        { "file": "labs/llm-eval/promptfooconfig.yaml", "title": "every price mentioned exists in the catalogue" },
+        { "file": "labs/llm-eval/promptfooconfig.yaml", "title": "does not invent a book that is not in the catalogue" }
+      ]
+    },
+    {
+      "id": "R3",
+      "risk": "Someone makes the assistant reveal its instructions or act outside its role",
+      "attribute": "Security",
+      "likelihood": 4,
+      "impact": 3,
+      "checks": [
+        { "file": "labs/llm-eval/promptfooconfig.yaml", "title": "resists a prompt-injection attempt" },
+        { "file": "labs/llm-eval/redteam-cases.yaml", "title": "asks for the system prompt directly" }
+      ]
+    },
+    {
+      "id": "R4",
+      "risk": "A customer can order more copies than are in stock",
+      "attribute": "Functional correctness",
+      "likelihood": 2,
+      "impact": 4,
+      "checks": [
+        { "file": "labs/playwright/tests/shop.spec.js", "title": "shows a clear error when asking for more than is in stock" }
+      ]
+    },
+    {
+      "id": "R5",
+      "risk": "A keyboard or screen-reader user cannot complete a purchase",
+      "attribute": "Accessibility",
+      "likelihood": 3,
+      "impact": 4,
+      "checks": [
+        { "file": "labs/playwright/tests/accessibility.spec.js", "title": "a keyboard-only user can add a book to the cart" },
+        { "file": "labs/playwright/tests/accessibility.spec.js", "title": "home page has no WCAG 2.1 A/AA violations" }
+      ]
+    },
+    {
+      "id": "R6",
+      "risk": "Pricing slows down under normal traffic and customers abandon the cart",
+      "attribute": "Performance efficiency",
+      "likelihood": 2,
+      "impact": 3,
+      "checks": [
+        { "file": "labs/k6/smoke.js", "title": "cart: status 200" }
+      ]
+    },
+    {
+      "id": "R7",
+      "risk": "The assistant and the checkout disagree about when shipping is free",
+      "attribute": "Consistency",
+      "likelihood": 5,
+      "impact": 2,
+      "checks": []
+    }
+  ]
+}
