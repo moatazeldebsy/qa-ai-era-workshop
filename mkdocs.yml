@@ -125,6 +125,11 @@ nav:
       - Concepts: topics/08-performance/concepts.md
       - Lab: topics/08-performance/lab.md
       - Quiz & wrap-up: topics/08-performance/quiz.md
+    - 9. Security, Accessibility, and Compatibility:
+      - Overview: topics/09-security-a11y/index.md
+      - Concepts: topics/09-security-a11y/concepts.md
+      - Lab: topics/09-security-a11y/lab.md
+      - Quiz & wrap-up: topics/09-security-a11y/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

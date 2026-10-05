@@ -101,6 +101,14 @@ jobs:
       - name: Resilience lab
         run: npm run perf:test
 
+      # Topic 9: security tests, accessibility tests and a dependency triage
+      # (the triage reports; advisories change daily, so it doesn't gate).
+      - name: Security and accessibility lab
+        run: |
+          npm run sec:test
+          npm run a11y:test
+          npm run sec:audit || echo "::warning::production dependency findings: see the triage above"
+
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.

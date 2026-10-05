@@ -213,4 +213,4 @@ Read before Topic 9 (optional):
 - [Principles of Chaos Engineering](https://principlesofchaos.org/)
 - k6 documentation, [*Scenarios and executors*](https://grafana.com/docs/k6/latest/using-k6/scenarios/)
 
-When you've finished the lab and the challenge, move on to [Topic 9](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 9](../09-security-a11y/index.md).

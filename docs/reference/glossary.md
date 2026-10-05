@@ -1,5 +1,9 @@
 # Glossary
 
+**Abuse case** — A user story written from an attacker's point of view, turned into a test like any requirement.
+
+**Accessible name** — What assistive technology announces for an element, computed from its label, text or ARIA attributes.
+
 **Agent (AI)** — A model that plans and calls tools (browser, shell, APIs) in a loop to reach a goal, rather than answering once.
 
 **Boundary value analysis (BVA)** — Testing the values on and next to the edges of each partition, where off-by-one and `<` vs `<=` bugs live.
@@ -98,6 +102,8 @@
 
 **Risk-based testing** — Prioritising tests by likelihood × impact of failure.
 
+**SAST / DAST / SCA** — Static analysis of source code; dynamic testing of a running app from outside; analysis of third-party dependencies for known vulnerabilities.
+
 **Seam** — A place where you can change a program's behaviour without editing it there, such as an injected clock or service.
 
 **Self-healing test** — A test that re-locates elements automatically when selectors break. Convenient, but may mask real changes.
@@ -109,6 +115,8 @@
 **Sociable / solitary test** — A sociable unit test uses real collaborators where they're fast and deterministic; a solitary test replaces every collaborator with a double.
 
 **Spy** — A test double that records how it was called, so the test can check afterwards.
+
+**STRIDE** — A threat-modelling checklist: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.
 
 **Stub** — A test double that returns canned answers, such as a payment gateway that always declines.
 
@@ -129,5 +137,7 @@
 **Testability** — How easy it is to find out whether something works: controllability (can you set up the state?), observability (can you see the result?) and isolation (can you test it alone?).
 
 **Verification / validation** — Building the product right (does it match the spec?) versus building the right product (does it meet the real need?).
+
+**WCAG** — Web Content Accessibility Guidelines, the W3C standard for accessible web content (currently 2.2, levels A, AA and AAA).
 
 **Web-first assertion** — A Playwright assertion that retries until the condition holds or times out, instead of checking once.

@@ -58,6 +58,7 @@ A separate Express service in `services/inventory/` (port 3220), with its own co
 | `INVENTORY_URL` | default `http://localhost:3220` | Where the shop finds the inventory service |
 | `INVENTORY_PORT` | default `3220` | The inventory service's port |
 | `INVENTORY_TEST_DATA` | `on` | Enables `PUT /stock/:bookId` for test data. Test environments only |
+| `INVENTORY_TOKEN` | a secret | Service token the inventory service requires and the shop sends (added in the Topic 9 lab) |
 
 ## Catalogue
 
