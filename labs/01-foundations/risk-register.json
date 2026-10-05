@@ -9,9 +9,18 @@
       "likelihood": 3,
       "impact": 4,
       "checks": [
-        { "file": "labs/01-foundations/tests/oracles.test.js", "title": "every sellable cart obeys the pricing invariants" },
-        { "file": "labs/04-integration-contract/api/tests/cart.api.spec.js", "title": "exactly over the threshold ships free" },
-        { "file": "labs/05-ui-e2e/e2e/tests/shop.spec.js", "title": "ships free once the subtotal reaches 50 EUR" }
+        {
+          "file": "labs/01-foundations/tests/oracles.test.js",
+          "title": "every sellable cart obeys the pricing invariants"
+        },
+        {
+          "file": "labs/04-integration-contract/api/tests/cart.api.spec.js",
+          "title": "exactly over the threshold ships free"
+        },
+        {
+          "file": "labs/05-ui-e2e/e2e/tests/shop.spec.js",
+          "title": "ships free once the subtotal reaches 50 EUR"
+        }
       ]
     },
     {
@@ -21,8 +30,14 @@
       "likelihood": 4,
       "impact": 4,
       "checks": [
-        { "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml", "title": "every price mentioned exists in the catalogue" },
-        { "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml", "title": "does not invent a book that is not in the catalogue" }
+        {
+          "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml",
+          "title": "every price mentioned exists in the catalogue"
+        },
+        {
+          "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml",
+          "title": "does not invent a book that is not in the catalogue"
+        }
       ]
     },
     {
@@ -32,8 +47,14 @@
       "likelihood": 4,
       "impact": 3,
       "checks": [
-        { "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml", "title": "resists a prompt-injection attempt" },
-        { "file": "labs/12-ai-in-qa/llm-eval/redteam-cases.yaml", "title": "asks for the system prompt directly" }
+        {
+          "file": "labs/12-ai-in-qa/llm-eval/promptfooconfig.yaml",
+          "title": "resists a prompt-injection attempt"
+        },
+        {
+          "file": "labs/12-ai-in-qa/llm-eval/redteam-cases.yaml",
+          "title": "asks for the system prompt directly"
+        }
       ]
     },
     {
@@ -43,7 +64,10 @@
       "likelihood": 2,
       "impact": 4,
       "checks": [
-        { "file": "labs/05-ui-e2e/e2e/tests/shop.spec.js", "title": "shows a clear error when asking for more than is in stock" }
+        {
+          "file": "labs/05-ui-e2e/e2e/tests/shop.spec.js",
+          "title": "shows a clear error when asking for more than is in stock"
+        }
       ]
     },
     {
@@ -53,8 +77,14 @@
       "likelihood": 3,
       "impact": 4,
       "checks": [
-        { "file": "labs/05-ui-e2e/e2e/tests/accessibility.spec.js", "title": "a keyboard-only user can add a book to the cart" },
-        { "file": "labs/05-ui-e2e/e2e/tests/accessibility.spec.js", "title": "home page has no WCAG 2.1 A/AA violations" }
+        {
+          "file": "labs/05-ui-e2e/e2e/tests/accessibility.spec.js",
+          "title": "a keyboard-only user can add a book to the cart"
+        },
+        {
+          "file": "labs/05-ui-e2e/e2e/tests/accessibility.spec.js",
+          "title": "home page has no WCAG 2.1 A/AA violations"
+        }
       ]
     },
     {
@@ -64,7 +94,10 @@
       "likelihood": 2,
       "impact": 3,
       "checks": [
-        { "file": "labs/08-performance/k6/smoke.js", "title": "cart: status 200" }
+        {
+          "file": "labs/08-performance/k6/smoke.js",
+          "title": "cart: status 200"
+        }
       ]
     },
     {
@@ -73,7 +106,25 @@
       "attribute": "Consistency",
       "likelihood": 5,
       "impact": 2,
-      "checks": []
+      "checks": [
+        {
+          "file": "labs/01-foundations/tests/oracles.test.js",
+          "title": "the customer-facing policy states the same threshold as the code"
+        }
+      ]
+    },
+    {
+      "id": "R8",
+      "risk": "A customer gets a confusing error instead of guidance when a book in the cart sells out",
+      "attribute": "Interaction capability",
+      "likelihood": 3,
+      "impact": 3,
+      "checks": [
+        {
+          "file": "labs/05-ui-e2e/e2e/tests/shop.spec.js",
+          "title": "shows a clear error when asking for more than is in stock"
+        }
+      ]
     }
   ]
 }

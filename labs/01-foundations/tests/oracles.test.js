@@ -80,16 +80,10 @@ describe('3. Consistency oracle: every source of truth must agree', () => {
     assert.match(openapi, new RegExp(`free when the subtotal is ${FREE_SHIPPING_THRESHOLD} EUR or more`));
   });
 
-  // Known finding, recorded instead of hidden. The policy says "over 50 EUR",
-  // which reads as > 50; the code and contract say >= 50. A customer with a
-  // 50.00 EUR order gets a different answer from the assistant than from the
-  // checkout. Step 3 of the lab resolves it; until then it is a TODO, which
-  // node:test reports without failing the run.
-  test(
-    'the customer-facing policy states the same threshold as the code',
-    { todo: 'policy says "over 50 EUR", code says >= 50: see Topic 1 lab, step 3' },
-    () => {
-      assert.match(policies.shipping, new RegExp(`${FREE_SHIPPING_THRESHOLD} EUR or more`));
-    },
-  );
+  // Was a known finding: the policy said "over 50 EUR" while the code and
+  // contract said >= 50. Resolved by moving the policy text (the least
+  // authoritative source) to the agreed rule; this test keeps them together.
+  test('the customer-facing policy states the same threshold as the code', () => {
+    assert.match(policies.shipping, new RegExp(`${FREE_SHIPPING_THRESHOLD} EUR or more`));
+  });
 });
