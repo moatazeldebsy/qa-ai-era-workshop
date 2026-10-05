@@ -33,7 +33,7 @@ export const steps = [
     id: '2-3',
     title: 'The stuck cart and the stale-price race are fixed',
     run: () => {
-      if (read(`${E}/e2e/tests/journeys.spec.js`).includes('test.fail(')) {
+      if (/^\s*test\.fail\(/m.test(read(`${E}/e2e/tests/journeys.spec.js`))) {
         return fail('journeys.spec.js still marks a known bug with test.fail()', 'fix app/public/app.js, then delete the test.fail lines');
       }
       const journeys = playwright(['--project=e2e', `${E}/e2e/tests/journeys.spec.js`]);
