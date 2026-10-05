@@ -29,11 +29,17 @@ export function sh(cmd, args = [], { env = {} } = {}) {
 /** Run node scripts (an array of args after `node`). */
 export const node = (args, opts) => sh(process.execPath, args, opts);
 
-/** Run `node --test <glob>` and read the summary counts. */
+/**
+ * Run `node --test <glob>` and read the summary counts. The TAP reporter is
+ * forced: Node's default reporter differs between versions and terminals.
+ */
 export function nodeTest(glob, opts) {
-  const { code, out } = node(['--test', glob], opts);
+  const { code, out } = node(['--test', '--test-reporter=tap', glob], opts);
   const count = (name) => Number(out.match(new RegExp(`^# ${name} (\\d+)`, 'm'))?.[1] ?? NaN);
-  return { code, out, tests: count('tests'), pass: count('pass'), fail: count('fail'), todo: count('todo') };
+  const result = { code, out, tests: count('tests'), pass: count('pass'), fail: count('fail'), todo: count('todo') };
+  // A run that couldn't be parsed must never look like a clean pass.
+  if (Number.isNaN(result.tests)) Object.assign(result, { fail: 1, todo: 0, pass: 0, tests: 0 });
+  return result;
 }
 
 export const exists = (rel) => fs.existsSync(path.join(root, rel));

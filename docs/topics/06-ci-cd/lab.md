@@ -29,11 +29,11 @@ mkdir -p notebook/06 && cp notebook/_templates/06/ci-notes.md notebook/06/
 npm run ci:test
 ```
 
-```text title="Expected output (end)"
-# tests 5
-# pass 3
-# fail 0
-# todo 2
+```text title="Expected output (summary)"
+ℹ tests 5
+ℹ pass 3
+ℹ fail 0
+ℹ todo 2
 ```
 
 Two TODOs: two ways to get a ✅ from the gate without a ready release.
@@ -120,7 +120,7 @@ Now ask it about the front end, where Topic 5's race condition lived:
 npm run ci:impact -- app/public/app.js
 ```
 
-```text title="Expected output (end)"
+```text title="Expected output (summary)"
 0 of 7 suites selected.
 ```
 

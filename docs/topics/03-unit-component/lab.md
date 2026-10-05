@@ -33,12 +33,12 @@ mkdir -p notebook/03 && cp notebook/_templates/03/unit-notes.md notebook/03/
 npm run unit:test
 ```
 
-```text title="Expected output (end)"
-# tests 19
-# suites 4
-# pass 16
-# fail 0
-# todo 3
+```text title="Expected output (summary)"
+ℹ tests 19
+ℹ suites 4
+ℹ pass 16
+ℹ fail 0
+ℹ todo 3
 ```
 
 Three TODOs: two real bugs recorded as tests, and the starting point for your coupon module.
@@ -136,9 +136,9 @@ The product decision: **a failing confirmation email must not fail a paid order.
 BUG_MODE=cart node --test labs/03-unit-component/tests/interactions.test.js
 ```
 
-```text title="Expected output (end)"
-# pass 1
-# fail 0
+```text title="Expected output (summary)"
+ℹ pass 1
+ℹ fail 0
 ```
 
 Customers are being overcharged, and the test is green. It checks that each collaborator was *called*, not *what* was asked of it. Add one assertion so it fails with `BUG_MODE=cart` and still passes without it.

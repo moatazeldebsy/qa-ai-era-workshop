@@ -32,12 +32,12 @@ mkdir -p notebook/02 && cp notebook/_templates/02/design-notes.md notebook/02/
 npm run design:test
 ```
 
-```text title="Expected output (end)"
-# tests 85
-# suites 16
-# pass 82
-# fail 0
-# todo 3
+```text title="Expected output (summary)"
+ℹ tests 85
+ℹ suites 16
+ℹ pass 82
+ℹ fail 0
+ℹ todo 3
 ```
 
 Three TODOs are findings recorded as tests:
@@ -179,11 +179,11 @@ In `partitions.test.js` and `properties.test.js`, delete the `{ todo: '…' }` l
 npm run design:test
 ```
 
-```text title="Expected output (end)"
-# tests 85
-# pass 84
-# fail 0
-# todo 1
+```text title="Expected output (summary)"
+ℹ tests 85
+ℹ pass 84
+ℹ fail 0
+ℹ todo 1
 ```
 
 The remaining TODO is the open product question from step 2. Also check you broke nothing elsewhere: `npm run test:unit && npm run foundations:test`.
@@ -194,7 +194,7 @@ The remaining TODO is the open product question from step 2. Also check you brok
 npm run design:pairwise
 ```
 
-```text title="Expected output (end)"
+```text title="Expected output (summary)"
 11 configurations cover every pair; all combinations would be 108.
 ```
 
@@ -243,7 +243,7 @@ The script copies the app to a temporary folder, plants one bug at a time, and r
 
 Now prove a technique matters by removing it. In `partitions.test.js`, comment out the *"day 30 is still in time"* test and re-run:
 
-```text title="Expected output (end)"
+```text title="Expected output (summary)"
 ✖ Survived every technique: M8 (refund window ends on day 29)
 ```
 

@@ -32,12 +32,12 @@ mkdir -p notebook/04 && cp notebook/_templates/04/contract-notes.md notebook/04/
 npm run contract:test
 ```
 
-```text title="Expected output (end)"
-# tests 18
-# suites 4
-# pass 16
-# fail 0
-# todo 2
+```text title="Expected output (summary)"
+ℹ tests 18
+ℹ suites 4
+ℹ pass 16
+ℹ fail 0
+ℹ todo 2
 ```
 
 Two TODOs, two real bugs. Running the consumer tests also wrote a contract file to `labs/04-integration-contract/pacts/`. Open it: it's plain JSON describing every request the shop sends to the inventory service, and the minimum it expects back.
@@ -156,7 +156,7 @@ Re-run both halves, then the integration tests:
 npm run contract:test && npm run contract:verify
 ```
 
-```text title="Expected output (end)"
+```text title="Expected output (summary)"
 ✔ The inventory service honours every interaction the shop relies on.
 ```
 

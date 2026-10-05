@@ -33,12 +33,12 @@ mkdir -p notebook/01
 npm run foundations:test
 ```
 
-```text title="Expected output (end)"
-# tests 8
-# suites 3
-# pass 7
-# fail 0
-# todo 1
+```text title="Expected output (summary)"
+ℹ tests 8
+ℹ suites 3
+ℹ pass 7
+ℹ fail 0
+ℹ todo 1
 ```
 
 The **todo** is a known finding recorded as a test. Note it; you'll resolve it in step 3. Open `labs/01-foundations/tests/oracles.test.js` and read the three `describe` blocks. Each one checks the same feature with a different kind of oracle from section 4.
@@ -49,7 +49,7 @@ Then see where you stand:
 npm run learn:check 1
 ```
 
-```text title="Expected output (end)"
+```text title="Expected output (summary)"
 0/5 steps done for Topic 1: QA Engineering Foundations
 ```
 
@@ -143,10 +143,10 @@ Then run it:
     npm run foundations:test
     ```
 
-    ```text title="Expected output (end)"
-    # pass 8
-    # fail 0
-    # todo 0
+    ```text title="Expected output (summary)"
+    ℹ pass 8
+    ℹ fail 0
+    ℹ todo 0
     ```
 
 The finding is now a **regression check**. If anyone edits the policy or the threshold on its own again, this test fails. That's the "regression check added" step of the defect lifecycle.
@@ -281,6 +281,8 @@ Also run `npm run test:unit` to be sure you didn't break the app's own tests. Th
 |---|---|---|
 | `Cannot find module '.../labs/01-foundations/tests'` | Running `node --test` on a directory instead of a glob | Use `npm run foundations:test`, which passes `"labs/01-foundations/tests/*.test.js"` |
 | `Cannot find module` for `cart.js` or `catalog.js` | Running from a subfolder | Run every command from the repo root |
+| A `✖ failing tests:` list appears after a summary that says `fail 0` | Node 24 lists TODO tests there too, marked `# TODO` | Expected: TODO tests are reported but never fail the run. Only `fail` in the summary counts |
+| The summary lines start with `#` instead of `ℹ` | Node 22 prints TAP when the output isn't a terminal | Same numbers, different format; Node 24 (from `.nvmrc`) matches these pages |
 | Step 0 shows `todo 0` and 8 passed | Step 3 is already done (fine), or `policies.shipping` was edited earlier | Check `git diff app/src/catalog.js` |
 | `learn:check`: `notebook/01/… still has N ✏️ placeholder(s)` | A placeholder is left somewhere in the page | Search the file for ✏️; every one needs your own words |
 | `learn:start`: `You have uncommitted changes` | Work from another topic isn't committed | Commit it on that topic's branch, or `git stash` |
