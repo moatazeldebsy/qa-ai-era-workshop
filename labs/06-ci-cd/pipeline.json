@@ -1,0 +1,12 @@
+{
+  "$comment": "Topic 6: the course's own checks as a pipeline. As shipped, every stage waits for the one before it. Lab step 1: decide what really depends on what.",
+  "stages": [
+    { "id": "unit", "run": "npm run -s test:unit", "needs": [] },
+    { "id": "foundations", "run": "npm run -s foundations:test && npm run -s foundations:risks", "needs": ["unit"] },
+    { "id": "test-design", "run": "npm run -s design:test && npm run -s design:mutants", "needs": ["foundations"] },
+    { "id": "unit-mutation", "run": "npm run -s unit:test && npm run -s unit:mutate", "needs": ["test-design"] },
+    { "id": "contract", "run": "npm run -s contract:test", "needs": ["unit-mutation"] },
+    { "id": "browser", "run": "npx playwright test --project=e2e --project=api --reporter=dot", "needs": ["contract"] },
+    { "id": "gate", "run": "npm run -s gate", "needs": ["browser"], "always": true }
+  ]
+}

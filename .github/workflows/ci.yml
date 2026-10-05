@@ -86,6 +86,12 @@ jobs:
       - name: Integration and contract lab
         run: npm run contract:test
 
+      # Topic 6: tests for the quality gate itself, and impact analysis.
+      - name: CI/CD lab
+        run: |
+          npm run ci:test
+          npm run ci:impact -- app/src/cart.js
+
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.

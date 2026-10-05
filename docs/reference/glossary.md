@@ -12,7 +12,13 @@
 
 **Consumer / provider** — In an API relationship, the consumer is the client that calls the API and the provider is the service that offers it. One provider usually has many consumers.
 
+**Continuous delivery / deployment** — Delivery: every change that passes the pipeline is releasable, and people decide when. Deployment: every passing change goes to production automatically.
+
+**Continuous integration (CI)** — Merging every change into a shared main branch frequently, with an automated build and tests on every merge.
+
 **Contract test** — A test that checks a consumer and a provider agree on an API without running them together. Each side is tested against a shared contract.
+
+**Critical path** — The longest chain of stages in a pipeline that depend on each other. It sets the minimum possible pipeline time.
 
 **Decision table** — A table with one column per combination of conditions and the expected outcome for each. Exposes missing and contradictory rules.
 
@@ -93,6 +99,8 @@
 **Synthetic monitoring** — Scripted user journeys run against production on a schedule.
 
 **Test double** — Any object that stands in for a real collaborator in a test: dummy, stub, spy, mock or fake.
+
+**Test impact analysis (TIA)** — Selecting only the tests a change could affect, using dependency graphs, coverage or history.
 
 **Test pyramid** — Many fast unit tests, fewer API/contract tests, few E2E tests; LLM evals form a layer of their own.
 

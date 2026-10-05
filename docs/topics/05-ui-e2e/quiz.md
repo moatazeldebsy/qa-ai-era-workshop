@@ -212,4 +212,4 @@ Read before Topic 6 (optional):
 - John Micco, *Flaky Tests at Google and How We Mitigate Them* (Google Testing Blog, 2016)
 - Martin Fowler, [*Eradicating Non-Determinism in Tests*](https://martinfowler.com/articles/nonDeterminism.html)
 
-When you've finished the lab and the challenge, move on to [Topic 6](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 6](../06-ci-cd/index.md).
