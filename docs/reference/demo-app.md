@@ -4,18 +4,16 @@ A deliberately small shop, built so every lab has something real to test. It gro
 
 ```mermaid
 flowchart LR
-  B[Browser UI<br/>app/public] --> S[Shop: Express server<br/>app/src/server.js]
-  B --> DP[Demo Pay<br/>card → token, in the browser]
-  S --> AC[Accounts and sessions<br/>accounts.js]
-  S --> C[Catalogue<br/>catalog.js]
-  S --> K[Cart pricing<br/>cart.js]
-  S --> CO[Checkout<br/>checkout.js]
-  CO --> IC[Inventory client<br/>inventory-client.js]
-  IC -- HTTP --> INV[Inventory service<br/>services/inventory]
-  CO --> PAY[Demo payments<br/>payments-demo.js]
-  S --> A[Assistant<br/>assistant.js]
-  A -- ASSISTANT_MODE=claude --> L[(Claude API)]
-  S --> M["/metrics"]
+  UI["Browser pages<br/>app/public"] -- "/api" --> S["Shop server<br/>server.js, port 3210"]
+  S --> R["Catalogue and pricing<br/>catalog.js, cart.js"]
+  S --> AC["Accounts<br/>accounts.js"]
+  S --> CO["Checkout<br/>checkout.js"]
+  S --> A["Assistant<br/>assistant.js"]
+  CO --> PAY["Demo payments<br/>payments-demo.js"]
+  CO --> IC["Inventory client<br/>inventory-client.js"]
+  IC -- HTTP --> INV["Inventory service<br/>port 3220"]
+  A -- "ASSISTANT_MODE=claude" --> L[("Claude API")]
+  UI --> DP["Demo Pay<br/>card → token"]
 ```
 
 | Module | Added in | What it is |

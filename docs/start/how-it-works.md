@@ -13,7 +13,7 @@ flowchart LR
   L --> Q["4 Quiz<br/>10 questions"]
   Q --> W["5 Wrap-up<br/>mental model, challenge"]
   W --> S["6 Share<br/>notebook or challenge<br/>in the discussions"]
-  S -.-> O
+  S --> N(["Next topic:<br/>back to 1"])
 ```
 
 1. **Overview.** Read what you'll be able to do and check the prerequisites.
