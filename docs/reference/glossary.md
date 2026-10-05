@@ -52,6 +52,8 @@
 
 **Flaky test** — A test that passes and fails on the same code. Usually timing, shared state or an uncontrolled dependency.
 
+**Goodhart's law** — When a measure becomes a target, it ceases to be a good measure: people optimise the number instead of the outcome.
+
 **Grounding** — Constraining a model's answers to provided data (catalogue, documents) instead of its general training.
 
 **Guardrail** — A control that keeps an AI feature within bounds: input filtering, output checks, scope limits, refusal handling.
@@ -63,6 +65,8 @@
 **Integration test** — A test that checks two or more real components working together, such as a service and the real service it calls.
 
 **Invariant (property)** — A rule that must hold for every valid input, such as *total = subtotal + shipping*. It lets one test check thousands of inputs without knowing each expected value.
+
+**JUnit XML** — The most widely supported test-result format; it has no standard way to record retries, so a retried pass looks like a pass.
 
 **Lead time for changes** — Time from commit to running in production.
 
@@ -103,6 +107,10 @@
 **Pseudonymisation** — Replacing identifiers with consistent substitutes (such as keyed hashes) so data can't be linked to a person without separately kept information. Still personal data under GDPR.
 
 **Quality gate** — Automated, pre-agreed release criteria evaluated on test evidence; blocks the release when not met.
+
+**Quality intelligence** — Turning test, defect, delivery and production data into insight and decisions.
+
+**Quarantine (flaky tests)** — Moving known-flaky tests out of the blocking path while they keep running and reporting, each with an owner and a deadline.
 
 **Quasi-identifier** — A field that doesn't identify a person on its own but can in combination with others, such as postcode, birth date and gender.
 

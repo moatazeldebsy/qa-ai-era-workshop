@@ -212,4 +212,4 @@ Read before Topic 11 (optional):
 - Charity Majors, Liz Fong-Jones and George Miranda, *Observability Engineering*
 - [OpenTelemetry documentation: concepts](https://opentelemetry.io/docs/concepts/)
 
-When you've finished the lab and the challenge, move on to [Topic 11](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 11](../11-quality-intelligence/index.md).

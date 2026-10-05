@@ -106,6 +106,9 @@ jobs:
       - name: Observability lab
         run: npm run obs:test
 
+      - name: Quality intelligence lab
+        run: npm run qi:test
+
       - name: Security and accessibility lab
         run: |
           npm run sec:test

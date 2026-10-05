@@ -135,6 +135,11 @@ nav:
       - Concepts: topics/10-observability/concepts.md
       - Lab: topics/10-observability/lab.md
       - Quiz & wrap-up: topics/10-observability/quiz.md
+    - 11. Test Management and Quality Intelligence:
+      - Overview: topics/11-quality-intelligence/index.md
+      - Concepts: topics/11-quality-intelligence/concepts.md
+      - Lab: topics/11-quality-intelligence/lab.md
+      - Quiz & wrap-up: topics/11-quality-intelligence/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md
