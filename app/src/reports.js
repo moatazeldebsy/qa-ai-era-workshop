@@ -7,7 +7,10 @@
 
 const cents = (n) => Math.round(n * 100) / 100;
 
-export function salesReport(orders) {
+const NOT_KEPT = new Set(['cancelled', 'refunded']);
+
+export function salesReport(history) {
+  const orders = history.filter((o) => !NOT_KEPT.has(o.state));
   const byBook = new Map();
   const byCustomer = new Map();
   let revenue = 0;

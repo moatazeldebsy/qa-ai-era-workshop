@@ -21,7 +21,16 @@ const STATES = [
 ];
 
 export function generateOrders({ count = 100, seed = 1 } = {}) {
-  const random = () => Math.random(); // TODO(Topic 7, step 3): use the seed
+  // mulberry32: a tiny, fast, seeded pseudo-random generator. Same seed, same
+  // sequence, on every machine, so a failure found with seed 42 can be replayed.
+  let state = seed >>> 0;
+  const random = () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let t = state;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
   const pick = (list) => list[Math.floor(random() * list.length)];
   const weighted = (pairs) => {
     let r = random() * pairs.reduce((n, [, w]) => n + w, 0);
@@ -36,7 +45,11 @@ export function generateOrders({ count = 100, seed = 1 } = {}) {
   });
 
   return Array.from({ length: count }, (_, i) => {
-    const shuffled = [...inStock].sort(() => random() - 0.5);
+    const shuffled = [...inStock];
+    for (let j = shuffled.length - 1; j > 0; j--) {
+      const k = Math.floor(random() * (j + 1));
+      [shuffled[j], shuffled[k]] = [shuffled[k], shuffled[j]];
+    }
     const items = shuffled.slice(0, 1 + Math.floor(random() * 3)).map((b) => ({ bookId: b.id, quantity: 1 + Math.floor(random() * Math.min(b.stock, 3)) }));
     const priced = priceCart(items, { bugMode: undefined });
     const placedAt = new Date(Date.UTC(2026, 0, 1) + Math.floor(random() * 270) * 86_400_000 + Math.floor(random() * 86_400_000));

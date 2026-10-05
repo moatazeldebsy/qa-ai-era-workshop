@@ -1,12 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { stock, reserve, release } from './helpers.js';
+import { stock, reserve, release, ownBook } from './helpers.js';
 
-// Relies on the shared environment's seed data: book 5 starts with 3 copies.
+// Owns its data: a book with 3 copies that no other test touches.
 test('reserving the last copies of a book leaves none', async () => {
-  assert.equal(await stock(5), 3);
-  const { status, body } = await reserve(5, 3);
+  const book = await ownBook(3);
+  assert.equal(await stock(book), 3);
+  const { status, body } = await reserve(book, 3);
   assert.equal(status, 201);
-  assert.equal(await stock(5), 0);
+  assert.equal(await stock(book), 0);
   await release(body.reservationId);
 });

@@ -25,7 +25,6 @@ describe('with realistic generated data', () => {
   // shop keeps, so it must leave out cancelled and refunded orders.
   test(
     'revenue only counts orders the shop kept the money for',
-    { todo: 'real bug: the report counts cancelled and refunded orders; Topic 7 lab, step 2' },
     () => {
       const history = generateOrders({ count: 500, seed: 7 });
       const kept = history.filter((o) => !['cancelled', 'refunded'].includes(o.state));

@@ -27,7 +27,6 @@ test('the history contains every order state a real shop has', () => {
 // generated different orders, and the failure was gone.
 test(
   'the same seed always gives the same data',
-  { todo: 'real gap: the generator ignores its seed (Math.random); Topic 7 lab, step 3' },
   () => {
     assert.deepEqual(generateOrders({ count: 50, seed: 42 }), generateOrders({ count: 50, seed: 42 }));
     assert.notDeepEqual(generateOrders({ count: 50, seed: 42 }), generateOrders({ count: 50, seed: 43 }));
