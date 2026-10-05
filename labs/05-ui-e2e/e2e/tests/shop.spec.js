@@ -58,6 +58,6 @@ test('recommendations appear without a fixed sleep', async ({ page }) => {
   const shop = new ShopPage(page);
   await shop.goto();
   // Web-first assertion: retries until the list renders (up to the expect
-  // timeout). Compare with labs/flaky/tests/recommendations.bad.spec.js.
+  // timeout). Compare with labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js.
   await expect(shop.recommendations).toHaveCount(2);
 });

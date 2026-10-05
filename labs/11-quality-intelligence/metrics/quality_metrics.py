@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Lab 8 - compute the quality and delivery metrics from raw event data.
 
-    python3 labs/metrics/quality_metrics.py labs/metrics/data
-    python3 labs/metrics/quality_metrics.py labs/metrics/data --json
+    python3 labs/11-quality-intelligence/metrics/quality_metrics.py labs/11-quality-intelligence/metrics/data
+    python3 labs/11-quality-intelligence/metrics/quality_metrics.py labs/11-quality-intelligence/metrics/data --json
 
-Inputs (CSV, see labs/metrics/data/):
+Inputs (CSV, see labs/11-quality-intelligence/metrics/data/):
   deployments.csv  id, service, committed_at, deployed_at, status
   incidents.csv    id, service, severity, started_at, detected_at, resolved_at,
                    detected_by, caused_by_deploy

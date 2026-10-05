@@ -17,8 +17,8 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/k6/smoke.js` | 10 virtual users for 35 s, thresholds, a summary for the gate |
-| `labs/k6/stress.js` | An open-model arrival rate ramp, to find the knee |
+| `labs/08-performance/k6/smoke.js` | 10 virtual users for 35 s, thresholds, a summary for the gate |
+| `labs/08-performance/k6/stress.js` | An open-model arrival rate ramp, to find the knee |
 
 ## 1. Start the app
 
@@ -49,7 +49,7 @@ k6 exits with **0**. That exit code is what makes this a CI check.
 
 ## 3. Read the thresholds
 
-```js title="labs/k6/smoke.js"
+```js title="labs/08-performance/k6/smoke.js"
 thresholds: {
   http_req_failed: ['rate<0.01'],                       // under 1% errors
   'http_req_duration{endpoint:books}': ['p(95)<200'],   // catalogue p95 under 200 ms
@@ -87,7 +87,7 @@ k6 exits non-zero. Remove the delay and restart.
 
 The smoke test also asserts on what comes back:
 
-```js title="labs/k6/smoke.js"
+```js title="labs/08-performance/k6/smoke.js"
 check(res, {
   'books: two AI titles': (r) => r.json('books').length === 2,
   'cart: free shipping over 50': (r) => r.json('shipping') === 0,
@@ -102,12 +102,12 @@ A fast wrong answer is still wrong. Try `BUG_MODE=cart npm start` and watch the 
 npm start                         # 1. terminal 1
 npm run perf:smoke                # 2. terminal 2 → all PASS, exit 0
 # 4. add the 250 ms delay, restart, re-run → FAIL, exit 99
-k6 run labs/k6/stress.js          # stretch: find the knee
+k6 run labs/08-performance/k6/stress.js          # stretch: find the knee
 ```
 
 ## Stretch goals
 
-- Run `k6 run labs/k6/stress.js` and note where latency climbs and errors start, in requests per second.
+- Run `k6 run labs/08-performance/k6/stress.js` and note where latency climbs and errors start, in requests per second.
 - Compare `ramping-vus` (a closed model) with `ramping-arrival-rate` (an open model). Why does the open model show overload that the closed one hides?
 - Add a scenario for `/api/assistant`. What threshold suits an LLM-backed endpoint in `claude` mode, and what does each test run cost?
 

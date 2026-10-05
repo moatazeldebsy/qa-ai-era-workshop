@@ -1,5 +1,5 @@
 // The five browser tools the Lab 9 agent can use, separated from the agent so
-// they can be tested without a model (labs/ai-agent/tests/tools.spec.js).
+// they can be tested without a model (labs/12-ai-in-qa/agent/tests/tools.spec.js).
 //
 // defineTool is the SDK's betaTool in explore.mjs, and an identity function in
 // the tests - each tool is { name, description, inputSchema, run }.
@@ -19,7 +19,7 @@ async function guarded(fn) {
 // Not page.waitForLoadState('networkidle'): that resolves immediately once the
 // page has EVER been idle, so after a click it doesn't wait for the fetch the
 // click started. The agent then snapshots stale cart totals and "finds" a bug
-// that isn't there. labs/ai-agent/tests/tools.spec.js caught exactly that.
+// that isn't there. labs/12-ai-in-qa/agent/tests/tools.spec.js caught exactly that.
 function trackNetwork(page) {
   let inFlight = 0;
   let lastChange = Date.now();

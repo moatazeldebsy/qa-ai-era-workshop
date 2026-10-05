@@ -48,7 +48,7 @@ Synthetic monitors run a few critical journeys against production every few minu
 
 ### Quality gates and release readiness
 
-A quality gate is a **team agreement written as code**: thresholds everyone accepted in advance, checked automatically, with an audit trail when they're overridden. See Lab 7 and `labs/quality-gate/gate.config.json`.
+A quality gate is a **team agreement written as code**: thresholds everyone accepted in advance, checked automatically, with an audit trail when they're overridden. See Lab 7 and `labs/06-ci-cd/quality-gate/gate.config.json`.
 
 ### Metrics and continuous improvement
 

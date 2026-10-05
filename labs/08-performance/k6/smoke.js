@@ -5,8 +5,8 @@ import { check, group, sleep } from 'k6';
 // fails the build when latency or errors regress. Thresholds ARE the test:
 // k6 exits non-zero when one is crossed.
 //
-//   k6 run labs/k6/smoke.js
-//   BASE_URL=https://staging.example k6 run labs/k6/smoke.js
+//   k6 run labs/08-performance/k6/smoke.js
+//   BASE_URL=https://staging.example k6 run labs/08-performance/k6/smoke.js
 const BASE_URL = __ENV.BASE_URL || 'http://localhost:3210';
 
 export const options = {

@@ -168,7 +168,7 @@ Tests are grouped by **how much of the system they exercise**:
 | Unit | One function or class | Milliseconds | `app/test/cart.test.js` |
 | Component / integration | Several units, or a unit plus a real dependency | Milliseconds to seconds | `labs/01-foundations/tests/oracles.test.js` (pricing + catalogue) |
 | API / service | One deployed service through its interface | Tens of ms | `labs/04-integration-contract/api/tests/cart.api.spec.js` |
-| End-to-end (E2E) | The whole system through the UI | Seconds | `labs/playwright/tests/shop.spec.js` |
+| End-to-end (E2E) | The whole system through the UI | Seconds | `labs/05-ui-e2e/e2e/tests/shop.spec.js` |
 | Production checks | The live system | Continuous | `/metrics`, synthetic monitors (Topic 10) |
 
 The **test pyramid** (Mike Cohn) recommends many fast low-level tests and a few slow high-level ones. Its reasoning is that **the higher the level, the slower, flakier and more expensive a test is, and the less precisely a failure points at its cause.** Section 13 compares it with the alternatives.

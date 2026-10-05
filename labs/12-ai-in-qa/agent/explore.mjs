@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Lab 9 - an AI agent explores the shop.
 //
-//   npm run agent -- free-shipping            # charter from labs/ai-agent/charters/
+//   npm run agent -- free-shipping            # charter from labs/12-ai-in-qa/agent/charters/
 //   npm run agent -- assistant-safety --headed
 //   npm run agent -- free-shipping --no-oracle   # same goal, no product rules
 //
@@ -20,7 +20,7 @@ import { chromium } from '@playwright/test';
 import { createTools } from './tools.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const root = path.resolve(here, '..', '..');
+const root = path.resolve(here, '..', '..', '..');
 const outDir = path.join(root, 'test-results', 'agent');
 const baseURL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 3210}`;
 const model = process.env.AGENT_MODEL || 'claude-opus-5-5';

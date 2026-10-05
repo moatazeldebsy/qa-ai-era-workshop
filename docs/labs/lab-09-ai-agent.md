@@ -18,10 +18,10 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/ai-agent/explore.mjs` | The agent: Claude plus five browser tools, run by the SDK's tool runner |
-| `labs/ai-agent/tools.mjs` | The tools: `open_page`, `page_snapshot`, `click`, `fill`, `report_finding` |
-| `labs/ai-agent/charters/` | Goals for the agent: `free-shipping`, `assistant-safety`, `first-time-customer` |
-| `labs/ai-agent/product-rules.md` | The oracle: what "correct" means for the shop |
+| `labs/12-ai-in-qa/agent/explore.mjs` | The agent: Claude plus five browser tools, run by the SDK's tool runner |
+| `labs/12-ai-in-qa/agent/tools.mjs` | The tools: `open_page`, `page_snapshot`, `click`, `fill`, `report_finding` |
+| `labs/12-ai-in-qa/agent/charters/` | Goals for the agent: `free-shipping`, `assistant-safety`, `first-time-customer` |
+| `labs/12-ai-in-qa/agent/product-rules.md` | The oracle: what "correct" means for the shop |
 | `.mcp.json`, `.vscode/mcp.json` | The Playwright MCP server, for route B |
 
 !!! warning "Agents spend money and act on their own"
@@ -72,8 +72,8 @@ This is the free-shipping regression from [Lab 7](lab-07-quality-gate.md). Don't
 
     ```text title="Prompt"
     Use the Playwright tools to test the web shop at http://localhost:3210.
-    Follow the charter in labs/ai-agent/charters/free-shipping.md and check every
-    result against labs/ai-agent/product-rules.md. For each problem, give exact
+    Follow the charter in labs/12-ai-in-qa/agent/charters/free-shipping.md and check every
+    result against labs/12-ai-in-qa/agent/product-rules.md. For each problem, give exact
     steps, expected and actual values, and the rule it breaks. Finish with a
     short test report: what you covered, what you found, what you did not get to.
     ```

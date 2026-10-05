@@ -18,9 +18,9 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/ai-testgen/prompts/generate-api-tests.md` | The generation prompt |
-| `labs/ai-testgen/review-checklist.md` | What to check in every generated test |
-| `labs/ai-testgen/generate.mjs` | Calls Claude when a key is set; otherwise prints the prompt |
+| `labs/12-ai-in-qa/testgen/prompts/generate-api-tests.md` | The generation prompt |
+| `labs/12-ai-in-qa/testgen/review-checklist.md` | What to check in every generated test |
+| `labs/12-ai-in-qa/testgen/generate.mjs` | Calls Claude when a key is set; otherwise prints the prompt |
 | `app/openapi.yaml` | The input |
 
 !!! warning "Never paste real customer data or secrets into a model"
@@ -35,7 +35,7 @@ By the end you'll have:
     ```
 
     Paste `prompt.txt` into your assistant. Save the code block it returns as
-    `labs/ai-testgen/generated/api.generated.spec.js`.
+    `labs/12-ai-in-qa/testgen/generated/api.generated.spec.js`.
 
 === "With an API key (optional)"
 
@@ -46,7 +46,7 @@ By the end you'll have:
 
     ```text title="Expected output"
     Generating tests with claude-opus-5-5...
-    Wrote labs/ai-testgen/generated/api.generated.2026-10-03T09-12-44-512Z.spec.js
+    Wrote labs/12-ai-in-qa/testgen/generated/api.generated.2026-10-03T09-12-44-512Z.spec.js
     Tokens: 2210 in / 3874 out
     Next: review it, move it into labs/04-integration-contract/api/tests/, then run  npm run test:api
     ```
@@ -55,7 +55,7 @@ By the end you'll have:
 
 ## 2. Read the prompt first
 
-```markdown title="labs/ai-testgen/prompts/generate-api-tests.md (excerpt)"
+```markdown title="labs/12-ai-in-qa/testgen/prompts/generate-api-tests.md (excerpt)"
 - Only assert behaviour the spec states. If you have to guess an exact value
   (a price, a message), put it in a clearly named constant with a `// VERIFY:`
   comment instead of asserting silently.
@@ -66,7 +66,7 @@ A good prompt states its constraints explicitly. The `// VERIFY:` convention mak
 
 ## 3. Review every test
 
-Open `labs/ai-testgen/review-checklist.md` and go through the generated file one test at a time:
+Open `labs/12-ai-in-qa/testgen/review-checklist.md` and go through the generated file one test at a time:
 
 | Verdict | Meaning |
 |---|---|
@@ -80,7 +80,7 @@ Open `labs/ai-testgen/review-checklist.md` and go through the generated file one
 ## 4. Run what you kept
 
 ```bash
-mv labs/ai-testgen/generated/api.generated*.spec.js labs/04-integration-contract/api/tests/
+mv labs/12-ai-in-qa/testgen/generated/api.generated*.spec.js labs/04-integration-contract/api/tests/
 npm run test:api
 ```
 
@@ -111,7 +111,7 @@ Write it on the board: *generated N, kept K, fixed F, deleted D*, and the single
 ```bash
 npm run testgen -- --print > prompt.txt         # 1. or: npm run testgen (with a key)
 # 2-3. read the prompt, review with review-checklist.md
-mv labs/ai-testgen/generated/*.spec.js labs/04-integration-contract/api/tests/ && npm run test:api   # 4.
+mv labs/12-ai-in-qa/testgen/generated/*.spec.js labs/04-integration-contract/api/tests/ && npm run test:api   # 4.
 PORT=3300 BUG_MODE=cart npm start &              # 5.
 BASE_URL=http://localhost:3300 npm run test:api
 ```

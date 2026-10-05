@@ -17,8 +17,8 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/quality-gate/gate.mjs` | Reads `test-results/` and decides; exit code 0 = ship, 1 = blocked |
-| `labs/quality-gate/gate.config.json` | The thresholds: the team agreement, as code |
+| `labs/06-ci-cd/quality-gate/gate.mjs` | Reads `test-results/` and decides; exit code 0 = ship, 1 = blocked |
+| `labs/06-ci-cd/quality-gate/gate.config.json` | The thresholds: the team agreement, as code |
 | `.github/workflows/ci.yml` | Runs every lab, then the gate |
 
 ## 1. Collect the evidence
@@ -75,7 +75,7 @@ Four tests fail: three API pricing rows and the E2E free-shipping journey, all p
 
 This step is for the whole group, managers included. Open the config:
 
-```json title="labs/quality-gate/gate.config.json"
+```json title="labs/06-ci-cd/quality-gate/gate.config.json"
 {
   "tests": { "maxFailed": 0, "required": true },
   "llmEval": { "minPassRate": 1.0, "required": false },

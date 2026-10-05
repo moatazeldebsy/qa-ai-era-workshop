@@ -29,7 +29,7 @@ Models are good at producing *realistic* data: names in many scripts, addresses 
 
 "Self-healing" tools re-locate an element when its selector breaks, for example by matching text or position. That helps with cosmetic UI changes, and it is dangerous for real ones: a "healed" locator can click the *wrong* button and pass. Prefer, in order:
 
-1. **Resilient locators by design**: `getByRole`, `getByLabel`, and test IDs for things with no accessible name (see `labs/playwright/pages/ShopPage.js`).
+1. **Resilient locators by design**: `getByRole`, `getByLabel`, and test IDs for things with no accessible name (see `labs/05-ui-e2e/e2e/pages/ShopPage.js`).
 2. **Web-first assertions** that wait for a condition instead of sleeping (Lab 4).
 3. **AI-assisted triage**: let a model cluster failures and suggest the cause, and have a human approve the fix.
 4. Self-healing, if at all, in **report-only mode**: it suggests the fix, CI still fails.
@@ -55,7 +55,7 @@ Signals that predict defects: churn (files changed often), complexity, ownership
 
 ## Exercise (15 min): risk-based test ideas with AI
 
-Use the prompt in `labs/ai-testgen/prompts/risk-based-test-ideas.md` with this feature:
+Use the prompt in `labs/12-ai-in-qa/testgen/prompts/risk-based-test-ideas.md` with this feature:
 
 > *"Add a discount-code field to the Quality Books cart. Codes give 10% or 20% off, cannot be combined, and expire."*
 

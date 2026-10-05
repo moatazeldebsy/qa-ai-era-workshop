@@ -18,8 +18,8 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/flaky/tests/recommendations.bad.spec.js` | Sleeps a fixed 700 ms, then asserts once |
-| `labs/flaky/tests/recommendations.good.spec.js` | Two correct versions of the same check |
+| `labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js` | Sleeps a fixed 700 ms, then asserts once |
+| `labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js` | Two correct versions of the same check |
 | `app/src/server.js` | `/api/recommendations` takes a random 200–1500 ms |
 
 ## 1. Reproduce it
@@ -81,7 +81,7 @@ Most runs now pass, and some are labelled **flaky** in the report. The suite loo
 
 === "Wait for the condition"
 
-    ```js title="labs/flaky/tests/recommendations.good.spec.js"
+    ```js title="labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js"
     await page.goto('/');
     await expect(page.locator('#recommendations li')).toHaveCount(2);
     ```
@@ -90,7 +90,7 @@ Most runs now pass, and some are labelled **flaky** in the report. The suite loo
 
 === "Control the dependency"
 
-    ```js title="labs/flaky/tests/recommendations.good.spec.js"
+    ```js title="labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js"
     await page.route('**/api/recommendations', (route) =>
       route.fulfill({ json: { books: [{ id: 9, title: 'Stubbed Book' }] } }),
     );

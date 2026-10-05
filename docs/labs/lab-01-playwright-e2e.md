@@ -18,9 +18,9 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/playwright/pages/ShopPage.js` | Page object; every locator is role-, label- or test-ID-based |
-| `labs/playwright/tests/shop.spec.js` | Catalogue and cart journeys |
-| `labs/playwright/tests/assistant.spec.js` | Assistant wiring, and a check that its output is never rendered as HTML |
+| `labs/05-ui-e2e/e2e/pages/ShopPage.js` | Page object; every locator is role-, label- or test-ID-based |
+| `labs/05-ui-e2e/e2e/tests/shop.spec.js` | Catalogue and cart journeys |
+| `labs/05-ui-e2e/e2e/tests/assistant.spec.js` | Assistant wiring, and a check that its output is never rendered as HTML |
 | `playwright.config.js` | Projects (`e2e`, `api`, `flaky`), reporters, auto-started app |
 
 ## 1. Run the suite
@@ -38,7 +38,7 @@ The report lists every test with its steps. Failed tests get a screenshot and a 
 
 ## 2. Read the page object
 
-```js title="labs/playwright/pages/ShopPage.js"
+```js title="labs/05-ui-e2e/e2e/pages/ShopPage.js"
 this.search = page.getByLabel('Search books');
 this.askButton = page.getByRole('button', { name: 'Ask' });
 this.total = page.getByTestId('total');
@@ -74,7 +74,7 @@ Add a test to `shop.spec.js` for this rule:
 > *Searching for an author's surname, in any case, shows only their book.*
 
 ??? success "One solution"
-    ```js title="labs/playwright/tests/shop.spec.js"
+    ```js title="labs/05-ui-e2e/e2e/tests/shop.spec.js"
     test('search matches authors, case-insensitively', async ({ page }) => {
       const shop = new ShopPage(page);
       await shop.goto();
@@ -101,9 +101,9 @@ The trace viewer shows every action, a DOM snapshot before and after each one, t
 
 ## 6. Check accessibility
 
-`labs/playwright/tests/accessibility.spec.js` runs **axe-core**, which checks the page against the WCAG 2.1 A and AA rules, and drives the cart with the keyboard only:
+`labs/05-ui-e2e/e2e/tests/accessibility.spec.js` runs **axe-core**, which checks the page against the WCAG 2.1 A and AA rules, and drives the cart with the keyboard only:
 
-```js title="labs/playwright/tests/accessibility.spec.js"
+```js title="labs/05-ui-e2e/e2e/tests/accessibility.spec.js"
 const results = await new AxeBuilder({ page })
   .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
   .analyze();

@@ -29,10 +29,10 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   projects: [
-    { name: 'e2e', testDir: 'labs/playwright/tests', use: { ...devices['Desktop Chrome'] } },
+    { name: 'e2e', testDir: 'labs/05-ui-e2e/e2e/tests', use: { ...devices['Desktop Chrome'] } },
     { name: 'api', testDir: 'labs/04-integration-contract/api/tests' },
-    { name: 'flaky', testDir: 'labs/flaky/tests', retries: 0, use: { ...devices['Desktop Chrome'] } },
-    { name: 'agent-tools', testDir: 'labs/ai-agent/tests', use: { ...devices['Desktop Chrome'] } },
+    { name: 'flaky', testDir: 'labs/05-ui-e2e/flaky/tests', retries: 0, use: { ...devices['Desktop Chrome'] } },
+    { name: 'agent-tools', testDir: 'labs/12-ai-in-qa/agent/tests', use: { ...devices['Desktop Chrome'] } },
   ],
   // Starts the demo app unless BASE_URL points somewhere else.
   webServer: process.env.BASE_URL

@@ -4,7 +4,7 @@ playwright-report/
 blob-report/
 site/
 .promptfoo/
-labs/ai-testgen/generated/
+labs/12-ai-in-qa/testgen/generated/
 .venv/
 __pycache__/
 .DS_Store

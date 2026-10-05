@@ -17,10 +17,10 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/metrics/quality_metrics.py` | One short, readable function per metric |
-| `labs/metrics/data/deployments.csv` | 40 deployments in September |
-| `labs/metrics/data/incidents.csv` | 6 incidents: what detected them, and which deploy caused them |
-| `labs/metrics/data/defects.csv` | 12 defects, and where each was found |
+| `labs/11-quality-intelligence/metrics/quality_metrics.py` | One short, readable function per metric |
+| `labs/11-quality-intelligence/metrics/data/deployments.csv` | 40 deployments in September |
+| `labs/11-quality-intelligence/metrics/data/incidents.csv` | 6 incidents: what detected them, and which deploy caused them |
+| `labs/11-quality-intelligence/metrics/data/defects.csv` | 12 defects, and where each was found |
 
 ## 1. Run it
 
@@ -63,7 +63,7 @@ Every metric is a small function. Read them and decide whether you agree:
 
 === "MTTR"
 
-    ```python title="labs/metrics/quality_metrics.py"
+    ```python title="labs/11-quality-intelligence/metrics/quality_metrics.py"
     def mttr(incidents):
         """Mean time to resolve, measured from detection (some teams measure from start)."""
         return statistics.mean(minutes(i["detected_at"], i["resolved_at"]) for i in incidents)
@@ -73,7 +73,7 @@ Every metric is a small function. Read them and decide whether you agree:
 
 === "Lead time"
 
-    ```python title="labs/metrics/quality_metrics.py"
+    ```python title="labs/11-quality-intelligence/metrics/quality_metrics.py"
     def lead_time_hours(deployments):
         """Median commit -> production. Median, because one stuck change skews a mean."""
         return statistics.median(...)
@@ -83,7 +83,7 @@ Every metric is a small function. Read them and decide whether you agree:
 
 === "Defect escape rate"
 
-    ```python title="labs/metrics/quality_metrics.py"
+    ```python title="labs/11-quality-intelligence/metrics/quality_metrics.py"
     def defect_escape_rate(defects):
         """Share of defects first found in production rather than before release."""
     ```
@@ -101,8 +101,8 @@ The last section of the output lists which test layer **should** have caught eac
 Export a month of your team's deployments and incidents in the same CSV columns and run:
 
 ```bash
-python3 labs/metrics/quality_metrics.py path/to/your/data
-python3 labs/metrics/quality_metrics.py path/to/your/data --json    # for a spreadsheet or dashboard
+python3 labs/11-quality-intelligence/metrics/quality_metrics.py path/to/your/data
+python3 labs/11-quality-intelligence/metrics/quality_metrics.py path/to/your/data --json    # for a spreadsheet or dashboard
 ```
 
 Most teams are surprised by at least one number.
@@ -113,7 +113,7 @@ Most teams are surprised by at least one number.
 npm run metrics                                                  # 1. compute
 # 2. read the MTTD breakdown
 # 3. change one definition in quality_metrics.py, re-run
-python3 labs/metrics/quality_metrics.py labs/metrics/data --json  # machine-readable
+python3 labs/11-quality-intelligence/metrics/quality_metrics.py labs/11-quality-intelligence/metrics/data --json  # machine-readable
 ```
 
 ## Stretch goals
