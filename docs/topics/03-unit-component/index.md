@@ -46,4 +46,4 @@ npm run learn:check 3     # after each lab step: ✔ or what's missing
 - A mutation report showing your tests now catch what coverage said they did.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 03**. When you've finished, post your notebook or your challenge solution there too.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 03**. When you've finished, post your notebook or your challenge solution there too.

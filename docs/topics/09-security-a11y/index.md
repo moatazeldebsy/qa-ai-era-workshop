@@ -39,4 +39,4 @@ npm run learn:check 9     # after each lab step: ✔ or what's missing
 - Buttons that say what they show, and a cart that announces its total.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 09**. When you've finished, post your notebook or your challenge solution there too.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 09**. When you've finished, post your notebook or your challenge solution there too.

@@ -4,7 +4,7 @@ Get your own copy of the course, run the demo shop and its tests, and check your
 
 ## 1. Fork the repository
 
-On [the course repository](https://github.com/moatazeldebsy/qa-ai-era-workshop), choose **Fork**. Your fork is where your lab work, notebook and progress live. You can push to it, and its CI checks your progress.
+On [the course repository](https://github.com/moatazeldebsy/qa-engineering-deep-dive), choose **Fork**. Your fork is where your lab work, notebook and progress live. You can push to it, and its CI checks your progress.
 
 ## 2. Open it
 
@@ -27,8 +27,8 @@ On [the course repository](https://github.com/moatazeldebsy/qa-ai-era-workshop),
     | Docker | any recent | optional, for Topics 7 and 9 |
 
     ```bash
-    git clone https://github.com/<you>/qa-ai-era-workshop.git
-    cd qa-ai-era-workshop
+    git clone https://github.com/<you>/qa-engineering-deep-dive.git
+    cd qa-engineering-deep-dive
     nvm use                                    # Node from .nvmrc
     npm install
     npx playwright install --with-deps chromium
@@ -37,7 +37,7 @@ On [the course repository](https://github.com/moatazeldebsy/qa-ai-era-workshop),
 Then connect your copy to the course, so `learn:start` always starts from the course's latest starting state:
 
 ```bash
-git remote add upstream https://github.com/moatazeldebsy/qa-ai-era-workshop.git
+git remote add upstream https://github.com/moatazeldebsy/qa-engineering-deep-dive.git
 git fetch upstream
 ```
 

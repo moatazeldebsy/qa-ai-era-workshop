@@ -129,7 +129,7 @@ jobs:
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.
       - name: Labs are still labs
-        if: github.repository == 'moatazeldebsy/qa-ai-era-workshop'
+        if: github.repository == 'moatazeldebsy/qa-engineering-deep-dive'
         run: |
           if [ "${GITHUB_REF_NAME}" = "solutions" ]; then
             node scripts/learn.mjs verify --expect complete

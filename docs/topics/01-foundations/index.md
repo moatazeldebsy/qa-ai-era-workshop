@@ -41,4 +41,4 @@ npm run learn:check 1     # after each lab step: ✔ or what's missing
 - An exploration charter and a defect report in your notebook.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 01**. When you've finished, post your notebook or your challenge solution there too.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 01**. When you've finished, post your notebook or your challenge solution there too.

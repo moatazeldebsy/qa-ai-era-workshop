@@ -4,13 +4,13 @@ Thank you for helping make this course better. Every report of a broken step or 
 
 ## Reporting a problem
 
-Use the [issue templates](https://github.com/moatazeldebsy/qa-ai-era-workshop/issues/new/choose):
+Use the [issue templates](https://github.com/moatazeldebsy/qa-engineering-deep-dive/issues/new/choose):
 
 - **Lab broken:** a command fails, or its output doesn't match the expected output in the docs. Please include the topic and step, your OS and Node version (`npm run learn:doctor`), the command, and its full output.
 - **Content error:** something in the text is wrong, outdated or unclear.
 - **Suggestion:** a new example, exercise, tool comparison or topic idea.
 
-Questions about the material belong in [Discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions), under the topic's category.
+Questions about the material belong in [Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions), under the topic's category.
 
 ## How the course is built
 

@@ -4,7 +4,7 @@ Learning alone works. Learning alongside other people works better: you see othe
 
 ## Discussions
 
-The course uses [GitHub Discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions):
+The course uses [GitHub Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions):
 
 | Category | Use it for |
 |---|---|
@@ -38,6 +38,6 @@ The material started life as a facilitated workshop and still works as one. See 
 
 ## Contributing
 
-Found a mistake, a broken step or an expected output that doesn't match? Please [open an issue](https://github.com/moatazeldebsy/qa-ai-era-workshop/issues/new/choose); the templates ask for exactly what's needed to fix it. Pull requests are welcome. See [CONTRIBUTING.md](https://github.com/moatazeldebsy/qa-ai-era-workshop/blob/main/CONTRIBUTING.md) for how labs, checkers and expected outputs are kept honest.
+Found a mistake, a broken step or an expected output that doesn't match? Please [open an issue](https://github.com/moatazeldebsy/qa-engineering-deep-dive/issues/new/choose); the templates ask for exactly what's needed to fix it. Pull requests are welcome. See [CONTRIBUTING.md](https://github.com/moatazeldebsy/qa-engineering-deep-dive/blob/main/CONTRIBUTING.md) for how labs, checkers and expected outputs are kept honest.
 
-Everyone taking part agrees to the [Code of Conduct](https://github.com/moatazeldebsy/qa-ai-era-workshop/blob/main/CODE_OF_CONDUCT.md).
+Everyone taking part agrees to the [Code of Conduct](https://github.com/moatazeldebsy/qa-engineering-deep-dive/blob/main/CODE_OF_CONDUCT.md).

@@ -1,8 +1,8 @@
 site_name: QA Engineering Deep Dive
 site_description: A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.
-site_url: https://moatazeldebsy.github.io/qa-ai-era-workshop/
-repo_url: https://github.com/moatazeldebsy/qa-ai-era-workshop
-repo_name: moatazeldebsy/qa-ai-era-workshop
+site_url: https://moatazeldebsy.github.io/qa-engineering-deep-dive/
+repo_url: https://github.com/moatazeldebsy/qa-engineering-deep-dive
+repo_name: moatazeldebsy/qa-engineering-deep-dive
 edit_uri: edit/main/docs/
 
 theme:

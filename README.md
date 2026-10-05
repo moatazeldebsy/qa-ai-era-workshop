@@ -4,7 +4,7 @@
 
 A free, self-paced course in 14 topics for QA engineers, SDETs, developers and engineering leaders. Every topic explains the theory simply and in depth, then puts it to work in a lab on a real (small) system. You find real bugs, fix them, and an auto-checker tells you when you're done.
 
-📖 **Course site:** <https://moatazeldebsy.github.io/qa-ai-era-workshop/>
+📖 **Course site:** <https://moatazeldebsy.github.io/qa-engineering-deep-dive/>
 
 ## The 14 topics
 
@@ -33,8 +33,8 @@ Each topic has the same four pages: **Overview → Concepts → Lab → Quiz & w
 2. Open it in **GitHub Codespaces** (Code → Codespaces), or clone it locally:
 
     ```bash
-    git clone https://github.com/<you>/qa-ai-era-workshop.git
-    cd qa-ai-era-workshop
+    git clone https://github.com/<you>/qa-engineering-deep-dive.git
+    cd qa-engineering-deep-dive
     nvm use                                  # Node 24
     npm install
     npx playwright install --with-deps chromium
@@ -49,7 +49,7 @@ Each topic has the same four pages: **Overview → Concepts → Lab → Quiz & w
     npm run learn:status       # progress across all 14 topics
     ```
 
-Full instructions: [Setup](https://moatazeldebsy.github.io/qa-ai-era-workshop/start/setup/). No API key is needed for any lab.
+Full instructions: [Setup](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/setup/). No API key is needed for any lab.
 
 ## How you're supported
 
@@ -58,7 +58,7 @@ Full instructions: [Setup](https://moatazeldebsy.github.io/qa-ai-era-workshop/st
 - **Quizzes** on each topic, which explain every answer.
 - **Your notebook** (`notebook/NN/`): templates for the thinking work: charters, risk notes, a strategy.
 - **Progress in CI:** on every push, your fork's Actions tab shows a progress table.
-- **Community:** ask questions and share your work in [Discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions), one category per topic.
+- **Community:** ask questions and share your work in [Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions), one category per topic.
 
 ## The demo app: Quality Books
 
@@ -86,11 +86,11 @@ docs/                the course site (MkDocs Material)
 
 ## Running it with a group
 
-The course works for study groups, team training and workshops. See [For facilitators](https://moatazeldebsy.github.io/qa-ai-era-workshop/reference/facilitators/).
+The course works for study groups, team training and workshops. See [For facilitators](https://moatazeldebsy.github.io/qa-engineering-deep-dive/reference/facilitators/).
 
 ## Contributing
 
-Found a broken step, a wrong expected output or a confusing explanation? [Open an issue](https://github.com/moatazeldebsy/qa-ai-era-workshop/issues/new/choose). Pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Everyone taking part agrees to the [Code of Conduct](CODE_OF_CONDUCT.md).
+Found a broken step, a wrong expected output or a confusing explanation? [Open an issue](https://github.com/moatazeldebsy/qa-engineering-deep-dive/issues/new/choose). Pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md). Everyone taking part agrees to the [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 

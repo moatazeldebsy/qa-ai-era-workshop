@@ -41,4 +41,4 @@ npm run learn:check 14    # after each lab step: ✔ or what's missing
 - A one-page leadership update that asks for a decision.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 14**. Share your strategy: reading other people's is one of the best ways to sharpen yours.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 14**. Share your strategy: reading other people's is one of the best ways to sharpen yours.

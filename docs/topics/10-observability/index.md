@@ -47,4 +47,4 @@ npm run learn:check 10    # after each lab step: ✔ or what's missing
 - A latency histogram, an SLO report with error budgets, and a synthetic journey monitor.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 10**. When you've finished, post your notebook or your challenge solution there too.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 10**. When you've finished, post your notebook or your challenge solution there too.

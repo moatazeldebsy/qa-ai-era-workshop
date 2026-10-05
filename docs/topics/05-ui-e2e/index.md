@@ -41,4 +41,4 @@ npm run learn:check 5     # after each lab step: ✔ or what's missing
 - A cross-browser matrix generated from a pairwise model, and a finding from it.
 
 !!! question "Stuck, or want to compare notes?"
-    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-ai-era-workshop/discussions) under **Topic 05**. When you've finished, post your notebook or your challenge solution there too.
+    Ask in the [course discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) under **Topic 05**. When you've finished, post your notebook or your challenge solution there too.
