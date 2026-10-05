@@ -1,8 +1,7 @@
 {
-  // Everything the workshop needs, in GitHub Codespaces or a local dev
+  // Everything the course needs, in GitHub Codespaces or a local dev
   // container: Node 24, Python, k6, Chromium and the docs toolchain.
-  // The fallback for locked-down laptops (see the Facilitator Guide).
-  "name": "QA in the AI Era workshop",
+  "name": "QA Engineering Deep Dive",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:1-24-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
@@ -11,7 +10,7 @@
   "forwardPorts": [3210, 8000, 15500],
   "portsAttributes": {
     "3210": { "label": "Quality Books (demo app)", "onAutoForward": "notify" },
-    "8000": { "label": "Workshop docs (mkdocs serve)" },
+    "8000": { "label": "Course site (mkdocs serve)" },
     "15500": { "label": "promptfoo viewer" }
   },
   "customizations": {
@@ -19,7 +18,7 @@
       "extensions": ["ms-playwright.playwright", "redhat.vscode-yaml", "ms-python.python"]
     },
     "codespaces": {
-      "openFiles": ["docs/getting-started.md"]
+      "openFiles": ["docs/start/how-it-works.md"]
     }
   },
   "hostRequirements": { "cpus": 2, "memory": "4gb" }

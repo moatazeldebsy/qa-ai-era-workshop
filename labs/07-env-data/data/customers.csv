@@ -1,0 +1,16 @@
+customer_id,name,email,phone,street,city,postcode,country
+C1000,Lena Becker,lena.becker@example.org,+49 152 6234 9233,Gartenweg 114,Hamburg,20095,DE
+C1001,Jonas Tanaka,jonas.tanaka@example.org,+49 159 7891 9975,Mühlenweg 97,Leipzig,04109,DE
+C1002,Amira Fischer,amira.fischer@example.org,+49 158 4931 1041,Gartenweg 15,München,80331,DE
+C1003,Mateo Kaya,mateo.kaya@example.org,+49 152 8367 1188,Mühlenweg 87,München,80331,DE
+C1004,Sofia Nakamura,sofia.nakamura@example.org,+49 154 7508 5120,Hafenstraße 119,München,80331,DE
+C1005,Yusuf Schulz,yusuf.schulz@example.org,+49 157 9414 2250,Hafenstraße 12,Leipzig,04109,DE
+C1006,Hannah Brandt,hannah.brandt@example.org,+49 159 5786 5712,Mühlenweg 19,Dresden,01067,DE
+C1007,Kenji Novak,kenji.novak@example.org,+49 155 1405 7043,Hafenstraße 60,Köln,50667,DE
+C1008,Chiara Silva,chiara.silva@example.org,+49 152 7533 9166,Gartenweg 55,Leipzig,04109,DE
+C1009,Tobias Rossi,tobias.rossi@example.org,+49 158 7523 9595,Rosenallee 109,Köln,50667,DE
+C1010,Nadia Petrov,nadia.petrov@example.org,+49 158 9404 9486,Lindenstraße 74,Hamburg,20095,DE
+C1011,Felix Haddad,felix.haddad@example.org,+49 153 1800 9572,Gartenweg 92,Leipzig,04109,DE
+C1012,Olga Lindqvist,olga.lindqvist@example.org,+49 157 8701 3333,Mühlenweg 114,Hamburg,20095,DE
+C1013,Samir Okafor,samir.okafor@example.org,+49 152 8484 8690,Rosenallee 72,Köln,50667,DE
+C1014,Ines Moreau,ines.moreau@example.org,+49 155 9980 9223,Mühlenweg 104,Köln,50667,DE

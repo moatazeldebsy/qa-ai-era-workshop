@@ -1,0 +1,31 @@
+name: reusable-node-service
+
+# The platform's paved road for a Node.js service's CI (Topic 13). Each
+# service's workflow calls it with its own path; the platform team maintains
+# the steps (pinned actions, caching, Node version) once for everyone.
+on:
+  workflow_call:
+    inputs:
+      path:
+        description: The service's folder, e.g. services/recommendations
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Unit and conformance tests
+        env:
+          SERVICE_PATH: ${{ inputs.path }}
+        run: node --test "$SERVICE_PATH/tests/*.test.js"

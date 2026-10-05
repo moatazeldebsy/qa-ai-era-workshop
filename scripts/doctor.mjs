@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// npm run doctor - is this machine ready for the workshop?
+// npm run doctor - is this machine ready for the course?
 //
 // Checks every tool the labs need and says exactly how to fix what's missing.
 // Exit code 1 when something REQUIRED is missing; optional items only warn.
@@ -31,7 +31,7 @@ const atLeast = (version, min) => {
   return true;
 };
 
-// Node.js - promptfoo (Lab 6) needs 22.22+
+// Node.js - promptfoo (Topic 12) needs 22.22+
 const node = process.versions.node;
 atLeast(node, '22.22.0')
   ? add('ok', 'Node.js', `v${node}`)
@@ -53,18 +53,18 @@ try {
 if (chromium && fs.existsSync(chromium)) add('ok', 'Playwright Chromium', 'installed');
 else add('fail', 'Playwright Chromium', 'missing', 'npx playwright install --with-deps chromium');
 
-// k6 - Lab 5 and the quality gate's performance check
+// k6 - Topic 8 and the quality gate's performance check
 const k6 = run('k6', ['version']);
 k6
   ? add('ok', 'k6', k6.split('\n')[0].replace(/^k6 /, ''))
-  : add('warn', 'k6', 'not found (Lab 5)', 'brew install k6 · winget install k6 · grafana.com/docs/k6/latest/set-up/install-k6');
+  : add('warn', 'k6', 'not found (Topic 8)', 'brew install k6 · winget install k6 · grafana.com/docs/k6/latest/set-up/install-k6');
 
-// Python - Lab 8
+// Python - Topic 11
 const py = run('python3', ['--version']) || run('python', ['--version']);
 const pyVersion = py?.match(/(\d+\.\d+(\.\d+)?)/)?.[1];
 pyVersion && atLeast(pyVersion, '3.9')
   ? add('ok', 'Python', pyVersion)
-  : add('warn', 'Python', py ? `${pyVersion} (need ≥ 3.9, Lab 8)` : 'not found (Lab 8)', 'brew install python');
+  : add('warn', 'Python', py ? `${pyVersion} (need ≥ 3.9, Topic 11)` : 'not found (Topic 11)', 'brew install python');
 
 // Port - the most common first-hour problem
 // Try to CONNECT, on IPv4 and IPv6, rather than to bind: Docker Desktop
@@ -96,8 +96,8 @@ if (portState === 'free') {
 
 // Optional: a real model (Labs 3, 6, 9)
 process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN
-  ? add('ok', 'Anthropic API key', 'set (real-model modes and Lab 9 route A)')
-  : add('info', 'Anthropic API key', 'not set: fine, every lab except Lab 9 route A works without it');
+  ? add('ok', 'Anthropic API key', 'set (real-model modes and the Topic 12 agent with a real model)')
+  : add('info', 'Anthropic API key', 'not set: fine, every lab works without it');
 
 // Optional: docs
 const mkdocs = run('mkdocs', ['--version']);
@@ -107,7 +107,7 @@ mkdocs
 
 // ── Report ────────────────────────────────────────────────────────────────────
 const icon = { ok: '✅', warn: '⚠️ ', fail: '❌', info: 'ℹ️ ' };
-console.log('\nQA in the AI Era — workshop doctor\n');
+console.log('\nQA Engineering Deep Dive — doctor\n');
 for (const r of results) {
   console.log(`${icon[r.status]} ${r.name.padEnd(22)} ${r.detail}`);
   if (r.fix && r.status !== 'ok') console.log(`   ${' '.repeat(22)} → ${r.fix}`);
@@ -117,6 +117,6 @@ const warned = results.filter((r) => r.status === 'warn').length;
 console.log(
   failed
     ? `\n${failed} required item(s) missing. Fix them, then run  npm run doctor  again.\n`
-    : `\nReady for the workshop${warned ? ` (${warned} optional item(s) missing — see above)` : ''}. Next:  npm test\n`,
+    : `\nReady for the course${warned ? ` (${warned} optional item(s) missing — see above)` : ''}. Next:  npm test\n`,
 );
 process.exit(failed ? 1 : 0);

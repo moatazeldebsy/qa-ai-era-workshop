@@ -22,6 +22,7 @@ concurrency:
 
 env:
   K6_VERSION: v2.3.0
+  PACT_DO_NOT_TRACK: 'true'
   PROMPTFOO_DISABLE_TELEMETRY: '1'
   FORCE_COLOR: '1'
 
@@ -60,6 +61,81 @@ jobs:
       # ── 1. Fastest feedback first ─────────────────────────────────────────
       - name: Unit tests
         run: npm run test:unit
+
+      # Learning Path, Topic 1: oracles, risk trace, and a planted-bug check.
+      - name: Foundations lab
+        run: |
+          npm run foundations:test
+          npm run foundations:risks
+          npm run foundations:bug-hunt
+
+      # Learning Path, Topic 2: test-design techniques and a mutation scorecard.
+      - name: Test design lab
+        run: |
+          npm run design:test
+          npm run design:mutants
+
+      # Topic 3: unit and component tests, plus Stryker mutation testing.
+      - name: Unit and component lab
+        run: |
+          npm run unit:test
+          npm run unit:mutate
+
+      # Topic 4: API, integration and Pact consumer tests (provider
+      # verification is the learner's job on main; learn verify checks it).
+      - name: Integration and contract lab
+        run: npm run contract:test
+
+      # Topic 6: tests for the quality gate itself, and impact analysis.
+      - name: CI/CD lab
+        run: |
+          npm run ci:test
+          npm run ci:impact -- app/src/cart.js
+
+      # Topic 7: generated data and the sales report (shared-env and masking
+      # are the learner's job on main; learn verify checks them).
+      - name: Test data lab
+        run: npm run data:test
+
+      # Topic 8: resilience tests with the fault-injecting proxy.
+      - name: Resilience lab
+        run: npm run perf:test
+
+      # Topic 9: security tests, accessibility tests and a dependency triage
+      # (the triage reports; advisories change daily, so it doesn't gate).
+      - name: Observability lab
+        run: npm run obs:test
+
+      - name: Quality intelligence lab
+        run: npm run qi:test
+
+      - name: Platform lab
+        run: |
+          npm run platform:test
+          npm run platform:fleet
+
+      - name: Strategy lab
+        run: |
+          npm run strategy:test
+          npm run strategy:scorecard
+
+      - name: Security and accessibility lab
+        run: |
+          npm run sec:test
+          npm run a11y:test
+          npm run sec:audit || echo "::warning::production dependency findings: see the triage above"
+
+      # The course repo must ship every lab unsolved (learners start here) and
+      # the solutions branch must solve them all. Forks skip this: a learner's
+      # progress is reported by learner-progress.yml instead.
+      - name: Labs are still labs
+        if: github.repository == 'moatazeldebsy/qa-engineering-deep-dive'
+        run: |
+          if [ "${GITHUB_REF_NAME}" = "solutions" ]; then
+            node scripts/learn.mjs verify --expect complete
+          else
+            node scripts/learn.mjs verify --expect incomplete
+          fi
 
       # ── 2. API + E2E (Labs 1, 2) → test-results/junit.xml ─────────────────
       - name: API and E2E tests
@@ -113,3 +189,26 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 14
+
+  # Topic 7: a disposable, production-like environment from compose.yaml.
+  # Build it, check the two services work together, throw it away.
+  environment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Start a disposable environment
+        run: docker compose up --build --wait
+
+      - name: Smoke-test it
+        run: |
+          curl -sf localhost:3210/health
+          curl -sf localhost:3210/api/orders -H 'content-type: application/json' \
+            -d '{"items":[{"bookId":1,"quantity":1}],"paymentToken":"tok_visa","customer":{"email":"ci@example.com"}}'
+          curl -sf -H "authorization: Bearer local-dev-token" localhost:3220/stock/1 | grep -q '"available":11'
+          echo "✔ shop and inventory work together in containers"
+
+      - name: Throw it away
+        if: ${{ always() }}
+        run: docker compose down --volumes

@@ -352,3 +352,117 @@
   color: var(--brand);
   box-shadow: inset 0 -2px 0 var(--brand);
 }
+
+/* ---------- Self-learner components (docs/javascripts/course.js) ---------- */
+:root,
+[data-md-color-scheme="default"] {
+  --ok: #15803d;
+  --ok-soft: rgba(21, 128, 61, 0.09);
+  --bad: #b91c1c;
+  --bad-soft: rgba(185, 28, 28, 0.08);
+}
+[data-md-color-scheme="slate"] {
+  --ok: #4ade80;
+  --ok-soft: rgba(74, 222, 128, 0.12);
+  --bad: #f87171;
+  --bad-soft: rgba(248, 113, 113, 0.12);
+}
+
+.topic-progress {
+  margin: 1.2rem 0;
+}
+.topic-progress__bar {
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.topic-progress__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--brand);
+  transition: width 0.3s ease;
+}
+.md-typeset .topic-progress__text {
+  margin: 0.4rem 0 0;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.course-done {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Quizzes: the task-list markup becomes clickable options. */
+.md-typeset .quiz-q {
+  margin: 1.5rem 0;
+  padding: 0.2rem 1rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+.md-typeset .quiz-q ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.md-typeset .quiz-q li.task-list-item {
+  margin: 0.4rem 0;
+}
+.md-typeset .quiz-option {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.md-typeset .quiz-option:hover:not(:disabled) {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+.md-typeset .quiz-option:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.md-typeset .quiz-option:disabled {
+  cursor: default;
+}
+.md-typeset li.quiz-right .quiz-option {
+  border-color: var(--ok);
+  background: var(--ok-soft);
+}
+.md-typeset li.quiz-right .quiz-option::before {
+  content: "✔ ";
+  color: var(--ok);
+}
+.md-typeset li.quiz-wrong .quiz-option {
+  border-color: var(--bad);
+  background: var(--bad-soft);
+}
+.md-typeset li.quiz-wrong .quiz-option::before {
+  content: "✖ ";
+  color: var(--bad);
+}
+.md-typeset .quiz-why {
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  border-left: 3px solid var(--brand);
+  background: var(--surface-muted);
+  font-size: 0.75rem;
+}
+.md-typeset .quiz-score {
+  position: sticky;
+  bottom: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  font-weight: 600;
+}

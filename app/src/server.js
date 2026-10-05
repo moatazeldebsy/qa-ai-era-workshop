@@ -5,6 +5,10 @@ import { fileURLToPath } from 'node:url';
 import { books, findBook, searchBooks } from './catalog.js';
 import { priceCart, ValidationError } from './cart.js';
 import { answer } from './assistant.js';
+import { createCheckout, CheckoutError } from './checkout.js';
+import { createInventoryClient, InventoryError } from './inventory-client.js';
+import { next as nextState, InvalidTransition } from './orders.js';
+import { demoPayments } from './payments-demo.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,8 +16,18 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 // observability module has something real to scrape and graph.
 const metrics = { requests: new Map(), errors: 0, assistantCalls: 0 };
 
-export function createApp() {
+// The shop's dependencies on other services are options, so tests can point
+// them at a test instance (Topic 4). Defaults suit `npm run start:all`.
+export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://localhost:3220' } = {}) {
   const app = express();
+  const inventory = createInventoryClient({ baseUrl: inventoryUrl });
+  const mailer = {
+    async send({ subject }) {
+      if (process.env.LOG_REQUESTS !== 'false') console.log(JSON.stringify({ level: 'info', event: 'mail.sent', subject }));
+    },
+  };
+  const checkout = createCheckout({ inventory, payments: demoPayments, mailer });
+  const orders = new Map();
   app.use(express.json({ limit: '10kb' }));
 
   app.use((req, res, next) => {
@@ -67,6 +81,41 @@ export function createApp() {
       metrics.assistantCalls += 1;
       res.json(await answer(req.body?.question));
     } catch (err) {
+      next(err);
+    }
+  });
+
+  app.post('/api/orders', async (req, res, next) => {
+    try {
+      const { items, customer = {}, paymentToken } = req.body ?? {};
+      const order = await checkout.placeOrder({ items, customer, paymentToken });
+      orders.set(order.id, order);
+      res.status(201).json(order);
+    } catch (err) {
+      if (err instanceof ValidationError) return res.status(400).json({ error: err.message });
+      if (err instanceof CheckoutError) return res.status(402).json({ error: err.message });
+      if (err instanceof InventoryError && err.status === 409) return res.status(409).json({ error: err.message });
+      if (err instanceof InventoryError) return res.status(503).json({ error: 'inventory service unavailable' });
+      next(err);
+    }
+  });
+
+  app.get('/api/orders/:id', (req, res) => {
+    const order = orders.get(req.params.id);
+    if (!order) return res.status(404).json({ error: 'order not found' });
+    res.json(order);
+  });
+
+  app.post('/api/orders/:id/cancel', async (req, res, next) => {
+    const order = orders.get(req.params.id);
+    if (!order) return res.status(404).json({ error: 'order not found' });
+    try {
+      const cancelled = nextState(order.state, 'cancel');
+      await inventory.release(order.reservationId);
+      order.state = cancelled;
+      res.json(order);
+    } catch (err) {
+      if (err instanceof InvalidTransition) return res.status(409).json({ error: err.message });
       next(err);
     }
   });

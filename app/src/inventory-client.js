@@ -1,0 +1,52 @@
+// The shop's client for the inventory service (services/inventory). It
+// implements the interface the checkout expects (Topic 3):
+//
+//   reserve(lines) → reservationId     release(reservationId)
+//
+// `fetch` is injectable, but the tests in Topic 4 don't need that: they run
+// the client against a Pact mock server or a real inventory service.
+
+export class InventoryError extends Error {
+  constructor(message, { status, bookId } = {}) {
+    super(message);
+    this.status = status;
+    this.bookId = bookId;
+  }
+}
+
+export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fetch }) {
+  // Network failures (refused, reset, DNS) become InventoryErrors too, so
+  // callers handle "the inventory service is unavailable" in one place.
+  const http = async (url, options) => {
+    try {
+      return await rawFetch(url, options);
+    } catch (err) {
+      throw new InventoryError(`inventory service unreachable: ${err.cause?.code ?? err.message}`);
+    }
+  };
+
+  return {
+    async reserve(lines) {
+      const res = await http(`${baseUrl}/reservations`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ lines }),
+      });
+      if (res.status === 409) {
+        const body = await res.json();
+        throw new InventoryError(`not enough stock of book ${body.bookId}`, { status: 409, bookId: body.bookId });
+      }
+      if (!res.ok) throw new InventoryError(`inventory service answered ${res.status}`, { status: res.status });
+      const body = await res.json();
+      return body.id;
+    },
+
+    async release(reservationId) {
+      const res = await http(`${baseUrl}/reservations/${reservationId}`, { method: 'DELETE' });
+      // 404 means already released or expired: releasing is idempotent.
+      if (res.status !== 204 && res.status !== 404) {
+        throw new InventoryError(`inventory service answered ${res.status}`, { status: res.status });
+      }
+    },
+  };
+}

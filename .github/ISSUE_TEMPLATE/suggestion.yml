@@ -1,0 +1,22 @@
+name: Suggestion
+description: A new example, exercise, tool comparison or topic idea.
+labels: ["suggestion"]
+body:
+  - type: input
+    id: topic
+    attributes:
+      label: Which topic does it belong to?
+      placeholder: "Topic 08, or 'new topic'"
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What would learners do or understand that they can't today?
+    validations:
+      required: true
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Contributing
+      options:
+        - label: I'd like to write this myself, with some guidance

@@ -1,0 +1,364 @@
+{
+  "config": {
+    "argv": [
+      "<home>/.nvm/versions/node/v24.21.0/bin/node",
+      "<repo>/node_modules/.bin/playwright",
+      "test",
+      "--project=flaky",
+      "--retries=1",
+      "--reporter=json"
+    ],
+    "configFile": "<repo>/playwright.config.js",
+    "rootDir": "<repo>",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 3
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "e2e",
+        "name": "e2e",
+        "testDir": "<repo>/labs/05-ui-e2e/e2e/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "api",
+        "name": "api",
+        "testDir": "<repo>/labs/04-integration-contract/api/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "flaky",
+        "name": "flaky",
+        "testDir": "<repo>/labs/05-ui-e2e/flaky/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "agent-tools",
+        "name": "agent-tools",
+        "testDir": "<repo>/labs/12-ai-in-qa/agent/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "brittle",
+        "name": "brittle",
+        "testDir": "<repo>/labs/05-ui-e2e/brittle",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "ui-acceptance",
+        "name": "ui-acceptance",
+        "testDir": "<repo>/labs/05-ui-e2e/acceptance",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "a11y",
+        "name": "a11y",
+        "testDir": "<repo>/labs/09-security-a11y/a11y",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "<repo>/test-results/playwright",
+        "repeatEach": 1,
+        "retries": 1,
+        "metadata": {
+          "actualWorkers": 3
+        },
+        "id": "a11y-acceptance",
+        "name": "a11y-acceptance",
+        "testDir": "<repo>/labs/09-security-a11y/acceptance",
+        "testIgnore": [],
+        "testMatch": [
+          "*.spec.js"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 4,
+    "webServer": {
+      "command": "node app/src/server.js",
+      "url": "http://localhost:3210/health",
+      "reuseExistingServer": true,
+      "env": {
+        "PORT": "3210",
+        "LOG_REQUESTS": "false"
+      }
+    }
+  },
+  "suites": [
+    {
+      "title": "labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+      "file": "labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "BAD: sleeps a fixed time, then asserts once",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "flaky",
+              "projectName": "flaky",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 939,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m0\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n    at <repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js:15:17",
+                    "location": {
+                      "file": "<repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+                      "column": 17,
+                      "line": 15
+                    },
+                    "snippet": "  13 |   await page.waitForTimeout(700); // the bug\n  14 |   const items = await page.locator('#recommendations li').count();\n> 15 |   expect(items).toBe(2);\n     |                 ^\n  16 | });\n  17 |"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+                        "column": 17,
+                        "line": 15
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m0\u001b[39m\n\n  13 |   await page.waitForTimeout(700); // the bug\n  14 |   const items = await page.locator('#recommendations li').count();\n> 15 |   expect(items).toBe(2);\n     |                 ^\n  16 | });\n  17 |\n    at <repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js:15:17"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-05T12:09:21.958Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "<repo>/test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "<repo>/test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "<repo>/test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+                    "column": 17,
+                    "line": 15
+                  }
+                },
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 829,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 1,
+                  "startTime": "2026-10-05T12:09:23.317Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "flaky"
+            }
+          ],
+          "id": "2cfab355d768e04bbaf8-135912e294ad83b58064",
+          "file": "labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js",
+          "line": 11,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js",
+      "file": "labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "GOOD: waits for the condition, not for a clock",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "flaky",
+              "projectName": "flaky",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1484,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-05T12:09:21.953Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93dcf5ae415f97400131-1006b3a0a081629fda88",
+          "file": "labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "GOOD: stubs the slow dependency",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "flaky",
+              "projectName": "flaky",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "passed",
+                  "duration": 206,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-05T12:09:21.963Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93dcf5ae415f97400131-763ab80f07489c7e4d1e",
+          "file": "labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js",
+          "line": 13,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-05T12:09:21.584Z",
+    "duration": 2697.219,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 1
+  }
+}

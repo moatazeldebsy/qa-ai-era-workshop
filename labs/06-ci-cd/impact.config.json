@@ -1,0 +1,13 @@
+{
+  "$comment": "Topic 6: test suites and the files they test. `rules` add dependencies that imports can't see (lab step 2).",
+  "suites": {
+    "unit": { "tests": "app/test/*.test.js" },
+    "foundations": { "tests": "labs/01-foundations/tests/*.test.js" },
+    "test-design": { "tests": "labs/02-test-design/tests/*.test.js" },
+    "unit-component": { "tests": "labs/03-unit-component/tests/*.test.js" },
+    "contract": { "tests": "labs/04-integration-contract/tests/*.test.js" },
+    "api": { "tests": "labs/04-integration-contract/api/tests/*.spec.js" },
+    "e2e": { "tests": "labs/05-ui-e2e/e2e/tests/*.spec.js" }
+  },
+  "rules": []
+}

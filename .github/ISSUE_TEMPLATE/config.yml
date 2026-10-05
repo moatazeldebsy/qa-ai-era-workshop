@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question about a topic
+    url: https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions
+    about: Ask in the topic's category in Discussions. Other learners can answer, and the answer helps the next person too.

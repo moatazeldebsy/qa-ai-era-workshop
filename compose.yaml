@@ -1,0 +1,35 @@
+# A disposable, production-like environment for Quality Books (Topic 7).
+#
+#   docker compose up --build --wait     start both services, wait until healthy
+#   docker compose down                  throw it away, data and all
+#
+# Each service gets its configuration from the environment, the same way
+# it would in staging or production: only the values differ.
+services:
+  inventory:
+    build: .
+    command: ["node", "services/inventory/src/server.js"]
+    environment:
+      INVENTORY_PORT: "3220"
+      INVENTORY_TEST_DATA: "on" # a TEST environment: never set this in production
+    ports: ["3220:3220"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3220/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 2s
+      timeout: 2s
+      retries: 15
+
+  shop:
+    build: .
+    environment:
+      PORT: "3210"
+      INVENTORY_URL: "http://inventory:3220"
+    ports: ["3210:3210"]
+    depends_on:
+      inventory:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3210/health').then((r) => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 2s
+      timeout: 2s
+      retries: 15

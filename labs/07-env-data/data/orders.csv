@@ -1,0 +1,31 @@
+order_id,customer_email,placed_at,total,delivery_note
+ord-2000,hannah.brandt@example.org,2026-05-10T08:09:00Z,93.75,Please ring twice
+ord-2001,ines.moreau@example.org,2026-09-25T13:58:00Z,34.0,"Gift for Tobias Rossi, please no invoice in the box"
+ord-2002,sofia.nakamura@example.org,2026-08-26T20:52:00Z,63.99,"Gift for Felix Haddad, please no invoice in the box"
+ord-2003,olga.lindqvist@example.org,2026-01-19T13:29:00Z,115.0,Office delivery: ask for Olga Lindqvist at reception
+ord-2004,jonas.tanaka@example.org,2026-05-24T10:27:00Z,115.0,Office delivery: ask for Jonas Tanaka at reception
+ord-2005,felix.haddad@example.org,2026-05-25T13:06:00Z,34.0,
+ord-2006,felix.haddad@example.org,2026-03-24T08:05:00Z,29.99,Call me on +49 153 1800 9572 before delivery
+ord-2007,kenji.novak@example.org,2026-02-16T11:07:00Z,81.0,Office delivery: ask for Kenji Novak at reception
+ord-2008,lena.becker@example.org,2026-05-21T10:00:00Z,59.98,Office delivery: ask for Lena Becker at reception
+ord-2009,nadia.petrov@example.org,2026-08-14T16:14:00Z,63.99,Email nadia.petrov@example.org if anything is wrong
+ord-2010,tobias.rossi@example.org,2026-09-19T09:26:00Z,93.75,Email tobias.rossi@example.org if anything is wrong
+ord-2011,amira.fischer@example.org,2026-05-26T14:24:00Z,115.0,
+ord-2012,amira.fischer@example.org,2026-07-10T09:24:00Z,29.99,Leave at the door
+ord-2013,lena.becker@example.org,2026-06-10T08:32:00Z,63.99,"If I am out, leave it with my neighbour Samir Okafor"
+ord-2014,yusuf.schulz@example.org,2026-08-20T09:31:00Z,63.99,Please ring twice
+ord-2015,tobias.rossi@example.org,2026-03-28T16:13:00Z,63.99,
+ord-2016,tobias.rossi@example.org,2026-04-12T16:25:00Z,29.99,"Gift for Yusuf Schulz, please no invoice in the box"
+ord-2017,mateo.kaya@example.org,2026-01-27T21:03:00Z,63.99,
+ord-2018,samir.okafor@example.org,2026-08-10T10:41:00Z,81.0,Leave at the door
+ord-2019,mateo.kaya@example.org,2026-03-15T18:54:00Z,34.0,Office delivery: ask for Mateo Kaya at reception
+ord-2020,hannah.brandt@example.org,2026-09-23T21:05:00Z,63.99,Call me on +49 159 5786 5712 before delivery
+ord-2021,sofia.nakamura@example.org,2026-03-18T15:31:00Z,115.0,"If I am out, leave it with my neighbour Amira Fischer"
+ord-2022,samir.okafor@example.org,2026-08-15T13:33:00Z,63.99,Please ring twice
+ord-2023,kenji.novak@example.org,2026-09-18T21:06:00Z,115.0,Office delivery: ask for Kenji Novak at reception
+ord-2024,mateo.kaya@example.org,2026-02-24T18:21:00Z,63.99,
+ord-2025,chiara.silva@example.org,2026-01-21T21:10:00Z,59.98,
+ord-2026,chiara.silva@example.org,2026-09-16T09:39:00Z,93.75,Email chiara.silva@example.org if anything is wrong
+ord-2027,sofia.nakamura@example.org,2026-04-28T12:36:00Z,59.98,Email sofia.nakamura@example.org if anything is wrong
+ord-2028,nadia.petrov@example.org,2026-02-18T09:27:00Z,34.0,
+ord-2029,jonas.tanaka@example.org,2026-06-15T18:40:00Z,29.99,

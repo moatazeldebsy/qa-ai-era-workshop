@@ -1,8 +1,8 @@
-site_name: QA Engineering in the AI Era
-site_description: A hands-on workshop for QA engineers, developers and engineering leaders - higher quality, faster feedback, smarter testing, greater impact.
-site_url: https://moatazeldebsy.github.io/qa-ai-era-workshop/
-repo_url: https://github.com/moatazeldebsy/qa-ai-era-workshop
-repo_name: moatazeldebsy/qa-ai-era-workshop
+site_name: QA Engineering Deep Dive
+site_description: A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.
+site_url: https://moatazeldebsy.github.io/qa-engineering-deep-dive/
+repo_url: https://github.com/moatazeldebsy/qa-engineering-deep-dive
+repo_name: moatazeldebsy/qa-engineering-deep-dive
 edit_uri: edit/main/docs/
 
 theme:
@@ -45,6 +45,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/course.js
+
 plugins:
   - search
 
@@ -74,34 +77,87 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Get Started:
-    - Overview: index.md
-    - Quickstart: getting-started.md
-    - Agendas & Tracks: agendas.md
-    - Facilitator Guide: facilitator-guide.md
-  - Modules:
-    - modules/index.md
-    - 1. The Evolving Role: modules/01-evolving-role.md
-    - 2. AI-Powered Testing: modules/02-ai-powered-testing.md
-    - 3. Tools & Technologies: modules/03-tools-and-technologies.md
-    - 4. Process & Practices: modules/04-process-and-practices.md
-    - 5. Quality Focus Areas for AI: modules/05-quality-focus-areas.md
-    - 6. Skills & Mindset: modules/06-skills-and-mindset.md
-    - 7. Success Metrics: modules/07-success-metrics.md
-    - 8. The Future: modules/08-the-future.md
-  - Labs:
-    - labs/index.md
-    - 1. E2E with Playwright: labs/lab-01-playwright-e2e.md
-    - 2. API Testing: labs/lab-02-api-testing.md
-    - 3. AI-Assisted Test Generation: labs/lab-03-ai-test-generation.md
-    - 4. Flaky Tests: labs/lab-04-flaky-tests.md
-    - 5. Performance with k6: labs/lab-05-performance-k6.md
-    - 6. Evaluating an LLM Feature: labs/lab-06-llm-evaluation.md
-    - 7. Quality Gates in CI: labs/lab-07-quality-gate.md
-    - 8. Measuring What Matters: labs/lab-08-metrics.md
-    - 9. An AI Agent Tests the Shop: labs/lab-09-ai-agent.md
+  - Home: index.md
+  - Start Here:
+    - How this course works: start/how-it-works.md
+    - Setup: start/setup.md
+    - Routes by role: start/routes.md
+    - Community: start/community.md
+  - Topics:
+    - topics/index.md
+    - 1. QA Engineering Foundations:
+      - Overview: topics/01-foundations/index.md
+      - Concepts: topics/01-foundations/concepts.md
+      - Lab: topics/01-foundations/lab.md
+      - Quiz & wrap-up: topics/01-foundations/quiz.md
+    - 2. Test Design Techniques:
+      - Overview: topics/02-test-design/index.md
+      - Concepts: topics/02-test-design/concepts.md
+      - Lab: topics/02-test-design/lab.md
+      - Quiz & wrap-up: topics/02-test-design/quiz.md
+    - 3. Unit and Component Testing:
+      - Overview: topics/03-unit-component/index.md
+      - Concepts: topics/03-unit-component/concepts.md
+      - Lab: topics/03-unit-component/lab.md
+      - Quiz & wrap-up: topics/03-unit-component/quiz.md
+    - 4. Integration, API, and Contract Testing:
+      - Overview: topics/04-integration-contract/index.md
+      - Concepts: topics/04-integration-contract/concepts.md
+      - Lab: topics/04-integration-contract/lab.md
+      - Quiz & wrap-up: topics/04-integration-contract/quiz.md
+    - 5. UI, Web, and End-to-End Testing:
+      - Overview: topics/05-ui-e2e/index.md
+      - Concepts: topics/05-ui-e2e/concepts.md
+      - Lab: topics/05-ui-e2e/lab.md
+      - Quiz & wrap-up: topics/05-ui-e2e/quiz.md
+    - 6. CI/CD and Continuous Testing:
+      - Overview: topics/06-ci-cd/index.md
+      - Concepts: topics/06-ci-cd/concepts.md
+      - Lab: topics/06-ci-cd/lab.md
+      - Quiz & wrap-up: topics/06-ci-cd/quiz.md
+    - 7. Test Environments and Test Data:
+      - Overview: topics/07-env-data/index.md
+      - Concepts: topics/07-env-data/concepts.md
+      - Lab: topics/07-env-data/lab.md
+      - Quiz & wrap-up: topics/07-env-data/quiz.md
+    - 8. Performance, Load, and Resilience:
+      - Overview: topics/08-performance/index.md
+      - Concepts: topics/08-performance/concepts.md
+      - Lab: topics/08-performance/lab.md
+      - Quiz & wrap-up: topics/08-performance/quiz.md
+    - 9. Security, Accessibility, and Compatibility:
+      - Overview: topics/09-security-a11y/index.md
+      - Concepts: topics/09-security-a11y/concepts.md
+      - Lab: topics/09-security-a11y/lab.md
+      - Quiz & wrap-up: topics/09-security-a11y/quiz.md
+    - 10. Production Quality and Observability:
+      - Overview: topics/10-observability/index.md
+      - Concepts: topics/10-observability/concepts.md
+      - Lab: topics/10-observability/lab.md
+      - Quiz & wrap-up: topics/10-observability/quiz.md
+    - 11. Test Management and Quality Intelligence:
+      - Overview: topics/11-quality-intelligence/index.md
+      - Concepts: topics/11-quality-intelligence/concepts.md
+      - Lab: topics/11-quality-intelligence/lab.md
+      - Quiz & wrap-up: topics/11-quality-intelligence/quiz.md
+    - 12. AI in QA Engineering:
+      - Overview: topics/12-ai-in-qa/index.md
+      - Concepts: topics/12-ai-in-qa/concepts.md
+      - Lab: topics/12-ai-in-qa/lab.md
+      - Quiz & wrap-up: topics/12-ai-in-qa/quiz.md
+    - 13. QA Platform Engineering:
+      - Overview: topics/13-platform/index.md
+      - Concepts: topics/13-platform/concepts.md
+      - Lab: topics/13-platform/lab.md
+      - Quiz & wrap-up: topics/13-platform/quiz.md
+    - 14. Quality Strategy and Leadership:
+      - Overview: topics/14-strategy/index.md
+      - Concepts: topics/14-strategy/concepts.md
+      - Lab: topics/14-strategy/lab.md
+      - Quiz & wrap-up: topics/14-strategy/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md
     - Glossary: reference/glossary.md
     - Further Reading: reference/further-reading.md
+    - For facilitators: reference/facilitators.md

@@ -1,0 +1,106 @@
+<testsuites id="" name="" tests="17" failures="1" skipped="0" errors="0" time="6.3837600000000005">
+<testsuite name="labs/05-ui-e2e/e2e/tests/accessibility.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="e2e" tests="2" failures="0" skipped="0" time="1.643" errors="0">
+<testcase name="home page has no WCAG 2.1 A/AA violations" classname="labs/05-ui-e2e/e2e/tests/accessibility.spec.js" time="1.347">
+</testcase>
+<testcase name="a keyboard-only user can add a book to the cart" classname="labs/05-ui-e2e/e2e/tests/accessibility.spec.js" time="0.296">
+</testcase>
+</testsuite>
+<testsuite name="labs/05-ui-e2e/e2e/tests/assistant.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="e2e" tests="2" failures="0" skipped="0" time="0.803" errors="0">
+<testcase name="answers a price question from the catalogue" classname="labs/05-ui-e2e/e2e/tests/assistant.spec.js" time="0.415">
+</testcase>
+<testcase name="renders assistant output as text, never as HTML" classname="labs/05-ui-e2e/e2e/tests/assistant.spec.js" time="0.388">
+</testcase>
+</testsuite>
+<testsuite name="labs/05-ui-e2e/e2e/tests/journeys.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="e2e" tests="3" failures="0" skipped="0" time="10.933" errors="0">
+<testcase name="a customer can fill a cart with several different books" classname="labs/05-ui-e2e/e2e/tests/journeys.spec.js" time="0.276">
+</testcase>
+<testcase name="after a stock error, the cart keeps its last valid state and can still change" classname="labs/05-ui-e2e/e2e/tests/journeys.spec.js" time="5.36">
+<properties>
+<property name="fail" value="real bug: the rejected quantity stays in the cart, so every later change fails; Topic 5 lab, step 2">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../../../test-results/playwright/journeys-after-a-stock-err-18ba7--state-and-can-still-change-e2e/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="the cart shows the latest total even when price responses arrive out of order" classname="labs/05-ui-e2e/e2e/tests/journeys.spec.js" time="5.297">
+<properties>
+<property name="fail" value="real bug: a slow, stale price response overwrites a newer one; Topic 5 lab, step 3">
+</property>
+</properties>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../../../test-results/playwright/journeys-the-cart-shows-th-9cf5e-sponses-arrive-out-of-order-e2e/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="labs/05-ui-e2e/e2e/tests/shop.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="e2e" tests="7" failures="0" skipped="0" time="2.06" errors="0">
+<testcase name="catalogue › lists every book on load" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.165">
+</testcase>
+<testcase name="catalogue › search narrows the list by topic" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.134">
+</testcase>
+<testcase name="catalogue › out-of-stock books cannot be added" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.097">
+</testcase>
+<testcase name="cart › charges shipping below the free-shipping threshold" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.199">
+</testcase>
+<testcase name="cart › ships free once the subtotal reaches 50 EUR" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.271">
+</testcase>
+<testcase name="cart › shows a clear error when asking for more than is in stock" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.292">
+</testcase>
+<testcase name="recommendations appear without a fixed sleep" classname="labs/05-ui-e2e/e2e/tests/shop.spec.js" time="0.902">
+</testcase>
+</testsuite>
+<testsuite name="labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="flaky" tests="1" failures="1" skipped="0" time="0.855" errors="0">
+<testcase name="BAD: sleeps a fixed time, then asserts once" classname="labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js" time="0.855">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|../../../test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/test-failed-1.png]]
+
+[[ATTACHMENT|../../../test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/error-context.md]]
+
+[[ATTACHMENT|../../../test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/trace.zip]]
+]]>
+</system-out>
+<failure message="expect(received).toBe(expected) // Object.is equality" type="expect.toBe">
+<![CDATA[  [flaky] › labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js:11:1 › BAD: sleeps a fixed time, then asserts once 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 2
+    Received: 0
+
+      13 |   await page.waitForTimeout(700); // the bug
+      14 |   const items = await page.locator('#recommendations li').count();
+    > 15 |   expect(items).toBe(2);
+         |                 ^
+      16 | });
+      17 |
+        at <repo>/labs/05-ui-e2e/flaky/tests/recommendations.bad.spec.js:15:17
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/playwright/recommendations.bad-BAD-sl-474ea-ixed-time-then-asserts-once-flaky/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js" timestamp="2026-10-05T12:07:07.626Z" hostname="flaky" tests="2" failures="0" skipped="0" time="1.548" errors="0">
+<testcase name="GOOD: waits for the condition, not for a clock" classname="labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js" time="1.418">
+</testcase>
+<testcase name="GOOD: stubs the slow dependency" classname="labs/05-ui-e2e/flaky/tests/recommendations.good.spec.js" time="0.13">
+</testcase>
+</testsuite>
+</testsuites>

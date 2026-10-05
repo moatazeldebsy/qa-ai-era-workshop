@@ -1,0 +1,8 @@
+{
+  "$comment": "Topic 10: the shop's service level objectives. The SLIs come from /metrics.",
+  "window": "30 days",
+  "objectives": {
+    "availability": { "target": 0.995, "description": "API requests that don't fail with a 5xx" },
+    "latency": { "target": 0.99, "thresholdSeconds": 0.25, "description": "API requests answered within 250 ms" }
+  }
+}
