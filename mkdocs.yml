@@ -120,6 +120,11 @@ nav:
       - Concepts: topics/07-env-data/concepts.md
       - Lab: topics/07-env-data/lab.md
       - Quiz & wrap-up: topics/07-env-data/quiz.md
+    - 8. Performance, Load, and Resilience:
+      - Overview: topics/08-performance/index.md
+      - Concepts: topics/08-performance/concepts.md
+      - Lab: topics/08-performance/lab.md
+      - Quiz & wrap-up: topics/08-performance/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

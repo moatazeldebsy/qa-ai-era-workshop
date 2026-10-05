@@ -15,7 +15,7 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 | 5 | [UI, Web, and End-to-End Testing](05-ui-e2e/index.md) | How do we check what the user really sees, without a slow, flaky suite? | ~6 h | <span class="topic-progress-mini" data-topic="05"></span> |
 | 6 | [CI/CD and Continuous Testing](06-ci-cd/index.md) | How does testing run on every change and become a release decision? | ~5 h | <span class="topic-progress-mini" data-topic="06"></span> |
 | 7 | [Test Environments and Test Data Management](07-env-data/index.md) | Where do tests run, and on what data? | ~5 h | <span class="topic-progress-mini" data-topic="07"></span> |
-| 8 | Performance, Load, and Resilience Testing | Is it fast enough, and does it survive when things go wrong? | ~6 h | — |
+| 8 | [Performance, Load, and Resilience Testing](08-performance/index.md) | Is it fast enough, and does it survive when things go wrong? | ~6 h | <span class="topic-progress-mini" data-topic="08"></span> |
 | 9 | Security, Accessibility, and Compatibility Testing | Is it safe, usable by everyone, and does it work everywhere it should? | ~6 h | — |
 | 10 | Production Quality and Observability | How do we know it works for real users right now? | ~5 h | — |
 | 11 | Test Management and Quality Intelligence | How do we turn test results into decisions? | ~4 h | — |

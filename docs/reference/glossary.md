@@ -10,6 +10,10 @@
 
 **Change failure rate** — Share of deployments that cause a failure in production. One of the four DORA metrics.
 
+**Chaos engineering** — Running controlled experiments that inject failures (latency, errors, crashes) to build confidence that a system withstands them.
+
+**Circuit breaker** — A resilience pattern that stops calling a failing dependency for a while after repeated failures, then probes to see if it has recovered.
+
 **Consumer / provider** — In an API relationship, the consumer is the client that calls the API and the provider is the service that offers it. One provider usually has many consumers.
 
 **Continuous delivery / deployment** — Delivery: every change that passes the pipeline is releasable, and people decide when. Deployment: every passing change goes to production automatically.
@@ -56,6 +60,8 @@
 
 **Lead time for changes** — Time from commit to running in production.
 
+**Little's Law** — For a stable system, the average number of requests in flight equals throughput times latency (L = λW).
+
 **LLM-as-judge / model-graded assertion** — Using a model to grade another model's output against a rubric. Needs its own validation.
 
 **Locator** — A description of how to find an element on a page, such as "the button named Ask". Good locators describe what a user sees.
@@ -76,6 +82,8 @@
 
 **Pairwise testing** — Choosing configurations so that every pair of factor values appears together at least once; far fewer than all combinations.
 
+**Percentile (p95, p99)** — The value below which that share of measurements fall: p95 = 200 ms means 95% of requests took less than 200 ms.
+
 **Prompt injection** — Input crafted to make a model ignore its instructions, e.g. to leak its system prompt or take unintended actions.
 
 **Property-based testing** — Generating many inputs from a description of their shape and checking a property holds for all of them; failing inputs are shrunk to a minimal case.
@@ -95,6 +103,8 @@
 **Self-healing test** — A test that re-locates elements automatically when selectors break. Convenient, but may mask real changes.
 
 **Shift left / shift right** — Moving quality activities earlier (requirements, design, commit) or later (production monitoring, canaries, experiments).
+
+**Soak test** — A long-running test at normal load that finds leaks and slow degradation.
 
 **Sociable / solitary test** — A sociable unit test uses real collaborators where they're fast and deterministic; a solitary test replaces every collaborator with a double.
 

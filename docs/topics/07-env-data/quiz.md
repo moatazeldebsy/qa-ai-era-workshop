@@ -212,4 +212,4 @@ Read before Topic 8 (optional):
 - UK ICO, [*Anonymisation, pseudonymisation and privacy enhancing technologies guidance*](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-sharing/anonymisation/)
 - Latanya Sweeney, *Simple Demographics Often Identify People Uniquely* (2000)
 
-When you've finished the lab and the challenge, move on to [Topic 8](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 8](../08-performance/index.md).

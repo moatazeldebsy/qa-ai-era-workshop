@@ -97,6 +97,10 @@ jobs:
       - name: Test data lab
         run: npm run data:test
 
+      # Topic 8: resilience tests with the fault-injecting proxy.
+      - name: Resilience lab
+        run: npm run perf:test
+
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.
