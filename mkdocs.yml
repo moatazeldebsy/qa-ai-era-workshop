@@ -130,6 +130,11 @@ nav:
       - Concepts: topics/09-security-a11y/concepts.md
       - Lab: topics/09-security-a11y/lab.md
       - Quiz & wrap-up: topics/09-security-a11y/quiz.md
+    - 10. Production Quality and Observability:
+      - Overview: topics/10-observability/index.md
+      - Concepts: topics/10-observability/concepts.md
+      - Lab: topics/10-observability/lab.md
+      - Quiz & wrap-up: topics/10-observability/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

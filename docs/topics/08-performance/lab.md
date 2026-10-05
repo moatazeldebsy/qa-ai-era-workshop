@@ -155,7 +155,7 @@ See it for yourself: with `npm start` running, request a few made-up paths with 
 
 ??? success "Reference solution"
     ```js
-    const key = `${req.method} ${req.route?.path ?? '(no route)'} ${res.statusCode}`;
+    const key = `${req.method} ${req.route?.path ?? 'unmatched'} ${res.statusCode}`;
     ```
 
 Remove the TODO and run `npm run perf:test`: `ℹ pass 4`, `ℹ todo 0`, and it's 3 seconds faster.

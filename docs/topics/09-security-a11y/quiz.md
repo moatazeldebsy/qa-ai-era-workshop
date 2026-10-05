@@ -213,4 +213,4 @@ Read before Topic 10 (optional):
 - W3C, [*How to Meet WCAG (Quick Reference)*](https://www.w3.org/WAI/WCAG22/quickref/)
 - [MDN: HTTP security headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers#security)
 
-When you've finished the lab and the challenge, move on to [Topic 10](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 10](../10-observability/index.md).

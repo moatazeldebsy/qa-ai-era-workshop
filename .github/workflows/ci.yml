@@ -103,6 +103,9 @@ jobs:
 
       # Topic 9: security tests, accessibility tests and a dependency triage
       # (the triage reports; advisories change daily, so it doesn't gate).
+      - name: Observability lab
+        run: npm run obs:test
+
       - name: Security and accessibility lab
         run: |
           npm run sec:test
