@@ -19,7 +19,6 @@ test('the scorecard builds from live evidence, with every section', () => {
 // answers 200, which a slow cart does too.
 test(
   'every performance risk is traced to evidence that measures time',
-  { todo: 'real gap: R6 is traced to a status check; Topic 14 lab, step 2' },
   () => {
     const { risks } = JSON.parse(fs.readFileSync('labs/01-foundations/risk-register.json', 'utf8'));
     for (const r of risks.filter((x) => x.attribute === 'Performance efficiency')) {

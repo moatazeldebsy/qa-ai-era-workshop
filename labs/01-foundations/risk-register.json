@@ -96,7 +96,7 @@
       "checks": [
         {
           "file": "labs/08-performance/k6/smoke.js",
-          "title": "cart: status 200"
+          "title": "http_req_duration{endpoint:cart}"
         }
       ]
     },
