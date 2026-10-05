@@ -128,3 +128,24 @@ test('the account and checkout pages have no WCAG A/AA violations axe can detect
   await expect(page.getByLabel('Quantity of Contract Testing in Practice')).toBeVisible();
   expect(await scan()).toEqual([]);
 });
+
+test('removing books from the cart on the shop page updates the totals and survives a reload', async ({ page }) => {
+  await addToCart(page, 'Testing in Production', '34.89');
+  await page.getByRole('button', { name: /Prompting for QA/ }).click();
+  await expect(page.getByTestId('total')).toHaveText('63.99'); // free shipping from 50 EUR
+
+  const cart = page.getByRole('region', { name: 'Cart' });
+  const removeTesting = cart.getByRole('button', { name: 'Remove', description: /Testing in Production/ });
+  await removeTesting.click();
+  await expect(page.getByTestId('total')).toHaveText('38.90');
+  await expect(cart.getByRole('listitem')).toHaveCount(1);
+  await expect(page.getByRole('heading', { name: 'Cart' })).toBeFocused();
+
+  await page.reload();
+  await expect(page.getByTestId('total')).toHaveText('38.90');
+
+  await cart.getByRole('button', { name: 'Remove', description: /Prompting for QA/ }).click();
+  await expect(cart.getByRole('listitem')).toHaveCount(0);
+  await expect(page.getByTestId('total')).toHaveText('0.00');
+  await expect(page.getByRole('link', { name: 'Go to checkout' })).toBeHidden();
+});

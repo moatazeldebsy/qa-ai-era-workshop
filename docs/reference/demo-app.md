@@ -55,7 +55,7 @@ Full contract: `app/openapi.yaml` (the orders endpoints are a Topic 4 challenge)
 
 | Page | What it does |
 |---|---|
-| `/` | Catalogue, cart, recommendations, assistant. The header links to *Sign in* / *My account*; the cart shows *Go to checkout* once it has a book. The cart is kept in `sessionStorage`, so it survives moving between pages (per tab). |
+| `/` | Catalogue, cart, recommendations, assistant. The header links to *Sign in* / *My account*; each cart line has a *Remove* button (named just "Remove", with the line as its description, so it never matches a search for a book's own button), and the cart shows *Go to checkout* once it has a book. The cart is kept in `sessionStorage`, so it survives moving between pages (per tab). |
 | `/checkout.html` | Review the order (change quantities, remove books), contact email, shipping address, test card, *Pay … EUR*, then a confirmation with the order number |
 | `/account.html` | Sign in or create an account; when signed in, the order history with *Cancel order* for paid orders. `?next=checkout` returns to checkout after signing in |
 
