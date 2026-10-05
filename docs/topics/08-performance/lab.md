@@ -13,7 +13,7 @@ You'll read a smoke test, fix a load test that reports great latency for a faili
 
 | File | What's in it |
 |---|---|
-| `labs/08-performance/k6/smoke.js` | 10 virtual users browsing and pricing carts for 35 s, with thresholds (from the workshop's Lab 5) |
+| `labs/08-performance/k6/smoke.js` | 10 virtual users browsing and pricing carts for 35 s, with thresholds |
 | `labs/08-performance/k6/orders.js` | An open-model load test of the whole checkout: 20 orders per second |
 | `labs/08-performance/k6/stress.js` | A ramping arrival rate to find the knee |
 | `labs/08-performance/chaos-proxy.mjs` | A fault-injecting proxy: latency and errors on demand |

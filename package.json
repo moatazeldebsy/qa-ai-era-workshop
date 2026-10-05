@@ -2,7 +2,7 @@
   "name": "qa-ai-era-workshop",
   "version": "1.0.0",
   "private": true,
-  "description": "QA Engineering in the AI Era - a hands-on workshop with a demo app and runnable labs",
+  "description": "QA Engineering Deep Dive - a self-paced course in 14 topics, from foundations to leadership, with a demo app, runnable labs and auto-checkers",
   "type": "module",
   "engines": {
     "node": ">=22.22"

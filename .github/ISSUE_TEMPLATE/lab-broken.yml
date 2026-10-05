@@ -1,0 +1,47 @@
+name: Lab broken
+description: A command fails, or its output doesn't match the expected output in the docs.
+labels: ["lab-broken"]
+body:
+  - type: dropdown
+    id: topic
+    attributes:
+      label: Topic
+      options: ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "Setup"]
+    validations:
+      required: true
+  - type: input
+    id: step
+    attributes:
+      label: Lab step
+      placeholder: "Step 3 — Fix the boundary"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and full output
+      description: Paste the command you ran and everything it printed.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+      description: The expected output from the docs, or what you thought would happen.
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of `npm run learn:doctor`
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: env
+    attributes:
+      label: Where are you running it?
+      options: ["GitHub Codespaces", "macOS", "Linux", "Windows (WSL)", "Windows (native)"]
+    validations:
+      required: true

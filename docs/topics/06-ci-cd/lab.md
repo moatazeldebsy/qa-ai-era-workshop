@@ -17,7 +17,7 @@ You'll run the course's checks as a pipeline and make it faster without losing a
 | `labs/06-ci-cd/pipeline.json` | The course's checks as a pipeline: every stage waits for the previous one |
 | `labs/06-ci-cd/impact.mjs` | Test impact analysis by following imports |
 | `labs/06-ci-cd/impact.config.json` | The test suites, and rules for dependencies imports can't see (empty) |
-| `labs/06-ci-cd/quality-gate/` | The workshop's quality gate and its thresholds |
+| `labs/06-ci-cd/quality-gate/` | The course's quality gate and its thresholds |
 | `labs/06-ci-cd/tests/gate.test.js` | Tests for the gate itself; two TODO gaps |
 | `.github/workflows/ci.yml` | This repo's real pipeline, for comparison |
 
@@ -180,7 +180,7 @@ If you ran the performance or LLM labs on an earlier day, the gate now blocks: *
 
 ### Step 4 — Watch it block a regression (15 min)
 
-This is the workshop's quality-gate lab, now with your stricter gate:
+Now run the quality gate, with your stricter rules:
 
 ```bash
 PORT=3300 BUG_MODE=cart npm start          # terminal 1: the shop with the free-shipping bug

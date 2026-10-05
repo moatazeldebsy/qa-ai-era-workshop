@@ -57,7 +57,7 @@ npm run learn:doctor
 ✅ k6                     v0.53.0
 ✅ Python                 3.12.8
 ✅ Port 3210              free
-ℹ️  Anthropic API key      not set: fine, every lab except Lab 9 route A works without it
+ℹ️  Anthropic API key      not set: fine, every lab works without it
 ```
 
 Anything marked ❌ comes with the command that fixes it. k6 and Python are only needed from Topics 8 and 11, so you can install them later.

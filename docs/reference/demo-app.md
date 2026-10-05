@@ -18,7 +18,7 @@ flowchart LR
 
 | Module | Added in | What it is |
 |---|---|---|
-| `catalog.js`, `cart.js`, `assistant.js` | Workshop | Catalogue, pricing with free shipping, the AI support assistant |
+| `catalog.js`, `cart.js`, `assistant.js` | Before the course | Catalogue, pricing with free shipping, the AI support assistant |
 | `orders.js` | Topic 2 | Order lifecycle (state machine) and the refund decision table |
 | `returns.js`, `checkout.js`, `coupons.js` | Topic 3 | Refund claims with an injected clock; checkout with injected collaborators; coupons (built test-first) |
 | `inventory-client.js`, `payments-demo.js`, `services/inventory/` | Topic 4 | The inventory service (a separate provider), the shop's HTTP client for it, a demo payment provider |
@@ -32,7 +32,7 @@ flowchart LR
 | GET | `/api/books?q=` | List / search | Matches title, author or tag |
 | GET | `/api/books/:id` | One book | 404 for unknown ids |
 | POST | `/api/cart/price` | Price a cart | Shipping 4.90 EUR, free from a 50 EUR subtotal; quantity 1-10 and within stock |
-| GET | `/api/recommendations` | AI-tagged books | Takes 200-1500 ms on purpose (Lab 4) |
+| GET | `/api/recommendations` | AI-tagged books | Takes 200-1500 ms on purpose (Topic 5, flaky tests) |
 | POST | `/api/assistant` | Support assistant | `{ question }` → `{ answer, mode }` |
 | POST | `/api/orders` | Place an order | `{ items, paymentToken, customer: { email } }`; tokens `tok_visa` (approves) and `tok_declined`; needs the inventory service |
 | GET | `/api/orders/:id` | One order | In memory; lost on restart |
@@ -50,10 +50,10 @@ A separate Express service in `services/inventory/` (port 3220), with its own co
 | Variable | Values | Effect |
 |---|---|---|
 | `PORT` | default `3210` | Listening port. Playwright, k6 and promptfoo follow it via `PORT` / `BASE_URL`. |
-| `ASSISTANT_MODE` | `mock` (default), `buggy`, `claude` | How the assistant answers. See Lab 6. |
+| `ASSISTANT_MODE` | `mock` (default), `buggy`, `claude` | How the assistant answers. See Topic 12. |
 | `ASSISTANT_MODEL` | default `claude-opus-5-5` | Model for `claude` mode |
-| `BUG_MODE` | unset, `cart` | `cart` plants a free-shipping regression (Labs 3 and 7) |
-| `RECOMMENDATIONS_DELAY_MS` | number | Fixes the recommendations delay (Lab 4) |
+| `BUG_MODE` | unset, `cart` | `cart` plants a free-shipping regression (Topics 6 and 12) |
+| `RECOMMENDATIONS_DELAY_MS` | number | Fixes the recommendations delay (Topic 5) |
 | `LOG_REQUESTS` | `false` | Silences the JSON request log |
 | `INVENTORY_URL` | default `http://localhost:3220` | Where the shop finds the inventory service |
 | `INVENTORY_PORT` | default `3220` | The inventory service's port |

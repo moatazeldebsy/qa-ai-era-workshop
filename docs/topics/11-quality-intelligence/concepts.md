@@ -125,7 +125,7 @@ Healthier practice:
 
 - **Triage categories:** product bug, test bug, environment or infrastructure, flaky, known issue.
 - **Clustering:** group failures by a normalised signature (error type + top of stack + normalised message, with numbers, ids and timestamps removed), so 200 failures become 3 causes.
-- **Escape analysis:** for every production defect, ask which layer should have caught it and why it didn't. The workshop data shows one escape each from unit, API and E2E.
+- **Escape analysis:** for every production defect, ask which layer should have caught it and why it didn't. The sample data shows one escape each from unit, API and E2E.
 - **Cost of flakiness:** reruns × duration × people waiting. A small flaky rate across thousands of tests wastes a lot of engineering time.
 
 ### 4.7 Quarantine
@@ -173,7 +173,7 @@ flowchart TB
 
 ## 7. Real-world examples
 
-**1. The latest run lies (this repo).** Twelve runs of the same code: the workshop's BAD recommendations test failed in 7. The first version of the report looks only at the latest run, so it says "Failing: BAD…" after one run and "none" after the next, and "Flaky tests: none detected" every time. Judged across the history, it's flaky, failing about half the time.
+**1. The latest run lies (this repo).** Twelve runs of the same code: the BAD recommendations test from Topic 5 failed in 7. The first version of the report looks only at the latest run, so it says "Failing: BAD…" after one run and "none" after the next, and "Flaky tests: none detected" every time. Judged across the history, it's flaky, failing about half the time.
 
 **2. Retries erase the evidence (this repo).** Run the suite the way this repo's CI does (`retries: 1`). In one batch of 12 runs, run 5 is green in JUnit, with `failures="0"`. Playwright's JSON report for the same run says `"flaky": 1`: the test failed, then passed on retry. The Topic 6 quality gate reads JUnit, so it can't see flakiness at all.
 

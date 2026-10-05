@@ -68,7 +68,7 @@ Static graphs only see static dependencies. Runtime dependencies (HTTP, config, 
 
 <div class="quiz-q" markdown>
 
-**5. The workshop gate reported READY with 37 of 38 tests skipped. What's the underlying problem?**
+**5. The course's quality gate reported READY with 37 of 38 tests skipped. What's the underlying problem?**
 
 - [ ] The tests were flaky
 - [x] The gate counted failures but not skipped tests, so evidence could shrink to almost nothing

@@ -1,0 +1,22 @@
+name: Content error
+description: Something in the text is wrong, outdated or unclear.
+labels: ["content"]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page
+      description: A link to the page and section.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong or unclear
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What it should say (optional)
+      description: A source helps, if you have one.

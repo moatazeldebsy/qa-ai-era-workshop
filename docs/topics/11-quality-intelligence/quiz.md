@@ -204,7 +204,7 @@ Share your gate change in the discussions. How strict should `maxFlaky` be?
 
 ### What to learn next
 
-**Topic 12 — AI in QA Engineering.** Two sides of one topic: using AI to test (generating tests, exploring with agents, triaging failures like the ones in this report) and testing AI (evaluating an LLM feature for grounding, hallucination, prompt injection and safety). You'll work with the shop's AI support assistant, the workshop's LLM evaluation and red-team suites, and an AI agent that tests the shop.
+**Topic 12 — AI in QA Engineering.** Two sides of one topic: using AI to test (generating tests, exploring with agents, triaging failures like the ones in this report) and testing AI (evaluating an LLM feature for grounding, hallucination, prompt injection and safety). You'll work with the shop's AI support assistant, the LLM evaluation and red-team suites, and an AI agent that tests the shop.
 
 Read before Topic 12 (optional):
 

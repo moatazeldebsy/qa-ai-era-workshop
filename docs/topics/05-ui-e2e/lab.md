@@ -15,10 +15,10 @@ You'll rewrite brittle tests, use the trace viewer to understand a journey bug, 
 |---|---|
 | `app/public/app.js`, `index.html` | The shop's front end: catalogue, cart, recommendations, assistant |
 | `labs/05-ui-e2e/e2e/pages/ShopPage.js` | The page object: locators and actions for the shop |
-| `labs/05-ui-e2e/e2e/tests/shop.spec.js` | Single-step checks of the catalogue and cart (from the workshop's Lab 1) |
+| `labs/05-ui-e2e/e2e/tests/shop.spec.js` | Single-step checks of the catalogue and cart |
 | `labs/05-ui-e2e/e2e/tests/journeys.spec.js` | Multi-step journeys; two known bugs marked with `test.fail()` |
 | `labs/05-ui-e2e/brittle/brittle.spec.js` | Two passing tests that will break at the first change (step 1) |
-| `labs/05-ui-e2e/flaky/tests/` | A flaky test and two correct versions of it (from the workshop's Lab 4) |
+| `labs/05-ui-e2e/flaky/tests/` | A flaky test and two correct versions of it |
 | `labs/05-ui-e2e/playwright.matrix.config.js` | Topic 2's pairwise generator, turned into Playwright projects |
 | `labs/05-ui-e2e/acceptance/` | What `learn:check` runs against your fixes |
 
@@ -141,7 +141,7 @@ Then fix `renderCart`: only the **newest** price request may update the cart.
 
 ### Step 4 — Cure a flaky test (30 min)
 
-This is the workshop's flaky-test lab. The bad test sleeps 700 ms and then counts the recommendations once; the server takes 200–1500 ms.
+The bad test sleeps 700 ms and then counts the recommendations once; the server takes 200–1500 ms.
 
 ```bash
 npm run test:flaky        # every flaky test, 10 times

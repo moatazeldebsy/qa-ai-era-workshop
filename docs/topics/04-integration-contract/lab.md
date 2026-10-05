@@ -173,7 +173,7 @@ You're now on the inventory team. Make each change below in `services/inventory/
     1. Removing `expiresAt`: **verification passes.** No consumer declared it, so the contract says it's safe. An OpenAPI diff would flag it as breaking, because it can't know nobody uses it.
     2. Renaming `reservationId`: **verification fails** with `missing the following keys: reservationId`. In a real setup, `can-i-deploy` would block this release of the inventory service until the shop moved to the new name. Expand-and-contract (send both names for a while) is the way through.
 
-Optionally, see the same API from outside with Playwright, the way workshop users ran it: `npm run test:api` (starts the shop, 24 tests in `labs/04-integration-contract/api/`).
+Optionally, see the same API from outside with Playwright: `npm run test:api` (starts the shop, 24 tests in `labs/04-integration-contract/api/`).
 
 ## 15. Verify and troubleshoot
 

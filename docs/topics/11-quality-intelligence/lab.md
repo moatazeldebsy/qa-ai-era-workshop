@@ -13,7 +13,7 @@ You'll question metric definitions with a month of delivery data, build a real h
 
 | File | What's in it |
 |---|---|
-| `labs/11-quality-intelligence/metrics/` | The workshop's metrics script and a month of deployments, incidents and defects |
+| `labs/11-quality-intelligence/metrics/` | The metrics script and a month of deployments, incidents and defects |
 | `labs/11-quality-intelligence/collect.mjs` | Runs the browser suites N times and keeps each run's JUnit and Playwright JSON |
 | `labs/11-quality-intelligence/analyze.mjs` | Parses results and summarises tests across runs (a first version) |
 | `labs/11-quality-intelligence/report.mjs` | A quality report from a folder of runs |
@@ -37,7 +37,7 @@ npm run qi:test
 
 ### Step 1 — Metrics, and what they hide (25 min)
 
-This is the workshop's metrics lab. Run it:
+Run the metrics script:
 
 ```bash
 npm run metrics

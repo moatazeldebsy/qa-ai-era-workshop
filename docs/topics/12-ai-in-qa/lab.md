@@ -76,7 +76,7 @@ Against the planted pricing bug (BUG_MODE=cart): caught by 1 test(s)
 
 ### Step 2 — Evaluate the assistant (25 min)
 
-This is the workshop's LLM evaluation lab. Run the eval suite against the safe assistant, then the buggy one:
+Run the eval suite against the safe assistant, then the buggy one:
 
 ```bash
 npm start                       # terminal 1
@@ -166,7 +166,7 @@ The 5 remaining passes are genuine: read their answers and confirm the buggy ass
 
 ### Step 4 — An AI agent tests the shop (25 min)
 
-This is the workshop's agent lab. The agent (`labs/12-ai-in-qa/agent/explore.mjs`) gets a charter, five browser tools and, optionally, the product rules as its oracle.
+The agent (`labs/12-ai-in-qa/agent/explore.mjs`) gets a charter, five browser tools and, optionally, the product rules as its oracle.
 
 Read `tools.mjs` and its tests (`tests/tools.spec.js`), which you ran in step 0. Read the comment about `waitForLoadState('networkidle')`: an earlier version of the tools snapshotted the cart before it updated, and the agent "found" bugs that weren't there. The tools' tests caught it.
 

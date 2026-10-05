@@ -121,14 +121,14 @@ Drift is a defining risk of AI features. Evals on every model, prompt or data ch
 - [ ] It ran headed
 
 <div class="quiz-why" markdown>
-Agents can report confident, false findings, like the stale-snapshot bug the workshop's tool tests caught. Verify, then turn the finding into a regression test.
+Agents can report confident, false findings, like the stale-snapshot bug the agent's tool tests caught. Verify, then turn the finding into a regression test.
 </div>
 
 </div>
 
 <div class="quiz-q" markdown>
 
-**9. Why do the workshop agent's tools have their own tests that run without a model?**
+**9. Why do the course's agent's tools have their own tests that run without a model?**
 
 - [ ] To save money only
 - [x] An agent is only as reliable as its tools; a tool that reads stale page state makes the agent invent bugs

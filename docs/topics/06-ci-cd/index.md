@@ -4,7 +4,7 @@
 
 You now have unit tests, mutation tests, API and contract tests, and browser tests. On their own, they're just commands. This topic turns them into a **pipeline**: in what order they run, what can run at the same time, which ones a given change actually needs, and how their results become a *go* or *no go*.
 
-You'll run the course's own checks through a small local pipeline runner and make it 2–3× faster by modelling real dependencies. You'll build test impact analysis and find its blind spot. Then you'll make the workshop's quality gate trustworthy: today it can be fooled by skipped tests and stale results.
+You'll run the course's own checks through a small local pipeline runner and make it 2–3× faster by modelling real dependencies. You'll build test impact analysis and find its blind spot. Then you'll make the course's quality gate trustworthy: today it can be fooled by skipped tests and stale results.
 
 <div class="topic-progress" data-topic="06"></div>
 

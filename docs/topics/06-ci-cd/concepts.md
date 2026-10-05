@@ -113,7 +113,7 @@ The pipeline is where flakiness costs most: a random red blocks everyone and tra
 
 A gate turns evidence into a decision. A good gate has:
 
-| Property | Meaning | In the workshop gate |
+| Property | Meaning | In this repo's gate |
 |---|---|---|
 | **Agreed thresholds as code** | The team's definition of "ready", versioned and reviewed | `gate.config.json` |
 | **Required vs advisory checks** | What blocks, and what only informs | `required: true/false` |
@@ -185,9 +185,9 @@ It's deliberately simple, one job in a sensible order. The lab's pipeline runner
 
 ## 7. Real-world examples
 
-**1. The gate that trusted old evidence (this repo).** The workshop's quality gate reads whatever files are in `test-results/`. Run the load test on Monday, change the code on Tuesday, and on Wednesday the gate still reports Monday's numbers as a pass. In CI each run starts clean, so it hides there, but any local or long-lived runner shows it. On this machine, the reference fix immediately blocked a release because the LLM-eval and k6 results were days older than the code.
+**1. The gate that trusted old evidence (this repo).** The course's quality gate reads whatever files are in `test-results/`. Run the load test on Monday, change the code on Tuesday, and on Wednesday the gate still reports Monday's numbers as a pass. In CI each run starts clean, so it hides there, but any local or long-lived runner shows it. On this machine, the reference fix immediately blocked a release because the LLM-eval and k6 results were days older than the code.
 
-**2. Skip your way to green (this repo).** Mark 37 of 38 tests as skipped, and the workshop gate says ✅ READY TO RELEASE. Nobody does this on purpose in a healthy team, but `test.skip` added "temporarily" to unblock a release, and never removed, is common. A gate needs a limit on skipped tests, or at least to report them loudly.
+**2. Skip your way to green (this repo).** Mark 37 of 38 tests as skipped, and the course's quality gate says ✅ READY TO RELEASE. Nobody does this on purpose in a healthy team, but `test.skip` added "temporarily" to unblock a release, and never removed, is common. A gate needs a limit on skipped tests, or at least to report them loudly.
 
 **3. Imports can't see a browser (this repo).** Change `app/public/app.js` and import-based impact analysis selects *zero* test suites. The E2E tests that caught Topic 5's race condition would never run. Every real TIA system has blind spots like this, which is why the full suite still runs on main.
 

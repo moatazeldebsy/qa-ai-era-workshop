@@ -63,7 +63,7 @@ You can't assert one exact answer, so you assert **properties**: the price menti
 
 An agent runs a loop: read the goal (a **charter**), observe (a page snapshot), decide on an action, call a **tool** (`click`, `fill`, `report_finding`), observe the result, repeat until done or out of steps. Its quality depends on three things that are classic QA:
 
-1. **Tools:** what it can do, and how reliably. The workshop's tools wait for the page to settle; an earlier version took snapshots before the cart updated, and "found" bugs that weren't there.
+1. **Tools:** what it can do, and how reliably. The agent's tools wait for the page to settle; an earlier version took snapshots before the cart updated, and "found" bugs that weren't there.
 2. **Oracle:** how it knows what's correct. Without `product-rules.md`, an agent reports *plausible* behaviour as fine.
 3. **Leash:** which tools, which environment, how many steps, how much money.
 
@@ -127,7 +127,7 @@ AI behaviour changes without code changes: a new model version, a prompt edit, a
 
 - run the eval suite on **every** change to prompt, model or data, like any regression suite
 - keep a **golden set** of real (anonymised) questions with expected properties
-- **canary prompts** in production: a fixed set run on a schedule, alerting on changes (the workshop's `llm-eval-canary` detection source in Topic 11)
+- **canary prompts** in production: a fixed set run on a schedule, alerting on changes (the `llm-eval-canary` detection source in Topic 11)
 - monitor refusals, latency, token cost and user feedback
 
 ### 4.7 Agents as testers
@@ -262,6 +262,6 @@ flowchart TB
 | Approach | Examples | Notes |
 |---|---|---|
 | General assistants with repo context | Claude Code, GitHub Copilot, Cursor | Draft tests, refactor suites, explain failures |
-| Browser agents via MCP | Playwright MCP with an agent client | Exploratory sessions; the workshop's route B |
+| Browser agents via MCP | Playwright MCP with an agent client | Exploratory sessions; route B in the Topic 12 lab |
 | Built-in tool features | Playwright codegen and test generators, "self-healing" in commercial tools | Convenient; check what they change |
-| Custom agents | The workshop's `explore.mjs` (Anthropic SDK tool runner) | Full control of tools, oracle and budget |
+| Custom agents | This course's `explore.mjs` (Anthropic SDK tool runner) | Full control of tools, oracle and budget |

@@ -74,7 +74,7 @@ The OWASP Top 10 (2021 edition) is the standard awareness list for web applicati
 | A09 | Security logging and monitoring failures | Attacks nobody notices (Topic 10) |
 | A10 | Server-side request forgery | The server fetching URLs supplied by users |
 
-OWASP also publishes a **Top 10 for LLM Applications** (prompt injection, sensitive information disclosure, excessive agency…). The workshop's red-team suite covers it, and Topic 12 goes deeper.
+OWASP also publishes a **Top 10 for LLM Applications** (prompt injection, sensitive information disclosure, excessive agency…). The red-team suite in Topic 12 covers it, and Topic 12 goes deeper.
 
 ### 4.2 Security headers
 
