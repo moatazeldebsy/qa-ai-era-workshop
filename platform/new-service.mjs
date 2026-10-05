@@ -21,6 +21,18 @@ if (!name) {
   process.exit(2);
 }
 
+// Validate before touching the disk: the scaffolder runs with the developer's
+// permissions on the whole repository.
+const fail = (why) => {
+  console.error(`✖ ${why}`);
+  process.exit(1);
+};
+if (!/^[a-z][a-z0-9]*(-[a-z0-9]+)*$/.test(name) || name.length < 3 || name.length > 40) {
+  fail(`"${name}" is not a valid service name: use 3–40 lowercase letters, digits and single dashes, starting with a letter`);
+}
+if (fs.existsSync(path.join(root, 'services', name))) fail(`services/${name} already exists`);
+if (!path.resolve(root, 'services', name).startsWith(path.resolve(root, 'services') + path.sep)) fail('the service must live inside services/');
+
 const Name = name.replace(/(^|-)(\w)/g, (_, _dash, c) => c.toUpperCase());
 const existing = fs.existsSync(path.join(root, 'services')) ? fs.readdirSync(path.join(root, 'services')) : [];
 const port = 3300 + existing.length;

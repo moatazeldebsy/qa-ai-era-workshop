@@ -26,7 +26,6 @@ describe('the conformance kit', () => {
 describe('the paved road', () => {
   test(
     'an app built on the platform baseline meets every standard',
-    { todo: 'the baseline library is a stub; Topic 13 lab, step 2' },
     async () => {
       const app = express();
       useBaseline(app, { service: 'example' });
@@ -40,7 +39,6 @@ describe('the paved road', () => {
   // Found by the first fleet report: 0 of 2 services met every standard.
   test(
     'the inventory service meets every standard',
-    { todo: 'real gap: no request id, no security headers, HTML errors; Topic 13 lab, step 3' },
     async () => {
       assert.deepEqual(failing(await checkService(createInventoryApp())), []);
     },
@@ -71,7 +69,6 @@ describe('the scaffolder', () => {
   // run with the developer's permissions on the whole repository.
   test(
     'it refuses names that escape services/, replace a service, or aren\'t valid',
-    { todo: 'real bug: no validation of the service name; Topic 13 lab, step 4' },
     () => {
       const root = tempRoot();
       for (const name of ['../escape', 'inventory', 'Bad Name', 'x']) {

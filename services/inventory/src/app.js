@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import express from 'express';
+import { useBaseline, useErrorHandling } from '../../../platform/express-baseline.mjs';
 
 // The inventory service: a separate service, owned by a different team in
 // the story, that the shop calls over HTTP to hold stock while a customer
@@ -29,6 +30,7 @@ export function createInventoryApp({
   token,
 } = {}) {
   const app = express();
+  useBaseline(app, { service: 'inventory' });
   app.use(express.json({ limit: '10kb' }));
 
   let available;
@@ -110,5 +112,6 @@ export function createInventoryApp({
     res.status(204).end();
   });
 
+  useErrorHandling(app);
   return app;
 }
