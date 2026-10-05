@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Lab 8 - compute the quality and delivery metrics from raw event data.
+"""Topic 11 - compute the quality and delivery metrics from raw event data.
 
     python3 labs/11-quality-intelligence/metrics/quality_metrics.py labs/11-quality-intelligence/metrics/data
     python3 labs/11-quality-intelligence/metrics/quality_metrics.py labs/11-quality-intelligence/metrics/data --json

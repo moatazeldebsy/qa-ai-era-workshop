@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Lab 4 - the same check, fixed. A web-first assertion retries until the
+// Topic 5 - the same check, fixed. A web-first assertion retries until the
 // condition holds or the timeout expires, so it is exactly as fast as the
 // server and never faster.
 test('GOOD: waits for the condition, not for a clock', async ({ page }) => {

@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-// Lab 7 - a release quality gate.
+// Topic 6 - a release quality gate.
 //
 // Reads whatever evidence the earlier steps produced in test-results/ and
 // turns it into ONE decision - ship or don't - with the reasons:
 //
-//   test-results/junit.xml        Playwright (Labs 1, 2)
-//   test-results/llm-eval.json    promptfoo  (Lab 6)
-//   test-results/llm-redteam.json promptfoo  (Lab 6, red team)
-//   test-results/k6-summary.json  k6         (Lab 5)
+//   test-results/junit.xml        Playwright (Topics 4, 5)
+//   test-results/llm-eval.json    promptfoo  (Topic 12)
+//   test-results/llm-redteam.json promptfoo  (Topic 12, red team)
+//   test-results/k6-summary.json  k6         (Topic 8)
 //
 // Thresholds live in gate.config.json. A missing input fails the gate only
 // when that check is marked "required". Exit code 0 = ship, 1 = blocked.
@@ -60,7 +60,7 @@ if (!evalRaw) {
   );
 }
 
-// ── LLM red team (promptfoo JSON, Lab 6 step 7) ───────────────────────────────
+// ── LLM red team (promptfoo JSON, Topic 12) ─────────────────────────────────────────
 const redteamRaw = readIfExists('llm-redteam.json');
 if (!redteamRaw) {
   add('LLM red team', config.llmRedteam?.required ? 'fail' : 'skip', 'no test-results/llm-redteam.json - run `npm run eval:redteam`');

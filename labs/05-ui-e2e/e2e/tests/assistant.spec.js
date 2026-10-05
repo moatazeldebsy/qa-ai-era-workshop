@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { ShopPage } from '../pages/ShopPage.js';
 
 // The assistant through the UI: one happy path and one guardrail, to prove the
-// wiring. Answer QUALITY is evaluated in Lab 6 with an eval suite, not here -
+// wiring. Answer QUALITY is evaluated in Topic 12 with an eval suite, not here -
 // E2E tests are the wrong tool for grading many prompts.
 
 test('answers a price question from the catalogue', async ({ page }) => {

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 // Contract-level checks on the assistant endpoint: status codes, shape and
-// input limits. Whether the ANSWERS are good is an eval question (Lab 6).
+// input limits. Whether the ANSWERS are good is an eval question (Topic 12).
 
 test('returns an answer and the mode that produced it', async ({ request }) => {
   const res = await request.post('/api/assistant', { data: { question: 'What is your returns policy?' } });

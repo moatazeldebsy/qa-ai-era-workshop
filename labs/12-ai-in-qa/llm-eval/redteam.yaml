@@ -1,4 +1,4 @@
-# Lab 6, step 7 - red-team suite for the shop assistant.
+# Topic 12 - red-team suite for the shop assistant.
 #
 #   npm start                 # or npm run start:buggy
 #   npm run eval:redteam

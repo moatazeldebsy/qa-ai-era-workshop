@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Lab 9 - an AI agent explores the shop.
+// Topic 12 - an AI agent explores the shop.
 //
 //   npm run agent -- free-shipping            # charter from labs/12-ai-in-qa/agent/charters/
 //   npm run agent -- assistant-safety --headed
@@ -37,7 +37,7 @@ if (!fs.existsSync(charterFile)) {
   process.exit(2);
 }
 if (!process.env.ANTHROPIC_API_KEY && !process.env.ANTHROPIC_AUTH_TOKEN) {
-  console.error('Lab 9 needs ANTHROPIC_API_KEY. Without a key, use the Playwright MCP route on the lab page.');
+  console.error('This agent needs ANTHROPIC_API_KEY. Without a key, use the Playwright MCP route on the Topic 12 lab page.');
   process.exit(2);
 }
 try {
@@ -50,7 +50,7 @@ try {
 const charter = fs.readFileSync(charterFile, 'utf8');
 // The oracle: what "correct" means. Without it the agent can only notice
 // crashes and nonsense - it cannot know 4.90 EUR shipping on a 60 EUR cart is
-// wrong. Running with --no-oracle shows the difference (Lab 9, step 4).
+// wrong. Running with --no-oracle shows the difference (Topic 12 lab).
 const oracle = withOracle ? fs.readFileSync(path.join(here, 'product-rules.md'), 'utf8') : '';
 
 const { default: Anthropic } = await import('@anthropic-ai/sdk');
@@ -81,7 +81,7 @@ How to work:
 - You have a limited number of actions. When the charter is covered, stop and write a short test report: what you covered, what you found, what you did not get to.
 ${withOracle ? `\nPRODUCT RULES (the oracle):\n${oracle}` : ''}`;
 
-console.log(`\nLab 9 · charter "${charterName}" · ${model} · oracle ${withOracle ? 'on' : 'OFF'} · ${baseURL}\n`);
+console.log(`\nAgent · charter "${charterName}" · ${model} · oracle ${withOracle ? 'on' : 'OFF'} · ${baseURL}\n`);
 
 const client = new Anthropic();
 let finalMessage;

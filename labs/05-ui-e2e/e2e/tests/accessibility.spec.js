@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { ShopPage } from '../pages/ShopPage.js';
 
-// Lab 1, step 6 - automated accessibility checks. axe-core finds the
+// Topic 5 - automated accessibility checks. axe-core finds the
 // machine-checkable WCAG issues (roughly a third of them): missing labels,
 // low contrast, broken ARIA. The keyboard test covers what it can't.
 

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Lab 2 - API tests with Playwright's request fixture. Same runner, reports and
+// Topic 4 - API tests with Playwright's request fixture. Same runner, reports and
 // CI wiring as the UI tests, and an order of magnitude faster.
 
 test.describe('GET /api/books', () => {

@@ -25,7 +25,7 @@ test('rejects quantities outside 1-10', () => {
   assert.throws(() => priceCart([{ bookId: 1, quantity: 11 }], { bugMode: undefined }), ValidationError);
 });
 
-// Guards the lab itself: BUG_MODE=cart must stay a real regression, or Lab 7
+// Guards the lab itself: BUG_MODE=cart must stay a real regression, or Topic 6
 // has nothing for the quality gate to catch.
 test('BUG_MODE=cart still reproduces the shipping regression', () => {
   const buggy = priceCart([{ bookId: 1, quantity: 2 }], { bugMode: 'cart' });

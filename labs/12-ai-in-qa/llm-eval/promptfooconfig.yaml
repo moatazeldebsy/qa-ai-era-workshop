@@ -1,4 +1,4 @@
-# Lab 6 - evaluating an LLM feature.
+# Topic 12 - evaluating an LLM feature.
 #
 # Each test sends one question to the shop assistant and checks the answer
 # with deterministic assertions (contains / not-contains / regex / JavaScript).

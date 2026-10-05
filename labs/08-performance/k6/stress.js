@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { check } from 'k6';
 
-// Lab 5 stretch - find the knee. Arrival-rate (open model) load keeps sending
+// Topic 8 stretch - find the knee. Arrival-rate (open model) load keeps sending
 // requests at the target rate even when the server slows down, which is how
 // real traffic behaves; a closed model (fixed VUs) politely backs off and
 // hides the problem.

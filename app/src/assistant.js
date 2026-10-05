@@ -6,7 +6,7 @@ import { books, policies, searchBooks } from './catalog.js';
 //          same answer every run, so labs and CI are reproducible.
 //   buggy  the same assistant with the failure modes real LLM features ship
 //          with: it invents books and prices, leaks its system prompt when
-//          asked to, and answers off-topic questions. Lab 6 points the eval
+//          asked to, and answers off-topic questions. Topic 12 points the eval
 //          suite at it to watch the checks fail.
 //   claude a real model through the Anthropic API (needs ANTHROPIC_API_KEY).
 //          Model: ASSISTANT_MODEL, default claude-opus-5-5.
