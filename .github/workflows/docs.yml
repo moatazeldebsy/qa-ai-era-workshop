@@ -7,11 +7,13 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - 'requirements-docs.txt'
+      - 'tests/docs/**'
       - '.github/workflows/docs.yml'
   pull_request:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
+      - 'tests/docs/**'
   workflow_dispatch:
 
 permissions:
@@ -36,6 +38,18 @@ jobs:
       - name: Build (strict)
         run: mkdocs build --strict
 
+      # Quizzes, progress tracking and phone layout, in a real browser.
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Course site smoke test
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run test:docs
+
+      # Only the course repository publishes the site; forks just build it.
       - name: Deploy to GitHub Pages
-        if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request' && github.repository == 'moatazeldebsy/qa-ai-era-workshop'
         run: mkdocs gh-deploy --force --clean

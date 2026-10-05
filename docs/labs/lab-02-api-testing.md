@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done.
+- The [Quickstart](../start/setup.md) is done.
 
 | File | What's in it |
 |---|---|

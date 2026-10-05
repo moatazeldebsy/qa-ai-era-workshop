@@ -1,0 +1,44 @@
+name: Learner progress
+
+# Runs in learners' forks only. On every push it checks each topic's lab with
+# `npm run learn:status` and writes the progress table to the run summary
+# (Actions tab → the run → Summary). It never fails the build: it reports.
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  progress:
+    if: github.repository != 'moatazeldebsy/qa-ai-era-workshop'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check every topic
+        run: |
+          node scripts/learn.mjs status --json > progress.json
+          node -e '
+            const topics = require("./progress.json");
+            const rows = topics.map((t) => {
+              const steps = t.steps.map((s) => (s.ok ? "✅" : "⬜")).join(" ");
+              return `| ${t.id} | ${t.title} | ${t.done}/${t.total} | ${steps} |`;
+            });
+            const done = topics.filter((t) => t.done === t.total).length;
+            console.log(`## Course progress: ${done}/${topics.length} labs complete\n`);
+            console.log("| # | Topic | Steps | Detail |\n|---|---|---|---|");
+            console.log(rows.join("\n"));
+            console.log("\nRun `npm run learn:check <topic>` locally to see what each open step needs.");
+          ' >> "$GITHUB_STEP_SUMMARY"

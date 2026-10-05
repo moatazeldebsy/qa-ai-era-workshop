@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done.
+- The [Quickstart](../start/setup.md) is done.
 - **One of:** an `ANTHROPIC_API_KEY` (route A), **or** Claude Code / VS Code with GitHub Copilot agent mode (route B).
 
 | File | What's in it |

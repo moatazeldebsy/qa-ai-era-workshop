@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done.
+- The [Quickstart](../start/setup.md) is done.
 - An AI assistant (Claude, GitHub Copilot Chat or similar), **or** an `ANTHROPIC_API_KEY`.
 
 | File | What's in it |

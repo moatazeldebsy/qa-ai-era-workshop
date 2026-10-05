@@ -12,7 +12,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done.
+- The [Quickstart](../start/setup.md) is done.
 - **k6** is installed (`k6 version`).
 
 | File | What's in it |

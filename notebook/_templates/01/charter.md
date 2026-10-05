@@ -1,6 +1,6 @@
 # Exploration charter — free shipping
 
-Learning Path, Topic 1, lab step 2. Copy this file, fill in the notes as you go.
+Topic 1, lab step 2. Fill in the notes as you go; replace every ✏️.
 
 **Explore** the free-shipping rule
 **with** the shop UI, the API (`curl`), the AI assistant, and `app/openapi.yaml`
@@ -20,16 +20,26 @@ Learning Path, Topic 1, lab step 2. Copy this file, fill in the notes as you go.
 
 | Time | What I did | What I saw | Question / bug / idea |
 |---|---|---|---|
-| | | | |
+| ✏️ | ✏️ | ✏️ | ✏️ |
 
 ## Findings
 
 | # | Type (bug / question / risk / testability) | Summary | Evidence |
 |---|---|---|---|
-| | | | |
+| 1 | ✏️ | ✏️ | ✏️ |
+| 2 | ✏️ | ✏️ | ✏️ |
+
+## Defect report
+
+- **Title (impact first):** ✏️
+- **Steps to reproduce:** ✏️
+- **Expected:** ✏️
+- **Actual:** ✏️
+- **Evidence (x-request-id, output):** ✏️
+- **Severity / priority:** ✏️
 
 ## Debrief
 
-- What did I cover? What did I **not** cover?
-- Which finding would I raise first, and to whom?
-- Which finding should become an automated check, and at which layer?
+- What did I cover? What did I **not** cover? ✏️
+- Which finding would I raise first, and to whom? ✏️
+- Which finding should become an automated check, and at which layer? ✏️

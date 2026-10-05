@@ -19,5 +19,5 @@ echo "▸ MkDocs (docs preview)"
 pip install --user -r requirements-docs.txt
 
 echo
-npm run doctor || true
-echo "Next: npm test   ·   npm start   ·   mkdocs serve -a 0.0.0.0:8000"
+npm run learn:doctor || true
+echo "Next: read docs/start/how-it-works.md, then: npm run learn:start 1   ·   course site: mkdocs serve -a 0.0.0.0:8000"

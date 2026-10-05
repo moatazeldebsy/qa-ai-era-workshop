@@ -1,5 +1,5 @@
-site_name: QA Engineering in the AI Era
-site_description: A hands-on workshop for QA engineers, developers and engineering leaders - higher quality, faster feedback, smarter testing, greater impact.
+site_name: QA Engineering Deep Dive
+site_description: A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.
 site_url: https://moatazeldebsy.github.io/qa-ai-era-workshop/
 repo_url: https://github.com/moatazeldebsy/qa-ai-era-workshop
 repo_name: moatazeldebsy/qa-ai-era-workshop
@@ -45,6 +45,9 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra_javascript:
+  - javascripts/course.js
+
 plugins:
   - search
 
@@ -74,38 +77,51 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Get Started:
-    - Overview: index.md
-    - Quickstart: getting-started.md
-    - Agendas & Tracks: agendas.md
-    - Facilitator Guide: facilitator-guide.md
-  - Learning Path:
-    - learning-path/index.md
-    - 1. QA Engineering Foundations: learning-path/01-qa-foundations.md
-    - 2. Test Design Techniques: learning-path/02-test-design.md
-  - "Workshop: Modules":
-    - modules/index.md
-    - 1. The Evolving Role: modules/01-evolving-role.md
-    - 2. AI-Powered Testing: modules/02-ai-powered-testing.md
-    - 3. Tools & Technologies: modules/03-tools-and-technologies.md
-    - 4. Process & Practices: modules/04-process-and-practices.md
-    - 5. Quality Focus Areas for AI: modules/05-quality-focus-areas.md
-    - 6. Skills & Mindset: modules/06-skills-and-mindset.md
-    - 7. Success Metrics: modules/07-success-metrics.md
-    - 8. The Future: modules/08-the-future.md
-  - "Workshop: Labs":
-    - labs/index.md
-    - 1. E2E with Playwright: labs/lab-01-playwright-e2e.md
-    - 2. API Testing: labs/lab-02-api-testing.md
-    - 3. AI-Assisted Test Generation: labs/lab-03-ai-test-generation.md
-    - 4. Flaky Tests: labs/lab-04-flaky-tests.md
-    - 5. Performance with k6: labs/lab-05-performance-k6.md
-    - 6. Evaluating an LLM Feature: labs/lab-06-llm-evaluation.md
-    - 7. Quality Gates in CI: labs/lab-07-quality-gate.md
-    - 8. Measuring What Matters: labs/lab-08-metrics.md
-    - 9. An AI Agent Tests the Shop: labs/lab-09-ai-agent.md
+  - Home: index.md
+  - Start Here:
+    - How this course works: start/how-it-works.md
+    - Setup: start/setup.md
+    - Routes by role: start/routes.md
+    - Community: start/community.md
+  - Topics:
+    - topics/index.md
+    - 1. QA Engineering Foundations:
+      - Overview: topics/01-foundations/index.md
+      - Concepts: topics/01-foundations/concepts.md
+      - Lab: topics/01-foundations/lab.md
+      - Quiz & wrap-up: topics/01-foundations/quiz.md
+    - 2. Test Design Techniques:
+      - Overview: topics/02-test-design/index.md
+      - Concepts: topics/02-test-design/concepts.md
+      - Lab: topics/02-test-design/lab.md
+      - Quiz & wrap-up: topics/02-test-design/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md
     - Glossary: reference/glossary.md
     - Further Reading: reference/further-reading.md
+    - For facilitators: reference/facilitators.md
+  - "Workshop (being merged)":
+    - Agendas: agendas.md
+    - Facilitator Guide: facilitator-guide.md
+    - Modules:
+      - modules/index.md
+      - 1. The Evolving Role: modules/01-evolving-role.md
+      - 2. AI-Powered Testing: modules/02-ai-powered-testing.md
+      - 3. Tools & Technologies: modules/03-tools-and-technologies.md
+      - 4. Process & Practices: modules/04-process-and-practices.md
+      - 5. Quality Focus Areas for AI: modules/05-quality-focus-areas.md
+      - 6. Skills & Mindset: modules/06-skills-and-mindset.md
+      - 7. Success Metrics: modules/07-success-metrics.md
+      - 8. The Future: modules/08-the-future.md
+    - Labs:
+      - labs/index.md
+      - 1. E2E with Playwright: labs/lab-01-playwright-e2e.md
+      - 2. API Testing: labs/lab-02-api-testing.md
+      - 3. AI-Assisted Test Generation: labs/lab-03-ai-test-generation.md
+      - 4. Flaky Tests: labs/lab-04-flaky-tests.md
+      - 5. Performance with k6: labs/lab-05-performance-k6.md
+      - 6. Evaluating an LLM Feature: labs/lab-06-llm-evaluation.md
+      - 7. Quality Gates in CI: labs/lab-07-quality-gate.md
+      - 8. Measuring What Matters: labs/lab-08-metrics.md
+      - 9. An AI Agent Tests the Shop: labs/lab-09-ai-agent.md

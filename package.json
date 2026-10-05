@@ -8,6 +8,11 @@
     "node": ">=22.22"
   },
   "scripts": {
+    "learn": "node scripts/learn.mjs",
+    "learn:doctor": "node scripts/learn.mjs doctor",
+    "learn:start": "node scripts/learn.mjs start",
+    "learn:check": "node scripts/learn.mjs check",
+    "learn:status": "node scripts/learn.mjs status",
     "doctor": "node scripts/doctor.mjs",
     "start": "node app/src/server.js",
     "start:buggy": "ASSISTANT_MODE=buggy node app/src/server.js",
@@ -17,12 +22,12 @@
     "test:api": "playwright test --project=api",
     "test:flaky": "playwright test --project=flaky --repeat-each=10",
     "test:unit": "node --test \"app/test/*.test.js\"",
-    "foundations:test": "node --test \"labs/foundations/tests/*.test.js\"",
-    "foundations:risks": "node labs/foundations/risks.mjs",
-    "foundations:bug-hunt": "node labs/foundations/bug-hunt.mjs",
-    "design:test": "node --test \"labs/test-design/tests/*.test.js\"",
-    "design:pairwise": "node labs/test-design/pairwise.mjs",
-    "design:mutants": "node labs/test-design/mutants.mjs",
+    "foundations:test": "node --test \"labs/01-foundations/tests/*.test.js\"",
+    "foundations:risks": "node labs/01-foundations/risks.mjs",
+    "foundations:bug-hunt": "node labs/01-foundations/bug-hunt.mjs",
+    "design:test": "node --test \"labs/02-test-design/tests/*.test.js\"",
+    "design:pairwise": "node labs/02-test-design/pairwise.mjs",
+    "design:mutants": "node labs/02-test-design/mutants.mjs",
     "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
     "eval:redteam": "promptfoo eval -c labs/llm-eval/redteam.yaml --no-cache",
     "eval:llm:view": "promptfoo view",
@@ -32,7 +37,8 @@
     "testgen": "node labs/ai-testgen/generate.mjs",
     "agent": "node labs/ai-agent/explore.mjs",
     "test:agent-tools": "playwright test --project=agent-tools",
-    "docs": "mkdocs serve"
+    "docs": "mkdocs serve",
+    "test:docs": "playwright test -c playwright.docs.config.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",

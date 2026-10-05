@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done.
+- The [Quickstart](../start/setup.md) is done.
 - **No app running on port 3210.** Playwright starts its own app for this lab, and if one is already running it reuses that one and ignores the delay settings below.
 
 | File | What's in it |

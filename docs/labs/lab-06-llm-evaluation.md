@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done, on **Node ≥ 22.22**: promptfoo won't start on older versions.
+- The [Quickstart](../start/setup.md) is done, on **Node ≥ 22.22**: promptfoo won't start on older versions.
 
 | File | What's in it |
 |---|---|

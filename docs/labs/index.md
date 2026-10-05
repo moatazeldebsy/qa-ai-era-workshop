@@ -2,7 +2,7 @@
 
 Nine hands-on labs on the [demo app](../reference/demo-app.md). Each lab has a **core** part (do this) and **stretch goals** (if you finish early), and ends with **debrief questions** for the group.
 
-Finish the [Quickstart](../getting-started.md) first.
+Finish the [Quickstart](../start/setup.md) first.
 
 | # | Lab | Time | Tracks | Module |
 |---|---|---|---|---|

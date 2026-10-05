@@ -1,85 +1,58 @@
-# QA Engineering in the AI Era
+# QA Engineering Deep Dive
 
-**Higher quality · Faster feedback · Smarter testing · Greater impact**
+**Back to basics, all the way to leadership.**
 
-A hands-on workshop for QA engineers, SDETs, developers and engineering leaders. Each module covers one part of how quality engineering is changing, and nine runnable labs put it into practice on a small demo shop that includes an AI support assistant, which an AI agent then tests in the last lab.
+A free, self-paced course on how software quality engineering really works: what each practice is for, how it works inside, where it breaks, and what it costs. It's built for QA engineers, SDETs, developers and engineering leads who want to understand the field, not just pass an interview.
 
-![QA Engineering in the AI Era: the eight themes of this workshop](assets/qa-ai-era-mindmap.png)
-
-## What you will be able to do afterwards
-
-- Explain how the QA role is moving from **test execution to quality enablement**, and what that means for your team.
-- Use AI to **generate, review and maintain tests** without trusting it blindly.
-- Build a **layered automation suite** (unit, API, E2E, performance) that gives fast, reliable feedback.
-- **Test an LLM feature**: grounding, hallucination, prompt injection and scope, with an eval suite that runs in CI.
-- Turn test evidence into a **release decision** with a quality gate.
-- Measure quality with **MTTD, MTTR, DORA metrics and defect escape rate**, and know what each one hides.
-
-## How the workshop is organised
+Fourteen topics take you from *"what is quality?"* to running quality across an engineering organisation. Every topic is taught on one small, real system, and every topic ends in a hands-on lab you can check with a single command.
 
 <div class="grid cards" markdown>
 
--   :material-school-outline: **Learning Path**
+-   :material-flag-checkered: **Start here**
 
     ---
 
-    Fourteen in-depth topics, from QA foundations to quality leadership. Each has theory, internals, trade-offs and a lab you can verify. Start with Topic 1.
+    How the course works, what to install (or open it in Codespaces), and which route fits your role.
 
-    [→ Learning Path](learning-path/index.md)
+    [→ How this course works](start/how-it-works.md)
 
--   :material-rocket-launch-outline: **Quickstart**
-
-    ---
-
-    Install, run 35 tests, and break the AI assistant on purpose. About 15 minutes, no API key.
-
-    [→ Quickstart](getting-started.md)
-
--   :material-book-open-variant: **8 Modules**
+-   :material-map-outline: **The 14 topics**
 
     ---
 
-    One per theme of the map: concepts, discussion, a short exercise and takeaways per role.
+    Foundations, test design, unit to E2E, CI/CD, data, performance, security, observability, quality intelligence, AI, platforms and leadership.
 
-    [→ Modules](modules/index.md)
+    [→ Topics](topics/index.md)
 
--   :material-flask-outline: **9 Labs**
-
-    ---
-
-    Step-by-step and hands-on: Playwright and accessibility, API tests, AI test generation, k6, LLM evals and red teaming, quality gates, metrics, and an AI agent testing the shop.
-
-    [→ Labs](labs/index.md)
-
--   :material-calendar-clock: **Agendas**
+-   :material-flask-outline: **Labs you can check**
 
     ---
 
-    Half-day, full-day and two-day formats, with tracks for QA, developers and managers.
+    Each lab finds real problems in the demo app. `npm run learn:check <topic>` tells you which steps are done and what's missing.
 
-    [→ Agendas & Tracks](agendas.md)
+    [→ Setup](start/setup.md)
+
+-   :material-account-group-outline: **Learn together**
+
+    ---
+
+    Ask questions, compare notebooks and share challenge solutions in the course discussions.
+
+    [→ Community](start/community.md)
 
 </div>
 
-## Three tracks, one workshop
+## What makes it different
 
-The audience is deliberately mixed. Every module ends with **takeaways per role**, and the labs are tagged so each person can choose what to do hands-on.
-
-=== "QA engineers & SDETs"
-
-    All nine labs. Focus on Labs 1-7 and 9: automation, AI-assisted generation, flakiness, LLM evaluation, quality gates and AI agents.
-
-=== "Developers"
-
-    Labs 1, 2, 4, 6 and 7. Own the tests for your own code, make LLM features testable, and wire the quality gate into your pipeline.
-
-=== "Managers & leads"
-
-    Modules 1, 4, 6, 7 and 8, plus Labs 7, 8 and 9. Read the gate output and the metrics, and decide what "ready to release" means for your team.
+- **Deep, but simple.** Every new term is explained before it's used. Every topic covers the same fifteen angles: what it is, why it exists, how it works inside, how it scales, what it costs, how it fails, and how it compares.
+- **One system, many lenses.** *Quality Books*, a tiny bookshop with a cart, orders and an AI support assistant, grows with the course. You test the same code with partitions, properties, contracts, browsers, load, attacks and telemetry.
+- **Real findings, not toy exercises.** The labs find genuine bugs and inconsistencies in this repo, and you fix them.
+- **Check your own work.** Automatic lab checks, quizzes with explanations, hints, and reference solutions you can diff against.
+- **Free and open.** MIT-licensed. It runs on a laptop or in GitHub Codespaces, and needs no API key.
 
 ## The demo app in one paragraph
 
-**Quality Books** is a tiny bookshop: a catalogue, a cart with a free-shipping rule, a deliberately slow recommendations widget, and an **AI support assistant**. The assistant runs in `mock` mode by default (deterministic, no API key needed), in `buggy` mode (hallucinates, leaks its prompt, answers off-topic questions) for the evaluation lab, or against a real Claude model if you have an API key. `BUG_MODE=cart` plants a pricing regression for the quality-gate lab. See [Demo App](reference/demo-app.md).
+**Quality Books** is a small bookshop. It has a catalogue, a cart with a free-shipping rule, an order lifecycle with a returns policy, a deliberately slow recommendations widget, and an **AI support assistant**. The assistant runs deterministically by default, with a `buggy` mode for testing AI failures and an optional real-model mode. See [Demo App](reference/demo-app.md).
 
-[Start the Quickstart :material-arrow-right:](getting-started.md){ .md-button .md-button--primary }
-[Jump to the labs](labs/index.md){ .md-button }
+[Start the course :material-arrow-right:](start/how-it-works.md){ .md-button .md-button--primary }
+[See the topics](topics/index.md){ .md-button }

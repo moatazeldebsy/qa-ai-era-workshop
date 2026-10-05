@@ -13,7 +13,7 @@ By the end you'll have:
 
 ## Prerequisites
 
-- The [Quickstart](../getting-started.md) is done and `npm test` is green.
+- The [Quickstart](../start/setup.md) is done and `npm test` is green.
 - No running app is needed: Playwright starts one on port 3210 for each run.
 
 | File | What's in it |

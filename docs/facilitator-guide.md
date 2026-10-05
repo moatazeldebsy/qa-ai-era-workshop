@@ -4,7 +4,7 @@ Notes for whoever runs the workshop.
 
 ## Before the day
 
-- [ ] Send the [Quickstart](getting-started.md) page a week ahead and ask everyone to post the output of `npm run doctor` and `npm test` in the event channel. Chase anyone who doesn't.
+- [ ] Send the [Quickstart](start/setup.md) page a week ahead and ask everyone to post the output of `npm run doctor` and `npm test` in the event channel. Chase anyone who doesn't.
 - [ ] Point locked-down laptops at **GitHub Codespaces**: the repo's dev container installs everything (*Code → Codespaces → Create codespace*). Try it yourself once; the first build takes about 5 minutes.
 - [ ] Decide how you'll run [Lab 9](labs/lab-09-ai-agent.md): a facilitator demo with **one** API key on your machine (don't hand keys out), or attendees on route B with their own Claude Code or Copilot.
 - [ ] Print or share the [Cheat Sheet](reference/cheat-sheet.md).

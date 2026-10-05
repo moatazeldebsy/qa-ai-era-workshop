@@ -51,13 +51,13 @@ const MUTANTS = [
 
 // The sandbox mirrors the repo layout the tests import from.
 const sandbox = fs.mkdtempSync(path.join(os.tmpdir(), 'qa-mutants-'));
-for (const p of ['app/src', 'labs/test-design', 'package.json']) fs.cpSync(path.join(root, p), path.join(sandbox, p), { recursive: true });
+for (const p of ['app/src', 'labs/02-test-design', 'package.json']) fs.cpSync(path.join(root, p), path.join(sandbox, p), { recursive: true });
 fs.symlinkSync(path.join(root, 'node_modules'), path.join(sandbox, 'node_modules'), 'dir');
 
 const env = { ...process.env, FC_SEED: '20261005' };
 delete env.BUG_MODE;
 const passes = (testFile) =>
-  spawnSync(process.execPath, ['--test', path.join('labs/test-design/tests', testFile)], { cwd: sandbox, env, stdio: 'ignore' }).status === 0;
+  spawnSync(process.execPath, ['--test', path.join('labs/02-test-design/tests', testFile)], { cwd: sandbox, env, stdio: 'ignore' }).status === 0;
 
 let exitCode = 0;
 try {

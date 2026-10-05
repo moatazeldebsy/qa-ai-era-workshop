@@ -12,7 +12,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-const registerPath = process.argv[2] ?? path.join(root, 'labs/foundations/risk-register.json');
+const registerPath = process.argv[2] ?? path.join(root, 'labs/01-foundations/risk-register.json');
 const { threshold, risks } = JSON.parse(fs.readFileSync(registerPath, 'utf8'));
 
 const problems = [];
