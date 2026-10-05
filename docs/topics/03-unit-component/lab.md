@@ -235,7 +235,7 @@ npm run learn:check 3
 ✔ Step 3b — The interaction test notices a wrong charge
     green on correct code, red on BUG_MODE=cart
 ✔ Step 4 — Coupons, built test-first
-    15 tests of your own; all acceptance checks pass
+    13 tests of your own; all acceptance checks pass
 ✔ Step 5 — Mutation score of at least 90% on checkout and returns
     mutation score 94.1%
 
