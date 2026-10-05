@@ -67,7 +67,6 @@ describe('error guessing: inputs each rule allows alone, but not together', () =
   // the same item twice. Two lines of 2 copies of book 5 (stock 3) sell 4.
   test(
     'the same book on two lines cannot exceed its stock',
-    { todo: 'real bug: each line is checked alone; fixed in Topic 2 lab, step 4' },
     () => rejected([{ bookId: 5, quantity: 2 }, { bookId: 5, quantity: 2 }], /more than once|only 3/),
   );
 });

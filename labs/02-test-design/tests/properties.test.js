@@ -111,7 +111,6 @@ describe('dropping a generator assumption', () => {
 
   test(
     'an accepted cart never sells more copies than are in stock',
-    { todo: 'finds the duplicate-line bug; fixed in Topic 2 lab, step 4' },
     () => {
       fc.assert(
         fc.property(anyCart, (items) => {

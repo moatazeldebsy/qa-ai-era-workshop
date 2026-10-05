@@ -16,9 +16,14 @@ export function priceCart(items, { bugMode = process.env.BUG_MODE } = {}) {
   if (!Array.isArray(items) || items.length === 0) {
     throw new ValidationError('items must be a non-empty array');
   }
+  // Each book on one line only: otherwise every line passes the quantity and
+  // stock checks on its own while the cart as a whole oversells.
+  const seen = new Set();
   const lines = items.map(({ bookId, quantity }) => {
     const book = findBook(bookId);
     if (!book) throw new ValidationError(`unknown book ${bookId}`);
+    if (seen.has(book.id)) throw new ValidationError(`book ${book.id} appears more than once; combine it into one line`);
+    seen.add(book.id);
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 10) {
       throw new ValidationError('quantity must be an integer from 1 to 10');
     }

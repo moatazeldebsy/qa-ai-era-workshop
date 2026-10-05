@@ -41,6 +41,7 @@ paths:
       description: |
         Shipping is 4.90 EUR, free when the subtotal is 50 EUR or more.
         Quantity must be an integer from 1 to 10 and not exceed stock.
+        Each book may appear on only one line.
       requestBody:
         required: true
         content:
