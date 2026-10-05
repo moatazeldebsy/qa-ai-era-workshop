@@ -1,4 +1,7 @@
-const cart = new Map(); // bookId -> quantity
+import { loadCart, saveCart } from './cart-store.js';
+import { currentUser, showAccountLink } from './session.js';
+
+const cart = loadCart(); // bookId -> quantity, kept across pages
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -64,6 +67,8 @@ async function renderCart() {
     $('[data-testid="subtotal"]').textContent = body.subtotal.toFixed(2);
     $('[data-testid="shipping"]').textContent = body.shipping.toFixed(2);
     $('[data-testid="total"]').textContent = body.total.toFixed(2);
+    saveCart(cart);
+    $('#checkout-link').hidden = false;
     return true;
   } finally {
     setBusy(-1);
@@ -96,3 +101,5 @@ $('#assistant-form').addEventListener('submit', async (e) => {
 
 loadBooks();
 loadRecommendations();
+renderCart(); // a cart brought back from the checkout page
+currentUser().then((user) => showAccountLink($('#account-link'), user));

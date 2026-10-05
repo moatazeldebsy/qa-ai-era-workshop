@@ -10,6 +10,9 @@
   <header>
     <h1>Quality Books</h1>
     <p class="tagline">The demo shop for QA Engineering Deep Dive</p>
+    <nav aria-label="Account">
+      <a id="account-link" href="/account.html">Sign in</a>
+    </nav>
   </header>
 
   <main>
@@ -27,6 +30,7 @@
       <p>Shipping: <span data-testid="shipping">0.00</span> EUR</p>
       <p><strong>Total: <span data-testid="total">0.00</span> EUR</strong></p>
       <p id="cart-error" role="alert"></p>
+      <a id="checkout-link" class="button-link" href="/checkout.html" hidden>Go to checkout</a>
     </section>
 
     <section aria-labelledby="recs-heading">

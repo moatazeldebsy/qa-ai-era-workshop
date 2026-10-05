@@ -92,8 +92,88 @@ paths:
                 properties:
                   answer: { type: string }
                   mode: { type: string, enum: [mock, buggy, claude] }
+  /api/auth/register:
+    post:
+      summary: Create an account and sign in
+      description: Sets the session cookie qb_session (HttpOnly, SameSite=Strict, 2 hours).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name: { type: string, minLength: 1, maxLength: 80 }
+                email: { type: string, format: email }
+                password: { type: string, minLength: 8, maxLength: 128 }
+      responses:
+        '201': { description: Signed in, content: { application/json: { schema: { $ref: '#/components/schemas/UserResponse' } } } }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '409': { description: Email already has an account, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+  /api/auth/login:
+    post:
+      summary: Sign in
+      description: Sets the session cookie qb_session. A wrong email and a wrong password get the same 401.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string }
+                password: { type: string }
+      responses:
+        '200': { description: Signed in, content: { application/json: { schema: { $ref: '#/components/schemas/UserResponse' } } } }
+        '400': { description: Validation error, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+        '401': { description: Email or password is incorrect, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
+  /api/auth/logout:
+    post:
+      summary: Sign out
+      responses:
+        '204': { description: Signed out; the session cookie is cleared }
+  /api/auth/me:
+    get:
+      summary: Who is signed in
+      responses:
+        '200':
+          description: The signed-in user, or null for a guest
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [user]
+                properties:
+                  user: { oneOf: [{ $ref: '#/components/schemas/User' }, { type: 'null' }] }
+  /api/account/orders:
+    get:
+      summary: The signed-in customer's orders, newest first
+      responses:
+        '200':
+          description: Order history
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders: { type: array, items: { type: object } }
+        '401': { description: Not signed in, content: { application/json: { schema: { $ref: '#/components/schemas/Error' } } } }
 components:
   schemas:
+    User:
+      type: object
+      required: [id, name, email]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        email: { type: string }
+    UserResponse:
+      type: object
+      required: [user]
+      properties:
+        user: { $ref: '#/components/schemas/User' }
     Book:
       type: object
       required: [id, title, author, price, stock, tags]

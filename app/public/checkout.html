@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout · Quality Books</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="/">Quality Books</a></h1>
+    <p class="tagline">Checkout</p>
+    <nav aria-label="Account">
+      <a href="/">Back to the shop</a>
+      <a id="account-link" href="/account.html">Sign in</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section id="review" aria-labelledby="review-heading" aria-busy="false">
+      <h2 id="review-heading">Your order</h2>
+      <p id="empty-cart" hidden>Your cart is empty. <a href="/">Find a book</a>.</p>
+      <ul id="order-lines"></ul>
+      <p>Subtotal: <span data-testid="subtotal">0.00</span> EUR</p>
+      <p>Shipping: <span data-testid="shipping">0.00</span> EUR</p>
+      <p><strong>Total: <span data-testid="total">0.00</span> EUR</strong></p>
+    </section>
+
+    <form id="checkout-form" aria-labelledby="pay-heading" novalidate>
+      <h2 id="pay-heading">Delivery and payment</h2>
+
+      <fieldset>
+        <legend>Contact</legend>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" />
+        <p id="guest-note" class="hint"><a href="/account.html?next=checkout">Sign in</a> to keep a history of your orders, or check out as a guest.</p>
+        <p id="signed-in-note" class="hint" hidden></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Shipping address</legend>
+        <label for="ship-name">Full name</label>
+        <input id="ship-name" name="name" autocomplete="name" maxlength="100" />
+        <label for="ship-street">Street and number</label>
+        <input id="ship-street" name="street" autocomplete="street-address" maxlength="100" />
+        <label for="ship-city">City</label>
+        <input id="ship-city" name="city" autocomplete="address-level2" maxlength="100" />
+        <label for="ship-postcode">Postcode</label>
+        <input id="ship-postcode" name="postcode" autocomplete="postal-code" maxlength="100" />
+        <label for="ship-country">Country</label>
+        <input id="ship-country" name="country" autocomplete="country-name" maxlength="100" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Card (Demo Pay, test cards only)</legend>
+        <p class="hint" id="card-hint">Never enter a real card. Use 4242 4242 4242 4242 (approves), 4000 0000 0000 0002 (declined) or 4000 0000 0000 9995 (insufficient funds), any future expiry and any 3-digit security code.</p>
+        <label for="card-number">Card number</label>
+        <input id="card-number" name="cardNumber" inputmode="numeric" autocomplete="off" aria-describedby="card-hint" maxlength="23" />
+        <div class="field-row">
+          <div>
+            <label for="card-expiry">Expiry (MM/YY)</label>
+            <input id="card-expiry" name="expiry" autocomplete="off" maxlength="7" />
+          </div>
+          <div>
+            <label for="card-cvc">Security code</label>
+            <input id="card-cvc" name="cvc" inputmode="numeric" autocomplete="off" maxlength="3" />
+          </div>
+        </div>
+      </fieldset>
+
+      <p id="checkout-error" role="alert"></p>
+      <button id="pay-button" type="submit">Pay now</button>
+    </form>
+
+    <section id="confirmation" aria-labelledby="confirmation-heading" hidden>
+      <h2 id="confirmation-heading" tabindex="-1">Thank you, your order is paid</h2>
+      <p>Order number: <span data-testid="order-id"></span></p>
+      <p>We charged <span data-testid="order-total"></span> EUR and will ship within 3-5 business days.</p>
+      <p><a id="orders-link" href="/account.html" hidden>See your orders</a> <a href="/">Continue shopping</a></p>
+    </section>
+  </main>
+
+  <script type="module" src="/checkout.js"></script>
+</body>
+</html>
