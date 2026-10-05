@@ -211,4 +211,4 @@ Read before Topic 14 (optional):
 - Spotify Engineering, [*How We Use Golden Paths to Solve Fragmentation in Our Software Ecosystem*](https://engineering.atspotify.com/2020/08/how-we-use-golden-paths-to-solve-fragmentation-in-our-software-ecosystem/)
 - Neal Ford, Rebecca Parsons and Patrick Kua, *Building Evolutionary Architectures* (fitness functions)
 
-When you've finished the lab and the challenge, move on to [Topic 14](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 14](../14-strategy/index.md).

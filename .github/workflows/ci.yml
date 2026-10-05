@@ -114,6 +114,11 @@ jobs:
           npm run platform:test
           npm run platform:fleet
 
+      - name: Strategy lab
+        run: |
+          npm run strategy:test
+          npm run strategy:scorecard
+
       - name: Security and accessibility lab
         run: |
           npm run sec:test

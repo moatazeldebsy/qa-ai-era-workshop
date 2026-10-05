@@ -150,6 +150,11 @@ nav:
       - Concepts: topics/13-platform/concepts.md
       - Lab: topics/13-platform/lab.md
       - Quiz & wrap-up: topics/13-platform/quiz.md
+    - 14. Quality Strategy and Leadership:
+      - Overview: topics/14-strategy/index.md
+      - Concepts: topics/14-strategy/concepts.md
+      - Lab: topics/14-strategy/lab.md
+      - Quiz & wrap-up: topics/14-strategy/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

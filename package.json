@@ -57,6 +57,8 @@
     "platform:fleet": "node labs/13-platform/fleet.mjs",
     "platform:new": "node platform/new-service.mjs",
     "platform:test": "node --test \"labs/13-platform/tests/*.test.js\"",
+    "strategy:scorecard": "node labs/14-strategy/scorecard.mjs",
+    "strategy:test": "node --test \"labs/14-strategy/tests/*.test.js\"",
     "gate": "node labs/06-ci-cd/quality-gate/gate.mjs",
     "ci:pipeline": "node labs/06-ci-cd/pipeline.mjs",
     "ci:impact": "node labs/06-ci-cd/impact.mjs",
