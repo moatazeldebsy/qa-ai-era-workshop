@@ -24,4 +24,6 @@ test('placeOrder talks to inventory, payments and mailer', async () => {
   assert.equal(inventory.reserve.mock.callCount(), 1);
   assert.equal(payments.charge.mock.callCount(), 1);
   assert.equal(mailer.send.mock.callCount(), 1);
+  // What matters to the customer: 2 x 29.99 = 59.98 EUR, free shipping.
+  assert.equal(payments.charge.mock.calls[0].arguments[0].amount, 59.98);
 });

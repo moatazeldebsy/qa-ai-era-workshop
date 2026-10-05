@@ -79,27 +79,47 @@ describe('placing an order', () => {
     assert.match(mail.body, /59\.98 EUR/);
   });
 
-  test('keeps the stock reserved for a paid order', async () => {
+  test('keeps exactly the ordered stock reserved for a paid order', async () => {
     const { checkout, inventory } = setup();
+    const placed = await checkout.placeOrder(order);
+    assert.deepEqual(inventory.reserved.get(placed.reservationId), [{ bookId: 1, quantity: 2 }]);
+  });
+
+  test('the confirmation subject names the order', async () => {
+    const { checkout, mailer } = setup();
     await checkout.placeOrder(order);
-    assert.equal(inventory.reserved.size, 1);
+    assert.match(mailer.send.mock.calls[0].arguments[0].subject, /order-1/);
+  });
+
+  test('records that the confirmation was sent', async () => {
+    const { checkout } = setup();
+    assert.equal((await checkout.placeOrder(order)).confirmationSent, true);
   });
 });
 
 describe('when the payment is declined', () => {
-  test('fails with a CheckoutError and sends no confirmation', async () => {
+  test('fails with a CheckoutError that says why, and sends no confirmation', async () => {
     const { checkout, mailer } = setup({ payments: decliningPayments() });
-    await assert.rejects(checkout.placeOrder(order), CheckoutError);
+    await assert.rejects(checkout.placeOrder(order), (err) => err instanceof CheckoutError && /card declined/.test(err.message));
     assert.equal(mailer.send.mock.callCount(), 0);
   });
 
   test(
     'gives the reserved stock back',
-    { todo: 'real bug: the reservation leaks when a payment fails; Topic 3 lab, step 3' },
     async () => {
       const { checkout, inventory } = setup({ payments: decliningPayments() });
       await assert.rejects(checkout.placeOrder(order), CheckoutError);
       assert.equal(inventory.reserved.size, 0, 'stock is still reserved for an order that was never paid');
     },
   );
+});
+
+describe('when the confirmation email fails', () => {
+  test('the paid order still succeeds, flagged for a resend', async () => {
+    const failingMailer = { send: mock.fn(async () => Promise.reject(new Error('SMTP down'))) };
+    const { checkout } = setup({ mailer: failingMailer });
+    const placed = await checkout.placeOrder(order);
+    assert.equal(placed.state, 'paid');
+    assert.equal(placed.confirmationSent, false);
+  });
 });

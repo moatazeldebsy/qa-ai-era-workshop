@@ -26,6 +26,7 @@ export function createCheckout({ inventory, payments, mailer, clock = () => new 
       try {
         payment = await payments.charge({ amount: priced.total, currency: 'EUR', token: paymentToken });
       } catch (err) {
+        await inventory.release(reservationId);
         throw new CheckoutError(`payment failed: ${err.message}`);
       }
 
@@ -40,11 +41,18 @@ export function createCheckout({ inventory, payments, mailer, clock = () => new 
         paymentId: payment.id,
         reservationId,
       };
-      await mailer.send({
-        to: customer.email,
-        subject: `Your Quality Books order ${order.id}`,
-        body: `Thank you! We charged ${order.total.toFixed(2)} EUR and will ship within 3-5 business days.`,
-      });
+      // The customer has paid: a mail outage must not turn that into an error
+      // (they would pay again). Record it so support can resend.
+      try {
+        await mailer.send({
+          to: customer.email,
+          subject: `Your Quality Books order ${order.id}`,
+          body: `Thank you! We charged ${order.total.toFixed(2)} EUR and will ship within 3-5 business days.`,
+        });
+        order.confirmationSent = true;
+      } catch {
+        order.confirmationSent = false;
+      }
       return order;
     },
   };

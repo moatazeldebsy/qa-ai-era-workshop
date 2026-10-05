@@ -33,7 +33,20 @@ describe('refund window, with an injected clock', () => {
 
   test('an order that is not delivered yet cannot be refunded', () => {
     const returns = createReturns({ clock: at('2026-05-02T12:00:00+02:00') });
-    assert.match(returns.assess({ state: 'shipped' }).reason, /not delivered/);
+    const result = returns.assess({ state: 'shipped' });
+    assert.equal(result.refund, false);
+    assert.match(result.reason, /not delivered/);
+  });
+
+  test('a claim without details assumes an undamaged book in original condition', () => {
+    const returns = createReturns({ clock: at('2026-06-10T12:00:00+02:00') });
+    assert.equal(returns.assess(delivered('2026-05-01T12:00:00+02:00')).reason, 'outside the 30-day window');
+    assert.equal(returns.assess(delivered('2026-06-01T12:00:00+02:00')).reason, 'returned in original condition');
+  });
+
+  test('days are counted in Berlin, whatever time zone the timestamps use', () => {
+    const returns = createReturns({ clock: at('2026-05-31T22:10:00Z') }); // 1 June, 00:10 in Berlin
+    assert.equal(returns.assess(delivered('2026-05-01T21:30:00Z')).days, 31); // 1 May, 23:30 in Berlin
   });
 
   // Found by asking "what about just after midnight?" The policy counts
@@ -42,7 +55,6 @@ describe('refund window, with an injected clock', () => {
   // 23:30 on 1 May → 00:10 on 1 June is only 30 periods and 40 minutes.
   test(
     'calendar days count, not 24-hour periods: 1 May 23:30 → 1 June 00:10 is day 31',
-    { todo: 'real bug: daysSinceDelivery counts 24-hour periods; Topic 3 lab, step 2' },
     () => {
       const returns = createReturns({ clock: at('2026-06-01T00:10:00+02:00') });
       const result = returns.assess(delivered('2026-05-01T23:30:00+02:00'));

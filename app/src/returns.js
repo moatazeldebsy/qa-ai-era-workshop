@@ -10,9 +10,19 @@ import { refundDecision } from './orders.js';
 export const SHOP_TIME_ZONE = 'Europe/Berlin';
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-/** Days since delivery, as the returns policy counts them. */
+// The calendar date of an instant in the shop's time zone, as a UTC midnight
+// timestamp, so two dates can be subtracted without DST getting in the way.
+const shopDate = (instant) => {
+  const [y, m, d] = new Intl.DateTimeFormat('en-CA', { timeZone: SHOP_TIME_ZONE, year: 'numeric', month: '2-digit', day: '2-digit' })
+    .format(instant)
+    .split('-')
+    .map(Number);
+  return Date.UTC(y, m - 1, d);
+};
+
+/** Calendar days since delivery in the shop's time zone, as the returns policy counts them. */
 export function daysSinceDelivery(deliveredAt, now) {
-  return Math.floor((now.getTime() - deliveredAt.getTime()) / DAY_MS);
+  return Math.round((shopDate(now) - shopDate(deliveredAt)) / DAY_MS);
 }
 
 export function createReturns({ clock = () => new Date() } = {}) {
