@@ -2936,6 +2936,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pages-and-the-customer-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pages and the customer journey
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-inventory-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3145,6 +3156,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#pages-and-the-customer-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pages and the customer journey
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#the-inventory-service" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3264,16 +3286,16 @@
 <h1 id="demo-app-quality-books">Demo app: Quality Books<a class="headerlink" href="#demo-app-quality-books" title="Permanent link">&para;</a></h1>
 <p>A deliberately small shop, built so every lab has something real to test. It grows with the course: each topic adds only what its lab needs.</p>
 <pre class="mermaid"><code>flowchart LR
-  B[Browser UI&lt;br/&gt;app/public] --&gt; S[Shop: Express server&lt;br/&gt;app/src/server.js]
-  S --&gt; C[Catalogue&lt;br/&gt;catalog.js]
-  S --&gt; K[Cart pricing&lt;br/&gt;cart.js]
-  S --&gt; CO[Checkout&lt;br/&gt;checkout.js]
-  CO --&gt; IC[Inventory client&lt;br/&gt;inventory-client.js]
-  IC -- HTTP --&gt; INV[Inventory service&lt;br/&gt;services/inventory]
-  CO --&gt; PAY[Demo payments&lt;br/&gt;payments-demo.js]
-  S --&gt; A[Assistant&lt;br/&gt;assistant.js]
-  A -- ASSISTANT_MODE=claude --&gt; L[(Claude API)]
-  S --&gt; M["/metrics"]</code></pre>
+  UI["Browser pages&lt;br/&gt;app/public"] -- "/api" --&gt; S["Shop server&lt;br/&gt;server.js, port 3210"]
+  S --&gt; R["Catalogue and pricing&lt;br/&gt;catalog.js, cart.js"]
+  S --&gt; AC["Accounts&lt;br/&gt;accounts.js"]
+  S --&gt; CO["Checkout&lt;br/&gt;checkout.js"]
+  S --&gt; A["Assistant&lt;br/&gt;assistant.js"]
+  CO --&gt; PAY["Demo payments&lt;br/&gt;payments-demo.js"]
+  CO --&gt; IC["Inventory client&lt;br/&gt;inventory-client.js"]
+  IC -- HTTP --&gt; INV["Inventory service&lt;br/&gt;port 3220"]
+  A -- "ASSISTANT_MODE=claude" --&gt; L[("Claude API")]
+  UI --&gt; DP["Demo Pay&lt;br/&gt;card → token"]</code></pre>
 <table>
 <thead>
 <tr>
@@ -3307,6 +3329,11 @@
 <td><code>reports.js</code>, <code>Dockerfile</code>, <code>compose.yaml</code></td>
 <td>Topic 7</td>
 <td>A back-office sales report; a disposable container environment; the inventory service's opt-in test-data API</td>
+</tr>
+<tr>
+<td><code>accounts.js</code>, <code>account-routes.js</code>, <code>public/checkout.*</code>, <code>public/account.*</code>, <code>public/demo-pay.js</code></td>
+<td>Shop features (no lab yet)</td>
+<td>Register and sign in, checkout with a test card, order history with cancel. Tested in <code>app/test/</code></td>
 </tr>
 </tbody>
 </table>
@@ -3381,9 +3408,99 @@
 <td>Prometheus counters</td>
 <td>Requests by route/status, errors, assistant calls</td>
 </tr>
+<tr>
+<td>POST</td>
+<td><code>/api/auth/register</code></td>
+<td>Create an account</td>
+<td><code>{ name, email, password }</code> → 201 <code>{ user }</code> and a session cookie; 400 invalid, 409 email taken</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/auth/login</code></td>
+<td>Sign in</td>
+<td><code>{ email, password }</code> → 200 <code>{ user }</code> and a session cookie; 401 with one message for any wrong email or password</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/auth/logout</code></td>
+<td>Sign out</td>
+<td>204, cookie cleared</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/auth/me</code></td>
+<td>Who is signed in</td>
+<td><code>{ user }</code>, <code>null</code> for a guest</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/account/orders</code></td>
+<td>Order history</td>
+<td>The signed-in customer's orders, newest first; 401 for a guest</td>
+</tr>
 </tbody>
 </table>
+<p><code>POST /api/orders</code> also accepts an optional <code>shipTo: { name, street, city, postcode, country }</code>, checked before anything is charged. Orders placed while signed in get the customer's <code>userId</code> (and their email when <code>customer.email</code> is left out); guest orders work exactly as before.</p>
 <p>Full contract: <code>app/openapi.yaml</code> (the orders endpoints are a Topic 4 challenge). Every response has an <code>x-request-id</code> header (pass your own to correlate).</p>
+<h2 id="pages-and-the-customer-journey">Pages and the customer journey<a class="headerlink" href="#pages-and-the-customer-journey" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>Catalogue, cart, recommendations, assistant. The header links to <em>Sign in</em> / <em>My account</em>; each cart line has a <em>Remove</em> button (named just "Remove", with the line as its description, so it never matches a search for a book's own button), and the cart shows <em>Go to checkout</em> once it has a book. The cart is kept in <code>sessionStorage</code>, so it survives moving between pages (per tab).</td>
+</tr>
+<tr>
+<td><code>/checkout.html</code></td>
+<td>Review the order (change quantities, remove books), contact email, shipping address, test card, <em>Pay … EUR</em>, then a confirmation with the order number</td>
+</tr>
+<tr>
+<td><code>/account.html</code></td>
+<td>Sign in or create an account; when signed in, the order history with <em>Cancel order</em> for paid orders. <code>?next=checkout</code> returns to checkout after signing in</td>
+</tr>
+</tbody>
+</table>
+<p>Paying from the UI needs the inventory service: run <code>npm run start:all</code>. With only <code>npm start</code>, checkout says the inventory service isn't running.</p>
+<p><strong>Test account:</strong> <code>ada@example.com</code> / <code>quality-books-demo</code>, created at every start. Accounts, sessions (2 hours, <code>qb_session</code> cookie: <code>HttpOnly</code>, <code>SameSite=Strict</code>) and orders are kept in memory and lost on restart.</p>
+<p><strong>Demo Pay test cards</strong> (any future expiry <code>MM/YY</code>, any 3-digit security code). <code>app/public/demo-pay.js</code> plays a payment provider's browser SDK: it checks the card and turns it into a token in the browser, so the shop's API only ever receives tokens.</p>
+<table>
+<thead>
+<tr>
+<th>Card number</th>
+<th>Token</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4242 4242 4242 4242</td>
+<td><code>tok_visa</code></td>
+<td>Approved</td>
+</tr>
+<tr>
+<td>4000 0000 0000 0002</td>
+<td><code>tok_declined</code></td>
+<td>402, card declined</td>
+</tr>
+<tr>
+<td>4000 0000 0000 9995</td>
+<td><code>tok_insufficient_funds</code></td>
+<td>402, insufficient funds</td>
+</tr>
+<tr>
+<td>Any other number</td>
+<td>none</td>
+<td>Refused in the browser: most typos fail the Luhn checksum; a valid number is an unknown card</td>
+</tr>
+</tbody>
+</table>
+<p>Simplified on purpose, and good places to look for risks: no limit on login attempts, no password reset or email verification, <code>GET /api/orders/:id</code> and cancel work for anyone who knows an order id, and a guest can type any email address at checkout.</p>
+<p>Tests: <code>npm run test:unit</code> (accounts, Demo Pay, the account API) and <code>npm run test:shop</code> (the customer journeys in a browser, plus an axe scan of the new pages).</p>
 <h2 id="the-inventory-service">The inventory service<a class="headerlink" href="#the-inventory-service" title="Permanent link">&para;</a></h2>
 <p>A separate Express service in <code>services/inventory/</code> (port 3220), with its own contract in <code>services/inventory/openapi.yaml</code>: <code>GET /stock/:bookId</code>, <code>POST /reservations</code>, <code>DELETE /reservations/:id</code>. Start both services with <code>npm run start:all</code>, or the inventory service alone with <code>npm run start:inventory</code>.</p>
 <h2 id="switches">Switches<a class="headerlink" href="#switches" title="Permanent link">&para;</a></h2>
