@@ -176,7 +176,7 @@ npm run gate
 If you ran the performance or LLM labs on an earlier day, the gate now blocks: *"stale: llm-eval.json, k6-summary.json older than the code"*. It's right: those results describe code that no longer exists.
 
 !!! warning "Freshness isn't provenance"
-    A file can be newer than the code and still be the wrong evidence. Run `BASE_URL=… npx playwright test --project=e2e --project=api --reporter=list`: the `--reporter` flag *replaces* the configured reporters, so no new `junit.xml` is written, and the gate judges the *previous* run. Real pipelines solve this with provenance: evidence that records the commit, the run and the configuration that produced it, and a clean workspace per run. Note in your notebook how you'd add it.
+    A file can be newer than the code and still be the wrong evidence. Run `BASE_URL=… npx playwright test --project=e2e --project=api --reporter=list`: the `--reporter` flag *replaces* the configured reporters, so no new `junit.xml` is written, and the gate judges the *previous* run. Real pipelines solve this with provenance: evidence that records the commit, the run and the configuration that produced it, and a clean workspace per run. Note in your notebook how you'd add it. (This course fell into the same trap while it was being written: an early version of `pipeline.json` passed `--reporter=dot` to the browser stage, and the gate quietly judged an older `junit.xml` until the pipeline runner learned to start from an empty `test-results/`.)
 
 ### Step 4 — Watch it block a regression (15 min)
 
