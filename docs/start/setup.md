@@ -24,7 +24,7 @@ On [the course repository](https://github.com/moatazeldebsy/qa-engineering-deep-
     | Git | any recent | `brew install git` · [git-scm.com](https://git-scm.com) |
     | k6 | ≥ 0.50 | `brew install k6` · `winget install k6` · [other platforms](https://grafana.com/docs/k6/latest/set-up/install-k6/) (Topic 8) |
     | Python | ≥ 3.9 | `brew install python` (Topic 11) |
-    | Docker | any recent | optional, for Topics 7 and 9 |
+    | Docker | any recent | optional: run the shop in containers; Topics 7 and 9 |
 
     ```bash
     git clone https://github.com/<you>/qa-engineering-deep-dive.git
@@ -98,6 +98,16 @@ Open **<http://localhost:3210>**:
 
 ??? question "Checkout says *Checkout is unavailable: the inventory service is not running*?"
     You started the shop with `npm start`, which runs the shop alone. Placing an order reserves stock in a separate inventory service (port 3220). Stop the shop and run `npm run start:all`, which starts both.
+
+??? tip "Run the shop in Docker instead"
+    With Docker running, one command builds an image and starts the shop and the inventory service, checkout included:
+
+    ```bash
+    docker compose up --build --wait     # http://localhost:3210
+    docker compose down --volumes        # stop and throw it away
+    ```
+
+    Stop `npm start` first: both use port 3210. Playwright reuses whatever is on port 3210 locally, so `npm test` runs against the containers. [Topic 7](../topics/07-env-data/lab.md) explains how the environment is built.
 
 Or ask it with `curl`:
 
