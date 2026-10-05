@@ -148,6 +148,10 @@ jobs:
       - name: AI agent tools
         run: npm run test:agent-tools
 
+      # The shop's own customer journeys: accounts, checkout, Demo Pay.
+      - name: Shop journeys
+        run: npm run test:shop
+
       # The remaining labs need the app running.
       - name: Start the demo app
         run: |

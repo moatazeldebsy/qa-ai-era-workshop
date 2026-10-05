@@ -37,14 +37,24 @@ export default defineConfig({
     { name: 'ui-acceptance', testDir: 'labs/05-ui-e2e/acceptance', use: { ...devices['Desktop Chrome'] } },
     { name: 'a11y', testDir: 'labs/09-security-a11y/a11y', use: { ...devices['Desktop Chrome'] } },
     { name: 'a11y-acceptance', testDir: 'labs/09-security-a11y/acceptance', testMatch: '*.spec.js', use: { ...devices['Desktop Chrome'] } },
+    // The shop's own customer journeys (accounts, checkout); not a lab.
+    { name: 'shop', testDir: 'app/test/e2e', use: { ...devices['Desktop Chrome'] } },
   ],
-  // Starts the demo app unless BASE_URL points somewhere else.
+  // Starts the demo app unless BASE_URL points somewhere else, with the
+  // inventory service it needs for checkout.
   webServer: process.env.BASE_URL
     ? undefined
-    : {
-        command: 'node app/src/server.js',
-        url: `${baseURL}/health`,
-        reuseExistingServer: !process.env.CI,
-        env: { PORT: String(PORT), LOG_REQUESTS: 'false' },
-      },
+    : [
+        {
+          command: 'node services/inventory/src/server.js',
+          url: 'http://localhost:3220/health',
+          reuseExistingServer: !process.env.CI,
+        },
+        {
+          command: 'node app/src/server.js',
+          url: `${baseURL}/health`,
+          reuseExistingServer: !process.env.CI,
+          env: { PORT: String(PORT), LOG_REQUESTS: 'false' },
+        },
+      ],
 });

@@ -72,6 +72,7 @@
     "ai:score": "node labs/12-ai-in-qa/testgen/score.mjs",
     "agent": "node labs/12-ai-in-qa/agent/explore.mjs",
     "test:agent-tools": "playwright test --project=agent-tools",
+    "test:shop": "playwright test --project=shop",
     "docs": "mkdocs serve",
     "test:docs": "playwright test -c playwright.docs.config.js"
   },

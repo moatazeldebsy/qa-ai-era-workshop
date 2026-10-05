@@ -15,7 +15,7 @@
 | Task | Command |
 |---|---|
 | Start the shop | `npm start` (→ <http://localhost:3210>) |
-| Shop and inventory service together | `npm run start:all` |
+| Shop and inventory service together (needed for checkout and orders) | `npm run start:all` |
 | Inventory service alone | `npm run start:inventory` (→ port 3220) |
 | … with the buggy assistant | `npm run start:buggy` |
 | … with the cart regression | `npm run start:bug-cart` |

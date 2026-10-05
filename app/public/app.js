@@ -1,4 +1,7 @@
-const cart = new Map(); // bookId -> quantity
+import { loadCart, saveCart } from './cart-store.js';
+import { currentUser, showAccountLink } from './session.js';
+
+const cart = loadCart(); // bookId -> quantity, kept across pages
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -35,6 +38,37 @@ async function addToCart(bookId) {
   await renderCart();
 }
 
+// Takes the whole line out of the cart, however many copies it had. The
+// line's button is gone afterwards, so focus moves to the cart heading
+// instead of being lost.
+async function removeFromCart(bookId) {
+  cart.delete(bookId);
+  $('#cart-heading').focus();
+  await renderCart();
+}
+
+// The Remove button is named just "Remove": a name containing the title
+// would also match "find the button for <title>", which means Add to cart.
+// Its description says which line it removes.
+function cartLine(line) {
+  const li = el('li', undefined, 'cart-line');
+  const text = el('span', `${line.quantity} × ${line.title} — ${line.lineTotal.toFixed(2)} EUR`);
+  text.id = `cart-line-${line.bookId}`;
+  const remove = el('button', 'Remove');
+  remove.type = 'button';
+  remove.setAttribute('aria-describedby', text.id);
+  remove.addEventListener('click', () => removeFromCart(line.bookId));
+  li.append(text, remove);
+  return li;
+}
+
+function showEmptyCart() {
+  $('#cart-lines').replaceChildren();
+  for (const id of ['subtotal', 'shipping', 'total']) $(`[data-testid="${id}"]`).textContent = '0.00';
+  $('#checkout-link').hidden = true;
+  saveCart(cart);
+}
+
 // While a price request is in flight the cart says so (aria-busy), for
 // screen readers and for tests that need to know when the cart has settled.
 let pricing = 0;
@@ -47,7 +81,10 @@ async function renderCart() {
   const items = [...cart].map(([bookId, quantity]) => ({ bookId, quantity }));
   const error = $('#cart-error');
   error.textContent = '';
-  if (items.length === 0) return true;
+  if (items.length === 0) {
+    showEmptyCart();
+    return true;
+  }
   setBusy(+1);
   try {
     const res = await fetch('/api/cart/price', {
@@ -60,10 +97,12 @@ async function renderCart() {
       error.textContent = body.error;
       return false;
     }
-    $('#cart-lines').replaceChildren(...body.lines.map((l) => el('li', `${l.quantity} × ${l.title} — ${l.lineTotal.toFixed(2)} EUR`)));
+    $('#cart-lines').replaceChildren(...body.lines.map(cartLine));
     $('[data-testid="subtotal"]').textContent = body.subtotal.toFixed(2);
     $('[data-testid="shipping"]').textContent = body.shipping.toFixed(2);
     $('[data-testid="total"]').textContent = body.total.toFixed(2);
+    saveCart(cart);
+    $('#checkout-link').hidden = false;
     return true;
   } finally {
     setBusy(-1);
@@ -96,3 +135,5 @@ $('#assistant-form').addEventListener('submit', async (e) => {
 
 loadBooks();
 loadRecommendations();
+renderCart(); // a cart brought back from the checkout page
+currentUser().then((user) => showAccountLink($('#account-link'), user));

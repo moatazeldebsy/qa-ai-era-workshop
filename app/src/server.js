@@ -9,6 +9,8 @@ import { createCheckout, CheckoutError } from './checkout.js';
 import { createInventoryClient, InventoryError } from './inventory-client.js';
 import { next as nextState, InvalidTransition } from './orders.js';
 import { demoPayments } from './payments-demo.js';
+import { createAccounts } from './accounts.js';
+import { accountRoutes, parseShipTo, sessionUser } from './account-routes.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -28,6 +30,7 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
   };
   const checkout = createCheckout({ inventory, payments: demoPayments, mailer });
   const orders = new Map();
+  const accounts = createAccounts();
   app.use(express.json({ limit: '10kb' }));
 
   app.use((req, res, next) => {
@@ -45,6 +48,10 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
     });
     next();
   });
+
+  // Sign-in is optional: req.user is set for signed-in customers only.
+  app.use(sessionUser(accounts));
+  app.use(accountRoutes({ accounts, orders }));
 
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
@@ -88,7 +95,11 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
   app.post('/api/orders', async (req, res, next) => {
     try {
       const { items, customer = {}, paymentToken } = req.body ?? {};
-      const order = await checkout.placeOrder({ items, customer, paymentToken });
+      const shipTo = parseShipTo(req.body?.shipTo);
+      const email = customer?.email ?? req.user?.email;
+      const order = await checkout.placeOrder({ items, customer: { ...customer, email }, paymentToken });
+      if (req.user) order.userId = req.user.id;
+      if (shipTo) order.shipTo = shipTo;
       orders.set(order.id, order);
       res.status(201).json(order);
     } catch (err) {

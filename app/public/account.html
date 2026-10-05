@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your account · Quality Books</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1><a href="/">Quality Books</a></h1>
+    <p class="tagline">Your account</p>
+    <nav aria-label="Account">
+      <a href="/">Back to the shop</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div id="signed-out" class="columns" hidden>
+      <form id="sign-in-form" aria-labelledby="sign-in-heading" novalidate>
+        <h2 id="sign-in-heading">Sign in</h2>
+        <label for="sign-in-email">Email</label>
+        <input id="sign-in-email" name="email" type="email" autocomplete="username" />
+        <label for="sign-in-password">Password</label>
+        <input id="sign-in-password" name="password" type="password" autocomplete="current-password" />
+        <p class="form-error" role="alert"></p>
+        <button type="submit">Sign in</button>
+        <p class="hint">Test account: ada@example.com / quality-books-demo</p>
+      </form>
+
+      <form id="register-form" aria-labelledby="register-heading" novalidate>
+        <h2 id="register-heading">Create an account</h2>
+        <label for="register-name">Name</label>
+        <input id="register-name" name="name" autocomplete="name" maxlength="80" />
+        <label for="register-email">Email</label>
+        <input id="register-email" name="email" type="email" autocomplete="email" />
+        <label for="register-password">Password (8 characters or more)</label>
+        <input id="register-password" name="password" type="password" autocomplete="new-password" />
+        <p class="form-error" role="alert"></p>
+        <button type="submit">Create account</button>
+      </form>
+    </div>
+
+    <div id="signed-in" hidden>
+      <section aria-labelledby="profile-heading">
+        <h2 id="profile-heading">Hello</h2>
+        <p>Signed in as <span data-testid="user-email"></span></p>
+        <button id="sign-out" type="button">Sign out</button>
+      </section>
+
+      <section aria-labelledby="orders-heading">
+        <h2 id="orders-heading">Your orders</h2>
+        <p id="no-orders" hidden>No orders yet. <a href="/">Find a book</a>.</p>
+        <p id="orders-error" role="alert"></p>
+        <table id="orders" hidden>
+          <thead>
+            <tr><th scope="col">Order</th><th scope="col">Placed</th><th scope="col">Books</th><th scope="col">Total (EUR)</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Actions</span></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/account.js"></script>
+</body>
+</html>

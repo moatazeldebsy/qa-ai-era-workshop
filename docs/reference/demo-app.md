@@ -4,16 +4,16 @@ A deliberately small shop, built so every lab has something real to test. It gro
 
 ```mermaid
 flowchart LR
-  B[Browser UI<br/>app/public] --> S[Shop: Express server<br/>app/src/server.js]
-  S --> C[Catalogue<br/>catalog.js]
-  S --> K[Cart pricing<br/>cart.js]
-  S --> CO[Checkout<br/>checkout.js]
-  CO --> IC[Inventory client<br/>inventory-client.js]
-  IC -- HTTP --> INV[Inventory service<br/>services/inventory]
-  CO --> PAY[Demo payments<br/>payments-demo.js]
-  S --> A[Assistant<br/>assistant.js]
-  A -- ASSISTANT_MODE=claude --> L[(Claude API)]
-  S --> M["/metrics"]
+  UI["Browser pages<br/>app/public"] -- "/api" --> S["Shop server<br/>server.js, port 3210"]
+  S --> R["Catalogue and pricing<br/>catalog.js, cart.js"]
+  S --> AC["Accounts<br/>accounts.js"]
+  S --> CO["Checkout<br/>checkout.js"]
+  S --> A["Assistant<br/>assistant.js"]
+  CO --> PAY["Demo payments<br/>payments-demo.js"]
+  CO --> IC["Inventory client<br/>inventory-client.js"]
+  IC -- HTTP --> INV["Inventory service<br/>port 3220"]
+  A -- "ASSISTANT_MODE=claude" --> L[("Claude API")]
+  UI --> DP["Demo Pay<br/>card → token"]
 ```
 
 | Module | Added in | What it is |
@@ -23,6 +23,7 @@ flowchart LR
 | `returns.js`, `checkout.js`, `coupons.js` | Topic 3 | Refund claims with an injected clock; checkout with injected collaborators; coupons (built test-first) |
 | `inventory-client.js`, `payments-demo.js`, `services/inventory/` | Topic 4 | The inventory service (a separate provider), the shop's HTTP client for it, a demo payment provider |
 | `reports.js`, `Dockerfile`, `compose.yaml` | Topic 7 | A back-office sales report; a disposable container environment; the inventory service's opt-in test-data API |
+| `accounts.js`, `account-routes.js`, `public/checkout.*`, `public/account.*`, `public/demo-pay.js` | Shop features (no lab yet) | Register and sign in, checkout with a test card, order history with cancel. Tested in `app/test/` |
 
 ## Endpoints
 
@@ -38,8 +39,40 @@ flowchart LR
 | GET | `/api/orders/:id` | One order | In memory; lost on restart |
 | POST | `/api/orders/:id/cancel` | Cancel an order | Releases its stock in the inventory service |
 | GET | `/metrics` | Prometheus counters | Requests by route/status, errors, assistant calls |
+| POST | `/api/auth/register` | Create an account | `{ name, email, password }` → 201 `{ user }` and a session cookie; 400 invalid, 409 email taken |
+| POST | `/api/auth/login` | Sign in | `{ email, password }` → 200 `{ user }` and a session cookie; 401 with one message for any wrong email or password |
+| POST | `/api/auth/logout` | Sign out | 204, cookie cleared |
+| GET | `/api/auth/me` | Who is signed in | `{ user }`, `null` for a guest |
+| GET | `/api/account/orders` | Order history | The signed-in customer's orders, newest first; 401 for a guest |
+
+`POST /api/orders` also accepts an optional `shipTo: { name, street, city, postcode, country }`, checked before anything is charged. Orders placed while signed in get the customer's `userId` (and their email when `customer.email` is left out); guest orders work exactly as before.
 
 Full contract: `app/openapi.yaml` (the orders endpoints are a Topic 4 challenge). Every response has an `x-request-id` header (pass your own to correlate).
+
+## Pages and the customer journey
+
+| Page | What it does |
+|---|---|
+| `/` | Catalogue, cart, recommendations, assistant. The header links to *Sign in* / *My account*; each cart line has a *Remove* button (named just "Remove", with the line as its description, so it never matches a search for a book's own button), and the cart shows *Go to checkout* once it has a book. The cart is kept in `sessionStorage`, so it survives moving between pages (per tab). |
+| `/checkout.html` | Review the order (change quantities, remove books), contact email, shipping address, test card, *Pay … EUR*, then a confirmation with the order number |
+| `/account.html` | Sign in or create an account; when signed in, the order history with *Cancel order* for paid orders. `?next=checkout` returns to checkout after signing in |
+
+Paying from the UI needs the inventory service: run `npm run start:all`. With only `npm start`, checkout says the inventory service isn't running.
+
+**Test account:** `ada@example.com` / `quality-books-demo`, created at every start. Accounts, sessions (2 hours, `qb_session` cookie: `HttpOnly`, `SameSite=Strict`) and orders are kept in memory and lost on restart.
+
+**Demo Pay test cards** (any future expiry `MM/YY`, any 3-digit security code). `app/public/demo-pay.js` plays a payment provider's browser SDK: it checks the card and turns it into a token in the browser, so the shop's API only ever receives tokens.
+
+| Card number | Token | Result |
+|---|---|---|
+| 4242 4242 4242 4242 | `tok_visa` | Approved |
+| 4000 0000 0000 0002 | `tok_declined` | 402, card declined |
+| 4000 0000 0000 9995 | `tok_insufficient_funds` | 402, insufficient funds |
+| Any other number | none | Refused in the browser: most typos fail the Luhn checksum; a valid number is an unknown card |
+
+Simplified on purpose, and good places to look for risks: no limit on login attempts, no password reset or email verification, `GET /api/orders/:id` and cancel work for anyone who knows an order id, and a guest can type any email address at checkout.
+
+Tests: `npm run test:unit` (accounts, Demo Pay, the account API) and `npm run test:shop` (the customer journeys in a browser, plus an axe scan of the new pages).
 
 ## The inventory service
 
