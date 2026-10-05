@@ -3375,7 +3375,7 @@
 <ol>
 <li>Re-read the step and its <strong>Hint</strong>.</li>
 <li>Read the <strong>Troubleshooting</strong> table at the end of the lab.</li>
-<li>Compare with the reference solution: <code>git fetch origin solutions &amp;&amp; git diff origin/solutions -- &lt;path&gt;</code> (the <code>solutions</code> branch has every lab solved).</li>
+<li>Compare with the reference solution: <code>git diff upstream/solutions -- &lt;path&gt;</code>. The course's <code>solutions</code> branch has every lab solved, and <code>learn:start</code> fetches it for you. If git says <code>unknown revision</code>, run <code>git fetch upstream solutions</code> first.</li>
 <li>Ask in the <a href="../community/">discussions</a> under the topic's category. Include the command you ran and its output.</li>
 </ol>
 <h2 id="your-progress-in-ci">Your progress in CI<a class="headerlink" href="#your-progress-in-ci" title="Permanent link">&para;</a></h2>

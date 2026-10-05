@@ -3538,7 +3538,7 @@
 </details>
 <details class="success">
 <summary>Reference solution</summary>
-<p>On the solutions branch: <code>git diff main origin/solutions -- app/src/server.js</code>. The key parts are a <code>BUCKETS</code> list, an <code>observeDuration(method, route, seconds)</code> function called when each response finishes, and the <code>_bucket</code>, <code>_sum</code> and <code>_count</code> lines in <code>/metrics</code>.</p>
+<p>On the solutions branch: <code>git diff upstream/main upstream/solutions -- app/src/server.js</code>. The key parts are a <code>BUCKETS</code> list, an <code>observeDuration(method, route, seconds)</code> function called when each response finishes, and the <code>_bucket</code>, <code>_sum</code> and <code>_count</code> lines in <code>/metrics</code>.</p>
 </details>
 <div class="highlight"><span class="filename">Expected output after the fix</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Availability   SLI 100.000%   objective 99.500%   100.000% of the error budget left
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Latency        SLI 100.000%   objective 99.000% under 250 ms   100.000% of the error budget left

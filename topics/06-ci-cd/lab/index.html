@@ -3552,7 +3552,7 @@
 <details class="success">
 <summary>Reference solution</summary>
 <p>In <code>gate.config.json</code>: <code>"tests": { "maxFailed": 0, "maxSkipped": 0, "required": true }</code> and <code>"freshness": { "codePaths": ["app", "services"] }</code>.</p>
-<p>In <code>gate.mjs</code>, find the newest modification time under the code paths, record every evidence file older than that in <code>readIfExists</code>, add <code>skipped &lt;= maxSkipped</code> to the functional check, and add an <strong>Evidence freshness</strong> check that fails with <code>stale: … older than the code</code>. The full version is on the solutions branch: <code>git diff main origin/solutions -- labs/06-ci-cd/quality-gate</code>.</p>
+<p>In <code>gate.mjs</code>, find the newest modification time under the code paths, record every evidence file older than that in <code>readIfExists</code>, add <code>skipped &lt;= maxSkipped</code> to the functional check, and add an <strong>Evidence freshness</strong> check that fails with <code>stale: … older than the code</code>. The full version is on the solutions branch: <code>git diff upstream/main upstream/solutions -- labs/06-ci-cd/quality-gate</code>.</p>
 </details>
 <p>Now run the gate on this machine's real evidence:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>npm<span class="w"> </span>run<span class="w"> </span>gate
