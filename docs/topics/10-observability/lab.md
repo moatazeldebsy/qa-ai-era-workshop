@@ -135,7 +135,7 @@ The shop counts requests but never times them. The third TODO describes the hist
     Keep, per route, a count for each bucket (requests that took *at most* that many seconds), a total count and a sum. The `le="+Inf"` bucket equals the count. Only record requests that matched a route (`req.route`), so labels stay bounded (Topic 8).
 
 ??? success "Reference solution"
-    On the solutions branch: `git diff main origin/solutions -- app/src/server.js`. The key parts are a `BUCKETS` list, an `observeDuration(method, route, seconds)` function called when each response finishes, and the `_bucket`, `_sum` and `_count` lines in `/metrics`.
+    On the solutions branch: `git diff upstream/main upstream/solutions -- app/src/server.js`. The key parts are a `BUCKETS` list, an `observeDuration(method, route, seconds)` function called when each response finishes, and the `_bucket`, `_sum` and `_count` lines in `/metrics`.
 
 ```text title="Expected output after the fix"
 Availability   SLI 100.000%   objective 99.500%   100.000% of the error budget left

@@ -73,7 +73,7 @@ Then create `labs/03-unit-component/tests/clean.test.js` and rewrite **two** of 
     | `orders` | Asserts something meaningless (`'delivered'.length === 9`) instead of `assert.equal(state, 'delivered')`; obscure name |
     | `new year` | Mystery guest: depends on the real clock; tests nothing about the product |
 
-    A reference `clean.test.js` is on the solutions branch: `git diff main origin/solutions -- labs/03-unit-component/tests/clean.test.js`.
+    A reference `clean.test.js` is on the solutions branch: `git diff upstream/main upstream/solutions -- labs/03-unit-component/tests/clean.test.js`.
 
 ### Step 2 — Take control of time (30 min)
 
@@ -173,7 +173,7 @@ Aim for at least eight tests, including boundaries (Topic 2: what are the bounda
     Compare *Berlin calendar dates* as strings: `'2026-05-31' < '2026-06-01'` works because the format sorts correctly. Inject `now`; never call `new Date()` inside the module.
 
 ??? success "Reference solution"
-    On the solutions branch: `git diff main origin/solutions -- app/src/coupons.js labs/03-unit-component/tests/coupons.test.js`. Compare your *tests* first: did you pin the same boundaries?
+    On the solutions branch: `git diff upstream/main upstream/solutions -- app/src/coupons.js labs/03-unit-component/tests/coupons.test.js`. Compare your *tests* first: did you pin the same boundaries?
 
 ### Step 5 — Coverage versus mutation testing (25 min)
 

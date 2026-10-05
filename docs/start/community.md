@@ -9,6 +9,7 @@ The course uses [GitHub Discussions](https://github.com/moatazeldebsy/qa-enginee
 | Category | Use it for |
 |---|---|
 | **Topic 01** … **Topic 14** | Questions about a topic, and comparing notebooks and challenge solutions |
+| **Q&A** | Setup questions that don't belong to one topic |
 | **Show your work** | Link your fork, a write-up, or a talk you gave about something from the course |
 | **Ideas** | Suggestions for new labs, examples or topics |
 | **Study groups** | Find or start a group in your time zone or language |

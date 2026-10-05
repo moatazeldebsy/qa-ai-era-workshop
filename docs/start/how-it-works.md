@@ -62,7 +62,7 @@ Some steps are thinking work: a partition table, a charter, an explanation. Thos
 
 1. Re-read the step and its **Hint**.
 2. Read the **Troubleshooting** table at the end of the lab.
-3. Compare with the reference solution: `git fetch origin solutions && git diff origin/solutions -- <path>` (the `solutions` branch has every lab solved).
+3. Compare with the reference solution: `git diff upstream/solutions -- <path>`. The course's `solutions` branch has every lab solved, and `learn:start` fetches it for you. If git says `unknown revision`, run `git fetch upstream solutions` first.
 4. Ask in the [discussions](community.md) under the topic's category. Include the command you ran and its output.
 
 ## Your progress in CI

@@ -34,11 +34,11 @@ On [the course repository](https://github.com/moatazeldebsy/qa-engineering-deep-
     npx playwright install --with-deps chromium
     ```
 
-Then connect your copy to the course, so `learn:start` always starts from the course's latest starting state:
+Your fork is `origin`. The course itself is `upstream`: `learn:start` starts every topic from `upstream/main`, and the reference solutions are on `upstream/solutions`. The first `learn:start` adds the `upstream` remote for you; to add it yourself:
 
 ```bash
 git remote add upstream https://github.com/moatazeldebsy/qa-engineering-deep-dive.git
-git fetch upstream
+git fetch upstream main solutions
 ```
 
 !!! warning "Node 22.22 or newer"

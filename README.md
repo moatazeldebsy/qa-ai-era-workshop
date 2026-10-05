@@ -27,10 +27,12 @@ A free, self-paced course in 14 topics for QA engineers, SDETs, developers and e
 
 Each topic has the same four pages: **Overview → Concepts → Lab → Quiz & wrap-up**. Topics are independent: you can start with any of them.
 
-## Start in five minutes
+## Your path through the course
 
-1. **Fork** this repository. Your fork holds your lab work, your notes and your progress.
-2. Open it in **GitHub Codespaces** (Code → Codespaces), or clone it locally:
+### 1. Set up (15 minutes, once)
+
+1. **Fork** this repository (the **Fork** button, top right). Your fork holds your lab work, your notes and your progress.
+2. Open your fork in **GitHub Codespaces** (Code → Codespaces → Create codespace on main). Nothing to install: the dev container sets everything up. Or clone it locally:
 
     ```bash
     git clone https://github.com/<you>/qa-engineering-deep-dive.git
@@ -38,27 +40,75 @@ Each topic has the same four pages: **Overview → Concepts → Lab → Quiz & w
     nvm use                                  # Node 24
     npm install
     npx playwright install --with-deps chromium
-    npm run learn:doctor                     # is this machine ready?
     ```
 
-3. Start a topic, do its lab, and check your work:
+3. Check your machine:
 
     ```bash
-    npm run learn:start 01     # your own branch for Topic 1
-    npm run learn:check 01     # ✔ or ✖ per step, with a hint for what's missing
-    npm run learn:status       # progress across all 14 topics
+    npm run learn:doctor                     # ✅ / ❌ per tool, with the fix for anything missing
     ```
 
-Full instructions: [Setup](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/setup/). No API key is needed for any lab.
+Full instructions: [Setup](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/setup/). No API key or cloud account is needed for any lab.
+
+### 2. Study each topic (4–6 hours)
+
+Every topic follows the same loop. Start with Topic 1, or pick a [route for your role](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/routes/).
+
+| Step | Where | What you do |
+|---|---|---|
+| **Read** | The topic's **Overview** and **Concepts** pages on the [course site](https://moatazeldebsy.github.io/qa-engineering-deep-dive/topics/) | Learn the ideas: what it is, how it works inside, trade-offs, failure scenarios |
+| **Start the lab** | Your terminal | `npm run learn:start 01` creates your own branch for the topic, starting from the course's unsolved state |
+| **Do the lab** | The topic's **Lab** page | Each step gives you the task first. Try it, then open the folded hints (▸) if you need them |
+| **Check** | Your terminal | `npm run learn:check 01` shows ✔ or ✖ per step, and what's missing. Run it as often as you like |
+| **Write it down** | `notebook/01/` | The thinking work (risk notes, charters, a strategy) goes in your notebook, from the templates in `notebook/_templates/` |
+| **Save** | Your fork | `git add -A && git commit -m "Topic 1 lab" && git push -u origin topic-01`. Your fork's **Actions** tab shows your progress table |
+| **Test yourself** | The topic's **Quiz & wrap-up** page | Answer the quiz, read the explanations, then try the challenge |
+| **Share** | [Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions) | Post your challenge solution or notebook in the topic's category |
+
+`npm run learn:status` shows your progress across all 14 topics. Topics are independent: an unfinished lab never blocks the next one.
+
+### 3. When you're stuck
+
+1. Re-read the step and its **Hint**.
+2. Check the **Troubleshooting** table at the end of the lab page.
+3. Compare with the reference solution: `git diff upstream/solutions -- <path>`. `learn:start` sets up the `upstream` remote (the course) and fetches its `solutions` branch for you.
+4. Ask in [Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions), in the topic's category.
+
+## Discussions: questions and sharing
+
+| Category | Use it for |
+|---|---|
+| **Topic 01 … Topic 14** | Questions about a topic; comparing notebooks and challenge solutions. Mark the answer that solved your problem |
+| **Q&A** | Setup questions that don't belong to one topic |
+| **Show your work** | Link your fork, a write-up, or a talk you gave about something from the course |
+| **Study groups** | Find or start a group in your time zone or language |
+| **Ideas** | Suggestions for new labs, examples or topics |
+
+A good question includes the topic and step, the command you ran, its **full output**, and what you expected. The output of `npm run learn:check <topic>` is a great start.
+
+Share solutions to the **challenges**, not to the labs: lab solutions are already one `git diff` away, while challenges have no reference answer on purpose, so comparing different answers is where the learning is.
+
+Found a bug in a lab or the text, rather than a question? [Open an issue](https://github.com/moatazeldebsy/qa-engineering-deep-dive/issues/new/choose).
+
+## Getting course updates
+
+The course is fixed and improved over time. To bring updates into your fork:
+
+```bash
+git switch main
+git pull upstream main
+git push origin main
+```
+
+Your topic branches keep your work. New topics start from the updated `main` the next time you run `learn:start`.
 
 ## How you're supported
 
 - **An auto-checker per topic** (`npm run learn:check NN`): runs your tests and checks your notes, and tells you what's missing.
-- **Hints, then solutions:** every lab step has folded hints. The reference solutions live on the `solutions` branch: `git diff main origin/solutions -- <path>`.
-- **Quizzes** on each topic, which explain every answer.
-- **Your notebook** (`notebook/NN/`): templates for the thinking work: charters, risk notes, a strategy.
-- **Progress in CI:** on every push, your fork's Actions tab shows a progress table.
-- **Community:** ask questions and share your work in [Discussions](https://github.com/moatazeldebsy/qa-engineering-deep-dive/discussions), one category per topic.
+- **Hints, then solutions:** every lab step has folded hints, and the `solutions` branch has every lab solved.
+- **Quizzes** on each topic, which explain every answer. Your scores and finished pages are saved in your browser.
+- **Your notebook** (`notebook/NN/`): by the end, a portfolio of how you reason about quality.
+- **Progress in CI:** on every push, your fork's Actions tab shows a progress table. You may need to enable Actions on your fork first.
 
 ## The demo app: Quality Books
 

@@ -89,7 +89,7 @@ Turn the first TODO in `platform.test.js` into a real test.
     It's the same middleware you may have written in Topics 4, 9 and 10, now in one place. `err.status` is set by Express for client mistakes; `err.expose` says whether the message is safe to show.
 
 ??? success "Reference solution"
-    On the solutions branch: `git diff main origin/solutions -- platform/express-baseline.mjs`. The error handler is the heart of it:
+    On the solutions branch: `git diff upstream/main upstream/solutions -- platform/express-baseline.mjs`. The error handler is the heart of it:
 
     ```js
     app.use((_req, res) => res.status(404).json({ error: 'not found' }));
