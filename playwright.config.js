@@ -35,6 +35,8 @@ export default defineConfig({
     { name: 'agent-tools', testDir: 'labs/12-ai-in-qa/agent/tests', use: { ...devices['Desktop Chrome'] } },
     { name: 'brittle', testDir: 'labs/05-ui-e2e/brittle', use: { ...devices['Desktop Chrome'] } },
     { name: 'ui-acceptance', testDir: 'labs/05-ui-e2e/acceptance', use: { ...devices['Desktop Chrome'] } },
+    { name: 'a11y', testDir: 'labs/09-security-a11y/a11y', use: { ...devices['Desktop Chrome'] } },
+    { name: 'a11y-acceptance', testDir: 'labs/09-security-a11y/acceptance', testMatch: '*.spec.js', use: { ...devices['Desktop Chrome'] } },
   ],
   // Starts the demo app unless BASE_URL points somewhere else.
   webServer: process.env.BASE_URL

@@ -28,8 +28,11 @@ export class ShopPage {
     await this.search.fill(text);
   }
 
+  // The book's button, found by role and the book's title in its accessible
+  // name, so it keeps working whatever the exact wording around the title is.
   addToCartButton(title) {
-    return this.page.getByRole('button', { name: `Add ${title} to cart` });
+    const escaped = title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return this.page.getByRole('button', { name: new RegExp(escaped) });
   }
 
   async addToCart(title, times = 1) {

@@ -182,7 +182,7 @@ jobs:
           curl -sf localhost:3210/health
           curl -sf localhost:3210/api/orders -H 'content-type: application/json' \
             -d '{"items":[{"bookId":1,"quantity":1}],"paymentToken":"tok_visa","customer":{"email":"ci@example.com"}}'
-          curl -sf localhost:3220/stock/1 | grep -q '"available":11'
+          curl -sf -H "authorization: Bearer local-dev-token" localhost:3220/stock/1 | grep -q '"available":11'
           echo "✔ shop and inventory work together in containers"
 
       - name: Throw it away
