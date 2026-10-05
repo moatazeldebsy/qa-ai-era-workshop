@@ -58,7 +58,6 @@ describe('HTTP behaviour', () => {
   // and is not in the contract.
   test(
     'client mistakes are 4xx, never 500: malformed JSON and oversized bodies',
-    { todo: "real bug: the error handler turns Express's 400 and 413 into 500; Topic 4 lab, step 1" },
     async () => {
       const broken = await post(`${shop.url}/api/cart/price`, '{"items": [', { raw: true });
       assert.equal(broken.status, 400);

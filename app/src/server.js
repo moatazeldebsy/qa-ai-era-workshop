@@ -151,6 +151,11 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
 
   // eslint-disable-next-line no-unused-vars
   app.use((err, _req, res, _next) => {
+    // Express marks the client's mistakes (broken JSON 400, body too large
+    // 413) with err.status; keep those, and say what was wrong.
+    if (err.status >= 400 && err.status < 500) {
+      return res.status(err.status).json({ error: err.type === 'entity.too.large' ? 'request body too large' : 'request body is not valid JSON' });
+    }
     console.error(JSON.stringify({ level: 'error', message: err.message }));
     res.status(500).json({ error: 'internal error' });
   });

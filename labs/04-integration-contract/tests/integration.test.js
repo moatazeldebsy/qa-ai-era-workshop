@@ -58,7 +58,6 @@ describe('shop → inventory', () => {
   // back. Every test with a fake inventory passed; only the real one shows it.
   test(
     'cancelling an order gives its stock back to the inventory service',
-    { todo: 'real bug: the shop and the inventory service disagree about the reservation; Topic 4 lab, step 2' },
     async () => {
       const placed = await placeOrder([{ bookId: 1, quantity: 2 }]);
       assert.equal(await stockOf(1), 10);

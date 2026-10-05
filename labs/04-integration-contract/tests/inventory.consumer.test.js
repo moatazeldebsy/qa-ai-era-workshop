@@ -32,7 +32,7 @@ describe('the shop, as a consumer of the inventory service', () => {
       .withRequest('POST', '/reservations', (req) =>
         req.headers({ 'content-type': 'application/json' }).jsonBody({ lines: [{ bookId: 1, quantity: 2 }] }),
       )
-      .willRespondWith(201, (res) => res.headers({ 'content-type': JSON_TYPE }).jsonBody({ id: like('res-1') }))
+      .willRespondWith(201, (res) => res.headers({ 'content-type': JSON_TYPE }).jsonBody({ reservationId: like('res-1') }))
       .executeTest(async (mock) => {
         const id = await createInventoryClient({ baseUrl: mock.url }).reserve([{ bookId: 1, quantity: 2 }]);
         assert.equal(id, 'res-1');

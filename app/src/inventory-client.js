@@ -38,7 +38,7 @@ export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fe
       }
       if (!res.ok) throw new InventoryError(`inventory service answered ${res.status}`, { status: res.status });
       const body = await res.json();
-      return body.id;
+      return body.reservationId;
     },
 
     async release(reservationId) {
