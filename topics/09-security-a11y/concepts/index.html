@@ -1,0 +1,4432 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.">
+      
+      
+      
+        <link rel="canonical" href="https://moatazeldebsy.github.io/qa-engineering-deep-dive/topics/09-security-a11y/concepts/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Concepts - QA Engineering Deep Dive</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-9-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-header__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QA Engineering Deep Dive
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-nav__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    QA Engineering Deep Dive
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start Here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start Here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How this course works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routes by role
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-foundations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. QA Engineering Foundations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. QA Engineering Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-test-design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Test Design Techniques
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Test Design Techniques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-unit-component/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Unit and Component Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Unit and Component Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-integration-contract/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Integration, API, and Contract Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Integration, API, and Contract Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-ui-e2e/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-ci-cd/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CI/CD and Continuous Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. CI/CD and Continuous Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-env-data/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Test Environments and Test Data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Test Environments and Test Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Performance, Load, and Resilience
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Performance, Load, and Resilience
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-testing-layers-of-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security testing: layers of evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-what-tools-can-and-cant-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility testing: what tools can and can't see
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility-testing-a-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility testing: a matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The OWASP Top 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-security-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Security headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-dependencies-and-supply-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Dependencies and supply chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-abuse-cases-and-business-logic-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Abuse cases and business-logic security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-wcag-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 WCAG in practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-compatibility-dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Compatibility dimensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-security-and-accessibility-checks-around-quality-books" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: security and accessibility checks around Quality Books
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-testing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security testing tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility testing tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Production Quality and Observability
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    10. Production Quality and Observability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-quality-intelligence/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Test Management and Quality Intelligence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    11. Test Management and Quality Intelligence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-ai-in-qa/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. AI in QA Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    12. AI in QA Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-platform/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. QA Platform Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13. QA Platform Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../14-strategy/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Quality Strategy and Leadership
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    14. Quality Strategy and Leadership
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/demo-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/further-reading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Further Reading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/facilitators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For facilitators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-testing-layers-of-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security testing: layers of evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-what-tools-can-and-cant-see" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility testing: what tools can and can't see
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility-testing-a-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility testing: a matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-owasp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 The OWASP Top 10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-security-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Security headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-dependencies-and-supply-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Dependencies and supply chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-abuse-cases-and-business-logic-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Abuse cases and business-logic security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-wcag-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 WCAG in practice
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-compatibility-dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Compatibility dimensions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-security-and-accessibility-checks-around-quality-books" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: security and accessibility checks around Quality Books
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-testing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security testing tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accessibility testing tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compatibility-approaches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compatibility approaches
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Topics
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    9. Security, Accessibility, and Compatibility
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive/edit/main/docs/topics/09-security-a11y/concepts.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="topic-9-concepts">Topic 9 · Concepts<a class="headerlink" href="#topic-9-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="1-what-is-it">1. What is it?<a class="headerlink" href="#1-what-is-it" title="Permanent link">&para;</a></h2>
+<p>Three quality attributes that functional tests rarely cover, and that customers, attackers and regulators notice first:</p>
+<ul>
+<li><strong>Security testing</strong> checks that a system protects <strong>confidentiality</strong> (only the right people see data), <strong>integrity</strong> (only the right changes happen) and <strong>availability</strong> (it keeps working for legitimate users), even against someone actively trying to break it.</li>
+<li><strong>Accessibility (a11y) testing</strong> checks that people with disabilities can perceive, operate and understand the product: with a screen reader, keyboard only, voice control, magnification or high contrast. The standard is <strong>WCAG</strong> (Web Content Accessibility Guidelines), currently version 2.2, levels A, AA and AAA.</li>
+<li><strong>Compatibility testing</strong> checks that the product works across the environments it claims to support: browsers and engines, operating systems, devices, screen sizes, locales, and versions of the APIs and data it exchanges.</li>
+</ul>
+<p>Terms you'll meet:</p>
+<ul>
+<li><strong>Vulnerability:</strong> a weakness that can be exploited. <strong>Threat:</strong> someone or something that might exploit it. <strong>Risk:</strong> likelihood × impact (Topic 1).</li>
+<li><strong>SAST / DAST / SCA:</strong> Static Application Security Testing (analysing source code), Dynamic AST (attacking a running app), Software Composition Analysis (checking third-party dependencies for known vulnerabilities).</li>
+<li><strong>CVE:</strong> a public identifier for a known vulnerability. <strong>CVSS:</strong> a severity score for it.</li>
+<li><strong>Abuse case:</strong> a user story written from an attacker's point of view: <em>"As an attacker, I hold every copy of every book so customers see it sold out."</em></li>
+<li><strong>Accessible name:</strong> what assistive technology announces for an element, computed from its label, text or ARIA attributes.</li>
+</ul>
+<h2 id="2-why-do-we-need-it">2. Why do we need it?<a class="headerlink" href="#2-why-do-we-need-it" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Security failures are expensive and public.</strong> Breaches bring fines, lawsuits, lost customers and executive resignations. Most are not exotic: known-vulnerable dependencies, missing access checks, misconfiguration and leaked secrets top every incident report.</li>
+<li><strong>Functional tests can't see attacks.</strong> They check what the system does for honest users. Security testing asks what it does for a dishonest one: unexpected inputs, missing checks, abuse of legitimate features.</li>
+<li><strong>Accessibility is a large share of your users, and the law.</strong> The WHO estimates about 1.3 billion people (around one in six) live with significant disability. Many countries require accessibility: the European Accessibility Act applies to many products and services sold in the EU from June 2025, and the US ADA is the basis of thousands of lawsuits a year.</li>
+<li><strong>Automated tools find only part of it.</strong> In this topic's lab, the standard axe rules report zero issues, while two real problems remain: buttons whose spoken name doesn't match what they show, and a cart total that changes silently for screen-reader users.</li>
+<li><strong>"It works on my machine" is a compatibility statement.</strong> Users arrive on browsers, devices and languages you didn't test. Topic 5's matrix found WebKit behaving differently in minutes.</li>
+</ul>
+<h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
+<h3 id="security-testing-layers-of-evidence">Security testing: layers of evidence<a class="headerlink" href="#security-testing-layers-of-evidence" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+  TM["Threat modelling&lt;br/&gt;(design: what could go wrong?)"] --&gt; SAST["SAST + secret scanning&lt;br/&gt;(code, every commit)"]
+  SAST --&gt; SCA["SCA&lt;br/&gt;(dependencies, every commit + daily)"]
+  SCA --&gt; UT["Security unit/API tests&lt;br/&gt;(abuse cases, headers, authz)"]
+  UT --&gt; DAST["DAST&lt;br/&gt;(running app: ZAP baseline/active scan)"]
+  DAST --&gt; PT["Penetration testing&lt;br/&gt;(humans, periodically)"]
+  PT --&gt; PROD["Production: WAF, monitoring,&lt;br/&gt;bug bounty, incident response"]
+  PROD -.-&gt;|new threats| TM</code></pre>
+<ul>
+<li><strong>Threat modelling</strong> asks four questions (Adam Shostack): what are we building, what can go wrong, what are we going to do about it, did we do a good job? <strong>STRIDE</strong> is a checklist for the second question: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.</li>
+<li><strong>SAST</strong> parses source code and looks for dangerous patterns and data flows: untrusted input reaching a SQL query, <code>eval</code>, a shell command, or HTML.</li>
+<li><strong>SCA</strong> reads your dependency tree (<code>package-lock.json</code>) and matches every package and version against vulnerability databases (the GitHub Advisory Database, OSV, NVD).</li>
+<li><strong>DAST</strong> crawls and attacks a running application from outside: it sends payloads and checks responses, headers and behaviour.</li>
+<li><strong>Security tests in your own suite</strong> encode specific requirements: <em>this header is set</em>, <em>this endpoint refuses callers without a token</em>, <em>this test-only switch is off</em>.</li>
+</ul>
+<h3 id="accessibility-testing-what-tools-can-and-cant-see">Accessibility testing: what tools can and can't see<a class="headerlink" href="#accessibility-testing-what-tools-can-and-cant-see" title="Permanent link">&para;</a></h3>
+<p>An accessibility checker such as <strong>axe-core</strong> reads the DOM and the <strong>accessibility tree</strong>: the browser's model of roles, names, states and relationships that assistive technology uses. It checks rules that are machine-decidable: missing labels, insufficient colour contrast, invalid ARIA, duplicate IDs.</p>
+<p>Many WCAG success criteria need judgement, though: is the alternative text <em>meaningful</em>, is the focus order <em>logical</em>, does a change get <em>announced</em>, does the visible label match the spoken name in a way a voice user can use? Studies by Deque and others put automated coverage at roughly a third to a half of WCAG issues by count. The rest needs manual testing with a keyboard, a screen reader (NVDA, JAWS, VoiceOver, TalkBack), zoom and voice control, and ideally with disabled users.</p>
+<h3 id="compatibility-testing-a-matrix">Compatibility testing: a matrix<a class="headerlink" href="#compatibility-testing-a-matrix" title="Permanent link">&para;</a></h3>
+<p>Compatibility is a combinatorial problem: browsers × versions × operating systems × devices × locales. Topic 2's pairwise technique, Topic 5's Playwright projects and real usage analytics decide which combinations to test, and device clouds supply the hardware.</p>
+<h2 id="4-main-components-and-concepts">4. Main components and concepts<a class="headerlink" href="#4-main-components-and-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="41-the-owasp-top-10">4.1 The OWASP Top 10<a class="headerlink" href="#41-the-owasp-top-10" title="Permanent link">&para;</a></h3>
+<p>The OWASP Top 10 (2021 edition) is the standard awareness list for web application risks:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Risk</th>
+<th>Example in a shop like Quality Books</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A01</td>
+<td>Broken access control</td>
+<td>Anyone can call the internal inventory API and hold every book</td>
+</tr>
+<tr>
+<td>A02</td>
+<td>Cryptographic failures</td>
+<td>Unkeyed hashes of emails (Topic 7); secrets in plain text</td>
+</tr>
+<tr>
+<td>A03</td>
+<td>Injection (incl. XSS)</td>
+<td>Assistant output rendered as HTML (the shop renders it as text)</td>
+</tr>
+<tr>
+<td>A04</td>
+<td>Insecure design</td>
+<td>Business logic that trusts the client's quantities</td>
+</tr>
+<tr>
+<td>A05</td>
+<td>Security misconfiguration</td>
+<td>Missing security headers; <code>X-Powered-By</code>; test-data API on in production</td>
+</tr>
+<tr>
+<td>A06</td>
+<td>Vulnerable and outdated components</td>
+<td>Known CVEs in dependencies</td>
+</tr>
+<tr>
+<td>A07</td>
+<td>Identification and authentication failures</td>
+<td>Weak sessions; no service-to-service authentication</td>
+</tr>
+<tr>
+<td>A08</td>
+<td>Software and data integrity failures</td>
+<td>Unpinned CI actions; unsigned artefacts (Topic 6)</td>
+</tr>
+<tr>
+<td>A09</td>
+<td>Security logging and monitoring failures</td>
+<td>Attacks nobody notices (Topic 10)</td>
+</tr>
+<tr>
+<td>A10</td>
+<td>Server-side request forgery</td>
+<td>The server fetching URLs supplied by users</td>
+</tr>
+</tbody>
+</table>
+<p>OWASP also publishes a <strong>Top 10 for LLM Applications</strong> (prompt injection, sensitive information disclosure, excessive agency…). The red-team suite in Topic 12 covers it, and Topic 12 goes deeper.</p>
+<h3 id="42-security-headers">4.2 Security headers<a class="headerlink" href="#42-security-headers" title="Permanent link">&para;</a></h3>
+<p>Response headers tell browsers to enforce protections:</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Protects against</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Security-Policy</code></td>
+<td>XSS and injected scripts (<code>default-src 'self'</code>), clickjacking (<code>frame-ancestors 'none'</code>)</td>
+</tr>
+<tr>
+<td><code>X-Content-Type-Options: nosniff</code></td>
+<td>Browsers guessing a file is a script and running it</td>
+</tr>
+<tr>
+<td><code>Referrer-Policy</code></td>
+<td>Leaking full URLs (and anything in them) to other sites</td>
+</tr>
+<tr>
+<td><code>Strict-Transport-Security</code></td>
+<td>Downgrade to plain HTTP (set when served over HTTPS)</td>
+</tr>
+<tr>
+<td><code>Cross-Origin-Opener-Policy</code></td>
+<td>Cross-window attacks</td>
+</tr>
+<tr>
+<td><em>Remove</em> <code>X-Powered-By</code></td>
+<td>Advertising your framework and version to scanners</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-dependencies-and-supply-chain">4.3 Dependencies and supply chain<a class="headerlink" href="#43-dependencies-and-supply-chain" title="Permanent link">&para;</a></h3>
+<p>Modern applications are mostly other people's code: this repo has two production dependencies and hundreds of transitive packages. Managing them well means:</p>
+<ul>
+<li><strong>Triage, don't panic:</strong> severity, whether the vulnerable code is <strong>reachable</strong> (production dependency? the vulnerable function used?), and what the fix costs. <code>npm audit</code>'s suggested "fix" can be a breaking <em>downgrade</em>: read before running.</li>
+<li><strong>Separate production from development:</strong> a vulnerability in a test tool doesn't ship to customers, though it still runs on developer machines and CI.</li>
+<li><strong>Automate updates</strong> (Dependabot, Renovate) so fixes arrive as small, reviewable pull requests.</li>
+<li><strong>Lock and verify:</strong> lock files, <code>npm ci</code>, pinned actions, signed artefacts, an SBOM (software bill of materials).</li>
+</ul>
+<h3 id="44-abuse-cases-and-business-logic-security">4.4 Abuse cases and business-logic security<a class="headerlink" href="#44-abuse-cases-and-business-logic-security" title="Permanent link">&para;</a></h3>
+<p>Scanners find known <em>patterns</em>. They can't know that holding stock is valuable, or that a coupon shouldn't stack. <strong>Abuse cases</strong> come from thinking like an attacker about <em>your</em> domain:</p>
+<ul>
+<li><em>"As an attacker, I reserve every book repeatedly, so real customers see everything sold out."</em></li>
+<li><em>"As a customer, I replay the refund request to be refunded twice."</em></li>
+<li><em>"As a bot, I ask the AI assistant thousands of questions to run up your model bill."</em></li>
+</ul>
+<p>Each becomes a test, like any requirement. Internal APIs deserve the same scrutiny: <strong>zero trust</strong> means every service authenticates its callers, because "only our services can reach it" stops being true the day a port is published, a container is compromised or a network rule changes.</p>
+<h3 id="45-wcag-in-practice">4.5 WCAG in practice<a class="headerlink" href="#45-wcag-in-practice" title="Permanent link">&para;</a></h3>
+<p>WCAG 2.2 is organised around four principles, <strong>POUR</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Means</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Perceivable</strong></td>
+<td>Users can perceive the content</td>
+<td>Text alternatives, captions, contrast, content that reflows at 400% zoom</td>
+</tr>
+<tr>
+<td><strong>Operable</strong></td>
+<td>Users can operate the interface</td>
+<td>Everything works by keyboard, visible focus, enough time, no seizure triggers</td>
+</tr>
+<tr>
+<td><strong>Understandable</strong></td>
+<td>Users can understand it</td>
+<td>Clear labels and errors, predictable behaviour, consistent navigation</td>
+</tr>
+<tr>
+<td><strong>Robust</strong></td>
+<td>It works with assistive technology</td>
+<td>Valid roles, names and states; status messages announced</td>
+</tr>
+</tbody>
+</table>
+<p>Two criteria matter in this lab:</p>
+<ul>
+<li><strong>2.5.3 Label in Name (A):</strong> an element's accessible name contains the text it shows. A voice-control user says "click Add to cart"; if the button's name is "Add Testing in Production to cart", the command doesn't match.</li>
+<li><strong>4.1.3 Status Messages (AA):</strong> important changes that don't move focus, such as a new cart total, are announced (a live region or <code>role="status"</code>).</li>
+</ul>
+<p>The <strong>first rule of ARIA</strong>: don't use ARIA if a native HTML element does the job. A <code>&lt;button&gt;</code> is focusable, operable and announced correctly for free.</p>
+<h3 id="46-compatibility-dimensions">4.6 Compatibility dimensions<a class="headerlink" href="#46-compatibility-dimensions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>What differs</th>
+<th>How to cover it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Browser engine</td>
+<td>Rendering, focus, APIs (Chromium, Gecko, WebKit)</td>
+<td>Playwright projects; real-browser clouds</td>
+</tr>
+<tr>
+<td>Device</td>
+<td>Viewport, touch, performance, memory</td>
+<td>Emulation for layout; real devices for performance and touch</td>
+</tr>
+<tr>
+<td>Operating system</td>
+<td>Fonts, keyboard behaviour, system settings</td>
+<td>Cloud runners; visual baselines per OS</td>
+</tr>
+<tr>
+<td>Locale</td>
+<td>Text length, formats, right-to-left</td>
+<td>Pseudo-localisation; <code>ar-EG</code> and <code>de-DE</code> in the matrix</td>
+</tr>
+<tr>
+<td>Assistive technology</td>
+<td>Screen readers and browsers combine differently</td>
+<td>Manual testing of key journeys per supported pair</td>
+</tr>
+<tr>
+<td>API and data versions</td>
+<td>Older clients, older data</td>
+<td>Contracts (Topic 4); backward-compatibility tests</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-architecture-security-and-accessibility-checks-around-quality-books">5. Architecture: security and accessibility checks around Quality Books<a class="headerlink" href="#5-architecture-security-and-accessibility-checks-around-quality-books" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  subgraph CI["Every commit"]
+    AUD["sec:audit&lt;br/&gt;npm audit triage: prod vs dev"]
+    SEC["sec:test&lt;br/&gt;headers · test-data API off · service token"]
+    A11Y["a11y:test&lt;br/&gt;axe WCAG 2.2 · label-in-name · live region"]
+    RT["eval:redteam&lt;br/&gt;LLM attacks (Topic 12)"]
+  end
+  subgraph Periodic["Periodically"]
+    DAST["ZAP baseline / active scan"]
+    MAN["Manual a11y: keyboard, screen reader, zoom, voice"]
+    PEN["Penetration test, threat-model review"]
+  end
+  SHOP["Shop"] --&gt;|Bearer token| INV["Inventory (internal)"]
+  ATT(["Attacker"]) -. "no token → 401" .-&gt; INV
+  CI --&gt; SHOP
+  Periodic --&gt; SHOP</code></pre>
+<h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Connection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Risk (Topic 1)</strong></td>
+<td>Threat modelling is risk analysis with an adversary; security risks belong in the same register</td>
+</tr>
+<tr>
+<td><strong>Test design (Topic 2)</strong></td>
+<td>Invalid partitions and boundaries are where injection and abuse live</td>
+</tr>
+<tr>
+<td><strong>Contracts (Topic 4)</strong></td>
+<td>Status codes, error formats and authentication are part of an API's contract</td>
+</tr>
+<tr>
+<td><strong>E2E (Topic 5)</strong></td>
+<td>Role-based locators double as accessibility checks; the browser matrix is compatibility testing</td>
+</tr>
+<tr>
+<td><strong>CI/CD (Topic 6)</strong></td>
+<td>SAST, SCA, secret scanning and a11y checks as pipeline stages; pinned actions; least privilege</td>
+</tr>
+<tr>
+<td><strong>Test data (Topic 7)</strong></td>
+<td>Synthetic data and masking are privacy controls; test-data APIs are attack surfaces</td>
+</tr>
+<tr>
+<td><strong>Performance (Topic 8)</strong></td>
+<td>Availability is a security property: timeouts, limits, bounded resources</td>
+</tr>
+<tr>
+<td><strong>Observability (Topic 10)</strong></td>
+<td>Security monitoring and audit logs detect what tests missed</td>
+</tr>
+<tr>
+<td><strong>AI (Topic 12)</strong></td>
+<td>Prompt injection, data leakage and cost abuse are the new attack surface</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-real-world-examples">7. Real-world examples<a class="headerlink" href="#7-real-world-examples" title="Permanent link">&para;</a></h2>
+<p><strong>1. An internal API anyone could use (this repo).</strong> The inventory service trusts every caller. <code>compose.yaml</code> publishes its port, so anyone who can reach it can reserve every copy of every book every 15 minutes and keep the shop permanently "sold out", without touching the shop. No scanner reports it: it's a business-logic abuse case. A service token, checked in constant time, closes it.</p>
+<p><strong>2. Headers nobody set (this repo).</strong> <code>curl -I</code> shows <code>X-Powered-By: Express</code> and no <code>Content-Security-Policy</code>, <code>nosniff</code> or frame protection. Each is a one-line fix. Fixing them also exposed a subtlety: Express's built-in 404 page sets its <em>own</em> security policy, so unknown routes need the shop's own handler for the shop's headers to apply.</p>
+<p><strong>3. Zero violations, two barriers (this repo).</strong> axe's standard WCAG rules pass. Its experimental <code>label-content-name-mismatch</code> rule flags all six book buttons: they show "Add to cart" or "Out of stock" but are named "Add <em>title</em> to cart". So a voice-control user can't say what they see, and a screen-reader user hears "Add The Pragmatic Tester to cart" on a book that's sold out. Separately, the cart total changes without being announced. And one Topic 5 test had quietly depended on the misleading name.</p>
+<p><strong>4. Dependencies in the news.</strong> Equifax's 2017 breach (about 147 million people) came through a known Apache Struts vulnerability that had a patch available months earlier. Log4Shell (2021) showed how one transitive dependency can expose much of the industry overnight. And the 2024 xz-utils backdoor showed attackers targeting the open-source supply chain itself, caught by an engineer who noticed a half-second slowdown in SSH logins.</p>
+<p><strong>5. Accessibility lawsuits.</strong> In <em>Robles v. Domino's Pizza</em> (2019), the US Supreme Court declined to review a ruling that the ADA applied to Domino's website and app. Thousands of digital accessibility lawsuits are filed each year in the US, and the European Accessibility Act now brings legal requirements across the EU.</p>
+<h2 id="8-scaling-across-applications-and-teams">8. Scaling across applications and teams<a class="headerlink" href="#8-scaling-across-applications-and-teams" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>What works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Too many security findings to handle</td>
+<td>Triage by reachability and production exposure; a policy (fail on production ≥ moderate); exceptions with an owner, a reason and an expiry date</td>
+</tr>
+<tr>
+<td>Security knowledge concentrated in one team</td>
+<td><strong>Security champions</strong> in each team; shared threat-modelling templates; secure defaults in templates (Topic 13)</td>
+</tr>
+<tr>
+<td>Every service hardens itself differently</td>
+<td>Shared middleware or a gateway that sets headers and authentication; platform defaults</td>
+</tr>
+<tr>
+<td>Accessibility treated as a final audit</td>
+<td>A design system with accessible components; a11y checks in CI; manual audits of key journeys per release</td>
+</tr>
+<tr>
+<td>Compatibility matrix explodes</td>
+<td>Usage analytics decide support tiers; pairwise for the rest; device clouds for real hardware</td>
+</tr>
+<tr>
+<td>Pen tests find the same issues every year</td>
+<td>Turn every finding into an automated regression test</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-security-and-data-privacy">9. Security and data privacy<a class="headerlink" href="#9-security-and-data-privacy" title="Permanent link">&para;</a></h2>
+<p>This whole topic is about security, so a few points about <strong>testing safely</strong>:</p>
+<ul>
+<li><strong>Only test what you're authorised to test.</strong> Scanning or attacking systems without written permission is illegal in many countries, even "just to check". Third-party services need their owners' agreement and usually a sandbox.</li>
+<li><strong>Keep tests safe in production.</strong> DAST active scans can create data, send emails and trigger alarms. Run them against test environments, or use passive (baseline) scans in production.</li>
+<li><strong>Findings are sensitive.</strong> Vulnerability reports, scan outputs and pen-test results are a map for attackers. Restrict access and fix before publishing.</li>
+<li><strong>Secrets in tests:</strong> use dedicated test credentials with minimal rights; never commit them; scan for them (gitleaks, GitHub secret scanning).</li>
+<li><strong>Accessibility and privacy meet</strong> in assistive technology: never detect or record that a visitor uses a screen reader. It's sensitive health-related information.</li>
+</ul>
+<h2 id="10-performance-maintenance-and-cost">10. Performance, maintenance, and cost<a class="headerlink" href="#10-performance-maintenance-and-cost" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Speed</strong></td>
+<td>Header, auth and abuse-case tests run in milliseconds; axe scans a page in about a second; SCA in seconds; DAST active scans in minutes to hours, so they belong nightly</td>
+</tr>
+<tr>
+<td><strong>Noise</strong></td>
+<td>SAST and SCA produce false positives and unreachable findings. Tune rules and record decisions, or people stop reading the reports</td>
+</tr>
+<tr>
+<td><strong>Upkeep</strong></td>
+<td>Advisories appear daily, so a dependency check that passed yesterday can fail today. Keep time-dependent checks out of the tests that teach (this course reports them instead of gating on them)</td>
+</tr>
+<tr>
+<td><strong>Accessibility cost</strong></td>
+<td>Cheap when built into components from the start; expensive when retrofitted</td>
+</tr>
+<tr>
+<td><strong>Compatibility cost</strong></td>
+<td>Each extra browser or device multiplies the run time; choose with data</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-common-problems-and-failure-scenarios">11. Common problems and failure scenarios<a class="headerlink" href="#11-common-problems-and-failure-scenarios" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Internal, so safe"</strong></td>
+<td>Unauthenticated service APIs</td>
+<td>Authenticate every caller; network policies as a second layer</td>
+</tr>
+<tr>
+<td><strong>Scanner = security</strong></td>
+<td>Clean scans, exploitable logic</td>
+<td>Abuse cases and threat modelling for your domain</td>
+</tr>
+<tr>
+<td><strong>Audit panic</strong></td>
+<td><code>npm audit fix --force</code> breaks the build</td>
+<td>Triage first; read the fix</td>
+</tr>
+<tr>
+<td><strong>Findings ignored forever</strong></td>
+<td>Same CVEs for a year</td>
+<td>Policy with expiry dates; automated update PRs</td>
+</tr>
+<tr>
+<td><strong>"axe passes, so we're accessible"</strong></td>
+<td>Real users still blocked</td>
+<td>Manual testing with a keyboard, screen readers and voice; experimental rules where useful</td>
+</tr>
+<tr>
+<td><strong>ARIA overuse</strong></td>
+<td>Worse accessibility than plain HTML</td>
+<td>Native elements first</td>
+</tr>
+<tr>
+<td><strong>Tests depend on a11y bugs</strong></td>
+<td>Fixing a label breaks the suite</td>
+<td>Locate by role and meaningful name parts, not exact strings</td>
+</tr>
+<tr>
+<td><strong>Headers only on some responses</strong></td>
+<td>Static files or 404s unprotected</td>
+<td>Test every kind of response, including errors</td>
+</tr>
+<tr>
+<td><strong>Compatibility by assumption</strong></td>
+<td>Breaks on Safari or in right-to-left languages</td>
+<td>A data-driven matrix; pseudo-localisation</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-important-trade-offs">12. Important trade-offs<a class="headerlink" href="#12-important-trade-offs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Security vs usability.</strong> Stricter policies, shorter sessions and more checks frustrate users. Choose controls that are strong <em>and</em> invisible where possible (a CSP that the page never notices).</li>
+<li><strong>Shift-left vs depth.</strong> Fast checks in every pipeline catch common issues; deep tests (pen tests, manual audits) find what automation can't, but rarely.</li>
+<li><strong>Fail the build vs report.</strong> Gating on findings forces action and can block releases on noise or on yesterday's new advisory. Gate on high-confidence, high-impact checks; report the rest with owners.</li>
+<li><strong>Automated vs manual accessibility testing.</strong> Automation is cheap and consistent but covers part of WCAG; manual testing covers the rest and needs skill and time.</li>
+<li><strong>Breadth vs cost of compatibility.</strong> Every supported platform is a promise. Support tiers make the promise explicit.</li>
+</ul>
+<h2 id="13-comparisons">13. Comparisons<a class="headerlink" href="#13-comparisons" title="Permanent link">&para;</a></h2>
+<h3 id="security-testing-tools">Security testing tools<a class="headerlink" href="#security-testing-tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Tools</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SCA</td>
+<td><code>npm audit</code> (this lab), Dependabot, Snyk, OSV-Scanner, Trivy</td>
+<td>Trivy also scans container images and IaC</td>
+</tr>
+<tr>
+<td>SAST</td>
+<td>Semgrep, CodeQL, SonarQube, ESLint security plugins</td>
+<td>Semgrep rules are readable and easy to customise; CodeQL runs on GitHub</td>
+</tr>
+<tr>
+<td>Secrets</td>
+<td>gitleaks, TruffleHog, GitHub secret scanning</td>
+<td>Run before commit and in CI</td>
+</tr>
+<tr>
+<td>DAST</td>
+<td>OWASP ZAP (baseline and active scans), Burp Suite, Nuclei</td>
+<td>ZAP's baseline scan is passive and CI-friendly</td>
+</tr>
+<tr>
+<td>IaC / config</td>
+<td>Checkov, tfsec, Trivy</td>
+<td>Infrastructure misconfiguration</td>
+</tr>
+<tr>
+<td>LLM</td>
+<td>promptfoo red team (Topic 12), garak</td>
+<td>Prompt injection, leakage, jailbreaks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="accessibility-testing-tools">Accessibility testing tools<a class="headerlink" href="#accessibility-testing-tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What it does</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>axe-core / @axe-core/playwright (this lab)</td>
+<td>Rule engine in tests and browsers; standard and experimental rules</td>
+<td>Covers part of WCAG</td>
+</tr>
+<tr>
+<td>Lighthouse</td>
+<td>Audit including accessibility (uses axe)</td>
+<td>A score is not compliance</td>
+</tr>
+<tr>
+<td>Pa11y</td>
+<td>CLI and CI runner</td>
+<td>Good for many URLs</td>
+</tr>
+<tr>
+<td>Screen readers (NVDA, JAWS, VoiceOver, TalkBack)</td>
+<td>The real user experience</td>
+<td>Needs practice to use well</td>
+</tr>
+<tr>
+<td>Accessibility Insights, WAVE</td>
+<td>Guided manual checks</td>
+<td>Manual effort</td>
+</tr>
+</tbody>
+</table>
+<h3 id="compatibility-approaches">Compatibility approaches<a class="headerlink" href="#compatibility-approaches" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Coverage</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Playwright projects (Topic 5)</td>
+<td>Three engines, emulated devices and locales</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Real-browser and device clouds (BrowserStack, Sauce Labs, LambdaTest)</td>
+<td>Real browsers, OS versions, phones</td>
+<td>Subscription</td>
+</tr>
+<tr>
+<td>Appium</td>
+<td>Native mobile apps</td>
+<td>Setup and maintenance</td>
+</tr>
+<tr>
+<td>Visual comparison per platform</td>
+<td>Rendering differences</td>
+<td>Baselines per OS</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.path", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/course.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4385 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.">
+      
+      
+      
+        <link rel="canonical" href="https://moatazeldebsy.github.io/qa-engineering-deep-dive/topics/14-strategy/concepts/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Concepts - QA Engineering Deep Dive</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-14-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-header__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QA Engineering Deep Dive
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-nav__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    QA Engineering Deep Dive
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start Here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start Here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How this course works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routes by role
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-foundations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. QA Engineering Foundations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. QA Engineering Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-test-design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Test Design Techniques
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Test Design Techniques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-unit-component/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Unit and Component Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Unit and Component Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-integration-contract/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Integration, API, and Contract Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Integration, API, and Contract Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../05-ui-e2e/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../05-ui-e2e/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-ci-cd/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CI/CD and Continuous Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. CI/CD and Continuous Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-env-data/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Test Environments and Test Data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Test Environments and Test Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Performance, Load, and Resilience
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Performance, Load, and Resilience
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-security-a11y/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Production Quality and Observability
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    10. Production Quality and Observability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-quality-intelligence/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Test Management and Quality Intelligence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    11. Test Management and Quality Intelligence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-ai-in-qa/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. AI in QA Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    12. AI in QA Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-platform/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. QA Platform Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13. QA Platform Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Quality Strategy and Leadership
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    14. Quality Strategy and Leadership
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-strategy-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The strategy loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence-not-opinion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence, not opinion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cost of quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-a-quality-strategy-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What a quality strategy contains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-strategy-frameworks-you-can-borrow-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Strategy frameworks you can borrow from
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-investment-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Investment decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-evolving-qa-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 The evolving QA role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-skills-and-career-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Skills and career paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-culture-the-part-strategy-documents-cant-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Culture: the part strategy documents can't write
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-communicating-quality-to-leadership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Communicating quality to leadership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-governance-and-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Governance and compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-how-the-course-fits-together-as-a-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: how the course fits together as a strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-organise-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to organise quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-communicate-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to communicate quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/demo-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/further-reading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Further Reading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/facilitators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For facilitators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-strategy-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The strategy loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence-not-opinion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence, not opinion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-cost-of-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The cost of quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-a-quality-strategy-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What a quality strategy contains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-strategy-frameworks-you-can-borrow-from" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Strategy frameworks you can borrow from
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-investment-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Investment decisions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-the-evolving-qa-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 The evolving QA role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-skills-and-career-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Skills and career paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-culture-the-part-strategy-documents-cant-write" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Culture: the part strategy documents can't write
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-communicating-quality-to-leadership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Communicating quality to leadership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-governance-and-compliance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Governance and compliance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-how-the-course-fits-together-as-a-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: how the course fits together as a strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-organise-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to organise quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ways-to-communicate-quality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ways to communicate quality
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Topics
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    14. Quality Strategy and Leadership
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive/edit/main/docs/topics/14-strategy/concepts.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="topic-14-concepts">Topic 14 · Concepts<a class="headerlink" href="#topic-14-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="1-what-is-it">1. What is it?<a class="headerlink" href="#1-what-is-it" title="Permanent link">&para;</a></h2>
+<p>A <strong>quality strategy</strong> is a small set of decisions about how a product or an organisation will achieve the quality its users need: which risks matter most, what evidence will show they're under control, where testing effort and money go, who owns what, and how progress is reviewed. <strong>Engineering leadership</strong> in quality is the work of making that strategy real: through people, culture, priorities and communication, not only through tests.</p>
+<p>Some terms that are often confused:</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Scope</th>
+<th>Answers</th>
+<th>Lifetime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quality strategy</strong></td>
+<td>Organisation or product</td>
+<td>What quality means here, which risks matter, where we invest, who owns it</td>
+<td>Reviewed every 6–12 months</td>
+</tr>
+<tr>
+<td><strong>Test strategy</strong></td>
+<td>Product or system</td>
+<td>How we test: levels, techniques, environments, data, automation, gates</td>
+<td>Evolves with the system</td>
+</tr>
+<tr>
+<td><strong>Test plan</strong></td>
+<td>A release, feature or project</td>
+<td>What exactly we'll test, when, by whom, with what exit criteria</td>
+<td>Short-lived</td>
+</tr>
+<tr>
+<td><strong>Quality policy</strong></td>
+<td>Organisation</td>
+<td>Principles and non-negotiables (for example "no release without passing security checks")</td>
+<td>Long-lived</td>
+</tr>
+</tbody>
+</table>
+<p>A good strategy is short enough to read, specific enough to say no to things, and grounded in evidence.</p>
+<h2 id="2-why-do-we-need-it">2. Why do we need it?<a class="headerlink" href="#2-why-do-we-need-it" title="Permanent link">&para;</a></h2>
+<p>Without a strategy, quality work drifts towards whatever is easiest to count or loudest in the room:</p>
+<ul>
+<li><strong>Effort goes where it's visible, not where the risk is.</strong> Hundreds of UI tests for stable pages; nothing for the payment edge case that costs real money.</li>
+<li><strong>Coverage claims outrun reality.</strong> This course's own risk register said a performance risk was covered by a check that couldn't detect it, and said overselling stock was covered while Topic 2 found it happening.</li>
+<li><strong>Teams optimise locally.</strong> Each team's tests are fine; nobody owns the gaps between them (Topics 4 and 13).</li>
+<li><strong>Leaders can't decide.</strong> "Should we invest in a platform team, or more E2E coverage, or observability?" needs evidence and a frame.</li>
+<li><strong>Quality stays someone else's job.</strong> Without leadership, "QA" becomes a phase and a gate at the end (Topic 1), with all the costs that brings.</li>
+</ul>
+<h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
+<h3 id="the-strategy-loop">The strategy loop<a class="headerlink" href="#the-strategy-loop" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart LR
+  CTX["Context&lt;br/&gt;users · business · constraints · regulation"] --&gt; GOALS["Quality goals&lt;br/&gt;(attributes that matter, measurably)"]
+  GOALS --&gt; RISK["Risks&lt;br/&gt;likelihood × impact (Topic 1)"]
+  RISK --&gt; APPROACH["Approach&lt;br/&gt;levels · techniques · environments · gates"]
+  APPROACH --&gt; INVEST["Investments&lt;br/&gt;people · platform · tools"]
+  INVEST --&gt; EVIDENCE["Evidence&lt;br/&gt;scorecard · metrics · incidents"]
+  EVIDENCE --&gt; REVIEW{{"Review&lt;br/&gt;quarterly"}}
+  REVIEW --&gt;|adjust| GOALS
+  REVIEW --&gt;|"escapes, incidents"| RISK</code></pre>
+<ol>
+<li><strong>Understand the context:</strong> who the users are, what failure costs them and the business, what constraints exist (team size, regulation, legacy).</li>
+<li><strong>Set quality goals</strong> for the attributes that matter most (ISO 25010, Topic 1), each with a measure.</li>
+<li><strong>Rank the risks</strong> and make the ranking explicit.</li>
+<li><strong>Choose the approach:</strong> what's tested at which level, how releases are decided, what happens in production.</li>
+<li><strong>Decide investments:</strong> the few changes that reduce the most risk per unit of effort.</li>
+<li><strong>Collect evidence</strong> continuously (this topic's scorecard).</li>
+<li><strong>Review and adjust</strong> on a cadence, and after significant incidents.</li>
+</ol>
+<h3 id="evidence-not-opinion">Evidence, not opinion<a class="headerlink" href="#evidence-not-opinion" title="Permanent link">&para;</a></h3>
+<p>The scorecard in this topic's lab gathers what the repository can show: the test portfolio's shape, risk traceability and whether the evidence fits each risk, conformance across services, the release gate's thresholds, and production dependency risk. Opinions ("we have good coverage") become claims you can check.</p>
+<h3 id="the-cost-of-quality">The cost of quality<a class="headerlink" href="#the-cost-of-quality" title="Permanent link">&para;</a></h3>
+<p>A classic frame (Juran, Crosby, Feigenbaum) splits the cost of quality into four parts:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Typical lever</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prevention</strong></td>
+<td>Training, design reviews, testable architecture, platforms</td>
+<td>Invest early; cheapest per defect avoided</td>
+</tr>
+<tr>
+<td><strong>Appraisal</strong></td>
+<td>Testing, reviews, audits, monitoring</td>
+<td>Make it fast and targeted</td>
+</tr>
+<tr>
+<td><strong>Internal failure</strong></td>
+<td>Bugs found before release: rework, broken builds, flaky reruns</td>
+<td>Reduce with prevention and fast feedback</td>
+</tr>
+<tr>
+<td><strong>External failure</strong></td>
+<td>Incidents, refunds, support, lost customers, fines</td>
+<td>The most expensive; the one the strategy exists to avoid</td>
+</tr>
+</tbody>
+</table>
+<p>Strategy shifts money from failure towards prevention, and makes appraisal cheaper per unit of confidence.</p>
+<h2 id="4-main-components-and-concepts">4. Main components and concepts<a class="headerlink" href="#4-main-components-and-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="41-what-a-quality-strategy-contains">4.1 What a quality strategy contains<a class="headerlink" href="#41-what-a-quality-strategy-contains" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Context and scope:</strong> the product, its users, what's in and out.</li>
+<li><strong>Quality goals:</strong> the few attributes that matter most, with measures (for example "99% of checkouts under 1 s", "no critical accessibility barrier in the purchase journey").</li>
+<li><strong>Risks:</strong> the top risks, ranked, with their current evidence.</li>
+<li><strong>Approach:</strong> test levels and their purpose, techniques, environments and data, non-functional testing, AI features, production monitoring.</li>
+<li><strong>Release and quality gates:</strong> what evidence a release needs.</li>
+<li><strong>Roles and ownership:</strong> who does what, including platform and enabling teams.</li>
+<li><strong>Investments and roadmap:</strong> what changes, in what order, why.</li>
+<li><strong>Measures and review:</strong> how success is judged, how often the strategy is revisited.</li>
+</ol>
+<h3 id="42-strategy-frameworks-you-can-borrow-from">4.2 Strategy frameworks you can borrow from<a class="headerlink" href="#42-strategy-frameworks-you-can-borrow-from" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Risk-based testing</strong> (Topic 1)</td>
+<td>Ranking where effort goes</td>
+</tr>
+<tr>
+<td><strong>Heuristic Test Strategy Model</strong> (James Bach)</td>
+<td>Thinking broadly: project environment, product elements, quality criteria, techniques</td>
+</tr>
+<tr>
+<td><strong>Agile Testing Quadrants</strong> (Marick; Crispin and Gregory)</td>
+<td>Balancing business-facing and technology-facing, supporting and critiquing tests</td>
+</tr>
+<tr>
+<td><strong>Test pyramid / trophy / honeycomb</strong> (Topic 1)</td>
+<td>The shape of the automated portfolio</td>
+</tr>
+<tr>
+<td><strong>SLOs and error budgets</strong> (Topic 10)</td>
+<td>Agreeing "reliable enough" with product owners</td>
+</tr>
+<tr>
+<td><strong>DORA</strong> (Topic 11)</td>
+<td>Delivery performance as a quality outcome</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-investment-decisions">4.3 Investment decisions<a class="headerlink" href="#43-investment-decisions" title="Permanent link">&para;</a></h3>
+<p>Leaders choose between good options. Make the choice explicit:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Reduces which risks</th>
+<th>Cost</th>
+<th>Evidence it's needed</th>
+<th>How we'll know it worked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(one row per candidate investment)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Prefer investments that remove whole classes of problems (a platform baseline, Topic 13) over ones that catch instances (one more E2E test). Prefer prevention over detection where both are possible. And state what you'll <em>stop</em> doing: every strategy is also a list of things not to do.</p>
+<h3 id="44-the-evolving-qa-role">4.4 The evolving QA role<a class="headerlink" href="#44-the-evolving-qa-role" title="Permanent link">&para;</a></h3>
+<p>The role has moved from <em>executing tests</em> to <em>enabling quality</em>:</p>
+<table>
+<thead>
+<tr>
+<th>From</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A phase at the end</td>
+<td>Quality across the whole lifecycle: shift left (requirements, design) and right (production)</td>
+</tr>
+<tr>
+<td>Testers find bugs</td>
+<td>Teams prevent them; quality engineers design the system that finds the rest</td>
+</tr>
+<tr>
+<td>Manual regression</td>
+<td>Automation at the right level, plus exploratory testing where judgement matters</td>
+</tr>
+<tr>
+<td>Gatekeeper</td>
+<td>Coach, platform builder, risk analyst</td>
+</tr>
+<tr>
+<td>"Bugs found" as output</td>
+<td>Confidence, speed and fewer escapes as outcomes</td>
+</tr>
+<tr>
+<td>Testing what's built</td>
+<td>Shaping what's built: testability, observability, acceptance examples</td>
+</tr>
+</tbody>
+</table>
+<p>AI accelerates this shift: when code and tests are cheap to generate, the scarce skills are judgement, risk analysis, oracles, and knowing what's missing (Topic 12).</p>
+<h3 id="45-skills-and-career-paths">4.5 Skills and career paths<a class="headerlink" href="#45-skills-and-career-paths" title="Permanent link">&para;</a></h3>
+<p>Useful skills for quality engineers now combine:</p>
+<ul>
+<li><strong>Testing craft:</strong> test design, exploratory testing, oracles, risk analysis (Topics 1–2).</li>
+<li><strong>Engineering:</strong> code, automation at every level, CI/CD, infrastructure (Topics 3–8).</li>
+<li><strong>Systems thinking:</strong> architecture, distributed systems, production (Topics 4, 10, 13).</li>
+<li><strong>Specialisms:</strong> performance, security, accessibility, AI evaluation (Topics 8, 9, 12).</li>
+<li><strong>Data literacy:</strong> metrics, statistics, avoiding misleading numbers (Topic 11).</li>
+<li><strong>Influence:</strong> communication, facilitation, coaching, writing.</li>
+</ul>
+<p>Organisations organise these differently: embedded quality engineers in teams, SDETs, enabling QA teams, platform teams, or developers who own testing with coaching support. Microsoft's 2014 move to "combined engineering" (merging separate test and development roles) is a well-known example of a shift towards whole-team ownership.</p>
+<h3 id="46-culture-the-part-strategy-documents-cant-write">4.6 Culture: the part strategy documents can't write<a class="headerlink" href="#46-culture-the-part-strategy-documents-cant-write" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Whole-team ownership:</strong> quality is everyone's job; QA makes it easier, not optional.</li>
+<li><strong>Psychological safety:</strong> people report problems, flaky tests and near-misses without fear. Google's Project Aristotle found it was the strongest predictor of team effectiveness.</li>
+<li><strong>Generative culture:</strong> Ron Westrum's typology (pathological, bureaucratic, generative) predicts how information flows. DORA found generative cultures correlate with better delivery and organisational performance.</li>
+<li><strong>Blameless learning:</strong> incidents and escaped defects become system improvements, not blame (Topic 10).</li>
+<li><strong>Stop the line:</strong> like Toyota's andon cord, anyone can stop a release for a quality concern, and is thanked for it.</li>
+<li><strong>Leaders model it:</strong> what leaders ask about in reviews ("how do we know this works?") is what teams optimise for.</li>
+</ul>
+<h3 id="47-communicating-quality-to-leadership">4.7 Communicating quality to leadership<a class="headerlink" href="#47-communicating-quality-to-leadership" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Lead with outcomes and risks in business terms:</strong> "customers can be charged shipping they shouldn't pay", not "3 tests failed".</li>
+<li><strong>Few numbers, with definitions and trends</strong> (Topic 11).</li>
+<li><strong>Ask for a decision:</strong> what you need, what it costs, what it buys.</li>
+<li><strong>Be honest about uncertainty:</strong> what you don't know is part of the picture.</li>
+<li><strong>Keep it short:</strong> a one-page update beats a fifty-slide deck.</li>
+</ul>
+<h3 id="48-governance-and-compliance">4.8 Governance and compliance<a class="headerlink" href="#48-governance-and-compliance" title="Permanent link">&para;</a></h3>
+<p>Regulated domains (finance, health, automotive, aviation, government) add requirements: traceability from requirements to tests, documented validation, audit trails, standards such as ISO 13485, IEC 62304, DO-178C, or SOC 2 controls. Good strategy meets them with the same automation (traceable tests, gates, evidence stores) rather than parallel paperwork.</p>
+<h2 id="5-architecture-how-the-course-fits-together-as-a-strategy">5. Architecture: how the course fits together as a strategy<a class="headerlink" href="#5-architecture-how-the-course-fits-together-as-a-strategy" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  CTX["Context &amp; goals&lt;br/&gt;Topic 1: quality attributes, risks"] --&gt; DESIGN["Design the checks&lt;br/&gt;Topic 2: techniques"]
+  DESIGN --&gt; LEVELS["At the right level&lt;br/&gt;3 unit · 4 API &amp; contract · 5 E2E"]
+  LEVELS --&gt; PIPE["In the pipeline&lt;br/&gt;6 CI/CD &amp; gates · 7 environments &amp; data"]
+  PIPE --&gt; NFR["Beyond function&lt;br/&gt;8 performance · 9 security, a11y, compat · 12 AI"]
+  NFR --&gt; PROD["In production&lt;br/&gt;10 observability &amp; SLOs"]
+  PROD --&gt; INTEL["Turned into decisions&lt;br/&gt;11 quality intelligence"]
+  INTEL --&gt; SCALE["At scale&lt;br/&gt;13 platform"]
+  SCALE --&gt; STRAT{{"14 Strategy &amp; leadership&lt;br/&gt;evidence → priorities → investment → review"}}
+  STRAT -.-&gt; CTX</code></pre>
+<h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
+<p>Strategy connects <em>everything</em>: every earlier topic supplies one kind of evidence or one lever.</p>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Supplies</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 Foundations</td>
+<td>Quality attributes, the risk register, oracles</td>
+</tr>
+<tr>
+<td>2–5 Test design and levels</td>
+<td>The portfolio's shape and strength (mutation scores)</td>
+</tr>
+<tr>
+<td>6 CI/CD</td>
+<td>Release gates, feedback time</td>
+</tr>
+<tr>
+<td>7 Environments and data</td>
+<td>Feasibility and privacy constraints</td>
+</tr>
+<tr>
+<td>8–9 Non-functional</td>
+<td>Performance, security, accessibility, compatibility evidence</td>
+</tr>
+<tr>
+<td>10 Observability</td>
+<td>SLOs, incidents, MTTD and MTTR</td>
+</tr>
+<tr>
+<td>11 Quality intelligence</td>
+<td>Metrics, trends, flakiness, escapes</td>
+</tr>
+<tr>
+<td>12 AI</td>
+<td>New risks and new tools</td>
+</tr>
+<tr>
+<td>13 Platform</td>
+<td>The main lever for scaling quality</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-real-world-examples">7. Real-world examples<a class="headerlink" href="#7-real-world-examples" title="Permanent link">&para;</a></h2>
+<p><strong>1. Covered on paper, failing in practice (this repo).</strong> The Topic 1 risk register, written for this course, said every must-cover risk was traced to a real check. The Topic 14 scorecard shows two problems with that claim. R6 (pricing slows down) was traced to a check of the status code, which can't detect slowness. R4 (overselling stock) was traced to a UI test of one error message, while Topic 2 found customers could oversell through duplicate cart lines. The register's <em>existence</em> gave a false sense of coverage. A strategy has to check the <em>fit</em> of evidence, not just its presence.</p>
+<p><strong>2. The gate that ignores the top risk (this repo).</strong> The highest-scored risk in the register (R2, 16: the assistant invents prices) is checked by the LLM eval suite, yet the release gate marks that evidence as optional. A release can ship without any evidence about the riskiest part of the product. That's a strategic misalignment between the risk ranking and the release rules, and it's invisible until someone puts the two side by side.</p>
+<p><strong>3. Microsoft's combined engineering (2014).</strong> Microsoft reorganised many teams to merge separate developer and tester roles into combined engineering roles, so developers owned testing with the help of quality specialists. It's often cited as a turning point in the industry's move from separate QA phases to whole-team quality.</p>
+<p><strong>4. Google's Project Aristotle.</strong> Google studied what made its teams effective and found psychological safety mattered most: teams where people felt safe to take risks and admit mistakes performed better. For quality, it means people report flaky tests, near-misses and doubts early.</p>
+<p><strong>5. Toyota's andon cord.</strong> On Toyota production lines, any worker can pull a cord to stop the line when they see a defect, and is thanked for it. The software equivalents (anyone can block a release, any red build stops merging) only work when leadership backs them.</p>
+<h2 id="8-scaling-across-applications-and-teams">8. Scaling across applications and teams<a class="headerlink" href="#8-scaling-across-applications-and-teams" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Strategy looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One team, one product</td>
+<td>A one-page test strategy in the repo, reviewed quarterly</td>
+</tr>
+<tr>
+<td>A product with several teams</td>
+<td>A shared product quality strategy; team-level test strategies; shared gates and SLOs</td>
+</tr>
+<tr>
+<td>An organisation</td>
+<td>A quality policy (non-negotiables), platform investment, communities of practice, portfolio-level risk and metrics</td>
+</tr>
+</tbody>
+</table>
+<p>Principles that scale: decide centrally what must be consistent (security, gates, standards), decentralise how teams meet it, make the paved road easy (Topic 13), and review with evidence rather than status reports.</p>
+<h2 id="9-security-and-data-privacy">9. Security and data privacy<a class="headerlink" href="#9-security-and-data-privacy" title="Permanent link">&para;</a></h2>
+<p>Strategy is where security and privacy become explicit priorities rather than afterthoughts:</p>
+<ul>
+<li><strong>Non-negotiables in the quality policy:</strong> no known high-severity production vulnerabilities, no personal data in test environments, security checks in every pipeline.</li>
+<li><strong>Ownership:</strong> who decides on accepted risks and exceptions, with an expiry date.</li>
+<li><strong>Regulation as a constraint:</strong> GDPR, the EU AI Act, accessibility law and sector rules shape the approach.</li>
+<li><strong>Evidence for auditors</strong> comes from the same pipelines as everything else.</li>
+</ul>
+<h2 id="10-performance-maintenance-and-cost">10. Performance, maintenance, and cost<a class="headerlink" href="#10-performance-maintenance-and-cost" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Strategy upkeep</strong></td>
+<td>Short documents, reviewed on a cadence, are maintained; long ones are not</td>
+</tr>
+<tr>
+<td><strong>Cost of evidence</strong></td>
+<td>Automate evidence collection (scorecards, dashboards) so reviews take an hour, not a week</td>
+</tr>
+<tr>
+<td><strong>Cost of change</strong></td>
+<td>Sequence investments; finish one before starting the next</td>
+</tr>
+<tr>
+<td><strong>Return on investment</strong></td>
+<td>Track the outcome measures you named when you asked for the investment</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-common-problems-and-failure-scenarios">11. Common problems and failure scenarios<a class="headerlink" href="#11-common-problems-and-failure-scenarios" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The shelf document</strong></td>
+<td>A long strategy nobody reads</td>
+<td>One or two pages, in the repo, reviewed quarterly</td>
+</tr>
+<tr>
+<td><strong>Strategy without evidence</strong></td>
+<td>Opinions and anecdotes drive priorities</td>
+<td>A scorecard; metrics with definitions</td>
+</tr>
+<tr>
+<td><strong>Coverage theatre</strong></td>
+<td>"Covered" risks still cause incidents</td>
+<td>Check the fit of evidence to risk, and test the tests</td>
+</tr>
+<tr>
+<td><strong>Misaligned gates</strong></td>
+<td>Top risks not required for release</td>
+<td>Derive gate rules from the risk ranking</td>
+</tr>
+<tr>
+<td><strong>Everything is a priority</strong></td>
+<td>Nothing improves</td>
+<td>Three investments at a time; a stop list</td>
+</tr>
+<tr>
+<td><strong>QA as a separate tribe</strong></td>
+<td>Throw-it-over-the-wall, slow feedback</td>
+<td>Whole-team ownership; QA as coaches and platform builders</td>
+</tr>
+<tr>
+<td><strong>Metrics as performance targets</strong></td>
+<td>Gaming (Topic 11)</td>
+<td>Learning metrics; team-level outcomes</td>
+</tr>
+<tr>
+<td><strong>No review</strong></td>
+<td>The strategy describes last year</td>
+<td>A cadence, and a review after big incidents</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-important-trade-offs">12. Important trade-offs<a class="headerlink" href="#12-important-trade-offs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Speed vs certainty.</strong> More evidence before release means slower releases; less means more escapes. SLOs, error budgets and progressive delivery let you trade explicitly.</li>
+<li><strong>Central vs team decisions.</strong> Central decisions give consistency; team decisions give fit and ownership.</li>
+<li><strong>Prevention vs detection.</strong> Prevention is cheaper per defect but harder to show; detection produces visible numbers.</li>
+<li><strong>Specialists vs generalists.</strong> Specialists go deep (performance, security, AI); generalists spread practices. Most organisations need both.</li>
+<li><strong>Build vs buy</strong> for tooling and platforms (Topic 13).</li>
+<li><strong>Ambition vs capacity.</strong> A strategy that asks for everything delivers nothing.</li>
+</ul>
+<h2 id="13-comparisons">13. Comparisons<a class="headerlink" href="#13-comparisons" title="Permanent link">&para;</a></h2>
+<h3 id="ways-to-organise-quality">Ways to organise quality<a class="headerlink" href="#ways-to-organise-quality" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Strengths</th>
+<th>Risks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Separate QA team / phase</strong></td>
+<td>Clear ownership, independent view</td>
+<td>Late feedback, bottleneck, "throw it over the wall"</td>
+</tr>
+<tr>
+<td><strong>Embedded quality engineers</strong></td>
+<td>Context, fast feedback</td>
+<td>Inconsistent practices across teams</td>
+</tr>
+<tr>
+<td><strong>Whole-team ownership with coaching</strong></td>
+<td>Developers own tests; QA coaches</td>
+<td>Needs strong engineering culture</td>
+</tr>
+<tr>
+<td><strong>Platform plus enabling team</strong></td>
+<td>Scales practices and infrastructure</td>
+<td>Needs product thinking in the platform team</td>
+</tr>
+<tr>
+<td><strong>Specialist centres</strong> (performance, security, a11y, AI)</td>
+<td>Depth</td>
+<td>Can become bottlenecks</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ways-to-communicate-quality">Ways to communicate quality<a class="headerlink" href="#ways-to-communicate-quality" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A one-page update with a decision</td>
+<td>Leadership</td>
+</tr>
+<tr>
+<td>A scorecard per product or service</td>
+<td>Comparing over time, not ranking teams</td>
+</tr>
+<tr>
+<td>SLO and incident reviews</td>
+<td>Operations and product</td>
+</tr>
+<tr>
+<td>Risk register reviews</td>
+<td>Prioritisation</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>Self-service, if each has a question and an owner</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.path", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/course.js"></script>
+      
+    
+  </body>
+</html>

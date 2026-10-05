@@ -1,0 +1,4413 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A free, self-paced course on quality engineering - back to basics, all the way to leadership. Fourteen topics, hands-on labs you can check, quizzes and a community.">
+      
+      
+      
+        <link rel="canonical" href="https://moatazeldebsy.github.io/qa-engineering-deep-dive/topics/05-ui-e2e/concepts/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../lab/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Concepts - QA Engineering Deep Dive</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#topic-5-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-header__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            QA Engineering Deep Dive
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="QA Engineering Deep Dive" class="md-nav__button md-logo" aria-label="QA Engineering Deep Dive" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
+
+    </a>
+    QA Engineering Deep Dive
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    moatazeldebsy/qa-engineering-deep-dive
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start Here
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Start Here
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/how-it-works/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How this course works
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routes by role
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../start/community/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Community
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Topics
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../01-foundations/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. QA Engineering Foundations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. QA Engineering Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../01-foundations/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../02-test-design/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Test Design Techniques
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Test Design Techniques
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../02-test-design/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../03-unit-component/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Unit and Component Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Unit and Component Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../03-unit-component/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../04-integration-contract/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Integration, API, and Contract Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Integration, API, and Contract Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../04-integration-contract/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. UI, Web, and End-to-End Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-playwright-test-drives-a-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a Playwright test drives a browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-when-you-run-the-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens when you run the suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-to-put-in-an-e2e-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What to put in an E2E suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-locators-from-best-to-worst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Locators: from best to worst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-waiting-the-most-important-habit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Waiting: the most important habit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-page-objects-and-other-abstractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Page objects and other abstractions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-controlling-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Controlling the network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Flaky tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-test-data-and-state-for-e2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Test data and state for E2E
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-cross-browser-device-and-locale-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Cross-browser, device and locale coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-visual-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9 Visual testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-component-tests-in-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.10 Component tests in the browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-the-e2e-suite-around-quality-books" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: the E2E suite around Quality Books
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browser-automation-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser automation tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approaches-to-ui-test-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approaches to UI test maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../06-ci-cd/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. CI/CD and Continuous Testing
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. CI/CD and Continuous Testing
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../06-ci-cd/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../07-env-data/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Test Environments and Test Data
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Test Environments and Test Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../07-env-data/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../08-performance/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Performance, Load, and Resilience
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Performance, Load, and Resilience
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../08-performance/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../09-security-a11y/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    9. Security, Accessibility, and Compatibility
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../09-security-a11y/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-observability/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Production Quality and Observability
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    10. Production Quality and Observability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-observability/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../11-quality-intelligence/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Test Management and Quality Intelligence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    11. Test Management and Quality Intelligence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../11-quality-intelligence/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../12-ai-in-qa/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. AI in QA Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    12. AI in QA Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../12-ai-in-qa/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../13-platform/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. QA Platform Engineering
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    13. QA Platform Engineering
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../13-platform/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../14-strategy/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Quality Strategy and Leadership
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_15" id="__nav_3_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    14. Quality Strategy and Leadership
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/lab/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../14-strategy/quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quiz & wrap-up
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/demo-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Demo App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/further-reading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Further Reading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../reference/facilitators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For facilitators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-why-do-we-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Why do we need it?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-how-does-it-work-internally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. How does it work internally?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. How does it work internally?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-a-playwright-test-drives-a-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How a Playwright test drives a browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-happens-when-you-run-the-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happens when you run the suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-main-components-and-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Main components and concepts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Main components and concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-what-to-put-in-an-e2e-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 What to put in an E2E suite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-locators-from-best-to-worst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Locators: from best to worst
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-waiting-the-most-important-habit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Waiting: the most important habit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-page-objects-and-other-abstractions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Page objects and other abstractions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-controlling-the-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Controlling the network
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-flaky-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Flaky tests
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-test-data-and-state-for-e2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Test data and state for E2E
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-cross-browser-device-and-locale-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Cross-browser, device and locale coverage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#49-visual-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.9 Visual testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#410-component-tests-in-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.10 Component tests in the browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-architecture-the-e2e-suite-around-quality-books" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Architecture: the E2E suite around Quality Books
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-it-connects-with-other-practices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How it connects with other practices
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-real-world-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Real-world examples
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scaling-across-applications-and-teams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Scaling across applications and teams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-security-and-data-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Security and data privacy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-performance-maintenance-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Performance, maintenance, and cost
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-common-problems-and-failure-scenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Common problems and failure scenarios
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-important-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Important trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-comparisons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Comparisons
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#browser-automation-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Browser automation tools
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approaches-to-ui-test-maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approaches to UI test maintenance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Topics
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    5. UI, Web, and End-to-End Testing
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/moatazeldebsy/qa-engineering-deep-dive/edit/main/docs/topics/05-ui-e2e/concepts.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="topic-5-concepts">Topic 5 · Concepts<a class="headerlink" href="#topic-5-concepts" title="Permanent link">&para;</a></h1>
+<h2 id="1-what-is-it">1. What is it?<a class="headerlink" href="#1-what-is-it" title="Permanent link">&para;</a></h2>
+<p><strong>UI testing</strong> checks a product through its user interface. <strong>End-to-end (E2E) testing</strong> checks a complete user journey through the whole system, from the browser through the front end, the APIs and the services behind them, the way a real user would.</p>
+<p>Three terms you'll meet constantly:</p>
+<ul>
+<li><strong>Browser automation:</strong> a program drives a real browser: it opens pages, clicks, types, and reads what's on the screen. Playwright, Cypress, Selenium and WebdriverIO are browser-automation tools with test runners around them.</li>
+<li><strong>Locator:</strong> a description of how to find an element on the page: <em>"the button named Add Testing in Production to cart"</em>. Good locators describe what a user sees, not how the page is built.</li>
+<li><strong>Journey:</strong> a sequence of steps towards a user goal: <em>search, add two books, see free shipping</em>. Many bugs only show up in sequences, not single steps.</li>
+</ul>
+<p>E2E tests sit at the top of the test pyramid (Topic 1). They're the only tests that see what the customer sees, and the slowest, most expensive and most fragile tests you'll write. This topic is about getting their value without paying too much of that price.</p>
+<h2 id="2-why-do-we-need-it">2. Why do we need it?<a class="headerlink" href="#2-why-do-we-need-it" title="Permanent link">&para;</a></h2>
+<p>Everything below the UI can be correct while the product is still broken:</p>
+<ul>
+<li><strong>The wiring.</strong> The front end calls the wrong endpoint, sends the wrong field, or ignores an error. The API tests pass; the customer is stuck.</li>
+<li><strong>Timing.</strong> Real users click fast, networks reorder responses, and pages load in pieces. This topic's lab finds a race where two quick clicks leave the cart showing an old total. No API test can see it.</li>
+<li><strong>State across steps.</strong> After one failed action, does the next one work? The lab's "stuck cart" bug is invisible to every single-step test.</li>
+<li><strong>The browser itself.</strong> Layout, focus, keyboard behaviour and rendering differ between Chromium, Firefox and WebKit, and between phone and desktop screens.</li>
+<li><strong>Accessibility.</strong> Whether a keyboard or screen-reader user can complete a purchase can only be checked in a real page (Topic 9 goes deeper).</li>
+</ul>
+<p>What E2E tests are <strong>not</strong> for: checking every pricing rule or every invalid input. Those belong at lower levels, where they're a thousand times cheaper (Topics 2–4).</p>
+<h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
+<h3 id="how-a-playwright-test-drives-a-browser">How a Playwright test drives a browser<a class="headerlink" href="#how-a-playwright-test-drives-a-browser" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>sequenceDiagram
+  participant T as Test code (Node.js)
+  participant PW as Playwright library
+  participant B as Browser (Chromium / Firefox / WebKit)
+  participant P as Page (your app)
+  T-&gt;&gt;PW: page.getByRole('button', { name: 'Ask' }).click()
+  PW-&gt;&gt;B: protocol message (CDP for Chromium; Playwright's patched protocols for Firefox and WebKit)
+  B-&gt;&gt;P: find element via the locator, in the live DOM
+  Note over PW,P: Actionability checks: attached, visible, stable (not animating), enabled, receives events. Retry until true or timeout.
+  B-&gt;&gt;P: dispatch real input events (mouse down/up, click)
+  T-&gt;&gt;PW: await expect(answer).toHaveText(/34.00/)
+  loop until it matches or the expect timeout expires
+    PW-&gt;&gt;B: read the element's text
+  end
+  PW--&gt;&gt;T: pass, or fail with the last value seen</code></pre>
+<p>Four mechanisms make modern browser tests reliable when used properly:</p>
+<ol>
+<li><strong>Locators are lazy.</strong> <code>page.getByRole(...)</code> doesn't search anything when created. It's resolved <em>every time it's used</em>, against the current page. A locator never goes stale, which was a constant source of flakiness with older element-handle APIs.</li>
+<li><strong>Auto-waiting (actionability).</strong> Before clicking, Playwright waits until the element is attached, visible, stable, enabled and not covered by something else. You don't write waits for those things.</li>
+<li><strong>Web-first assertions retry.</strong> <code>await expect(locator).toHaveText('59.98')</code> re-reads the page until it matches or times out. A one-shot read (<code>const t = await locator.textContent(); expect(t)...</code>) checks once, at whatever moment the code reaches it. That's the root of most flaky UI tests.</li>
+<li><strong>Isolation by browser context.</strong> Each test gets a fresh <strong>browser context</strong>: its own cookies, storage and cache, like a new incognito window. That's cheap (milliseconds), so tests can't leak state into each other.</li>
+</ol>
+<h3 id="what-happens-when-you-run-the-suite">What happens when you run the suite<a class="headerlink" href="#what-happens-when-you-run-the-suite" title="Permanent link">&para;</a></h3>
+<p>The runner starts the app if configured (<code>webServer</code> in <code>playwright.config.js</code>), launches browsers, runs test files in parallel <strong>workers</strong>, and records evidence on failure: screenshots, videos, and a <strong>trace</strong> (a recording of every action, DOM snapshot, network request and console message, viewable in the Trace Viewer).</p>
+<h2 id="4-main-components-and-concepts">4. Main components and concepts<a class="headerlink" href="#4-main-components-and-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="41-what-to-put-in-an-e2e-suite">4.1 What to put in an E2E suite<a class="headerlink" href="#41-what-to-put-in-an-e2e-suite" title="Permanent link">&para;</a></h3>
+<p>Choose E2E tests by <strong>risk to user journeys</strong>, not by feature lists:</p>
+<ul>
+<li>the critical paths that make money or keep customers (search → cart → checkout)</li>
+<li>behaviour that only exists in the browser: rendering, focus, keyboard, timing, client-side state</li>
+<li>integration of the front end with the real back end: a few journeys, not every rule</li>
+</ul>
+<p>Keep each test <strong>independent</strong> (it sets up what it needs), <strong>short</strong> (one journey), and <strong>named for the user goal</strong>.</p>
+<h3 id="42-locators-from-best-to-worst">4.2 Locators: from best to worst<a class="headerlink" href="#42-locators-from-best-to-worst" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Locator</th>
+<th>Example</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Role + accessible name</strong></td>
+<td><code>getByRole('button', { name: 'Add Testing in Production to cart' })</code></td>
+<td>How users and screen readers find things; also tests accessibility</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Label / placeholder / text</strong></td>
+<td><code>getByLabel('Search books')</code></td>
+<td>User-visible; survives restyling</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Test id</strong></td>
+<td><code>getByTestId('subtotal')</code></td>
+<td>Stable and explicit when there's no good user-facing handle</td>
+</tr>
+<tr>
+<td>4</td>
+<td>CSS by id/class</td>
+<td><code>#book-list .title</code></td>
+<td>Coupled to implementation</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Position / structure / XPath</td>
+<td><code>li:nth-child(5) &gt; button</code></td>
+<td>Breaks when anything moves</td>
+</tr>
+</tbody>
+</table>
+<p>A good rule: if the locator wouldn't make sense to a user reading it aloud, it's probably coupled to how the page is built.</p>
+<h3 id="43-waiting-the-most-important-habit">4.3 Waiting: the most important habit<a class="headerlink" href="#43-waiting-the-most-important-habit" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Instead of</th>
+<th>Use</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page.waitForTimeout(1000)</code></td>
+<td>A web-first assertion on the condition you need</td>
+<td>A fixed sleep is too short on a slow day and wastes time on a fast one</td>
+</tr>
+<tr>
+<td><code>expect(await locator.count()).toBe(2)</code></td>
+<td><code>await expect(locator).toHaveCount(2)</code></td>
+<td>The first reads once; the second retries</td>
+</tr>
+<tr>
+<td>Waiting for "network idle"</td>
+<td>Waiting for the UI state that proves the work finished</td>
+<td>Apps poll, stream and prefetch; idle may never come, or come too early</td>
+</tr>
+<tr>
+<td>Guessing when async UI work finished</td>
+<td>Expose it: <code>aria-busy</code>, a loading indicator, a status message</td>
+<td>Better for screen-reader users <em>and</em> for tests (Topic 1: testability)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44-page-objects-and-other-abstractions">4.4 Page objects and other abstractions<a class="headerlink" href="#44-page-objects-and-other-abstractions" title="Permanent link">&para;</a></h3>
+<p>A <strong>page object</strong> wraps a page's locators and actions behind intention-revealing methods (<code>shop.addToCart('Prompting for QA', 2)</code>). Tests read like journeys, and when the page changes you fix one file. Keep page objects thin: locators and actions, <strong>no assertions about business rules</strong> (those belong in tests) and no clever logic.</p>
+<p>Alternatives: <strong>component objects</strong> (one per reusable widget), the <strong>Screenplay</strong> pattern (actors with abilities performing tasks; scales to large suites), and Playwright <strong>fixtures</strong> that hand each test a ready page object or a logged-in user.</p>
+<h3 id="45-controlling-the-network">4.5 Controlling the network<a class="headerlink" href="#45-controlling-the-network" title="Permanent link">&para;</a></h3>
+<p>The browser's network is a test input you can control:</p>
+<ul>
+<li><strong>Stub</strong> a dependency: <code>page.route('**/api/recommendations', r =&gt; r.fulfill({ json: … }))</code> makes a slow or unreliable service instant and deterministic.</li>
+<li><strong>Delay or reorder</strong> responses to reproduce timing bugs on purpose (the lab's race).</li>
+<li><strong>Fail</strong> a request (<code>route.abort()</code>, or a 503) to test error states.</li>
+<li><strong>Observe</strong> requests and responses with <code>page.waitForResponse</code> to assert on what the front end sent.</li>
+</ul>
+<p>The trade-off from Topic 4 applies: every stub is an assumption about the real API. Stub at the edges you don't own, or for timing; use the real back end for the journeys that matter.</p>
+<h3 id="46-flaky-tests">4.6 Flaky tests<a class="headerlink" href="#46-flaky-tests" title="Permanent link">&para;</a></h3>
+<p>A <strong>flaky test</strong> passes and fails on the same code. Google reported in 2016 that about 1.5% of all its test runs were flaky, and almost 16% of its tests had shown some flakiness. The common causes:</p>
+<table>
+<thead>
+<tr>
+<th>Cause</th>
+<th>Example</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Timing</strong></td>
+<td>Sleeping 700 ms for a 200–1500 ms response</td>
+<td>Web-first assertions; expose state; control the network</td>
+</tr>
+<tr>
+<td><strong>Ordering / shared state</strong></td>
+<td>Test B relies on data test A created</td>
+<td>Each test creates its own data; fresh browser context</td>
+</tr>
+<tr>
+<td><strong>Test data collisions</strong></td>
+<td>Two parallel tests buy the last copy of a book</td>
+<td>Unique data per test; reset or isolate state</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>Fonts, time zones, screen size, CPU load in CI</td>
+<td>Pin them in config; run the same container locally and in CI</td>
+</tr>
+<tr>
+<td><strong>Animations</strong></td>
+<td>Clicking an element that's still moving</td>
+<td>Actionability checks; disable animations in tests</td>
+</tr>
+<tr>
+<td><strong>Third parties</strong></td>
+<td>Analytics, maps, payment widgets</td>
+<td>Stub them at the network</td>
+</tr>
+<tr>
+<td><strong>The product itself</strong></td>
+<td>A real race condition in the app</td>
+<td>Not a test problem: a bug the test found (the lab's race test began as "flaky")</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Retries hide flakiness; they don't fix it.</strong> Use at most one retry in CI, report tests that needed it as <em>flaky</em> (Playwright's report does), and fix or quarantine them within days. A suite people don't trust gets ignored, including when it's right.</p>
+<h3 id="47-test-data-and-state-for-e2e">4.7 Test data and state for E2E<a class="headerlink" href="#47-test-data-and-state-for-e2e" title="Permanent link">&para;</a></h3>
+<p>Setting up state through the UI is slow and fragile. Prefer:</p>
+<ul>
+<li><strong>API setup:</strong> create the user, the cart or the order through the API, then test the one journey that matters through the UI.</li>
+<li><strong>Storage state:</strong> log in once, save cookies and storage to a file, and start every test already authenticated.</li>
+<li><strong>Isolation:</strong> unique data per test, so parallel workers don't fight over the same book.</li>
+</ul>
+<p>Topic 7 covers test data management in depth.</p>
+<h3 id="48-cross-browser-device-and-locale-coverage">4.8 Cross-browser, device and locale coverage<a class="headerlink" href="#48-cross-browser-device-and-locale-coverage" title="Permanent link">&para;</a></h3>
+<p>Browsers differ in rendering, focus behaviour, date and number formatting, and supported features. Phones differ in viewport, touch and performance. Locales differ in text length, number formats and writing direction (<code>ar-EG</code> is right-to-left).</p>
+<p>You can't run every test everywhere. Topic 2's <strong>pairwise</strong> technique picks configurations so every pair of (browser, viewport, locale) values is covered: 10 Playwright projects instead of 27 in this lab. Real-device clouds (BrowserStack, Sauce Labs, LambdaTest) and Appium (for native mobile apps) extend the same idea to hardware you don't own.</p>
+<h3 id="49-visual-testing">4.9 Visual testing<a class="headerlink" href="#49-visual-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Visual regression testing</strong> compares screenshots with approved baselines: <code>await expect(page).toHaveScreenshot()</code>. It catches layout and styling bugs no functional assertion sees. The catches: rendering differs across operating systems and fonts (generate baselines in the same container that runs CI), dynamic content must be masked, and approving changed baselines needs real review. Tools like Percy, Chromatic and Applitools add cross-browser rendering and smarter (AI-assisted) comparison.</p>
+<h3 id="410-component-tests-in-the-browser">4.10 Component tests in the browser<a class="headerlink" href="#410-component-tests-in-the-browser" title="Permanent link">&para;</a></h3>
+<p>Between unit tests and E2E sits <strong>component testing</strong>: render one UI component (a cart widget, a date picker) in a real browser, in isolation, and interact with it (Playwright component testing, Cypress component testing, Storybook interaction tests). It's fast and precise for UI logic, without needing the whole app.</p>
+<h2 id="5-architecture-the-e2e-suite-around-quality-books">5. Architecture: the E2E suite around Quality Books<a class="headerlink" href="#5-architecture-the-e2e-suite-around-quality-books" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TB
+  subgraph Runner["Playwright test runner"]
+    CFG["playwright.config.js&lt;br/&gt;projects, baseURL, webServer, retries, reporters"]
+    W1["Worker 1"] &amp; W2["Worker 2"]
+  end
+  CFG --&gt; W1 &amp; W2
+  W1 --&gt; CTX1["Browser context&lt;br/&gt;(fresh cookies, storage)"]
+  W2 --&gt; CTX2["Browser context"]
+  CTX1 --&gt; PO["Page objects&lt;br/&gt;e2e/pages/ShopPage.js"]
+  PO --&gt; APP["Quality Books UI&lt;br/&gt;app/public"]
+  APP --&gt; API["Shop API"] --&gt; INV["Inventory service"]
+  CTX1 -. "page.route(): stub, delay, reorder" .-&gt; APP
+  W1 --&gt; EV["Evidence on failure:&lt;br/&gt;trace.zip, screenshot, video, junit.xml"]
+  MX["playwright.matrix.config.js&lt;br/&gt;Topic 2 pairwise → 10 projects"] -. reuses .-&gt; CFG</code></pre>
+<h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Practice</th>
+<th>Connection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Test pyramid (Topic 1)</strong></td>
+<td>E2E is the narrow top: a few journeys. Push every rule that doesn't need a browser down a level.</td>
+</tr>
+<tr>
+<td><strong>Test design (Topic 2)</strong></td>
+<td>Journeys are scenarios (use cases); configuration coverage is pairwise.</td>
+</tr>
+<tr>
+<td><strong>Unit and component (Topic 3)</strong></td>
+<td>UI logic (formatting, state handling) can be component-tested much faster than through E2E.</td>
+</tr>
+<tr>
+<td><strong>API and contracts (Topic 4)</strong></td>
+<td>Use the API to set up state; stub with care, because stubs are contracts too.</td>
+</tr>
+<tr>
+<td><strong>CI/CD (Topic 6)</strong></td>
+<td>E2E runs after faster stages; sharded across machines; traces uploaded as artefacts; retries reported as flaky.</td>
+</tr>
+<tr>
+<td><strong>Test data (Topic 7)</strong></td>
+<td>Isolated, disposable data is what makes parallel E2E stable.</td>
+</tr>
+<tr>
+<td><strong>Accessibility (Topic 9)</strong></td>
+<td>Role-based locators and keyboard journeys double as accessibility checks.</td>
+</tr>
+<tr>
+<td><strong>Observability (Topic 10)</strong></td>
+<td>The same journeys, run against production on a schedule, become synthetic monitoring.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-real-world-examples">7. Real-world examples<a class="headerlink" href="#7-real-world-examples" title="Permanent link">&para;</a></h2>
+<p><strong>1. The stuck cart (this repo).</strong> Ask for four copies of a book that has three: the shop correctly shows <em>"only 3 in stock"</em>. But the front end has already put four in its local cart. Every later change, even adding a different book, sends the impossible quantity again and fails. The customer can't continue. Every single-step test passes, including the one that checks the error message. Only a journey (<em>error, then carry on</em>) shows it.</p>
+<p><strong>2. The stale total (this repo).</strong> Two quick clicks send two price requests. If the first response arrives last (networks reorder responses all the time), it overwrites the newer total, and the cart shows 1 copy's price for 2 copies. It looks like a "flaky test" until you control the network order and it fails every time. Many real "flaky" UI tests are real race conditions.</p>
+<p><strong>3. The WebKit keyboard surprise (this repo).</strong> The keyboard-only test passes in Chromium and Firefox and fails in every WebKit project of the matrix. Like Safari on macOS, WebKit by default doesn't move focus to buttons with Tab (the "Press Tab to highlight each item" setting). It's not a shop bug: it's a test that assumed one browser's behaviour. Compatibility testing finds wrong assumptions in tests as well as in products.</p>
+<p><strong>4. Google's flaky-test numbers.</strong> Google's 2016 analysis of its CI (about 1.5% of runs flaky; 16% of tests flaky at some point) led to automatic flakiness detection, quarantining, and treating flakiness as a defect with an owner. Many large engineering organisations have published similar programmes since.</p>
+<p><strong>5. The ice-cream cone migration.</strong> A common story: a team with 2,000 UI tests that take hours and fail randomly moves rule checks down to API and unit tests, keeps a few dozen journeys, and cuts the pipeline from hours to minutes, with <em>more</em> bugs caught earlier.</p>
+<h2 id="8-scaling-across-applications-and-teams">8. Scaling across applications and teams<a class="headerlink" href="#8-scaling-across-applications-and-teams" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>What works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Suite takes too long</td>
+<td>Parallel workers, <strong>sharding</strong> across CI machines (<code>--shard=1/4</code>), tagging (<code>@smoke</code>, <code>@critical</code>) to run the right subset at each stage</td>
+</tr>
+<tr>
+<td>Many teams, one front end</td>
+<td>Each team owns the journeys for its features; shared page/component objects published like code, with owners</td>
+</tr>
+<tr>
+<td>Flaky tests erode trust</td>
+<td>Detect them automatically (passed on retry = flaky), quarantine with an owner and a deadline, track the flaky rate as a team metric (Topic 11)</td>
+</tr>
+<tr>
+<td>Slow setup through the UI</td>
+<td>API-based setup, saved authentication state, seeded test data per worker</td>
+</tr>
+<tr>
+<td>Cross-browser cost explodes</td>
+<td>Pairwise configuration sets; full matrix nightly, smoke set per pull request</td>
+</tr>
+<tr>
+<td>Debugging failures in CI</td>
+<td>Traces, screenshots and videos as CI artefacts; the same container image locally and in CI</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-security-and-data-privacy">9. Security and data privacy<a class="headerlink" href="#9-security-and-data-privacy" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Traces and videos contain everything on screen and in the network</strong>: cookies, tokens, emails, sometimes card details. Keep them only on failure, store them with access control, and expire them (this repo keeps them 14 days).</li>
+<li><strong>Saved authentication state is a credential.</strong> <code>storageState</code> files hold session cookies; never commit them, and use dedicated test accounts with minimal rights.</li>
+<li><strong>Test accounts in production</strong> (for synthetic journeys) must be clearly marked, excluded from analytics and billing, and unable to reach real customers' data.</li>
+<li><strong>Stubbed third parties</strong> mean your tests never exercise the real payment or identity provider's security checks. Cover those with provider sandboxes and contract tests.</li>
+<li><strong>Front-end security checks belong here too:</strong> that untrusted text is rendered as text, never HTML (the shop's <code>assistant.spec.js</code> checks the AI's answer can't inject markup), that pages behave without third-party scripts, and that errors don't leak internals. Topic 9 goes further.</li>
+</ul>
+<h2 id="10-performance-maintenance-and-cost">10. Performance, maintenance, and cost<a class="headerlink" href="#10-performance-maintenance-and-cost" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Concern</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Speed</strong></td>
+<td>A browser test takes about a second; this lab's 14 E2E tests run in a few seconds in parallel. A thousand of them is a different story: budget your E2E time like a resource.</td>
+</tr>
+<tr>
+<td><strong>Compute cost</strong></td>
+<td>Browsers are CPU- and memory-heavy; cross-browser multiplies it. Pairwise and tagging keep cost in check.</td>
+</tr>
+<tr>
+<td><strong>Maintenance</strong></td>
+<td>Locators and page objects absorb UI change. Brittle selectors and copy-pasted steps multiply it.</td>
+</tr>
+<tr>
+<td><strong>Flakiness cost</strong></td>
+<td>Every flaky failure costs an investigation and erodes trust. Treat a flaky test as a bug with an owner.</td>
+</tr>
+<tr>
+<td><strong>Debuggability</strong></td>
+<td>Traces turn a red CI run into a replayable recording; that saves hours per failure.</td>
+</tr>
+<tr>
+<td><strong>Deleting tests</strong></td>
+<td>An E2E test that duplicates lower-level coverage costs minutes per run, forever. Delete or push it down.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-common-problems-and-failure-scenarios">11. Common problems and failure scenarios<a class="headerlink" href="#11-common-problems-and-failure-scenarios" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fixed sleeps</strong></td>
+<td>Fails on slow days, wastes time on fast ones</td>
+<td>Web-first assertions; expose UI state</td>
+</tr>
+<tr>
+<td><strong>One-shot reads</strong></td>
+<td><code>expect(await x.count())</code> fails intermittently</td>
+<td><code>await expect(x).toHaveCount(n)</code></td>
+</tr>
+<tr>
+<td><strong>Structural selectors</strong></td>
+<td>Tests break on every redesign</td>
+<td>Role, label, test id</td>
+</tr>
+<tr>
+<td><strong>UI used for setup</strong></td>
+<td>Long, fragile tests</td>
+<td>API setup, saved auth state</td>
+</tr>
+<tr>
+<td><strong>Shared data between tests</strong></td>
+<td>Fails in parallel or in a different order</td>
+<td>Unique data per test; fresh context</td>
+</tr>
+<tr>
+<td><strong>Hard-coded URLs and ports</strong></td>
+<td>Fails in CI or on another environment</td>
+<td><code>baseURL</code> and <code>page.goto('/')</code></td>
+</tr>
+<tr>
+<td><strong>Retries as a fix</strong></td>
+<td>Green builds, real bugs hidden</td>
+<td>Report flaky tests; fix the cause</td>
+</tr>
+<tr>
+<td><strong>Too many E2E tests</strong></td>
+<td>Hours-long pipelines</td>
+<td>Move rule checks down the pyramid</td>
+</tr>
+<tr>
+<td><strong>Assuming one browser's behaviour</strong></td>
+<td>Fails only in WebKit or Firefox</td>
+<td>Run a configuration matrix; write browser-aware tests where behaviour legitimately differs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-important-trade-offs">12. Important trade-offs<a class="headerlink" href="#12-important-trade-offs" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Confidence vs speed.</strong> E2E gives the most realistic confidence per test and the slowest feedback. A small, high-value E2E suite plus strong lower layers beats a large E2E suite.</li>
+<li><strong>Real back end vs stubbed.</strong> The real back end catches integration bugs; stubs give speed and determinism. Use real for the critical journeys and stubs for timing, failures and third parties.</li>
+<li><strong>Test ids vs user-facing locators.</strong> User-facing locators also test accessibility, but change when copy changes. Test ids are stable but invisible to users. Prefer user-facing, fall back to test ids.</li>
+<li><strong>Cross-browser breadth vs cost.</strong> Full matrices catch rare differences at many times the cost. Pairwise plus your real users' top configurations is usually the sweet spot.</li>
+<li><strong>Visual testing vs noise.</strong> Pixel comparisons catch real layout bugs and produce false positives from fonts and rendering. Worth it for design-critical pages, with stable baselines.</li>
+</ul>
+<h2 id="13-comparisons">13. Comparisons<a class="headerlink" href="#13-comparisons" title="Permanent link">&para;</a></h2>
+<h3 id="browser-automation-tools">Browser automation tools<a class="headerlink" href="#browser-automation-tools" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Architecture</th>
+<th>Browsers</th>
+<th>Strengths</th>
+<th>Watch out for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Playwright</strong> (used here)</td>
+<td>Out-of-process, own protocols</td>
+<td>Chromium, Firefox, WebKit</td>
+<td>Auto-waiting, web-first assertions, contexts, tracing, network control, many languages</td>
+<td>Patched browser builds, not your users' exact branded browsers (channels for Chrome and Edge exist)</td>
+</tr>
+<tr>
+<td><strong>Cypress</strong></td>
+<td>Runs inside the browser alongside the app</td>
+<td>Chromium-family, Firefox, WebKit (experimental)</td>
+<td>Excellent developer experience, time-travel debugging</td>
+<td>Single-tab, same-origin limits (relaxed in recent versions), JavaScript only</td>
+</tr>
+<tr>
+<td><strong>Selenium WebDriver</strong></td>
+<td>W3C WebDriver protocol, driver per browser</td>
+<td>All major, real branded browsers</td>
+<td>The standard; every language; Grid for scale</td>
+<td>More waiting and setup by hand; WebDriver BiDi is modernising it</td>
+</tr>
+<tr>
+<td><strong>WebdriverIO</strong></td>
+<td>WebDriver and BiDi/DevTools</td>
+<td>All major, plus mobile via Appium</td>
+<td>Flexible, big plugin ecosystem</td>
+<td>More configuration</td>
+</tr>
+<tr>
+<td><strong>Puppeteer</strong></td>
+<td>CDP (and WebDriver BiDi)</td>
+<td>Chrome, Firefox</td>
+<td>Lightweight automation and scraping</td>
+<td>Not a full test framework</td>
+</tr>
+<tr>
+<td><strong>Appium</strong></td>
+<td>WebDriver for native mobile</td>
+<td>iOS, Android apps</td>
+<td>Real native apps and devices</td>
+<td>Slow and complex setup</td>
+</tr>
+</tbody>
+</table>
+<h3 id="approaches-to-ui-test-maintenance">Approaches to UI test maintenance<a class="headerlink" href="#approaches-to-ui-test-maintenance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Idea</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Page objects / Screenplay</td>
+<td>Hand-written abstractions</td>
+<td>Explicit and reviewable; you maintain them</td>
+</tr>
+<tr>
+<td>Record-and-playback</td>
+<td>Generate tests by clicking through</td>
+<td>Fast to create; brittle and hard to review</td>
+</tr>
+<tr>
+<td>"Self-healing" locators (AI)</td>
+<td>The tool re-finds an element when a locator breaks</td>
+<td>Less maintenance; can silently test the wrong element (Topic 12)</td>
+</tr>
+<tr>
+<td>AI agents exploring the UI</td>
+<td>An agent pursues a goal through the browser</td>
+<td>Finds unexpected paths; non-deterministic; needs an oracle (Topic 12)</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Overview">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.path", "navigation.indexes", "navigation.top", "navigation.footer", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.action.edit"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../javascripts/course.js"></script>
+      
+    
+  </body>
+</html>
