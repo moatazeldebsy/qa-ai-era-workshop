@@ -22,6 +22,7 @@ flowchart LR
 | `orders.js` | Topic 2 | Order lifecycle (state machine) and the refund decision table |
 | `returns.js`, `checkout.js`, `coupons.js` | Topic 3 | Refund claims with an injected clock; checkout with injected collaborators; coupons (built test-first) |
 | `inventory-client.js`, `payments-demo.js`, `services/inventory/` | Topic 4 | The inventory service (a separate provider), the shop's HTTP client for it, a demo payment provider |
+| `reports.js`, `Dockerfile`, `compose.yaml` | Topic 7 | A back-office sales report; a disposable container environment; the inventory service's opt-in test-data API |
 
 ## Endpoints
 
@@ -56,6 +57,7 @@ A separate Express service in `services/inventory/` (port 3220), with its own co
 | `LOG_REQUESTS` | `false` | Silences the JSON request log |
 | `INVENTORY_URL` | default `http://localhost:3220` | Where the shop finds the inventory service |
 | `INVENTORY_PORT` | default `3220` | The inventory service's port |
+| `INVENTORY_TEST_DATA` | `on` | Enables `PUT /stock/:bookId` for test data. Test environments only |
 
 ## Catalogue
 

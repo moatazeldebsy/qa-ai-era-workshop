@@ -11,3 +11,4 @@ __pycache__/
 reports/
 .stryker-tmp/
 labs/04-integration-contract/pacts/
+labs/07-env-data/masked/

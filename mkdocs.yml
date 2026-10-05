@@ -115,6 +115,11 @@ nav:
       - Concepts: topics/06-ci-cd/concepts.md
       - Lab: topics/06-ci-cd/lab.md
       - Quiz & wrap-up: topics/06-ci-cd/quiz.md
+    - 7. Test Environments and Test Data:
+      - Overview: topics/07-env-data/index.md
+      - Concepts: topics/07-env-data/concepts.md
+      - Lab: topics/07-env-data/lab.md
+      - Quiz & wrap-up: topics/07-env-data/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

@@ -92,6 +92,11 @@ jobs:
           npm run ci:test
           npm run ci:impact -- app/src/cart.js
 
+      # Topic 7: generated data and the sales report (shared-env and masking
+      # are the learner's job on main; learn verify checks them).
+      - name: Test data lab
+        run: npm run data:test
+
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.
@@ -156,3 +161,26 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 14
+
+  # Topic 7: a disposable, production-like environment from compose.yaml.
+  # Build it, check the two services work together, throw it away.
+  environment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+
+      - name: Start a disposable environment
+        run: docker compose up --build --wait
+
+      - name: Smoke-test it
+        run: |
+          curl -sf localhost:3210/health
+          curl -sf localhost:3210/api/orders -H 'content-type: application/json' \
+            -d '{"items":[{"bookId":1,"quantity":1}],"paymentToken":"tok_visa","customer":{"email":"ci@example.com"}}'
+          curl -sf localhost:3220/stock/1 | grep -q '"available":11'
+          echo "✔ shop and inventory work together in containers"
+
+      - name: Throw it away
+        if: ${{ always() }}
+        run: docker compose down --volumes

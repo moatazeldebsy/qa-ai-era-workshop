@@ -211,4 +211,4 @@ Read before Topic 7 (optional):
 - Jez Humble and David Farley, *Continuous Delivery*, chapter 5 (the deployment pipeline)
 - Nicole Forsgren, Jez Humble and Gene Kim, *Accelerate*: the research behind the DORA metrics
 
-When you've finished the lab and the challenge, move on to [Topic 7](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 7](../07-env-data/index.md).

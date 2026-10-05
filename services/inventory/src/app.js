@@ -10,6 +10,7 @@ import express from 'express';
 //   POST   /reservations { lines }     → 201 { reservationId, lines, expiresAt }
 //                                       | 409 { error, bookId }         | 400
 //   DELETE /reservations/:reservationId → 204                           | 404
+//   PUT    /stock/:bookId { available } → 200   TEST ENVIRONMENTS ONLY (see below)
 //
 // State is in memory. `app.locals.reset(stock)` restores a known state, which
 // tests and contract verification use to set up "provider states".
@@ -17,7 +18,15 @@ import express from 'express';
 export const DEFAULT_STOCK = { 1: 12, 2: 0, 3: 5, 4: 8, 5: 3, 6: 7 };
 const HOLD_MINUTES = 15;
 
-export function createInventoryApp({ stock = DEFAULT_STOCK, clock = () => new Date(), newId = () => `res-${crypto.randomUUID()}` } = {}) {
+// allowTestData switches on PUT /stock/:bookId, which lets a test create the
+// stock it needs (Topic 7). It must never be on in production: anyone could
+// set any stock level. INVENTORY_TEST_DATA=on enables it for a running server.
+export function createInventoryApp({
+  stock = DEFAULT_STOCK,
+  clock = () => new Date(),
+  newId = () => `res-${crypto.randomUUID()}`,
+  allowTestData = false,
+} = {}) {
   const app = express();
   app.use(express.json({ limit: '10kb' }));
 
@@ -37,6 +46,16 @@ export function createInventoryApp({ stock = DEFAULT_STOCK, clock = () => new Da
     if (!available.has(bookId)) return res.status(404).json({ error: `unknown book ${req.params.bookId}` });
     res.json({ bookId, available: available.get(bookId) });
   });
+
+  if (allowTestData) {
+    app.put('/stock/:bookId', (req, res) => {
+      const bookId = Number(req.params.bookId);
+      const n = req.body?.available;
+      if (!Number.isInteger(bookId) || !Number.isInteger(n) || n < 0) return res.status(400).json({ error: 'available must be a whole number, 0 or more' });
+      available.set(bookId, n);
+      res.json({ bookId, available: n });
+    });
+  }
 
   app.post('/reservations', (req, res) => {
     const lines = req.body?.lines;
