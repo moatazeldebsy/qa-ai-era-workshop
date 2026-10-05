@@ -4,6 +4,8 @@
 
 **Boundary value analysis (BVA)** — Testing the values on and next to the edges of each partition, where off-by-one and `<` vs `<=` bugs live.
 
+**Browser context** — An isolated browser session with its own cookies, storage and cache, like a fresh incognito window. Playwright gives each test its own.
+
 **Canary (prompt / release)** — A small, constant probe: a release served to a fraction of traffic, or a fixed set of prompts sent to production on a schedule to detect drift.
 
 **Change failure rate** — Share of deployments that cause a failure in production. One of the four DORA metrics.
@@ -19,6 +21,8 @@
 **DORA metrics** — Deployment frequency, lead time for changes, change failure rate and time to restore. From the DevOps Research and Assessment programme.
 
 **Drift** — Change over time in a model's behaviour or in its input data that degrades quality without any code change.
+
+**End-to-end (E2E) test** — A test of a complete user journey through the whole system, usually driven through the UI in a real browser.
 
 **Equivalence partitioning** — Splitting an input's values into groups the system should treat the same way, and testing one value from each group.
 
@@ -46,6 +50,8 @@
 
 **LLM-as-judge / model-graded assertion** — Using a model to grade another model's output against a rubric. Needs its own validation.
 
+**Locator** — A description of how to find an element on a page, such as "the button named Ask". Good locators describe what a user sees.
+
 **Metamorphic testing** — Checking how the outputs of related inputs must relate (reordering a cart doesn't change its total) when the exact right output is unknown.
 
 **Mock** — A test double pre-programmed with expectations about how it will be called; the test fails if it's called differently.
@@ -57,6 +63,8 @@
 **OpenAPI** — A standard, machine-readable format for describing HTTP APIs: paths, parameters, request and response schemas.
 
 **Oracle** — The source of truth that tells a test what the right answer is (a spec, a rule, a reference implementation).
+
+**Page object** — A class that wraps a page's locators and actions behind intention-revealing methods, so tests read like journeys.
 
 **Pairwise testing** — Choosing configurations so that every pair of factor values appears together at least once; far fewer than all combinations.
 

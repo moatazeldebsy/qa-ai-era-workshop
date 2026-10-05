@@ -74,7 +74,7 @@ npm test              # end-to-end and API tests; starts the app for you
 ℹ pass 5
 ℹ fail 0
 
-  35 passed (8.1s)
+  38 passed (8.1s)
 ```
 
 ??? question "Every Playwright test fails with `Unexpected end of JSON input`?"

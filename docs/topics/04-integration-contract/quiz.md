@@ -211,4 +211,4 @@ Read before Topic 5 (optional):
 - Pact documentation, [*How Pact works*](https://docs.pact.io/getting_started/how_pact_works)
 - Hyrum Wright, [*Hyrum's Law*](https://www.hyrumslaw.com/)
 
-When you've finished the lab and the challenge, move on to [Topic 5](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 5](../05-ui-e2e/index.md).

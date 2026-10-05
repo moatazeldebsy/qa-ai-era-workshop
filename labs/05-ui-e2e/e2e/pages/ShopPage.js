@@ -8,6 +8,7 @@ export class ShopPage {
     this.page = page;
     this.search = page.getByLabel('Search books');
     this.books = page.locator('#book-list li');
+    this.cart = page.getByRole('region', { name: 'Cart' });
     this.subtotal = page.getByTestId('subtotal');
     this.shipping = page.getByTestId('shipping');
     this.total = page.getByTestId('total');

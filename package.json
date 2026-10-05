@@ -23,6 +23,8 @@
     "test:e2e": "playwright test --project=e2e",
     "test:api": "playwright test --project=api",
     "test:flaky": "playwright test --project=flaky --repeat-each=10",
+    "ui:brittle": "playwright test --project=brittle",
+    "ui:matrix": "playwright test -c labs/05-ui-e2e/playwright.matrix.config.js",
     "test:unit": "node --test \"app/test/*.test.js\"",
     "foundations:test": "node --test \"labs/01-foundations/tests/*.test.js\"",
     "foundations:risks": "node labs/01-foundations/risks.mjs",

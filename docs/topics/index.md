@@ -12,7 +12,7 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 | 2 | [Test Design Techniques](02-test-design/index.md) | Out of infinitely many possible tests, which few should we write? | ~6 h | <span class="topic-progress-mini" data-topic="02"></span> |
 | 3 | [Unit and Component Testing](03-unit-component/index.md) | How do we check one piece fast and in isolation? | ~5 h | <span class="topic-progress-mini" data-topic="03"></span> |
 | 4 | [Integration, API, and Contract Testing](04-integration-contract/index.md) | How do we check that pieces still fit when teams change them independently? | ~6 h | <span class="topic-progress-mini" data-topic="04"></span> |
-| 5 | UI, Web, and End-to-End Testing | How do we check what the user really sees, without a slow, flaky suite? | ~6 h | — |
+| 5 | [UI, Web, and End-to-End Testing](05-ui-e2e/index.md) | How do we check what the user really sees, without a slow, flaky suite? | ~6 h | <span class="topic-progress-mini" data-topic="05"></span> |
 | 6 | CI/CD and Continuous Testing | How does testing run on every change and become a release decision? | ~5 h | — |
 | 7 | Test Environments and Test Data Management | Where do tests run, and on what data? | ~5 h | — |
 | 8 | Performance, Load, and Resilience Testing | Is it fast enough, and does it survive when things go wrong? | ~6 h | — |

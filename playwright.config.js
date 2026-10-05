@@ -33,6 +33,8 @@ export default defineConfig({
     { name: 'api', testDir: 'labs/04-integration-contract/api/tests' },
     { name: 'flaky', testDir: 'labs/05-ui-e2e/flaky/tests', retries: 0, use: { ...devices['Desktop Chrome'] } },
     { name: 'agent-tools', testDir: 'labs/12-ai-in-qa/agent/tests', use: { ...devices['Desktop Chrome'] } },
+    { name: 'brittle', testDir: 'labs/05-ui-e2e/brittle', use: { ...devices['Desktop Chrome'] } },
+    { name: 'ui-acceptance', testDir: 'labs/05-ui-e2e/acceptance', use: { ...devices['Desktop Chrome'] } },
   ],
   // Starts the demo app unless BASE_URL points somewhere else.
   webServer: process.env.BASE_URL

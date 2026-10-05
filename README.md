@@ -17,7 +17,7 @@ nvm use                                  # Node 24 (22.22+ works)
 npm install
 npx playwright install --with-deps chromium
 npm run doctor                           # is this machine ready?
-npm test                                 # 35 E2E + API tests against the demo app
+npm test                                 # 38 E2E + API tests against the demo app
 npm start                                # http://localhost:3210
 ```
 

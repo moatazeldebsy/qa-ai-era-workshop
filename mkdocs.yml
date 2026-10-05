@@ -105,6 +105,11 @@ nav:
       - Concepts: topics/04-integration-contract/concepts.md
       - Lab: topics/04-integration-contract/lab.md
       - Quiz & wrap-up: topics/04-integration-contract/quiz.md
+    - 5. UI, Web, and End-to-End Testing:
+      - Overview: topics/05-ui-e2e/index.md
+      - Concepts: topics/05-ui-e2e/concepts.md
+      - Lab: topics/05-ui-e2e/lab.md
+      - Quiz & wrap-up: topics/05-ui-e2e/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md
