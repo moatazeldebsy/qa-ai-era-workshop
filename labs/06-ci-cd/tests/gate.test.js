@@ -51,7 +51,6 @@ describe('the quality gate', () => {
   // a ✅ READY TO RELEASE.
   test(
     'skipping most of the tests does not make a release ready',
-    { todo: 'real gap: the gate ignores skipped tests; Topic 6 lab, step 3' },
     () => {
       const { ready, output } = runGate({ 'junit.xml': junit({ tests: 38, skipped: 37 }) });
       assert.equal(ready, false, output);
@@ -62,7 +61,6 @@ describe('the quality gate', () => {
   // there between runs. Results from last week's code still say "ready".
   test(
     'evidence older than the code is not trusted',
-    { todo: 'real gap: the gate trusts results of any age; Topic 6 lab, step 3' },
     () => {
       const { ready, output } = runGate({ 'junit.xml': junit({ tests: 38 }) }, { old: true });
       assert.equal(ready, false, output);

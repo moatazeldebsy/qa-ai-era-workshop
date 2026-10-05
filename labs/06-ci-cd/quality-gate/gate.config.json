@@ -2,6 +2,7 @@
   "$comment": "Topic 6 - release readiness thresholds. Change them and re-run `npm run gate` to see the decision change.",
   "tests": {
     "maxFailed": 0,
+    "maxSkipped": 0,
     "required": true
   },
   "llmEval": {
@@ -19,5 +20,11 @@
     },
     "maxErrorRate": 0.01,
     "required": false
+  },
+  "freshness": {
+    "codePaths": [
+      "app",
+      "services"
+    ]
   }
 }

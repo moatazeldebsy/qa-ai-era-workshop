@@ -23,9 +23,22 @@ const config = JSON.parse(fs.readFileSync(path.join(here, 'gate.config.json'), '
 const checks = [];
 const add = (name, status, detail) => checks.push({ name, status, detail });
 
+// Evidence must be newer than the code it vouches for. Anything older was
+// produced by a previous version of the code, so it proves nothing about this one.
+const newestMtime = (dir) => {
+  if (!fs.existsSync(dir)) return 0;
+  const stat = fs.statSync(dir);
+  if (!stat.isDirectory()) return stat.mtimeMs;
+  return fs.readdirSync(dir).filter((f) => f !== 'node_modules').reduce((m, f) => Math.max(m, newestMtime(path.join(dir, f))), 0);
+};
+const codeChanged = Math.max(...(config.freshness?.codePaths ?? ['app', 'services']).map((p) => newestMtime(path.resolve(p))));
+const stale = [];
+
 function readIfExists(file) {
   const p = path.join(results, file);
-  return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : null;
+  if (!fs.existsSync(p)) return null;
+  if (fs.statSync(p).mtimeMs < codeChanged) stale.push(file);
+  return fs.readFileSync(p, 'utf8');
 }
 
 // ── Functional tests (JUnit XML from Playwright) ──────────────────────────────
@@ -37,10 +50,11 @@ if (!junit) {
   const total = attr('tests');
   const failed = attr('failures') + attr('errors');
   const skipped = attr('skipped');
+  const maxSkipped = config.tests.maxSkipped ?? 0;
   add(
     'Functional tests',
-    failed <= config.tests.maxFailed && total > 0 ? 'pass' : 'fail',
-    `${total - failed - skipped}/${total} passed, ${failed} failed, ${skipped} skipped (max failed: ${config.tests.maxFailed})`,
+    failed <= config.tests.maxFailed && skipped <= maxSkipped && total > 0 ? 'pass' : 'fail',
+    `${total - failed - skipped}/${total} passed, ${failed} failed, ${skipped} skipped (max failed: ${config.tests.maxFailed}, max skipped: ${maxSkipped})`,
   );
 }
 
@@ -92,6 +106,13 @@ if (!k6Raw) {
   if (errRate > config.performance.maxErrorRate) problems.push(`error rate ${(errRate * 100).toFixed(2)}%`);
   add('Performance', problems.length ? 'fail' : 'pass', problems.length ? problems.join('; ') : parts.join(', '));
 }
+
+// ── Freshness ─────────────────────────────────────────────────────────────────
+add(
+  'Evidence freshness',
+  stale.length ? 'fail' : 'pass',
+  stale.length ? `stale: ${stale.join(', ')} older than the code - re-run them` : 'all evidence is newer than the code',
+);
 
 // ── Verdict ───────────────────────────────────────────────────────────────────
 const blocked = checks.some((c) => c.status === 'fail');
