@@ -30,7 +30,7 @@ test('a quiz scores answers, explains them and saves the best score', async ({ p
 });
 
 test('every quiz has exactly one right answer per question', async ({ page }) => {
-  for (const topic of ['01-foundations', '02-test-design', '03-unit-component', '04-integration-contract', '05-ui-e2e', '06-ci-cd', '07-env-data', '08-performance', '09-security-a11y', '10-observability', '11-quality-intelligence', '12-ai-in-qa']) {
+  for (const topic of ['01-foundations', '02-test-design', '03-unit-component', '04-integration-contract', '05-ui-e2e', '06-ci-cd', '07-env-data', '08-performance', '09-security-a11y', '10-observability', '11-quality-intelligence', '12-ai-in-qa', '13-platform']) {
     await page.goto(`/topics/${topic}/quiz/`);
     const questions = page.locator('.quiz-q');
     const n = await questions.count();

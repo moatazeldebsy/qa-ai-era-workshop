@@ -109,6 +109,11 @@ jobs:
       - name: Quality intelligence lab
         run: npm run qi:test
 
+      - name: Platform lab
+        run: |
+          npm run platform:test
+          npm run platform:fleet
+
       - name: Security and accessibility lab
         run: |
           npm run sec:test

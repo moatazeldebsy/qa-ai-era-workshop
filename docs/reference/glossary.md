@@ -18,6 +18,8 @@
 
 **Circuit breaker** — A resilience pattern that stops calling a failing dependency for a while after repeated failures, then probes to see if it has recovered.
 
+**Conformance suite** — Automated checks that a service meets organisation-wide standards, run per service and across the fleet.
+
 **Consumer / provider** — In an API relationship, the consumer is the client that calls the API and the provider is the service that offers it. One provider usually has many consumers.
 
 **Continuous delivery / deployment** — Delivery: every change that passes the pipeline is releasable, and people decide when. Deployment: every passing change goes to production automatically.
@@ -64,6 +66,8 @@
 
 **Integration test** — A test that checks two or more real components working together, such as a service and the real service it calls.
 
+**Internal developer platform (IDP)** — The self-service tools, infrastructure and documentation a company provides to its product teams.
+
 **Invariant (property)** — A rule that must hold for every valid input, such as *total = subtotal + shipping*. It lets one test check thousands of inputs without knowing each expected value.
 
 **JUnit XML** — The most widely supported test-result format; it has no standard way to record retries, so a retried pass looks like a pass.
@@ -96,6 +100,8 @@
 
 **Pairwise testing** — Choosing configurations so that every pair of factor values appears together at least once; far fewer than all combinations.
 
+**Paved road / golden path** — The supported, easiest way to do something that is also the recommended way; teams may leave it, but rarely want to.
+
 **Percentile (p95, p99)** — The value below which that share of measurements fall: p95 = 200 ms means 95% of requests took less than 200 ms.
 
 **Prompt injection** — Input crafted to make a model ignore its instructions, e.g. to leak its system prompt or take unintended actions.
@@ -113,6 +119,8 @@
 **Quarantine (flaky tests)** — Moving known-flaky tests out of the blocking path while they keep running and reporting, each with an owner and a deadline.
 
 **Quasi-identifier** — A field that doesn't identify a person on its own but can in combination with others, such as postcode, birth date and gender.
+
+**Reusable workflow** — A CI workflow (in GitHub Actions, `on: workflow_call`) that many repositories or services call with their own inputs.
 
 **Risk-based testing** — Prioritising tests by likelihood × impact of failure.
 

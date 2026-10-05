@@ -20,7 +20,7 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 | 10 | [Production Quality and Observability](10-observability/index.md) | How do we know it works for real users right now? | ~5 h | <span class="topic-progress-mini" data-topic="10"></span> |
 | 11 | [Test Management and Quality Intelligence](11-quality-intelligence/index.md) | How do we turn test results into decisions? | ~4 h | <span class="topic-progress-mini" data-topic="11"></span> |
 | 12 | [AI in QA Engineering](12-ai-in-qa/index.md) | How do we use AI to test, and how do we test AI? | ~7 h | <span class="topic-progress-mini" data-topic="12"></span> |
-| 13 | QA Platform Engineering and Test Infrastructure | How do we give 50 teams good testing without 50 QA teams? | ~5 h | — |
+| 13 | [QA Platform Engineering and Test Infrastructure](13-platform/index.md) | How do we give 50 teams good testing without 50 QA teams? | ~5 h | <span class="topic-progress-mini" data-topic="13"></span> |
 | 14 | Quality Strategy and Engineering Leadership | How do we set direction, invest and measure at org level? | ~4 h | — |
 
 Times include reading, the lab and the quiz; the wrap-up challenge is extra. The column on the right fills in as you mark pages done (it's stored in this browser).

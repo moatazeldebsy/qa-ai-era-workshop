@@ -212,4 +212,4 @@ Read before Topic 13 (optional):
 - [promptfoo documentation: assertions and red teaming](https://www.promptfoo.dev/docs/intro/)
 - Hamel Husain, [*Your AI Product Needs Evals*](https://hamel.dev/blog/posts/evals/)
 
-When you've finished the lab and the challenge, move on to [Topic 13](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 13](../13-platform/index.md).
