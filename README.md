@@ -121,6 +121,13 @@ npm test             # E2E and API tests
 npm run test:unit    # unit tests
 ```
 
+No Node.js? Run the shop and the inventory service in Docker instead:
+
+```bash
+docker compose up --build --wait     # http://localhost:3210, checkout included
+docker compose down --volumes        # stop and throw it away
+```
+
 ## Repository layout
 
 ```text
