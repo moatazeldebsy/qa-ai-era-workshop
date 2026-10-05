@@ -112,11 +112,11 @@ Your topic branches keep your work. New topics start from the updated `main` the
 
 ## The demo app: Quality Books
 
-A small online bookshop (Express), built so every lab has something real to test. It has a catalogue, a cart with free shipping, orders and checkout, a separate inventory service, `/metrics`, and an AI support assistant with `mock`, `buggy` and `claude` modes. The bugs in it are real, and finding them is the point.
+A small online bookshop (Express), built so every lab has something real to test. It has a catalogue, a cart with free shipping, customer accounts, checkout with test cards, order history, a separate inventory service, `/metrics`, and an AI support assistant with `mock`, `buggy` and `claude` modes. The bugs in it are real, and finding them is the point.
 
 ```bash
-npm start            # http://localhost:3210
-npm run start:all    # the shop and the inventory service
+npm start            # http://localhost:3210 (browse, cart, assistant)
+npm run start:all    # the shop and the inventory service: needed to check out and place orders
 npm test             # E2E and API tests
 npm run test:unit    # unit tests
 ```
