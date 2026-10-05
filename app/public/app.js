@@ -34,8 +34,14 @@ async function loadBooks(query = '') {
 }
 
 async function addToCart(bookId) {
-  cart.set(bookId, (cart.get(bookId) ?? 0) + 1);
-  await renderCart();
+  const before = cart.get(bookId) ?? 0;
+  cart.set(bookId, before + 1);
+  // If the shop rejects the change (not enough stock), undo it, so the cart
+  // stays the last valid one and the customer can carry on.
+  if (!(await renderCart())) {
+    if (before) cart.set(bookId, before);
+    else cart.delete(bookId);
+  }
 }
 
 // Takes the whole line out of the cart, however many copies it had. The
@@ -72,6 +78,7 @@ function showEmptyCart() {
 // While a price request is in flight the cart says so (aria-busy), for
 // screen readers and for tests that need to know when the cart has settled.
 let pricing = 0;
+let latestRequest = 0; // only the newest price request may update the cart
 function setBusy(delta) {
   pricing += delta;
   $('#cart').setAttribute('aria-busy', String(pricing > 0));
@@ -81,6 +88,9 @@ async function renderCart() {
   const items = [...cart].map(([bookId, quantity]) => ({ bookId, quantity }));
   const error = $('#cart-error');
   error.textContent = '';
+  // Counted before the empty check: removing the last book must also make
+  // any price request still in flight stale.
+  const request = ++latestRequest;
   if (items.length === 0) {
     showEmptyCart();
     return true;
@@ -93,6 +103,7 @@ async function renderCart() {
       body: JSON.stringify({ items }),
     });
     const body = await res.json();
+    if (request !== latestRequest) return true; // a newer request has the final say
     if (!res.ok) {
       error.textContent = body.error;
       return false;

@@ -19,7 +19,6 @@ test('a customer can fill a cart with several different books', async ({ page })
 });
 
 test('after a stock error, the cart keeps its last valid state and can still change', async ({ page }) => {
-  test.fail(true, 'real bug: the rejected quantity stays in the cart, so every later change fails; Topic 5 lab, step 2');
   const shop = new ShopPage(page);
   await shop.goto();
   await shop.addToCart('Performance Engineering with k6', 4); // only 3 in stock
@@ -32,7 +31,6 @@ test('after a stock error, the cart keeps its last valid state and can still cha
 });
 
 test('the cart shows the latest total even when price responses arrive out of order', async ({ page }) => {
-  test.fail(true, 'real bug: a slow, stale price response overwrites a newer one; Topic 5 lab, step 3');
   const shop = new ShopPage(page);
   // Hold the FIRST price response back until the second has been shown.
   // Real networks reorder responses all the time; controlling the order makes
