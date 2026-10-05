@@ -140,6 +140,11 @@ nav:
       - Concepts: topics/11-quality-intelligence/concepts.md
       - Lab: topics/11-quality-intelligence/lab.md
       - Quiz & wrap-up: topics/11-quality-intelligence/quiz.md
+    - 12. AI in QA Engineering:
+      - Overview: topics/12-ai-in-qa/index.md
+      - Concepts: topics/12-ai-in-qa/concepts.md
+      - Lab: topics/12-ai-in-qa/lab.md
+      - Quiz & wrap-up: topics/12-ai-in-qa/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

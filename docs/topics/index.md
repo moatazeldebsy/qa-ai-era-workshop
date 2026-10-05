@@ -19,7 +19,7 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 | 9 | [Security, Accessibility, and Compatibility Testing](09-security-a11y/index.md) | Is it safe, usable by everyone, and does it work everywhere it should? | ~6 h | <span class="topic-progress-mini" data-topic="09"></span> |
 | 10 | [Production Quality and Observability](10-observability/index.md) | How do we know it works for real users right now? | ~5 h | <span class="topic-progress-mini" data-topic="10"></span> |
 | 11 | [Test Management and Quality Intelligence](11-quality-intelligence/index.md) | How do we turn test results into decisions? | ~4 h | <span class="topic-progress-mini" data-topic="11"></span> |
-| 12 | AI in QA Engineering | How do we use AI to test, and how do we test AI? | ~7 h | — |
+| 12 | [AI in QA Engineering](12-ai-in-qa/index.md) | How do we use AI to test, and how do we test AI? | ~7 h | <span class="topic-progress-mini" data-topic="12"></span> |
 | 13 | QA Platform Engineering and Test Infrastructure | How do we give 50 teams good testing without 50 QA teams? | ~5 h | — |
 | 14 | Quality Strategy and Engineering Leadership | How do we set direction, invest and measure at org level? | ~4 h | — |
 

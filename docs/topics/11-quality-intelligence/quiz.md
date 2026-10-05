@@ -212,4 +212,4 @@ Read before Topic 12 (optional):
 - [DORA research](https://dora.dev/)
 - John Micco, *Flaky Tests at Google and How We Mitigate Them* (Google Testing Blog, 2016)
 
-When you've finished the lab and the challenge, move on to [Topic 12](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 12](../12-ai-in-qa/index.md).

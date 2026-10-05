@@ -64,6 +64,7 @@
     "data:mask": "node labs/07-env-data/mask.mjs",
     "data:scan": "node labs/07-env-data/pii-scan.mjs",
     "testgen": "node labs/12-ai-in-qa/testgen/generate.mjs",
+    "ai:score": "node labs/12-ai-in-qa/testgen/score.mjs",
     "agent": "node labs/12-ai-in-qa/agent/explore.mjs",
     "test:agent-tools": "playwright test --project=agent-tools",
     "docs": "mkdocs serve",
