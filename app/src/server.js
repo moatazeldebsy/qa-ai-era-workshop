@@ -20,9 +20,12 @@ const metrics = { requests: new Map(), errors: 0, assistantCalls: 0 };
 
 // The shop's dependencies on other services are options, so tests can point
 // them at a test instance (Topic 4). Defaults suit `npm run start:all`.
-export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://localhost:3220' } = {}) {
+export function createApp({
+  inventoryUrl = process.env.INVENTORY_URL || 'http://localhost:3220',
+  inventoryToken = process.env.INVENTORY_TOKEN,
+} = {}) {
   const app = express();
-  const inventory = createInventoryClient({ baseUrl: inventoryUrl });
+  const inventory = createInventoryClient({ baseUrl: inventoryUrl, token: inventoryToken });
   const mailer = {
     async send({ subject }) {
       if (process.env.LOG_REQUESTS !== 'false') console.log(JSON.stringify({ level: 'info', event: 'mail.sent', subject }));
@@ -31,6 +34,18 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
   const checkout = createCheckout({ inventory, payments: demoPayments, mailer });
   const orders = new Map();
   const accounts = createAccounts();
+  // Security headers on every response (Topic 9). The page loads only its
+  // own script and styles, so a strict policy costs nothing.
+  app.disable('x-powered-by');
+  app.use((_req, res, next) => {
+    res.set({
+      'Content-Security-Policy': "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'",
+      'X-Content-Type-Options': 'nosniff',
+      'Referrer-Policy': 'no-referrer',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+    });
+    next();
+  });
   app.use(express.json({ limit: '10kb' }));
 
   app.use((req, res, next) => {
@@ -150,6 +165,8 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
   });
 
   app.use(express.static(path.join(here, '..', 'public')));
+
+  app.use((_req, res) => res.status(404).json({ error: 'not found' }));
 
   // eslint-disable-next-line no-unused-vars
   app.use((err, _req, res, _next) => {

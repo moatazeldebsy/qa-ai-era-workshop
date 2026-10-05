@@ -26,7 +26,9 @@ async function loadBooks(query = '') {
     const button = document.createElement('button');
     button.textContent = book.stock > 0 ? 'Add to cart' : 'Out of stock';
     button.disabled = book.stock === 0;
-    button.setAttribute('aria-label', `Add ${book.title} to cart`);
+    // The accessible name starts with the visible text (WCAG 2.5.3), so "click
+    // Add to cart" works for voice control, and adds the title for context.
+    button.setAttribute('aria-label', `${button.textContent}: ${book.title}`);
     button.addEventListener('click', () => addToCart(book.id));
     li.appendChild(button);
     list.appendChild(li);

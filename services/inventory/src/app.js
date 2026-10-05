@@ -26,6 +26,7 @@ export function createInventoryApp({
   clock = () => new Date(),
   newId = () => `res-${crypto.randomUUID()}`,
   allowTestData = false,
+  token,
 } = {}) {
   const app = express();
   app.use(express.json({ limit: '10kb' }));
@@ -40,6 +41,19 @@ export function createInventoryApp({
   app.locals.reservations = () => reservations;
 
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+
+  // An internal API still needs authentication: anyone who can reach it could
+  // otherwise hold every copy of every book. With a token configured, every
+  // route except /health requires it (Topic 9).
+  if (token) {
+    app.use((req, res, next) => {
+      const given = req.get('authorization') ?? '';
+      const expected = `Bearer ${token}`;
+      const ok = given.length === expected.length && crypto.timingSafeEqual(Buffer.from(given), Buffer.from(expected));
+      if (!ok) return res.status(401).json({ error: 'missing or invalid service token' });
+      next();
+    });
+  }
 
   app.get('/stock/:bookId', (req, res) => {
     const bookId = Number(req.params.bookId);

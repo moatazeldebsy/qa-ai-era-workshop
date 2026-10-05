@@ -26,9 +26,11 @@
     <section id="cart" aria-labelledby="cart-heading" aria-busy="false">
       <h2 id="cart-heading" tabindex="-1">Cart</h2>
       <ul id="cart-lines"></ul>
-      <p>Subtotal: <span data-testid="subtotal">0.00</span> EUR</p>
-      <p>Shipping: <span data-testid="shipping">0.00</span> EUR</p>
-      <p><strong>Total: <span data-testid="total">0.00</span> EUR</strong></p>
+      <div role="status">
+        <p>Subtotal: <span data-testid="subtotal">0.00</span> EUR</p>
+        <p>Shipping: <span data-testid="shipping">0.00</span> EUR</p>
+        <p><strong>Total: <span data-testid="total">0.00</span> EUR</strong></p>
+      </div>
       <p id="cart-error" role="alert"></p>
       <a id="checkout-link" class="button-link" href="/checkout.html" hidden>Go to checkout</a>
     </section>

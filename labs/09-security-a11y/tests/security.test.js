@@ -25,7 +25,6 @@ describe('the shop over HTTP', () => {
   // the headers that tell browsers to block sniffing, framing and injection.
   test(
     'responses carry the standard security headers, and hide the framework',
-    { todo: 'real gap: no security headers, X-Powered-By: Express; Topic 9 lab, step 2' },
     async () => {
       for (const path of ['/', '/api/books']) {
         const h = (await fetch(`${shop.url}${path}`)).headers;
@@ -52,7 +51,6 @@ describe('the inventory service, an internal API', () => {
   // but compose.yaml publishes its port, and it trusts any caller.
   test(
     'only the shop may reserve stock: callers without the service token are refused',
-    { todo: 'real gap: the internal inventory API has no authentication; Topic 9 lab, step 3' },
     async () => {
       const inv = await serve(createInventoryApp({ token: 'shop-secret' }));
       const hoard = await fetch(`${inv.url}/reservations`, {

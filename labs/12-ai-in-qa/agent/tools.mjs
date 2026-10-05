@@ -75,7 +75,7 @@ export function createTools({ page, defineTool, log = () => {}, findings = [] })
     defineTool({
       name: 'click',
       description:
-        'Click an element by its ARIA role and accessible name, exactly as shown in page_snapshot (e.g. role "button", name "Add Testing in Production to cart").',
+        'Click an element by its ARIA role and accessible name, exactly as shown in page_snapshot (e.g. role "button", name "Add to cart: Testing in Production").',
       inputSchema: {
         type: 'object',
         properties: {

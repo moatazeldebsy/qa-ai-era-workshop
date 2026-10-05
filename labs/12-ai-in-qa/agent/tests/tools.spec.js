@@ -17,15 +17,15 @@ test('snapshot exposes what the agent needs: books, prices and buttons', async (
   const snapshot = await tools.page_snapshot({});
   expect(snapshot).toContain('Prompting for QA');
   expect(snapshot).toContain('34.00 EUR');
-  expect(snapshot).toContain('button "Add Testing in Production to cart"');
-  expect(snapshot).toMatch(/button "Add The Pragmatic Tester to cart" \[disabled\]/);
+  expect(snapshot).toContain('button "Add to cart: Testing in Production"');
+  expect(snapshot).toMatch(/button "Out of stock: The Pragmatic Tester" \[disabled\]/);
 });
 
 test('click and snapshot reveal the cart totals', async ({ page }) => {
   const { tools } = toolbox(page);
   await tools.open_page({ path: '/' });
-  await tools.click({ role: 'button', name: 'Add Testing in Production to cart' });
-  await tools.click({ role: 'button', name: 'Add Testing in Production to cart' });
+  await tools.click({ role: 'button', name: 'Add to cart: Testing in Production' });
+  await tools.click({ role: 'button', name: 'Add to cart: Testing in Production' });
   const snapshot = await tools.page_snapshot({});
   expect(snapshot).toContain('Subtotal: 59.98 EUR');
   expect(snapshot).toContain('Shipping: 0.00 EUR');

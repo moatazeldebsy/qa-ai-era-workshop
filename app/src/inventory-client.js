@@ -14,7 +14,7 @@ export class InventoryError extends Error {
   }
 }
 
-export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fetch, timeoutMs = 1000 }) {
+export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fetch, timeoutMs = 1000, token }) {
   // Network failures (refused, reset, DNS) and calls slower than timeoutMs
   // become InventoryErrors, so callers handle "the inventory service is
   // unavailable" in one place, and a slow dependency can't make us hang.
@@ -26,11 +26,14 @@ export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fe
     }
   };
 
+  // The inventory service only trusts callers that present the shared token.
+  const auth = token ? { authorization: `Bearer ${token}` } : {};
+
   return {
     async reserve(lines) {
       const res = await http(`${baseUrl}/reservations`, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'content-type': 'application/json', ...auth },
         body: JSON.stringify({ lines }),
       });
       if (res.status === 409) {
@@ -43,7 +46,7 @@ export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fe
     },
 
     async release(reservationId) {
-      const res = await http(`${baseUrl}/reservations/${reservationId}`, { method: 'DELETE' });
+      const res = await http(`${baseUrl}/reservations/${reservationId}`, { method: 'DELETE', headers: auth });
       // 404 means already released or expired: releasing is idempotent.
       if (res.status !== 204 && res.status !== 404) {
         throw new InventoryError(`inventory service answered ${res.status}`, { status: res.status });

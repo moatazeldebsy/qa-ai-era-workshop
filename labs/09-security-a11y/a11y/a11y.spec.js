@@ -16,7 +16,6 @@ test('no WCAG 2.2 A/AA violations that axe can detect', async ({ page }) => {
 // accessible name, so a voice-control user who says "click Add to cart"
 // reaches it. axe only checks this with its experimental rules switched on.
 test('every button\'s accessible name contains the words it shows', async ({ page }) => {
-  test.fail(true, 'real bug: buttons show "Add to cart" / "Out of stock" but are named "Add <title> to cart"; Topic 9 lab, step 4');
   const shop = new ShopPage(page);
   await shop.goto();
   const { violations } = await new AxeBuilder({ page }).withRules(['label-content-name-mismatch']).analyze();
@@ -26,7 +25,6 @@ test('every button\'s accessible name contains the words it shows', async ({ pag
 // A screen-reader user adds a book and hears… nothing. The total changes
 // visually, but nothing tells assistive technology to announce it.
 test('the cart announces its new total to screen readers', async ({ page }) => {
-  test.fail(true, 'real gap: the cart total is not in a live region; Topic 9 lab, step 4');
   const shop = new ShopPage(page);
   await shop.goto();
   await shop.addToCart('Testing in Production');
