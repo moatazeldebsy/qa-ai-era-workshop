@@ -68,6 +68,12 @@ jobs:
           npm run foundations:risks
           npm run foundations:bug-hunt
 
+      # Learning Path, Topic 2: test-design techniques and a mutation scorecard.
+      - name: Test design lab
+        run: |
+          npm run design:test
+          npm run design:mutants
+
       # ── 2. API + E2E (Labs 1, 2) → test-results/junit.xml ─────────────────
       - name: API and E2E tests
         id: functional

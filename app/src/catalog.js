@@ -11,7 +11,7 @@ export const books = [
 
 export const policies = {
   shipping: 'Standard shipping takes 3-5 business days and is free for orders over 50 EUR.',
-  returns: 'Books can be returned within 30 days in their original condition for a full refund.',
+  returns: 'Books can be returned within 30 days in their original condition for a full refund. Books that arrive damaged are refunded in full if you tell us within 30 days.',
   contact: 'Support is available by email at support@quality-books.example, Monday to Friday.',
 };
 

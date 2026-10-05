@@ -12,8 +12,8 @@ This isn't interview prep. The goal is to understand how quality engineering act
 | # | Topic | The question it answers | Status |
 |---|---|---|---|
 | 1 | [QA Engineering Foundations](01-qa-foundations.md) | What is quality, how do we know we have it, and where does testing fit? | ✅ Available |
-| 2 | Test Design Techniques | Out of infinite possible tests, which few should we write? | Next |
-| 3 | Unit and Component Testing | How do we check one piece fast and in isolation? | Planned |
+| 2 | [Test Design Techniques](02-test-design.md) | Out of infinite possible tests, which few should we write? | ✅ Available |
+| 3 | Unit and Component Testing | How do we check one piece fast and in isolation? | Next |
 | 4 | Integration, API, and Contract Testing | How do we check that pieces still fit together when teams change them independently? | Planned |
 | 5 | UI, Web, and End-to-End Testing | How do we check what the user really sees, without a slow, flaky suite? | Planned |
 | 6 | CI/CD and Continuous Testing | How does testing run on every change and turn into a release decision? | Planned |
@@ -84,4 +84,4 @@ The [AI-era workshop](../modules/index.md) (8 modules, 9 labs) stays as a one- o
 
 ## Before you start
 
-Do the [Quickstart](../getting-started.md). Topic 1 needs only Node.js and `npm install`; no browser and no API key.
+Do the [Quickstart](../getting-started.md). Topics 1 and 2 need only Node.js and `npm install`; no browser and no API key.

@@ -82,6 +82,7 @@ nav:
   - Learning Path:
     - learning-path/index.md
     - 1. QA Engineering Foundations: learning-path/01-qa-foundations.md
+    - 2. Test Design Techniques: learning-path/02-test-design.md
   - "Workshop: Modules":
     - modules/index.md
     - 1. The Evolving Role: modules/01-evolving-role.md

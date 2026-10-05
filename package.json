@@ -20,6 +20,9 @@
     "foundations:test": "node --test \"labs/foundations/tests/*.test.js\"",
     "foundations:risks": "node labs/foundations/risks.mjs",
     "foundations:bug-hunt": "node labs/foundations/bug-hunt.mjs",
+    "design:test": "node --test \"labs/test-design/tests/*.test.js\"",
+    "design:pairwise": "node labs/test-design/pairwise.mjs",
+    "design:mutants": "node labs/test-design/mutants.mjs",
     "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
     "eval:redteam": "promptfoo eval -c labs/llm-eval/redteam.yaml --no-cache",
     "eval:llm:view": "promptfoo view",
@@ -38,6 +41,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
+    "fast-check": "^4.10.2",
     "promptfoo": "^0.123.1"
   },
   "overrides": {
