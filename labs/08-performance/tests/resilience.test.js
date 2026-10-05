@@ -48,7 +48,6 @@ describe('when the inventory service misbehaves', () => {
   // the shop itself falls over. A dependency must never make you wait forever.
   test(
     'when the inventory service is slow, the shop fails fast instead of hanging',
-    { todo: 'real gap: the inventory client has no timeout; Topic 8 lab, step 3' },
     async () => {
       proxy.set({ latencyMs: 3000 });
       const { status, ms } = await timed(order);
@@ -65,7 +64,6 @@ describe('under unusual traffic', () => {
   // every scanner that visits.
   test(
     'unknown URLs do not create new metric series',
-    { todo: 'real bug: /metrics keeps one series per unknown path; Topic 8 lab, step 4' },
     async () => {
       const series = async () => (await (await fetch(`${shop.url}/metrics`)).text()).split('\n').filter((l) => l.startsWith('http_requests_total{')).length;
       await series(); // the first /metrics call adds its own series; measure after it

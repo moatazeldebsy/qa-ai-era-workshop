@@ -14,12 +14,13 @@ export class InventoryError extends Error {
   }
 }
 
-export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fetch }) {
-  // Network failures (refused, reset, DNS) become InventoryErrors too, so
-  // callers handle "the inventory service is unavailable" in one place.
+export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fetch, timeoutMs = 1000 }) {
+  // Network failures (refused, reset, DNS) and calls slower than timeoutMs
+  // become InventoryErrors, so callers handle "the inventory service is
+  // unavailable" in one place, and a slow dependency can't make us hang.
   const http = async (url, options) => {
     try {
-      return await rawFetch(url, options);
+      return await rawFetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
     } catch (err) {
       throw new InventoryError(`inventory service unreachable: ${err.cause?.code ?? err.message}`);
     }

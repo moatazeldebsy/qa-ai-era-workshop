@@ -28,6 +28,16 @@ export const options = {
   },
 };
 
+// Load tests need data too (Topic 7). 20 orders a second for 20 s is about
+// 400 copies; book 1 starts with 12. Give the test the stock it needs,
+// through the test-data API, before the first virtual user starts.
+export function setup() {
+  const res = http.put(`${INVENTORY_URL}/stock/1`, JSON.stringify({ available: 100000 }), {
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (res.status !== 200) throw new Error(`could not stock book 1 (${res.status}): start the services with INVENTORY_TEST_DATA=on`);
+}
+
 export default function () {
   const res = http.post(
     `${BASE_URL}/api/orders`,
@@ -37,5 +47,3 @@ export default function () {
   check(res, { 'order placed (201)': (r) => r.status === 201 });
   sleep(0.1);
 }
-
-void INVENTORY_URL; // the test-data API lives here (Topic 7): see lab step 2

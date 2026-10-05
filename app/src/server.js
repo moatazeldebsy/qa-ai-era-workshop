@@ -39,7 +39,9 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
     res.set('x-request-id', id);
     res.on('finish', () => {
       const ms = Number(process.hrtime.bigint() - start) / 1e6;
-      const key = `${req.method} ${req.route?.path ?? req.path} ${res.statusCode}`;
+      // Label by route PATTERN, never by raw path: raw paths are unbounded (every
+      // scanner URL would become a new series, kept in memory forever).
+      const key = `${req.method} ${req.route?.path ?? 'unmatched'} ${res.statusCode}`;
       metrics.requests.set(key, (metrics.requests.get(key) ?? 0) + 1);
       if (res.statusCode >= 500) metrics.errors += 1;
       if (process.env.LOG_REQUESTS !== 'false' && req.path.startsWith('/api')) {
