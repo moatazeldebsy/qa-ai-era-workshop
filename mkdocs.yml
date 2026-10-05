@@ -100,6 +100,11 @@ nav:
       - Concepts: topics/03-unit-component/concepts.md
       - Lab: topics/03-unit-component/lab.md
       - Quiz & wrap-up: topics/03-unit-component/quiz.md
+    - 4. Integration, API, and Contract Testing:
+      - Overview: topics/04-integration-contract/index.md
+      - Concepts: topics/04-integration-contract/concepts.md
+      - Lab: topics/04-integration-contract/lab.md
+      - Quiz & wrap-up: topics/04-integration-contract/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

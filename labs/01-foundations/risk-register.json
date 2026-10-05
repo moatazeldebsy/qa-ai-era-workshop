@@ -10,7 +10,7 @@
       "impact": 4,
       "checks": [
         { "file": "labs/01-foundations/tests/oracles.test.js", "title": "every sellable cart obeys the pricing invariants" },
-        { "file": "labs/api/tests/cart.api.spec.js", "title": "exactly over the threshold ships free" },
+        { "file": "labs/04-integration-contract/api/tests/cart.api.spec.js", "title": "exactly over the threshold ships free" },
         { "file": "labs/playwright/tests/shop.spec.js", "title": "ships free once the subtotal reaches 50 EUR" }
       ]
     },

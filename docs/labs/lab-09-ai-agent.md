@@ -113,7 +113,7 @@ Compare the two runs. Without the rules, does the agent still flag 4.90 EUR ship
 
 ## 5. Turn a finding into a regression test
 
-An agent session isn't repeatable: the next run may take a different path. Pin what it found with a scripted test. For the free-shipping finding, the test already exists. Find it in `labs/api/tests/cart.api.spec.js` and run it against the buggy app:
+An agent session isn't repeatable: the next run may take a different path. Pin what it found with a scripted test. For the free-shipping finding, the test already exists. Find it in `labs/04-integration-contract/api/tests/cart.api.spec.js` and run it against the buggy app:
 
 ```bash
 BASE_URL=http://localhost:3210 npm run test:api

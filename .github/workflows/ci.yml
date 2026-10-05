@@ -22,6 +22,7 @@ concurrency:
 
 env:
   K6_VERSION: v2.3.0
+  PACT_DO_NOT_TRACK: 'true'
   PROMPTFOO_DISABLE_TELEMETRY: '1'
   FORCE_COLOR: '1'
 
@@ -79,6 +80,11 @@ jobs:
         run: |
           npm run unit:test
           npm run unit:mutate
+
+      # Topic 4: API, integration and Pact consumer tests (provider
+      # verification is the learner's job on main; learn verify checks it).
+      - name: Integration and contract lab
+        run: npm run contract:test
 
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's

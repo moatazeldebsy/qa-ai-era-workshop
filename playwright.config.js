@@ -30,7 +30,7 @@ export default defineConfig({
   },
   projects: [
     { name: 'e2e', testDir: 'labs/playwright/tests', use: { ...devices['Desktop Chrome'] } },
-    { name: 'api', testDir: 'labs/api/tests' },
+    { name: 'api', testDir: 'labs/04-integration-contract/api/tests' },
     { name: 'flaky', testDir: 'labs/flaky/tests', retries: 0, use: { ...devices['Desktop Chrome'] } },
     { name: 'agent-tools', testDir: 'labs/ai-agent/tests', use: { ...devices['Desktop Chrome'] } },
   ],

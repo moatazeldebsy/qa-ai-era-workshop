@@ -15,6 +15,8 @@
     "learn:status": "node scripts/learn.mjs status",
     "doctor": "node scripts/doctor.mjs",
     "start": "node app/src/server.js",
+    "start:inventory": "node services/inventory/src/server.js",
+    "start:all": "node scripts/start-all.mjs",
     "start:buggy": "ASSISTANT_MODE=buggy node app/src/server.js",
     "start:bug-cart": "BUG_MODE=cart node app/src/server.js",
     "test": "playwright test --project=e2e --project=api",
@@ -31,6 +33,8 @@
     "unit:test": "node --test \"labs/03-unit-component/tests/*.test.js\"",
     "unit:coverage": "node --test --experimental-test-coverage --test-coverage-include=\"app/src/**\" \"labs/03-unit-component/tests/*.test.js\"",
     "unit:mutate": "stryker run labs/03-unit-component/stryker.config.json",
+    "contract:test": "node --test \"labs/04-integration-contract/tests/*.test.js\"",
+    "contract:verify": "node labs/04-integration-contract/verify-provider.mjs",
     "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
     "eval:redteam": "promptfoo eval -c labs/llm-eval/redteam.yaml --no-cache",
     "eval:llm:view": "promptfoo view",
@@ -49,10 +53,13 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
+    "@pact-foundation/pact": "^17.1.4",
     "@playwright/test": "^1.63.0",
     "@stryker-mutator/core": "^10.0.0",
+    "ajv": "^8.20.0",
     "fast-check": "^4.10.2",
-    "promptfoo": "^0.123.1"
+    "promptfoo": "^0.123.1",
+    "yaml": "^2.9.1"
   },
   "overrides": {
     "basic-ftp": "^6.2.1"

@@ -10,3 +10,4 @@ __pycache__/
 .DS_Store
 reports/
 .stryker-tmp/
+labs/04-integration-contract/pacts/

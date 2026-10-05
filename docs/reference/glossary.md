@@ -8,6 +8,10 @@
 
 **Change failure rate** — Share of deployments that cause a failure in production. One of the four DORA metrics.
 
+**Consumer / provider** — In an API relationship, the consumer is the client that calls the API and the provider is the service that offers it. One provider usually has many consumers.
+
+**Contract test** — A test that checks a consumer and a provider agree on an API without running them together. Each side is tested against a shared contract.
+
 **Decision table** — A table with one column per combination of conditions and the expected outcome for each. Exposes missing and contradictory rules.
 
 **Defect escape rate** — Share of defects first found in production rather than before release.
@@ -32,6 +36,10 @@
 
 **Hallucination** — A fluent, confident output that isn't supported by the provided data or by reality.
 
+**Hyrum's Law** — With enough users of an API, every observable behaviour will be depended on by somebody, whether or not it was promised.
+
+**Integration test** — A test that checks two or more real components working together, such as a service and the real service it calls.
+
 **Invariant (property)** — A rule that must hold for every valid input, such as *total = subtotal + shipping*. It lets one test check thousands of inputs without knowing each expected value.
 
 **Lead time for changes** — Time from commit to running in production.
@@ -46,6 +54,8 @@
 
 **Mutation testing** — Deliberately introducing small bugs to check that the tests detect them. Measures test strength, not coverage.
 
+**OpenAPI** — A standard, machine-readable format for describing HTTP APIs: paths, parameters, request and response schemas.
+
 **Oracle** — The source of truth that tells a test what the right answer is (a spec, a rule, a reference implementation).
 
 **Pairwise testing** — Choosing configurations so that every pair of factor values appears together at least once; far fewer than all combinations.
@@ -53,6 +63,8 @@
 **Prompt injection** — Input crafted to make a model ignore its instructions, e.g. to leak its system prompt or take unintended actions.
 
 **Property-based testing** — Generating many inputs from a description of their shape and checking a property holds for all of them; failing inputs are shrunk to a minimal case.
+
+**Provider state** — A named precondition ("book 1 has 12 copies in stock") that a provider sets up before replaying a contract interaction.
 
 **Quality gate** — Automated, pre-agreed release criteria evaluated on test evidence; blocks the release when not met.
 

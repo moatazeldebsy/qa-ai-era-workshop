@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: Inventory Service API
+  version: 1.2.0
+  description: |
+    Holds stock for orders that are being paid. Owned by the inventory team;
+    the shop (quality-books-shop) is one of its consumers.
+servers:
+  - url: http://localhost:3220
+paths:
+  /stock/{bookId}:
+    get:
+      summary: Copies available for a book
+      parameters:
+        - { name: bookId, in: path, required: true, schema: { type: integer } }
+      responses:
+        '200':
+          description: Stock level
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [bookId, available]
+                properties:
+                  bookId: { type: integer }
+                  available: { type: integer, minimum: 0 }
+        '404': { description: Unknown book }
+  /reservations:
+    post:
+      summary: Hold stock for 15 minutes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lines]
+              properties:
+                lines:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    required: [bookId, quantity]
+                    properties:
+                      bookId: { type: integer }
+                      quantity: { type: integer, minimum: 1 }
+      responses:
+        '201':
+          description: Stock held
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [reservationId, lines, expiresAt]
+                properties:
+                  reservationId: { type: string }
+                  lines: { type: array, items: { type: object } }
+                  expiresAt: { type: string, format: date-time }
+        '400': { description: Invalid request }
+        '409':
+          description: Not enough stock for one of the lines
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [error, bookId]
+                properties:
+                  error: { type: string }
+                  bookId: { type: integer }
+  /reservations/{reservationId}:
+    delete:
+      summary: Release held stock
+      parameters:
+        - { name: reservationId, in: path, required: true, schema: { type: string } }
+      responses:
+        '204': { description: Released }
+        '404': { description: No such reservation (already released or expired) }

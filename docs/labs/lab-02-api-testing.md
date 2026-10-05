@@ -17,9 +17,9 @@ By the end you'll have:
 
 | File | What's in it |
 |---|---|
-| `labs/api/tests/books.api.spec.js` | Response shape, search, 404, request IDs |
-| `labs/api/tests/cart.api.spec.js` | Pricing rules and validation as data tables |
-| `labs/api/tests/assistant.api.spec.js` | The assistant endpoint's contract |
+| `labs/04-integration-contract/api/tests/books.api.spec.js` | Response shape, search, 404, request IDs |
+| `labs/04-integration-contract/api/tests/cart.api.spec.js` | Pricing rules and validation as data tables |
+| `labs/04-integration-contract/api/tests/assistant.api.spec.js` | The assistant endpoint's contract |
 | `app/openapi.yaml` | The API spec |
 
 ## 1. Run the API tests
@@ -36,7 +36,7 @@ Compare that with Lab 1's nine browser tests, which take several seconds. Same r
 
 ## 2. Read the data tables
 
-```js title="labs/api/tests/cart.api.spec.js"
+```js title="labs/04-integration-contract/api/tests/cart.api.spec.js"
 const pricing = [
   { name: 'single cheap book pays shipping', items: [{ bookId: 1, quantity: 1 }], subtotal: 29.99, shipping: 4.9, total: 34.89 },
   { name: 'exactly over the threshold ships free', items: [{ bookId: 1, quantity: 2 }], subtotal: 59.98, shipping: 0, total: 59.98 },

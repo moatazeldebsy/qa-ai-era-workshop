@@ -11,7 +11,7 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 | 1 | [QA Engineering Foundations](01-foundations/index.md) | What is quality, how do we know we have it, and where does testing fit? | ~5 h | <span class="topic-progress-mini" data-topic="01"></span> |
 | 2 | [Test Design Techniques](02-test-design/index.md) | Out of infinitely many possible tests, which few should we write? | ~6 h | <span class="topic-progress-mini" data-topic="02"></span> |
 | 3 | [Unit and Component Testing](03-unit-component/index.md) | How do we check one piece fast and in isolation? | ~5 h | <span class="topic-progress-mini" data-topic="03"></span> |
-| 4 | Integration, API, and Contract Testing | How do we check that pieces still fit when teams change them independently? | ~6 h | — |
+| 4 | [Integration, API, and Contract Testing](04-integration-contract/index.md) | How do we check that pieces still fit when teams change them independently? | ~6 h | <span class="topic-progress-mini" data-topic="04"></span> |
 | 5 | UI, Web, and End-to-End Testing | How do we check what the user really sees, without a slow, flaky suite? | ~6 h | — |
 | 6 | CI/CD and Continuous Testing | How does testing run on every change and become a release decision? | ~5 h | — |
 | 7 | Test Environments and Test Data Management | Where do tests run, and on what data? | ~5 h | — |

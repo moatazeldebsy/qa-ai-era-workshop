@@ -48,7 +48,7 @@ By the end you'll have:
     Generating tests with claude-opus-5-5...
     Wrote labs/ai-testgen/generated/api.generated.2026-10-03T09-12-44-512Z.spec.js
     Tokens: 2210 in / 3874 out
-    Next: review it, move it into labs/api/tests/, then run  npm run test:api
+    Next: review it, move it into labs/04-integration-contract/api/tests/, then run  npm run test:api
     ```
 
     The model is `claude-opus-5-5` at medium effort (`TESTGEN_MODEL` to change it). One run costs a few cents.
@@ -80,7 +80,7 @@ Open `labs/ai-testgen/review-checklist.md` and go through the generated file one
 ## 4. Run what you kept
 
 ```bash
-mv labs/ai-testgen/generated/api.generated*.spec.js labs/api/tests/
+mv labs/ai-testgen/generated/api.generated*.spec.js labs/04-integration-contract/api/tests/
 npm run test:api
 ```
 
@@ -111,7 +111,7 @@ Write it on the board: *generated N, kept K, fixed F, deleted D*, and the single
 ```bash
 npm run testgen -- --print > prompt.txt         # 1. or: npm run testgen (with a key)
 # 2-3. read the prompt, review with review-checklist.md
-mv labs/ai-testgen/generated/*.spec.js labs/api/tests/ && npm run test:api   # 4.
+mv labs/ai-testgen/generated/*.spec.js labs/04-integration-contract/api/tests/ && npm run test:api   # 4.
 PORT=3300 BUG_MODE=cart npm start &              # 5.
 BASE_URL=http://localhost:3300 npm run test:api
 ```

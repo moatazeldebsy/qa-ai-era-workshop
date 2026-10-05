@@ -214,4 +214,4 @@ Read before Topic 4 (optional):
 - Kent Beck, *Test-Driven Development: By Example*, part I
 - Goran Petrović and Marko Ivanković, *State of Mutation Testing at Google* (ICSE SEIP 2018)
 
-When you've finished the lab and the challenge, move on to [Topic 4](../index.md).
+When you've finished the lab and the challenge, move on to [Topic 4](../04-integration-contract/index.md).
