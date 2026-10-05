@@ -33,7 +33,6 @@ describe('across runs', () => {
   // failing" or "failing" depending on which run happened to be last.
   test(
     'a test that passed in some runs and failed in others is flaky, with its failure rate',
-    { todo: 'real gap: flakiness is judged from the latest run only; Topic 11 lab, step 2' },
     () => {
       const history = [run('1', 'run-failing.xml'), run('2', 'run-passing.xml'), run('3', 'run-failing.xml'), run('4', 'run-passing.xml')];
       const bad = summarize(history).find((x) => x.id === BAD);
@@ -47,7 +46,6 @@ describe('across runs', () => {
   // "passed" in JUnit. Only Playwright's JSON report says "flaky".
   test(
     'a test that only passed on retry counts as flaky (Playwright JSON report)',
-    { todo: 'real gap: JUnit hides retried passes; Topic 11 lab, step 3' },
     async () => {
       const { parsePlaywrightJson } = await import('../analyze.mjs');
       assert.equal(typeof parsePlaywrightJson, 'function', 'analyze.mjs has no parsePlaywrightJson yet');

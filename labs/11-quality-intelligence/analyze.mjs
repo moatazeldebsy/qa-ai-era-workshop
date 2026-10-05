@@ -1,11 +1,12 @@
 // Test-result analysis for quality intelligence (Topic 11).
 //
-//   parseJUnit(xml)      → [{ id, name, file, outcome, seconds, message }]
-//   loadHistory(dir)     → [{ run, results }] for every run file in a folder
-//   summarize(history)   → per-test statistics across runs
+//   parseJUnit(xml)            → [{ id, name, file, outcome, seconds, message }]
+//   parsePlaywrightJson(text)  → the same, plus outcome 'flaky' for retried passes
+//   loadHistory(dir)           → [{ run, results }], preferring each run's JSON
+//   summarize(history)         → per-test statistics across runs
 //
-// Written as a first version: it reports what the LATEST run says. The lab
-// asks you to make it see what the whole history says.
+// A test is flaky when the history shows it both passing and failing on the
+// same code, or when it only passed on a retry (which JUnit can't show).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -29,12 +30,38 @@ export function parseJUnit(xml) {
   return results;
 }
 
+// Playwright's own report knows about retries: a test whose final status is
+// 'flaky' failed at least once and then passed.
+export function parsePlaywrightJson(text) {
+  const report = JSON.parse(text);
+  const walk = (suite, titles) => [
+    ...(suite.specs ?? []).flatMap((spec) =>
+      spec.tests.map((t) => {
+        const last = t.results.at(-1) ?? {};
+        const failed = t.results.find((r) => r.status !== 'passed' && r.status !== 'skipped');
+        return {
+          id: `${spec.file} › ${[...titles, spec.title].join(' › ')}`,
+          name: [...titles, spec.title].join(' › '),
+          file: spec.file,
+          outcome: t.status === 'flaky' ? 'flaky' : t.status === 'skipped' ? 'skipped' : t.status === 'expected' ? 'passed' : 'failed',
+          seconds: (last.duration ?? 0) / 1000,
+          message: failed?.error?.message?.split('\n')[0] ?? '',
+        };
+      }),
+    ),
+    ...(suite.suites ?? []).flatMap((child) => walk(child, [...titles, child.title])),
+  ];
+  return report.suites.flatMap((fileSuite) => walk(fileSuite, []));
+}
+
 export function loadHistory(dir) {
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith('.xml'))
-    .sort()
-    .map((f) => ({ run: f, results: parseJUnit(fs.readFileSync(path.join(dir, f), 'utf8')) }));
+  const files = fs.readdirSync(dir);
+  const runs = [...new Set(files.filter((f) => /\.(xml|json)$/.test(f)).map((f) => f.replace(/\.(xml|json)$/, '')))].sort();
+  return runs.map((run) =>
+    files.includes(`${run}.json`)
+      ? { run, results: parsePlaywrightJson(fs.readFileSync(path.join(dir, `${run}.json`), 'utf8')) }
+      : { run, results: parseJUnit(fs.readFileSync(path.join(dir, `${run}.xml`), 'utf8')) },
+  );
 }
 
 export function summarize(history) {
@@ -42,11 +69,12 @@ export function summarize(history) {
   const tests = new Map();
   for (const { results } of history) {
     for (const r of results) {
-      const t = tests.get(r.id) ?? { id: r.id, runs: 0, passed: 0, failed: 0, seconds: 0 };
+      const t = tests.get(r.id) ?? { id: r.id, runs: 0, passed: 0, failed: 0, retriedPasses: 0, seconds: 0 };
       t.runs += 1;
       t.seconds += r.seconds;
       if (r.outcome === 'passed') t.passed += 1;
       if (r.outcome === 'failed') t.failed += 1;
+      if (r.outcome === 'flaky') (t.passed += 1), (t.retriedPasses += 1);
       tests.set(r.id, t);
     }
   }
@@ -57,7 +85,8 @@ export function summarize(history) {
       meanSeconds: t.seconds / t.runs,
       failureRate: t.failed / t.runs,
       failingNow: now?.outcome === 'failed',
-      flaky: false, // TODO(Topic 11, step 2): what does the history say?
+      // Same code, different outcomes: across runs, or within one run's retries.
+      flaky: (t.passed > 0 && t.failed > 0) || t.retriedPasses > 0,
     };
   });
 }

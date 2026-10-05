@@ -21,7 +21,10 @@ for (const t of failing) console.log(`  ✖ ${t.id}`);
 
 const flaky = tests.filter((t) => t.flaky).sort((a, b) => b.failureRate - a.failureRate);
 console.log(`\nFlaky tests: ${flaky.length ? '' : 'none detected'}`);
-for (const t of flaky) console.log(`  ⚠ ${pct(t.failureRate).padStart(4)} of ${t.runs} runs failed  ${t.id}`);
+for (const t of flaky) {
+  const retried = t.retriedPasses ? `, ${t.retriedPasses} passed only on retry` : '';
+  console.log(`  ⚠ ${pct(t.failureRate).padStart(4)} of ${t.runs} runs failed${retried}  ${t.id}`);
+}
 
 console.log('\nSlowest tests (mean):');
 for (const t of [...tests].sort((a, b) => b.meanSeconds - a.meanSeconds).slice(0, 5)) {
