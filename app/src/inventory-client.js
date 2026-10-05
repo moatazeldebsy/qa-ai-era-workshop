@@ -6,6 +6,14 @@
 // `fetch` is injectable, but the tests in Topic 4 don't need that: they run
 // the client against a Pact mock server or a real inventory service.
 
+import { currentRequestId } from './request-context.js';
+
+// Forward the id of the request being handled, so both services log it.
+const withRequestId = (options = {}) => {
+  const id = currentRequestId();
+  return id ? { ...options, headers: { ...(options.headers ?? {}), 'x-request-id': id } } : options;
+};
+
 export class InventoryError extends Error {
   constructor(message, { status, bookId } = {}) {
     super(message);
@@ -20,7 +28,7 @@ export function createInventoryClient({ baseUrl, fetch: rawFetch = globalThis.fe
   // unavailable" in one place, and a slow dependency can't make us hang.
   const http = async (url, options) => {
     try {
-      return await rawFetch(url, { ...options, signal: AbortSignal.timeout(timeoutMs) });
+      return await rawFetch(url, { ...withRequestId(options), signal: AbortSignal.timeout(timeoutMs) });
     } catch (err) {
       throw new InventoryError(`inventory service unreachable: ${err.cause?.code ?? err.message}`);
     }

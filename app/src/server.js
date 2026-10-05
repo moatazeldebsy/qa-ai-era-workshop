@@ -11,12 +11,28 @@ import { next as nextState, InvalidTransition } from './orders.js';
 import { demoPayments } from './payments-demo.js';
 import { createAccounts } from './accounts.js';
 import { accountRoutes, parseShipTo, sessionUser } from './account-routes.js';
+import { requestContext } from './request-context.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
 // Tiny in-process metrics, exposed in Prometheus text format at /metrics so the
 // observability module has something real to scrape and graph.
-const metrics = { requests: new Map(), errors: 0, assistantCalls: 0 };
+const metrics = { requests: new Map(), errors: 0, assistantCalls: 0, durations: new Map() };
+
+// Latency histogram (Prometheus style): how many requests took at most each
+// bucket's number of seconds. Enough to compute "share of requests under
+// 250 ms" for a latency SLO, at a fixed, small memory cost per route.
+const BUCKETS = [0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1, 2.5, 5];
+function observeDuration(method, route, seconds) {
+  const key = `${method} ${route}`;
+  const h = metrics.durations.get(key) ?? { counts: BUCKETS.map(() => 0), sum: 0, count: 0 };
+  BUCKETS.forEach((le, i) => {
+    if (seconds <= le) h.counts[i] += 1;
+  });
+  h.sum += seconds;
+  h.count += 1;
+  metrics.durations.set(key, h);
+}
 
 // The shop's dependencies on other services are options, so tests can point
 // them at a test instance (Topic 4). Defaults suit `npm run start:all`.
@@ -59,18 +75,30 @@ export function createApp({
       const key = `${req.method} ${req.route?.path ?? 'unmatched'} ${res.statusCode}`;
       metrics.requests.set(key, (metrics.requests.get(key) ?? 0) + 1);
       if (res.statusCode >= 500) metrics.errors += 1;
+      if (req.route) observeDuration(req.method, req.route.path, ms / 1000);
       if (process.env.LOG_REQUESTS !== 'false' && req.path.startsWith('/api')) {
         console.log(JSON.stringify({ level: 'info', id, method: req.method, path: req.path, status: res.statusCode, ms: Math.round(ms) }));
       }
     });
-    next();
+    requestContext.run({ requestId: id }, next);
   });
 
   // Sign-in is optional: req.user is set for signed-in customers only.
   app.use(sessionUser(accounts));
   app.use(accountRoutes({ accounts, orders }));
 
+  // Liveness: the process is up. Readiness: it can do its job right now,
+  // which needs the inventory service. Load balancers route by readiness.
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
+  app.get('/ready', async (_req, res) => {
+    try {
+      const inv = await fetch(`${inventoryUrl}/health`, { signal: AbortSignal.timeout(500) });
+      if (!inv.ok) throw new Error(`inventory answered ${inv.status}`);
+      res.json({ status: 'ready' });
+    } catch {
+      res.status(503).json({ status: 'not ready', inventory: 'unreachable' });
+    }
+  });
 
   app.get('/api/books', (req, res) => {
     res.json({ books: searchBooks(req.query.q) });
@@ -160,6 +188,18 @@ export function createApp({
       `http_server_errors_total ${metrics.errors}`,
       '# TYPE assistant_calls_total counter',
       `assistant_calls_total ${metrics.assistantCalls}`,
+      '# HELP http_request_duration_seconds Request latency by method and route.',
+      '# TYPE http_request_duration_seconds histogram',
+      ...[...metrics.durations].flatMap(([k, h]) => {
+        const [method, route] = k.split(' ');
+        const labels = `method="${method}",route="${route}"`;
+        return [
+          ...BUCKETS.map((le, i) => `http_request_duration_seconds_bucket{${labels},le="${le}"} ${h.counts[i]}`),
+          `http_request_duration_seconds_bucket{${labels},le="+Inf"} ${h.count}`,
+          `http_request_duration_seconds_sum{${labels}} ${h.sum.toFixed(6)}`,
+          `http_request_duration_seconds_count{${labels}} ${h.count}`,
+        ];
+      }),
     ];
     res.type('text/plain').send(lines.join('\n') + '\n');
   });

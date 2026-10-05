@@ -42,7 +42,6 @@ describe('logs and correlation', () => {
   // joined them.
   test(
     'the request id travels from the shop to the inventory service',
-    { todo: 'real gap: the inventory client does not forward the request id; Topic 10 lab, step 2' },
     async () => {
       const inventory = await recordingInventory();
       const shop = await serve(createApp({ inventoryUrl: inventory.url }));
@@ -69,7 +68,6 @@ describe('health', () => {
   // kept sending customers to it and the dashboard said "all fine".
   test(
     'readiness: /ready says the shop cannot take orders while the inventory service is down',
-    { todo: 'real gap: there is no readiness check, only liveness; Topic 10 lab, step 3' },
     async () => {
       const ready = await get(`${shop.url}/ready`);
       assert.equal(ready.status, 503);
@@ -95,7 +93,6 @@ describe('metrics', () => {
   // no way to say "99% of requests under 300 ms".
   test(
     '/metrics has a latency histogram per route',
-    { todo: 'real gap: no latency metrics, so no latency SLO; Topic 10 lab, step 4' },
     async () => {
       const shop = await serve(createApp());
       for (let i = 1; i <= 5; i++) await fetch(`${shop.url}/api/books/${i}`); // a route no other test here uses

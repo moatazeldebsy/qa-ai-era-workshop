@@ -40,6 +40,19 @@ export function createInventoryApp({
   app.locals.reset();
   app.locals.reservations = () => reservations;
 
+  // Same request id as the caller, so a reservation can be found in both
+  // services' logs (Topic 10).
+  app.use((req, res, next) => {
+    const id = req.get('x-request-id') || crypto.randomUUID();
+    res.set('x-request-id', id);
+    res.on('finish', () => {
+      if (process.env.LOG_REQUESTS !== 'false' && req.path !== '/health') {
+        console.log(JSON.stringify({ level: 'info', service: 'inventory', id, method: req.method, path: req.path, status: res.statusCode }));
+      }
+    });
+    next();
+  });
+
   app.get('/health', (_req, res) => res.json({ status: 'ok' }));
 
   // An internal API still needs authentication: anyone who can reach it could
