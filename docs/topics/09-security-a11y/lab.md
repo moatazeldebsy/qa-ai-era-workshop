@@ -134,7 +134,7 @@ The second TODO in `security.test.js` holds the answer: anyone who can reach the
     }
     ```
 
-    In the client, add `authorization: Bearer ${token}` to the reservation and release requests when a token is given. The rest is on the solutions branch: `git diff main origin/solutions -- services app/src/inventory-client.js compose.yaml`.
+    In the client, add `authorization: Bearer ${token}` to the reservation and release requests when a token is given. The rest is on the solutions branch: `git diff upstream/main upstream/solutions -- services app/src/inventory-client.js compose.yaml`.
 
 In your notebook: why is "it's internal" not a defence, and what would you add besides a shared token?
 

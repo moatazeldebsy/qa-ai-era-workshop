@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Quality Books API
   version: 1.0.0
-  description: The workshop's demo shop. Lab 3 feeds this spec to an AI model to propose test cases.
+  description: Quality Books, the course's demo shop. Topic 12 feeds this spec to an AI model to propose test cases.
 servers:
   - url: http://localhost:3210
 paths:

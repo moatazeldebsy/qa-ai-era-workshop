@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 // Pricing rules, data-driven. Each row is a business rule someone could get
-// wrong; Lab 7 starts the app with BUG_MODE=cart and these rows catch it.
+// wrong; Topic 6 starts the app with BUG_MODE=cart and these rows catch it.
 const pricing = [
   { name: 'single cheap book pays shipping', items: [{ bookId: 1, quantity: 1 }], subtotal: 29.99, shipping: 4.9, total: 34.89 },
   { name: 'exactly over the threshold ships free', items: [{ bookId: 1, quantity: 2 }], subtotal: 59.98, shipping: 0, total: 59.98 },

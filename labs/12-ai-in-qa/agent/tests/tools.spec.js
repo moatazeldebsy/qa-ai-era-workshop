@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { createTools } from '../tools.mjs';
 
-// The Lab 9 agent is only as good as its tools. These tests drive the same
+// The Topic 12 agent is only as good as its tools. These tests drive the same
 // five tools the model uses, without a model, so a broken tool shows up in CI
 // instead of as a confused agent that "can't find the button".
 

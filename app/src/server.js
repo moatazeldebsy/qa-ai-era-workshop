@@ -67,7 +67,7 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
     }
   });
 
-  // Deliberately slow and variable (200-1500 ms). Lab 4 uses it: a test that
+  // Deliberately slow and variable (200-1500 ms). Topic 5 uses it: a test that
   // sleeps a fixed time before asserting on it is flaky; one that waits for
   // the element is not.
   app.get('/api/recommendations', async (_req, res) => {

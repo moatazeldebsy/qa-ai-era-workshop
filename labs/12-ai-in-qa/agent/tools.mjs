@@ -1,4 +1,4 @@
-// The five browser tools the Lab 9 agent can use, separated from the agent so
+// The five browser tools the Topic 12 agent can use, separated from the agent so
 // they can be tested without a model (labs/12-ai-in-qa/agent/tests/tools.spec.js).
 //
 // defineTool is the SDK's betaTool in explore.mjs, and an identity function in

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Lab 4 - a FLAKY test, on purpose. Run it ten times:
+// Topic 5 - a FLAKY test, on purpose. Run it ten times:
 //
 //   npm run test:flaky
 //

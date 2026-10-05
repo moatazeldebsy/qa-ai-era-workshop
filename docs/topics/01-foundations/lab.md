@@ -135,7 +135,7 @@ A consistency oracle tells you *that* sources disagree, not *which* one is right
     });
     ```
 
-    Or compare your work with the solutions branch: `git fetch origin solutions && git diff origin/solutions -- app/src/catalog.js labs/01-foundations/tests`
+    Or compare your work with the solutions branch: `git diff upstream/solutions -- app/src/catalog.js labs/01-foundations/tests`
 
 Then run it:
 

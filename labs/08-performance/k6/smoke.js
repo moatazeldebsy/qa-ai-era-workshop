@@ -1,7 +1,7 @@
 import http from 'k6/http';
 import { check, group, sleep } from 'k6';
 
-// Lab 5 - performance smoke test. A small, always-on load that runs in CI and
+// Topic 8 - performance smoke test. A small, always-on load that runs in CI and
 // fails the build when latency or errors regress. Thresholds ARE the test:
 // k6 exits non-zero when one is crossed.
 //
@@ -53,7 +53,7 @@ export default function () {
   sleep(1);
 }
 
-// Machine-readable summary for the quality gate (Lab 7).
+// Machine-readable summary for the quality gate (Topic 6).
 export function handleSummary(data) {
   return {
     stdout: textSummary(data),

@@ -18,6 +18,11 @@ const [command = 'help', ...args] = process.argv.slice(2);
 const json = args.includes('--json');
 const positional = args.filter((a) => !a.startsWith('--'));
 
+// Learners work in a fork, whose `origin` only has main. `upstream` is the course
+// itself: the starting state of every lab, and the `solutions` branch.
+const COURSE_URL = 'https://github.com/moatazeldebsy/qa-engineering-deep-dive.git';
+const isCourseRepo = (url) => /moatazeldebsy\/(qa-engineering-deep-dive|qa-ai-era-workshop)(\.git)?$/.test(url.trim());
+
 function topicDirs() {
   return fs
     .readdirSync(path.join(root, 'labs'))
@@ -71,9 +76,18 @@ const commands = {
       console.error('✖ You have uncommitted changes. Commit them (git add -A && git commit -m "wip") or stash them first.');
       process.exit(1);
     }
-    const remotes = sh('git', ['remote']).out.split('\n');
+    let remotes = sh('git', ['remote']).out.split('\n');
+    if (!remotes.includes('upstream') && !(remotes.includes('origin') && isCourseRepo(sh('git', ['remote', 'get-url', 'origin']).out))) {
+      sh('git', ['remote', 'add', 'upstream', COURSE_URL]);
+      console.log(`Added the course as the "upstream" remote: ${COURSE_URL}`);
+      remotes = sh('git', ['remote']).out.split('\n');
+    }
     const base = remotes.includes('upstream') ? 'upstream/main' : remotes.includes('origin') ? 'origin/main' : 'main';
-    if (base !== 'main') sh('git', ['fetch', base.split('/')[0], 'main']);
+    if (base !== 'main') {
+      const remote = base.split('/')[0];
+      sh('git', ['fetch', remote, 'main']);
+      sh('git', ['fetch', remote, 'solutions']); // for the "compare with the solution" hints; optional
+    }
     const exists = sh('git', ['rev-parse', '--verify', '--quiet', branch]).code === 0;
     const res = exists ? sh('git', ['switch', branch]) : sh('git', ['switch', '-c', branch, base]);
     if (res.code !== 0) {

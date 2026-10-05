@@ -13,3 +13,7 @@ reports/
 labs/04-integration-contract/pacts/
 labs/07-env-data/masked/
 labs/11-quality-intelligence/history/
+
+# Secrets: never commit API keys
+.env
+.env.*

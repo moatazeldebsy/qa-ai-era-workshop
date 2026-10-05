@@ -8,7 +8,7 @@
 | Start a topic on its own branch | `npm run learn:start NN` |
 | Check a topic's lab | `npm run learn:check NN` |
 | Progress across all topics | `npm run learn:status` |
-| Compare with the reference solution | `git diff main origin/solutions -- <path>` |
+| Compare with the reference solution | `git diff upstream/main upstream/solutions -- <path>` |
 
 ## The demo app
 

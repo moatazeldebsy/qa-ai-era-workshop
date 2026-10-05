@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Lab 3 - AI-assisted test generation.
+// Topic 12 - AI-assisted test generation.
 //
 //   npm run testgen                 # with ANTHROPIC_API_KEY: writes a draft spec
 //   npm run testgen -- --print      # no key needed: prints the prompt to paste

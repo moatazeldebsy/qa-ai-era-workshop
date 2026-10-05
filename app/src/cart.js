@@ -9,7 +9,7 @@ export const SHIPPING_FEE = 4.9;
  *
  * BUG_MODE=cart re-introduces a classic regression (free shipping applied at
  * >= threshold on the *unrounded* per-line maths, and quantity ignored for the
- * shipping check). Lab 7 uses it to show a quality gate catching a defect
+ * shipping check). Topic 6 uses it to show a quality gate catching a defect
  * before release.
  */
 export function priceCart(items, { bugMode = process.env.BUG_MODE } = {}) {

@@ -138,7 +138,7 @@ In that run the BAD test failed, was retried, and passed. Playwright's JSON repo
     The report is a tree: `suites[]` (one per file) → nested `suites[]` (describe blocks) → `specs[]` → `tests[]`, each with a `status` (`expected`, `unexpected`, `flaky`, `skipped`) and every attempt in `results[]`. Build the id as `${spec.file} › ${describe titles…} › ${spec.title}` so it matches JUnit's `classname › name`.
 
 ??? success "Reference solution"
-    On the solutions branch: `git diff main origin/solutions -- labs/11-quality-intelligence/analyze.mjs`. The heart of it:
+    On the solutions branch: `git diff upstream/main upstream/solutions -- labs/11-quality-intelligence/analyze.mjs`. The heart of it:
 
     ```js
     outcome: t.status === 'flaky' ? 'flaky' : t.status === 'skipped' ? 'skipped' : t.status === 'expected' ? 'passed' : 'failed',

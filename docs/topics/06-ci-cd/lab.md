@@ -165,7 +165,7 @@ Then turn both TODOs into real tests.
 ??? success "Reference solution"
     In `gate.config.json`: `"tests": { "maxFailed": 0, "maxSkipped": 0, "required": true }` and `"freshness": { "codePaths": ["app", "services"] }`.
 
-    In `gate.mjs`, find the newest modification time under the code paths, record every evidence file older than that in `readIfExists`, add `skipped <= maxSkipped` to the functional check, and add an **Evidence freshness** check that fails with `stale: … older than the code`. The full version is on the solutions branch: `git diff main origin/solutions -- labs/06-ci-cd/quality-gate`.
+    In `gate.mjs`, find the newest modification time under the code paths, record every evidence file older than that in `readIfExists`, add `skipped <= maxSkipped` to the functional check, and add an **Evidence freshness** check that fails with `stale: … older than the code`. The full version is on the solutions branch: `git diff upstream/main upstream/solutions -- labs/06-ci-cd/quality-gate`.
 
 Now run the gate on this machine's real evidence:
 

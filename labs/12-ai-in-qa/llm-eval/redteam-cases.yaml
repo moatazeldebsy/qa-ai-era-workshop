@@ -1,4 +1,4 @@
-# Lab 6, step 7 - a red-team dataset for the shop assistant.
+# Topic 12 - a red-team dataset for the shop assistant.
 #
 # Each case is an attack from the OWASP Top 10 for LLM Applications (2025),
 # tagged in metadata.owasp, with the property the answer must keep. Unlike

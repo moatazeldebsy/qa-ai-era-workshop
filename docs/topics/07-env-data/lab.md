@@ -197,7 +197,7 @@ Open `labs/07-env-data/masked/orders.csv` and see for yourself.
     `crypto.createHmac('sha256', key).update(email).digest('hex')` is a keyed hash. Use the *same* function for `customers.email` and `orders.customer_email`. For the notes, replace anything that looks like an email or a phone number, and every customer name you know from the export.
 
 ??? success "Reference solution"
-    On the solutions branch: `git diff main origin/solutions -- labs/07-env-data/mask.mjs`. The key parts:
+    On the solutions branch: `git diff upstream/main upstream/solutions -- labs/07-env-data/mask.mjs`. The key parts:
 
     ```js
     const pseudonym = (email) => `u_${crypto.createHmac('sha256', key).update(email.trim().toLowerCase()).digest('hex').slice(0, 12)}@masked.example`;

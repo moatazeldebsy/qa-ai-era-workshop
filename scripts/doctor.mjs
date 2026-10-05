@@ -94,7 +94,7 @@ if (portState === 'free') {
     : add('fail', `Port ${PORT}`, 'used by another program', `stop it, or use another port: PORT=3300 npm start / PORT=3300 npm test`);
 }
 
-// Optional: a real model (Labs 3, 6, 9)
+// Optional: a real model (Topic 12: test generation, LLM evals, the agent)
 process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN
   ? add('ok', 'Anthropic API key', 'set (real-model modes and the Topic 12 agent with a real model)')
   : add('info', 'Anthropic API key', 'not set: fine, every lab works without it');

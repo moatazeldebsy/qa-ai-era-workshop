@@ -1,9 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { ShopPage } from '../pages/ShopPage.js';
 
-// Lab 1 - end-to-end journeys through the UI. Keep these few and focused on
+// Topic 5 - end-to-end journeys through the UI. Keep these few and focused on
 // what only a browser can prove; the pricing rules themselves are covered
-// faster and more thoroughly by the API tests (Lab 2) and unit tests.
+// faster and more thoroughly by the API tests (Topic 4) and unit tests.
 
 test.describe('catalogue', () => {
   test('lists every book on load', async ({ page }) => {
