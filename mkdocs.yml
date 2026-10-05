@@ -95,6 +95,11 @@ nav:
       - Concepts: topics/02-test-design/concepts.md
       - Lab: topics/02-test-design/lab.md
       - Quiz & wrap-up: topics/02-test-design/quiz.md
+    - 3. Unit and Component Testing:
+      - Overview: topics/03-unit-component/index.md
+      - Concepts: topics/03-unit-component/concepts.md
+      - Lab: topics/03-unit-component/lab.md
+      - Quiz & wrap-up: topics/03-unit-component/quiz.md
   - Reference:
     - Demo App: reference/demo-app.md
     - Cheat Sheet: reference/cheat-sheet.md

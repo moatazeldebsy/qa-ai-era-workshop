@@ -216,4 +216,4 @@ Read before Topic 2 (optional):
 - ISTQB, [*Certified Tester Foundation Level Syllabus v4.0*](https://www.istqb.org/certifications/certified-tester-foundation-level-ctfl-v4-0/), chapter 1
 - Martin Fowler, [*The Practical Test Pyramid*](https://martinfowler.com/articles/practical-test-pyramid.html)
 
-When you've finished the lab and the challenge, say **"continue"** to start Topic 2.
+When you've finished the lab and the challenge, move on to [Topic 2](../02-test-design/index.md).

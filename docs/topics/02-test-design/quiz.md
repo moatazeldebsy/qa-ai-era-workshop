@@ -215,4 +215,4 @@ Read before Topic 3 (optional):
 - [fast-check documentation](https://fast-check.dev/): *Why property-based?* and *Model-based testing*
 - NIST, [*Practical Combinatorial Testing*](https://csrc.nist.gov/pubs/sp/800/142/final) (SP 800-142)
 
-When you've finished the lab and the challenge, say **"continue"** to start Topic 3.
+When you've finished the lab and the challenge, move on to [Topic 3](../03-unit-component/index.md).

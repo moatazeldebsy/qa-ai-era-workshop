@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "_comment": "Learning Path, Topic 3: mutation testing for the checkout and returns modules. Run with: npm run unit:mutate",
+  "mutate": ["app/src/checkout.js", "app/src/returns.js"],
+  "testRunner": "command",
+  "commandRunner": { "command": "node --test labs/03-unit-component/tests/checkout.test.js labs/03-unit-component/tests/returns.test.js labs/03-unit-component/tests/interactions.test.js" },
+  "coverageAnalysis": "off",
+  "ignorePatterns": ["/*", "!/app", "!/labs/03-unit-component", "!/package.json"],
+  "reporters": ["clear-text", "progress", "json", "html"],
+  "jsonReporter": { "fileName": "reports/mutation/topic-03.json" },
+  "htmlReporter": { "fileName": "reports/mutation/topic-03.html" },
+  "tempDirName": ".stryker-tmp",
+  "concurrency": 4,
+  "timeoutMS": 10000
+}

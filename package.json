@@ -28,6 +28,9 @@
     "design:test": "node --test \"labs/02-test-design/tests/*.test.js\"",
     "design:pairwise": "node labs/02-test-design/pairwise.mjs",
     "design:mutants": "node labs/02-test-design/mutants.mjs",
+    "unit:test": "node --test \"labs/03-unit-component/tests/*.test.js\"",
+    "unit:coverage": "node --test --experimental-test-coverage --test-coverage-include=\"app/src/**\" \"labs/03-unit-component/tests/*.test.js\"",
+    "unit:mutate": "stryker run labs/03-unit-component/stryker.config.json",
     "eval:llm": "promptfoo eval -c labs/llm-eval/promptfooconfig.yaml --no-cache",
     "eval:redteam": "promptfoo eval -c labs/llm-eval/redteam.yaml --no-cache",
     "eval:llm:view": "promptfoo view",
@@ -47,6 +50,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
+    "@stryker-mutator/core": "^10.0.0",
     "fast-check": "^4.10.2",
     "promptfoo": "^0.123.1"
   },

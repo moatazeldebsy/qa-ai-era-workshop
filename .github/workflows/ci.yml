@@ -74,6 +74,12 @@ jobs:
           npm run design:test
           npm run design:mutants
 
+      # Topic 3: unit and component tests, plus Stryker mutation testing.
+      - name: Unit and component lab
+        run: |
+          npm run unit:test
+          npm run unit:mutate
+
       # The course repo must ship every lab unsolved (learners start here) and
       # the solutions branch must solve them all. Forks skip this: a learner's
       # progress is reported by learner-progress.yml instead.

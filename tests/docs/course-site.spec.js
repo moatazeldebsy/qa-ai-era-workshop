@@ -30,7 +30,7 @@ test('a quiz scores answers, explains them and saves the best score', async ({ p
 });
 
 test('every quiz has exactly one right answer per question', async ({ page }) => {
-  for (const topic of ['01-foundations', '02-test-design']) {
+  for (const topic of ['01-foundations', '02-test-design', '03-unit-component']) {
     await page.goto(`/topics/${topic}/quiz/`);
     const questions = page.locator('.quiz-q');
     const n = await questions.count();

@@ -22,6 +22,8 @@
 
 **Eval** — A regression suite for an LLM feature: inputs plus assertions on outputs, graded deterministically, programmatically, by a model or by humans.
 
+**Fake** — A working, simplified implementation of a collaborator used in tests, such as an in-memory inventory.
+
 **Flaky test** — A test that passes and fails on the same code. Usually timing, shared state or an uncontrolled dependency.
 
 **Grounding** — Constraining a model's answers to provided data (catalogue, documents) instead of its general training.
@@ -37,6 +39,8 @@
 **LLM-as-judge / model-graded assertion** — Using a model to grade another model's output against a rubric. Needs its own validation.
 
 **Metamorphic testing** — Checking how the outputs of related inputs must relate (reordering a cart doesn't change its total) when the exact right output is unknown.
+
+**Mock** — A test double pre-programmed with expectations about how it will be called; the test fails if it's called differently.
 
 **MTTD / MTTR** — Mean time to detect / to resolve (or restore) an incident.
 
@@ -54,13 +58,25 @@
 
 **Risk-based testing** — Prioritising tests by likelihood × impact of failure.
 
+**Seam** — A place where you can change a program's behaviour without editing it there, such as an injected clock or service.
+
 **Self-healing test** — A test that re-locates elements automatically when selectors break. Convenient, but may mask real changes.
 
 **Shift left / shift right** — Moving quality activities earlier (requirements, design, commit) or later (production monitoring, canaries, experiments).
 
+**Sociable / solitary test** — A sociable unit test uses real collaborators where they're fast and deterministic; a solitary test replaces every collaborator with a double.
+
+**Spy** — A test double that records how it was called, so the test can check afterwards.
+
+**Stub** — A test double that returns canned answers, such as a payment gateway that always declines.
+
 **Synthetic monitoring** — Scripted user journeys run against production on a schedule.
 
+**Test double** — Any object that stands in for a real collaborator in a test: dummy, stub, spy, mock or fake.
+
 **Test pyramid** — Many fast unit tests, fewer API/contract tests, few E2E tests; LLM evals form a layer of their own.
+
+**Test-driven development (TDD)** — Writing a failing test before the code that makes it pass, in small red–green–refactor cycles.
 
 **Testability** — How easy it is to find out whether something works: controllability (can you set up the state?), observability (can you see the result?) and isolation (can you test it alone?).
 
