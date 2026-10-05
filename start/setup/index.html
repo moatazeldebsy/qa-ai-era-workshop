@@ -3350,7 +3350,7 @@
 <tr>
 <td>Docker</td>
 <td>any recent</td>
-<td>optional, for Topics 7 and 9</td>
+<td>optional: run the shop in containers; Topics 7 and 9</td>
 </tr>
 </tbody>
 </table>
@@ -3412,27 +3412,35 @@
 <summary>Checkout says <em>Checkout is unavailable: the inventory service is not running</em>?</summary>
 <p>You started the shop with <code>npm start</code>, which runs the shop alone. Placing an order reserves stock in a separate inventory service (port 3220). Stop the shop and run <code>npm run start:all</code>, which starts both.</p>
 </details>
-<p>Or ask it with <code>curl</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>localhost:3210/api/assistant<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s1">'content-type: application/json'</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"question":"How much is Prompting for QA?"}'</span>
+<details class="tip">
+<summary>Run the shop in Docker instead</summary>
+<p>With Docker running, one command builds an image and starts the shop and the inventory service, checkout included:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>--wait<span class="w">     </span><span class="c1"># http://localhost:3210</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>down<span class="w"> </span>--volumes<span class="w">        </span><span class="c1"># stop and throw it away</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Expected response</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span><span class="nt">"answer"</span><span class="p">:</span><span class="s2">"\"Prompting for QA\" by M. Chen costs 34.00 EUR and is 5 in stock."</span><span class="p">,</span><span class="nt">"mode"</span><span class="p">:</span><span class="s2">"mock"</span><span class="p">}</span>
+<p>Stop <code>npm start</code> first: both use port 3210. Playwright reuses whatever is on port 3210 locally, so <code>npm test</code> runs against the containers. <a href="../../topics/07-env-data/lab/">Topic 7</a> explains how the environment is built.</p>
+</details>
+<p>Or ask it with <code>curl</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>localhost:3210/api/assistant<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s1">'content-type: application/json'</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"question":"How much is Prompting for QA?"}'</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">Expected response</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span><span class="nt">"answer"</span><span class="p">:</span><span class="s2">"\"Prompting for QA\" by M. Chen costs 34.00 EUR and is 5 in stock."</span><span class="p">,</span><span class="nt">"mode"</span><span class="p">:</span><span class="s2">"mock"</span><span class="p">}</span>
 </code></pre></div>
 <p>Stop the app with <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span>. The <a href="../../reference/demo-app/">Demo App</a> page describes every endpoint and mode.</p>
 <h2 id="6-see-your-progress">6. See your progress<a class="headerlink" href="#6-see-your-progress" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>npm<span class="w"> </span>run<span class="w"> </span>learn:status
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>npm<span class="w"> </span>run<span class="w"> </span>learn:status
 </code></pre></div>
-<div class="highlight"><span class="filename">Expected output (start of the course)</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Topic                                         Steps   Progress
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a> 1. QA Engineering Foundations                0/5     ░░░░░░░░░░
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a> 2. Test Design Techniques                    0/5     ░░░░░░░░░░
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>...
+<div class="highlight"><span class="filename">Expected output (start of the course)</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Topic                                         Steps   Progress
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a> 1. QA Engineering Foundations                0/5     ░░░░░░░░░░
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a> 2. Test Design Techniques                    0/5     ░░░░░░░░░░
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>...
 </code></pre></div>
 <p>You're ready. Start with <a href="../../topics/01-foundations/">Topic 1</a>, or pick a <a href="../routes/">route</a>.</p>
 <h2 id="optional-use-a-real-model">(Optional) Use a real model<a class="headerlink" href="#optional-use-a-real-model" title="Permanent link">&para;</a></h2>
 <p>Every lab works without an API key. Some AI labs in Topic 12 have an optional real-model route:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">ASSISTANT_MODE</span><span class="o">=</span>claude<span class="w"> </span>npm<span class="w"> </span>start<span class="w">      </span><span class="c1"># the assistant answers with a real model</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">ASSISTANT_MODE</span><span class="o">=</span>claude<span class="w"> </span>npm<span class="w"> </span>start<span class="w">      </span><span class="c1"># the assistant answers with a real model</span>
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Model and cost</p>
