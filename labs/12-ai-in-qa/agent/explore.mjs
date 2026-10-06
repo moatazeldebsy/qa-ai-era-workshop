@@ -18,7 +18,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from '@playwright/test';
 import { createTools } from './tools.mjs';
+import { loadEnvFile } from '../../../app/src/env.js';
 
+loadEnvFile();
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..', '..');
 const outDir = path.join(root, 'test-results', 'agent');

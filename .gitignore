@@ -17,3 +17,4 @@ labs/11-quality-intelligence/history/
 # Secrets: never commit API keys
 .env
 .env.*
+!.env.example

@@ -10,7 +10,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadEnvFile } from '../../../app/src/env.js';
 
+loadEnvFile();
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..', '..');
 const spec = fs.readFileSync(path.join(root, 'app', 'openapi.yaml'), 'utf8');
