@@ -9,6 +9,7 @@ import net from 'node:net';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { loadEnvFile } from '../app/src/env.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const PORT = Number(process.env.PORT) || 3210;
@@ -40,7 +41,7 @@ atLeast(node, '22.22.0')
 // npm dependencies
 fs.existsSync(path.join(root, 'node_modules', '@playwright', 'test'))
   ? add('ok', 'npm dependencies', 'installed')
-  : add('fail', 'npm dependencies', 'not installed', 'npm install');
+  : add('fail', 'npm dependencies', 'not installed', 'npm ci');
 
 // Playwright's Chromium
 let chromium = null;
@@ -95,8 +96,9 @@ if (portState === 'free') {
 }
 
 // Optional: a real model (Topic 12: test generation, LLM evals, the agent)
+const fromFile = loadEnvFile().loaded.some((k) => k.startsWith('ANTHROPIC_'));
 process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN
-  ? add('ok', 'Anthropic API key', 'set (real-model modes and the Topic 12 agent with a real model)')
+  ? add('ok', 'Anthropic API key', `set${fromFile ? ' in .env' : ''} (real-model modes and the Topic 12 agent with a real model)`)
   : add('info', 'Anthropic API key', 'not set: fine, every lab works without it');
 
 // Optional: docs

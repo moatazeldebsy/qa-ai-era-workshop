@@ -67,7 +67,7 @@ These rules keep the labs honest. Please follow them in pull requests.
 ## Making a change
 
 ```bash
-npm install
+npm ci
 npm run test:unit && npm test            # the demo app still works
 npm run test:shop                        # the shop's customer journeys
 node scripts/learn.mjs verify --expect incomplete   # every lab is still a lab on main

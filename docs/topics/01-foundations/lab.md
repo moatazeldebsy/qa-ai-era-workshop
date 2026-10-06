@@ -27,7 +27,7 @@ You'll take one requirement, free shipping, through the whole quality loop: map 
 ### Step 0 — Set up and get a baseline
 
 ```bash
-npm install                 # once; Topic 1 needs no browser
+npm ci                      # once; Topic 1 needs no browser
 npm run learn:start 1       # your branch for this topic
 mkdir -p notebook/01
 npm run foundations:test

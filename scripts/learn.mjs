@@ -44,11 +44,18 @@ async function runChecker(dir, { quiet = false } = {}) {
   const mod = await import(pathToFileURL(path.join(root, 'labs', dir, 'check.mjs')).href);
   const results = [];
   for (const step of mod.steps) {
+    // A step that can't pass before an earlier one does (`after`) is not run
+    // until then, so slow steps don't run just to fail.
+    const waitingFor = (step.after ?? []).filter((id) => !results.find((r) => r.id === id)?.ok);
     let result;
-    try {
-      result = await step.run();
-    } catch (err) {
-      result = { ok: false, detail: `checker error: ${err.message}`, hint: 'run the step by hand to see the full error' };
+    if (waitingFor.length) {
+      result = { ok: false, detail: `waiting for step ${waitingFor.join(', ')}`, hint: `finish step ${waitingFor.join(', ')} first; this step runs after that` };
+    } else {
+      try {
+        result = await step.run();
+      } catch (err) {
+        result = { ok: false, detail: `checker error: ${err.message}`, hint: 'run the step by hand to see the full error' };
+      }
     }
     results.push({ id: step.id, title: step.title, ...result });
     if (!quiet) {
@@ -107,16 +114,21 @@ const commands = {
   },
 
   async status() {
-    const all = [];
-    for (const dir of topicDirs()) all.push(await runChecker(dir, { quiet: true }));
     if (json) {
+      const all = [];
+      for (const dir of topicDirs()) all.push(await runChecker(dir, { quiet: true }));
       console.log(JSON.stringify(all.map(({ results, ...t }) => ({ ...t, steps: results.map(({ id, ok }) => ({ id, ok })) })), null, 2));
       return;
     }
-    console.log('Topic                                         Steps   Progress');
-    for (const t of all) {
+    // Some checks run real test suites, so print each row as soon as it's known.
+    const label = (t) => `${String(t.id).padStart(2)}. ${t.title}`;
+    const topics = await Promise.all(topicDirs().map(async (dir) => (await import(pathToFileURL(path.join(root, 'labs', dir, 'check.mjs')).href)).topic));
+    const width = Math.max(46, ...topics.map((t) => label(t).length + 2));
+    console.log(`${'Topic'.padEnd(width)}Steps   Progress`);
+    for (const dir of topicDirs()) {
+      const t = await runChecker(dir, { quiet: true });
       const bar = '▓'.repeat(Math.round((t.done / t.total) * 10)).padEnd(10, '░');
-      console.log(`${`${String(t.id).padStart(2)}. ${t.title}`.padEnd(46)}${`${t.done}/${t.total}`.padEnd(8)}${bar}${t.done === t.total ? ' ✔' : ''}`);
+      console.log(`${label(t).padEnd(width)}${`${t.done}/${t.total}`.padEnd(8)}${bar}${t.done === t.total ? ' ✔' : ''}`);
     }
   },
 

@@ -27,7 +27,7 @@ You'll clean up a file of smelly tests, take control of time to find a refund bu
 ### Step 0 — Baseline
 
 ```bash
-npm install                       # adds Stryker if you're coming from Topic 2
+npm ci                            # adds Stryker if you're coming from Topic 2
 npm run learn:start 3
 mkdir -p notebook/03 && cp notebook/_templates/03/unit-notes.md notebook/03/
 npm run unit:test
@@ -249,7 +249,7 @@ Your test counts and score will differ. Commit and push to your fork when you're
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `Cannot find module '@stryker-mutator/core'` or `stryker: command not found` | Dependencies installed before Topic 3 | `npm install` |
+| `Cannot find module '@stryker-mutator/core'` or `stryker: command not found` | Dependencies installed before Topic 3 | `npm ci` |
 | `ExperimentalWarning: The MockTimers API is an experimental feature` | `t.mock.timers` in `returns.test.js` | Harmless; Node prints it once per run |
 | Your date tests pass on your laptop but fail in CI | They depend on your machine's time zone | Write timestamps with an explicit offset (`+02:00` or `Z`); never rely on local time |
 | Step 2 fails only the "clock change" cases | Dividing local-time differences by 24 hours | Compare calendar dates, as UTC midnights, not instants |

@@ -11,6 +11,7 @@ import { next as nextState, InvalidTransition } from './orders.js';
 import { demoPayments } from './payments-demo.js';
 import { createAccounts } from './accounts.js';
 import { accountRoutes, parseShipTo, sessionUser } from './account-routes.js';
+import { loadEnvFile } from './env.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
@@ -159,6 +160,7 @@ export function createApp({ inventoryUrl = process.env.INVENTORY_URL || 'http://
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  loadEnvFile();
   const port = Number(process.env.PORT) || 3210;
   createApp().listen(port, () => {
     console.log(`Quality Books on http://localhost:${port} (assistant: ${process.env.ASSISTANT_MODE || 'mock'}, bug mode: ${process.env.BUG_MODE || 'off'})`);

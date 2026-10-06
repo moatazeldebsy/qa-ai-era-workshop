@@ -48,6 +48,8 @@ export const steps = [
   {
     id: '6',
     title: 'Mutation scorecard: every mutant killed',
+    // Before the duplicate-line fix, the property-based score is stuck at 2/10.
+    after: ['4a'],
     run: () => {
       const res = node(['labs/02-test-design/mutants.mjs']);
       if (res.code) return fail('a mutant survived, or the clean run failed', 'npm run design:mutants and read the last lines');

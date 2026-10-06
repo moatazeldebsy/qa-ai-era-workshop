@@ -1,6 +1,7 @@
 // Helpers for the per-topic checkers (labs/NN-*/check.mjs). A checker exports
 //   topic: { id, title }
-//   steps: [{ id, title, run: async () => ({ ok, detail, hint }) }]
+//   steps: [{ id, title, after?: [stepId], run: async () => ({ ok, detail, hint }) }]
+// `after` names earlier steps this one can't pass without; it isn't run until they pass.
 // and uses these helpers so every topic checks things the same way.
 import fs from 'node:fs';
 import path from 'node:path';
