@@ -3550,9 +3550,9 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">With an API key (route A)</label><label for="__tabbed_2_2">With Claude Code or Copilot (route B)</label><label for="__tabbed_2_3">Without either</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
+<p>Put your key in <code>.env</code> first (see <a href="../../../start/setup/#optional-use-a-real-model">Setup</a>).</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>npm<span class="w"> </span>run<span class="w"> </span>start:bug-cart<span class="w">                      </span><span class="c1"># terminal 1: the planted pricing bug</span>
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...<span class="w">         </span><span class="c1"># terminal 2</span>
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>npm<span class="w"> </span>run<span class="w"> </span>agent<span class="w"> </span>--<span class="w"> </span>free-shipping<span class="w">              </span><span class="c1"># add --headed to watch; --no-oracle to remove the rules</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>npm<span class="w"> </span>run<span class="w"> </span>agent<span class="w"> </span>--<span class="w"> </span>free-shipping<span class="w">              </span><span class="c1"># terminal 2; add --headed to watch, --no-oracle to remove the rules</span>
 </code></pre></div>
 <p>Each run makes up to 30 model calls. Compare a run with and without the oracle.</p>
 </div>
@@ -3621,7 +3621,7 @@
 <tr>
 <td><code>npm run agent</code> without a key</td>
 <td>Route A needs <code>ANTHROPIC_API_KEY</code></td>
-<td>Use route B, or the "without either" tab</td>
+<td>Put it in <code>.env</code> (<a href="../../../start/setup/#optional-use-a-real-model">Setup</a>), or use route B or the "without either" tab</td>
 </tr>
 <tr>
 <td>The agent reports a bug that isn't there</td>

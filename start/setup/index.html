@@ -3413,8 +3413,8 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>npm<span class="w"> </span>run<span class="w"> </span>test:unit<span class="w">     </span><span class="c1"># unit tests: no server, under a second</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>npm<span class="w"> </span><span class="nb">test</span><span class="w">              </span><span class="c1"># end-to-end and API tests; starts the app for you</span>
 </code></pre></div>
-<div class="highlight"><span class="filename">Expected output (end)</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ℹ tests 25
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ℹ pass 25
+<div class="highlight"><span class="filename">Expected output (end)</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ℹ tests 30
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>ℹ pass 30
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ℹ fail 0
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  38 passed (8.1s)
@@ -3478,13 +3478,16 @@
 </code></pre></div>
 <p>MkDocs Material prints a red warning box about MkDocs 2.0 at startup. That's only a notice from the theme's authors, and the site works as normal. Before you open a pull request that changes the docs, run <code>mkdocs build --strict</code>: it's the check CI runs, and it fails on broken links.</p>
 <h2 id="optional-use-a-real-model">(Optional) Use a real model<a class="headerlink" href="#optional-use-a-real-model" title="Permanent link">&para;</a></h2>
-<p>Every lab works without an API key. Some AI labs in Topic 12 have an optional real-model route:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">ANTHROPIC_API_KEY</span><span class="o">=</span>sk-ant-...
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">ASSISTANT_MODE</span><span class="o">=</span>claude<span class="w"> </span>npm<span class="w"> </span>start<span class="w">      </span><span class="c1"># the assistant answers with a real model</span>
+<p>Every lab works without an API key. Some AI labs in Topic 12 have an optional real-model route. Put your key in a <code>.env</code> file once, instead of exporting it in every terminal:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env<span class="w">                 </span><span class="c1"># then set ANTHROPIC_API_KEY=sk-ant-... in .env</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>npm<span class="w"> </span>run<span class="w"> </span>learn:doctor<span class="w">                 </span><span class="c1"># ✅ Anthropic API key   set in .env</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nv">ASSISTANT_MODE</span><span class="o">=</span>claude<span class="w"> </span>npm<span class="w"> </span>start<span class="w">      </span><span class="c1"># the assistant answers with a real model</span>
 </code></pre></div>
+<p><code>.env</code> is git-ignored, and the shop, the doctor, the Topic 12 scripts and promptfoo all read it. Only the key and the model names (<code>ASSISTANT_MODEL</code>, <code>TESTGEN_MODEL</code>, <code>AGENT_MODEL</code>) are read from it. The assistant's mode is deliberately not: with <code>ASSISTANT_MODE=claude</code> in <code>.env</code>, every <code>npm start</code>, <code>npm test</code> and eval would call the paid model, so the shop ignores it there and says so. Switch the mode per command, as above.</p>
+<p>An <code>export ANTHROPIC_API_KEY=...</code> in your shell still works and wins over <code>.env</code>. In a Codespace, use a <a href="https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces">Codespaces secret</a> instead: it is set before the codespace starts and never touches the disk.</p>
 <div class="admonition note">
 <p class="admonition-title">Model and cost</p>
-<p>The default model is <code>claude-opus-5-5</code> at low effort (change it with <code>ASSISTANT_MODEL</code>). Each exercise costs cents. Never commit your key: it belongs in your shell or a Codespaces secret.</p>
+<p>The default model is <code>claude-opus-5-5</code> at low effort (change it with <code>ASSISTANT_MODEL</code>). Each exercise costs cents. Never commit your key: keep it in <code>.env</code>, your shell or a Codespaces secret.</p>
 </div>
 
 
