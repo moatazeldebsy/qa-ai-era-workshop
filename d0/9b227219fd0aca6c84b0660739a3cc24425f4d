@@ -1,0 +1,19 @@
+docs/start/setup.md
+  s_bd0384c669aec1::t_5b5a515a948da0 77-78
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d09b227219fd0aca6c84b0660739a3cc24425f4d",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
