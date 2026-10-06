@@ -142,6 +142,8 @@ Topic                                                   Steps   Progress
 
 It takes about a minute. It runs every topic's checks, and some of them run real test suites, such as Topic 3's mutation tests and Topic 8's load test. Each row appears as soon as its topic has been checked.
 
+Your fork can check your work too: open a pull request from a topic branch into your fork's `main`, and a bot comments with each step's status. See [Your progress in CI](how-it-works.md#your-progress-in-ci).
+
 You're ready. Start with [Topic 1](../topics/01-foundations/index.md), or pick a [path for your role](routes.md).
 
 ## (Optional) Run the course site locally

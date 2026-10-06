@@ -4,6 +4,7 @@
 //   npm run learn:doctor            is this machine ready?
 //   npm run learn:start <topic>     new branch for a topic, from the course's starting state
 //   npm run learn:check <topic>     check each lab step, with hints for what's missing
+//   npm run learn:check <topic> --json   the same, as JSON (used by the Lab feedback workflow)
 //   npm run learn:status [--json]   progress across every topic
 //
 // Maintainers (CI): node scripts/learn.mjs verify --expect incomplete|complete
@@ -107,6 +108,12 @@ const commands = {
 
   async check() {
     const dir = findTopic(positional[0]);
+    if (json) {
+      // For the Lab feedback workflow: the same result, with every step's detail and hint.
+      const r = await runChecker(dir, { quiet: true });
+      console.log(JSON.stringify(r, null, 2));
+      process.exit(r.done === r.total ? 0 : 1);
+    }
     const r = await runChecker(dir);
     console.log(`\n${r.done}/${r.total} steps done for Topic ${r.id}: ${r.title}`);
     if (r.done === r.total) console.log('🎉 Lab complete. Next: the quiz and the challenge on the topic page.');
