@@ -29,19 +29,8 @@ Because most production incidents in distributed systems happen **between** comp
 
 The test starts the real component(s), talks to them over the real protocol, and checks the response *and* the side effects:
 
-```mermaid
-sequenceDiagram
-  participant T as Test (node:test)
-  participant S as Shop (real Express app, port 0)
-  participant I as Inventory service (real, port 0)
-  T->>I: start, reset to a known state
-  T->>S: start, pointing at I's URL
-  T->>S: POST /api/orders (2 × book 1)
-  S->>I: POST /reservations
-  I-->>S: 201 { reservationId, ... }
-  S-->>T: 201 { id, state: "paid", ... }
-  T->>I: GET /stock/1 → check 10 left (the side effect)
-```
+![An integration test: the test starts the inventory service in a known state and the shop pointing at it, places an order for two copies of book 1, the shop reserves stock in the inventory service, the order comes back paid, and the test checks the side effect: 10 copies left.](../../assets/diagrams/04-integration-test.svg#only-light){ loading=lazy }
+![An integration test: the test starts the inventory service in a known state and the shop pointing at it, places an order for two copies of book 1, the shop reserves stock in the inventory service, the order comes back paid, and the test checks the side effect: 10 copies left.](../../assets/diagrams/04-integration-test-dark.svg#only-dark){ loading=lazy }
 
 Starting servers on **port 0** asks the operating system for any free port, so tests never collide with each other or with a running copy of the app.
 
@@ -49,19 +38,8 @@ Starting servers on **port 0** asks the operating system for any free port, so t
 
 Pact splits one integration test into two halves that run in **different pipelines**, connected by a contract file:
 
-```mermaid
-flowchart LR
-  subgraph Consumer["Shop's pipeline"]
-    CT["Consumer test<br/>real client ↔ Pact mock provider"] --> PF["Contract file (pact)<br/>requests + minimal expected responses"]
-  end
-  PF -->|published to a Pact Broker| PB[("Broker")]
-  PB --> PV
-  subgraph Provider["Inventory team's pipeline"]
-    PV["Provider verification<br/>replay each request against the REAL service,<br/>in the 'provider state' it asks for"]
-  end
-  PV -->|results| PB
-  PB --> CID{"can-i-deploy?"}
-```
+![Consumer-driven contract testing: in the shop's pipeline, a consumer test of the real client against a Pact mock provider produces a contract file, which is published to a Pact broker; in the inventory team's pipeline, provider verification replays each request against the real service in the provider state it asks for, results go back to the broker, and the broker answers can-i-deploy.](../../assets/diagrams/04-pact-flow.svg#only-light){ loading=lazy }
+![Consumer-driven contract testing: in the shop's pipeline, a consumer test of the real client against a Pact mock provider produces a contract file, which is published to a Pact broker; in the inventory team's pipeline, provider verification replays each request against the real service in the provider state it asks for, results go back to the broker, and the broker answers can-i-deploy.](../../assets/diagrams/04-pact-flow-dark.svg#only-dark){ loading=lazy }
 
 1. **Consumer side.** The shop's test describes each interaction: *given* a provider state, *upon receiving* this request, the provider *will respond with* at least this. Pact starts a **mock provider** that answers exactly that, and the test runs the shop's **real client** against it. If the client sends something else, or can't handle the response, the test fails. The output is a contract file (JSON).
 2. **Provider side.** The inventory team's pipeline loads the contract, puts the **real** service into each **provider state** (*"book 1 has 12 copies in stock"*), replays each request, and compares the real response with the expected one.
@@ -147,26 +125,8 @@ When the real dependency can't run in your test, stub it at the network level ra
 
 ## 5. Architecture: the shop, the inventory service, and the tests around them
 
-```mermaid
-flowchart TB
-  subgraph Shop["quality-books-shop (app/)"]
-    API["Express routes<br/>/api/orders, /api/cart/price …"] --> CO["createCheckout()"]
-    CO --> IC["inventory-client.js"]
-  end
-  subgraph Inv["inventory-service (services/inventory/)"]
-    IAPI["POST /reservations<br/>DELETE /reservations/:id<br/>GET /stock/:bookId"]
-  end
-  IC -- HTTP --> IAPI
-
-  UT["Topic 3 unit tests<br/>fake inventory"] -.-> CO
-  AT["api.test.js<br/>shop over HTTP + OpenAPI schema"] -.-> API
-  IT["integration.test.js<br/>shop + real inventory"] -.-> API
-  CT["inventory.consumer.test.js<br/>real client ↔ Pact mock"] -.-> IC
-  CT --> PACT[("pacts/*.json")]
-  PACT --> PV["verify-provider.mjs<br/>replays against real inventory"]
-  PV -.-> IAPI
-  OAS["services/inventory/openapi.yaml<br/>the provider's published API"] -.- IAPI
-```
+![The shop, the inventory service and the tests around them: the shop's routes call createCheckout(), which uses inventory-client.js to call the inventory service over HTTP. Topic 3 unit tests use a fake inventory; api.test.js tests the shop over HTTP against its OpenAPI schema; integration.test.js runs the shop with the real inventory; the consumer test checks the real client against a Pact mock and writes the pact files, which verify-provider.mjs replays against the real inventory service, described by its own OpenAPI file.](../../assets/diagrams/04-architecture.svg#only-light){ loading=lazy }
+![The shop, the inventory service and the tests around them: the shop's routes call createCheckout(), which uses inventory-client.js to call the inventory service over HTTP. Topic 3 unit tests use a fake inventory; api.test.js tests the shop over HTTP against its OpenAPI schema; integration.test.js runs the shop with the real inventory; the consumer test checks the real client against a Pact mock and writes the pact files, which verify-provider.mjs replays against the real inventory service, described by its own OpenAPI file.](../../assets/diagrams/04-architecture-dark.svg#only-dark){ loading=lazy }
 
 Each test covers a different seam. Only the integration test and the contract verification ever compare the client's assumptions with the real provider.
 

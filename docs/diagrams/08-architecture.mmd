@@ -1,0 +1,9 @@
+flowchart LR
+  K6["k6<br/>smoke · orders · stress"] -->|HTTP load| SHOP["Shop"]
+  SHOP -->|reservations| PROXY["chaos-proxy<br/>latency · errors"]
+  PROXY --> INV["Inventory service"]
+  K6 -. "setup(): PUT /stock (test-data API)" .-> INV
+  SHOP --> MET["/metrics<br/>(series per route)"]
+  K6 --> SUM["test-results/k6-summary.json"] --> GATE{{"Quality gate (Topic 6)"}}
+  RT["resilience.test.js<br/>(node:test)"] -. drives .-> SHOP
+  RT -. controls .-> PROXY

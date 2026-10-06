@@ -25,19 +25,8 @@ And the outputs: **metrics** (numbers with definitions), **reports and dashboard
 
 ### The data pipeline
 
-```mermaid
-flowchart LR
-  subgraph Produce
-    CI["CI runs<br/>JUnit XML · Playwright JSON · coverage · mutation"]
-    PROD["Production<br/>incidents · SLOs · deployments"]
-    TRK["Trackers<br/>defects · stories · risks"]
-  end
-  Produce --> STORE[("Results store<br/>one row per test per run<br/>(with commit, branch, env)")]
-  STORE --> ANALYSE["Analysis<br/>flakiness · trends · clustering · escapes · DORA"]
-  ANALYSE --> REPORT["Reports for an audience<br/>developer · team · leadership"]
-  REPORT --> DECIDE{{"Decisions<br/>fix · quarantine · invest · release"}}
-  DECIDE -.->|new tests, rules| CI
-```
+![The quality data pipeline: CI results, production signals and tracker data go into a results store with one row per test per run, analysis finds flakiness, trends, clusters, escapes and DORA metrics, reports are shaped for developers, teams or leadership, and decisions (fix, quarantine, invest, release) feed new tests and rules back into CI.](../../assets/diagrams/11-data-pipeline.svg#only-light){ loading=lazy }
+![The quality data pipeline: CI results, production signals and tracker data go into a results store with one row per test per run, analysis finds flakiness, trends, clusters, escapes and DORA metrics, reports are shaped for developers, teams or leadership, and decisions (fix, quarantine, invest, release) feed new tests and rules back into CI.](../../assets/diagrams/11-data-pipeline-dark.svg#only-dark){ loading=lazy }
 
 1. **Collect** every run's results, not just the latest, with context: commit, branch, environment, retry count. The lab's `collect.mjs` keeps JUnit and Playwright JSON per run.
 2. **Normalise** them into one shape: one record per test per run, with a stable test id (file › describe › title).
@@ -149,15 +138,8 @@ A good report answers a question its audience has, states its definitions, and e
 
 ## 5. Architecture: quality intelligence in this course
 
-```mermaid
-flowchart TB
-  RUNS["npm run qi:collect<br/>(N runs, optional --retries)"] --> HIST[("history/<br/>run-NN.xml + run-NN.json")]
-  HIST --> AN["analyze.mjs<br/>parse · normalise ids · summarise"]
-  AN --> REP["npm run qi:report<br/>runs strip · failing now · flaky + rates · slowest"]
-  CSV[("metrics/data/*.csv<br/>deployments · incidents · defects")] --> MET["npm run metrics<br/>MTTD · MTTR · DORA · escapes"]
-  REP & MET --> NB["Notebook: decisions<br/>fix · quarantine · invest"]
-  GATE{{"Quality gate (Topic 6)<br/>reads junit.xml"}} -. "can't see retried passes" .- HIST
-```
+![Quality intelligence in this course: qi:collect stores run history, analyze.mjs parses and summarises it, qi:report shows failing, flaky and slow tests; npm run metrics turns deployment, incident and defect CSVs into MTTD, MTTR, DORA and escape metrics; both feed decisions in the notebook; the quality gate reads junit.xml, which can't see passes after retries.](../../assets/diagrams/11-architecture.svg#only-light){ loading=lazy }
+![Quality intelligence in this course: qi:collect stores run history, analyze.mjs parses and summarises it, qi:report shows failing, flaky and slow tests; npm run metrics turns deployment, incident and defect CSVs into MTTD, MTTR, DORA and escape metrics; both feed decisions in the notebook; the quality gate reads junit.xml, which can't see passes after retries.](../../assets/diagrams/11-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

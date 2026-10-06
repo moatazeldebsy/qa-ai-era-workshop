@@ -1,0 +1,14 @@
+sequenceDiagram
+  participant K as k6 (load generator)
+  participant S as Shop
+  participant I as Inventory
+  Note over K: setup(): prepare data (e.g. stock via the test-data API)
+  loop each virtual user / each scheduled arrival
+    K->>S: POST /api/orders (tagged endpoint:order)
+    S->>I: POST /reservations
+    I-->>S: 201
+    S-->>K: 201 + timing recorded
+    K->>K: check(): content correct?
+  end
+  Note over K: aggregate: percentiles, rates, checks
+  Note over K: thresholds → exit code 0 (pass) or non-zero (fail)

@@ -29,17 +29,8 @@ Without a strategy, quality work drifts towards whatever is easiest to count or 
 
 ### The strategy loop
 
-```mermaid
-flowchart LR
-  CTX["Context<br/>users · business · constraints · regulation"] --> GOALS["Quality goals<br/>(attributes that matter, measurably)"]
-  GOALS --> RISK["Risks<br/>likelihood × impact (Topic 1)"]
-  RISK --> APPROACH["Approach<br/>levels · techniques · environments · gates"]
-  APPROACH --> INVEST["Investments<br/>people · platform · tools"]
-  INVEST --> EVIDENCE["Evidence<br/>scorecard · metrics · incidents"]
-  EVIDENCE --> REVIEW{{"Review<br/>quarterly"}}
-  REVIEW -->|adjust| GOALS
-  REVIEW -->|"escapes, incidents"| RISK
-```
+![The strategy loop: context leads to quality goals, then risks, an approach, investments and evidence; a quarterly review adjusts the goals, and escapes and incidents update the risks.](../../assets/diagrams/14-strategy-loop.svg#only-light){ loading=lazy }
+![The strategy loop: context leads to quality goals, then risks, an approach, investments and evidence; a quarterly review adjusts the goals, and escapes and incidents update the risks.](../../assets/diagrams/14-strategy-loop-dark.svg#only-dark){ loading=lazy }
 
 1. **Understand the context:** who the users are, what failure costs them and the business, what constraints exist (team size, regulation, legacy).
 2. **Set quality goals** for the attributes that matter most (ISO 25010, Topic 1), each with a measure.
@@ -151,18 +142,8 @@ Regulated domains (finance, health, automotive, aviation, government) add requir
 
 ## 5. Architecture: how the course fits together as a strategy
 
-```mermaid
-flowchart TB
-  CTX["Context & goals<br/>Topic 1: quality attributes, risks"] --> DESIGN["Design the checks<br/>Topic 2: techniques"]
-  DESIGN --> LEVELS["At the right level<br/>3 unit · 4 API & contract · 5 E2E"]
-  LEVELS --> PIPE["In the pipeline<br/>6 CI/CD & gates · 7 environments & data"]
-  PIPE --> NFR["Beyond function<br/>8 performance · 9 security, a11y, compat · 12 AI"]
-  NFR --> PROD["In production<br/>10 observability & SLOs"]
-  PROD --> INTEL["Turned into decisions<br/>11 quality intelligence"]
-  INTEL --> SCALE["At scale<br/>13 platform"]
-  SCALE --> STRAT{{"14 Strategy & leadership<br/>evidence → priorities → investment → review"}}
-  STRAT -.-> CTX
-```
+![How the course fits together as a strategy: context and goals (Topic 1), designing the checks (2), at the right level (3 to 5), in the pipeline (6, 7), beyond function (8, 9, 12), in production (10), turned into decisions (11), at scale (13), and strategy and leadership (14), which feeds back into context.](../../assets/diagrams/14-architecture.svg#only-light){ loading=lazy }
+![How the course fits together as a strategy: context and goals (Topic 1), designing the checks (2), at the right level (3 to 5), in the pipeline (6, 7), beyond function (8, 9, 12), in production (10), turned into decisions (11), at scale (13), and strategy and leadership (14), which feeds back into context.](../../assets/diagrams/14-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

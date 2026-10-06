@@ -25,32 +25,8 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 
 Times include reading, the lab and the quiz; the wrap-up challenge is extra. The column on the right fills in as you mark pages done (it's stored in this browser).
 
-```mermaid
-flowchart TB
-  subgraph A["Foundations"]
-    direction LR
-    T1["1 · Foundations"] --> T2["2 · Test design"]
-  end
-  subgraph B["Testing layers"]
-    direction LR
-    T3["3 · Unit & component"] --> T4["4 · Integration & contract"] --> T5["5 · UI & E2E"]
-  end
-  subgraph C["Delivery and non-functional quality"]
-    direction LR
-    T6["6 · CI/CD"] --> T7["7 · Environments & data"]
-    T7 --> T8["8 · Performance"]
-    T7 --> T9["9 · Security & a11y"]
-  end
-  subgraph D["Production and scale"]
-    direction LR
-    T10["10 · Observability"] --> T11["11 · Quality intelligence"] --> T12["12 · AI in QA"]
-  end
-  subgraph E["Leadership"]
-    direction LR
-    T13["13 · QA platform"] --> T14["14 · Strategy"]
-  end
-  A --> B --> C --> D --> E
-```
+![The topic roadmap in five stages. Foundations: 1 Foundations, 2 Test design. Testing layers: 3 Unit and component, 4 Integration and contract, 5 UI and E2E. Delivery and non-functional quality: 6 CI/CD, 7 Environments and data, then 8 Performance and 9 Security and accessibility in parallel. Production and scale: 10 Observability, 11 Quality intelligence, 12 AI in QA. Leadership: 13 QA platform, 14 Strategy.](../assets/diagrams/topic-roadmap.svg#only-light){ loading=lazy }
+![The topic roadmap in five stages. Foundations: 1 Foundations, 2 Test design. Testing layers: 3 Unit and component, 4 Integration and contract, 5 UI and E2E. Delivery and non-functional quality: 6 CI/CD, 7 Environments and data, then 8 Performance and 9 Security and accessibility in parallel. Production and scale: 10 Observability, 11 Quality intelligence, 12 AI in QA. Leadership: 13 QA platform, 14 Strategy.](../assets/diagrams/topic-roadmap-dark.svg#only-dark){ loading=lazy }
 
 ## Inside every topic
 

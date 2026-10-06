@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph Def["Defined as code"]
+    D["Dockerfile<br/>(how to build each service)"]
+    C["compose.yaml / Helm / Terraform<br/>(which services, how wired)"]
+    E["Environment variables<br/>(per-environment values)"]
+    S["Seed data and migrations"]
+  end
+  Def --> P["Provision<br/>docker compose up --build --wait"]
+  P --> H["Health checks pass"]
+  H --> T["Tests run<br/>(each creates the data it needs)"]
+  T --> X["Tear down<br/>docker compose down --volumes"]

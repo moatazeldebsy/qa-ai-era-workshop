@@ -41,16 +41,8 @@ You can't test quality *into* a product at the end. You can only find out how mu
 
 Under every QA practice there is the same loop. Learn it once and you'll recognise it in every later topic.
 
-```mermaid
-flowchart LR
-  A["1 Understand<br/>what matters<br/>(requirements, users)"] --> B["2 Identify risks<br/>what could go wrong?"]
-  B --> C["3 Design tests<br/>how would we notice?"]
-  C --> D["4 Execute<br/>(automated checks,<br/>exploration)"]
-  D --> E["5 Evaluate<br/>compare to an oracle"]
-  E --> F["6 Report & decide<br/>ship? fix? accept?"]
-  F --> G["7 Learn<br/>escaped defects,<br/>production signals"]
-  G --> A
-```
+![The quality feedback loop: 1 understand what matters, 2 identify risks, 3 design tests, 4 execute, 5 evaluate against an oracle, 6 report and decide, 7 learn from escaped defects and production signals, then back to 1.](../../assets/diagrams/01-quality-feedback-loop.svg#only-light){ loading=lazy }
+![The quality feedback loop: 1 understand what matters, 2 identify risks, 3 design tests, 4 execute, 5 evaluate against an oracle, 6 report and decide, 7 learn from escaped defects and production signals, then back to 1.](../../assets/diagrams/01-quality-feedback-loop-dark.svg#only-dark){ loading=lazy }
 
 Step by step, using free shipping:
 
@@ -64,12 +56,8 @@ Step by step, using free shipping:
 
 The **error → fault → failure** chain explains what testing is actually observing:
 
-```mermaid
-flowchart LR
-  E["Error (mistake)<br/>a person misreads 'over 50'"] --> F["Fault / defect / bug<br/>code uses &gt; instead of &gt;="]
-  F -->|"only when the faulty code runs<br/>with the right input"| X["Failure<br/>customer with a 50.00 cart<br/>is charged 4.90"]
-  X --> I["Incident<br/>complaint, refund, lost trust"]
-```
+![From error to incident: a person misreads "over 50" (error), so the code uses > instead of >= (fault); only when that code runs with the right input does a customer with a 50.00 cart get charged 4.90 (failure), which leads to a complaint, a refund and lost trust (incident).](../../assets/diagrams/01-error-fault-failure.svg#only-light){ loading=lazy }
+![From error to incident: a person misreads "over 50" (error), so the code uses > instead of >= (fault); only when that code runs with the right input does a customer with a 50.00 cart get charged 4.90 (failure), which leads to a complaint, a refund and lost trust (incident).](../../assets/diagrams/01-error-fault-failure-dark.svg#only-dark){ loading=lazy }
 
 Testing observes **failures** and infers **faults**. A fault that is never executed with a triggering input never causes a failure. That's why a test suite can pass on buggy code, and why *choosing inputs* matters so much.
 
@@ -189,18 +177,8 @@ A **defect report** turns an observation into something actionable. A good one h
 
 The two differ. A typo in the company name on the home page is low severity and high priority.
 
-```mermaid
-stateDiagram-v2
-  [*] --> New
-  New --> Triaged: reproduced, severity/priority set
-  New --> Rejected: not a bug / duplicate
-  Triaged --> InProgress
-  InProgress --> Fixed
-  Fixed --> Verified: retest passes + regression check added
-  Fixed --> Reopened: retest fails
-  Reopened --> InProgress
-  Verified --> [*]
-```
+![Defect lifecycle: New goes to Triaged when reproduced and rated, or to Rejected if not a bug or a duplicate; Triaged to In progress to Fixed; Fixed goes to Verified when the retest passes and a regression check is added, or to Reopened when the retest fails, which goes back to In progress.](../../assets/diagrams/01-defect-lifecycle.svg#only-light){ loading=lazy }
+![Defect lifecycle: New goes to Triaged when reproduced and rated, or to Rejected if not a bug or a duplicate; Triaged to In progress to Fixed; Fixed goes to Verified when the retest passes and a regression check is added, or to Reopened when the retest fails, which goes back to In progress.](../../assets/diagrams/01-defect-lifecycle-dark.svg#only-dark){ loading=lazy }
 
 The step people skip is *"regression check added"*. A defect fixed without a check that would catch it again is a defect you'll meet a second time.
 
@@ -208,39 +186,8 @@ The step people skip is *"regression check added"*. A defect fixed without a che
 
 Here is the full picture for Quality Books. Later topics zoom into each box.
 
-```mermaid
-flowchart TB
-  subgraph Inputs["What we test against"]
-    REQ["Requirements & examples"]
-    CON["API contract<br/>app/openapi.yaml"]
-    POL["Policy text<br/>app/src/catalog.js"]
-    RISK["Risk register<br/>labs/01-foundations/risk-register.json"]
-  end
-
-  subgraph Activities["Evidence producers"]
-    ST["Static: reviews,<br/>lint, consistency checks"]
-    UT["Unit & component<br/>node --test"]
-    AT["API tests<br/>Playwright request"]
-    E2E["E2E tests<br/>Playwright browser"]
-    EX["Exploratory sessions<br/>charters"]
-    PERF["Perf / LLM eval<br/>k6, promptfoo"]
-  end
-
-  subgraph Decision["Decision"]
-    GATE["Quality gate<br/>(Topic 6)"]
-    REL["Release / don't"]
-  end
-
-  subgraph Prod["Production feedback"]
-    OBS["Metrics, logs, traces<br/>/metrics, x-request-id"]
-    INC["Incidents & escaped defects"]
-  end
-
-  Inputs --> Activities
-  Activities --> GATE --> REL --> OBS
-  OBS --> INC --> RISK
-  EX -->|new risks| RISK
-```
+![Quality engineering as a system: inputs (requirements, the API contract, policy text, the risk register) feed evidence producers (static checks, unit, API and E2E tests, exploratory sessions, performance and LLM evals), which feed the quality gate and the release decision; production metrics, logs and traces surface incidents and escaped defects that update the risk register, as do new risks from exploration.](../../assets/diagrams/01-architecture.svg#only-light){ loading=lazy }
+![Quality engineering as a system: inputs (requirements, the API contract, policy text, the risk register) feed evidence producers (static checks, unit, API and E2E tests, exploratory sessions, performance and LLM evals), which feed the quality gate and the release decision; production metrics, logs and traces surface incidents and escaped defects that update the risk register, as do new risks from exploration.](../../assets/diagrams/01-architecture-dark.svg#only-dark){ loading=lazy }
 
 The feedback arrows are the point. Production incidents and exploratory findings feed the **risk register**, which steers what gets tested next. A QA system with no arrows back into it stops learning.
 

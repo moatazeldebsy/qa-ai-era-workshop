@@ -31,20 +31,8 @@ Without them, teams push checks up to slower levels (the "ice-cream cone" from T
 
 A test runner discovers test functions, runs each one, and reports which assertions failed. Node's built-in runner, `node:test`, which this course uses, works like this:
 
-```mermaid
-sequenceDiagram
-  participant CLI as node --test "glob"
-  participant R as Runner (parent)
-  participant P as Child process per file
-  participant T as test() callbacks
-  CLI->>R: expand the glob to test files
-  R->>P: spawn one process per file (isolation)
-  P->>T: import the file → test() registers tests
-  P->>T: run each test: hooks → body → assertions
-  T-->>P: pass, or a thrown AssertionError (fail)
-  P-->>R: stream events (TAP/JSON): test:pass, test:fail, test:todo
-  R-->>CLI: reporter prints results, exit code 0 or 1
-```
+![How node --test runs tests: the runner expands the glob, spawns one child process per file, each child imports its file so test() registers the tests and runs each one (hooks, body, assertions), results stream back as events, and the reporter prints them and exits 0 or 1.](../../assets/diagrams/03-test-runner.svg#only-light){ loading=lazy }
+![How node --test runs tests: the runner expands the glob, spawns one child process per file, each child imports its file so test() registers the tests and runs each one (hooks, body, assertions), results stream back as events, and the reporter prints them and exits 0 or 1.](../../assets/diagrams/03-test-runner-dark.svg#only-dark){ loading=lazy }
 
 Key mechanics you'll rely on:
 
@@ -130,12 +118,8 @@ Time deserves special respect. *"Within 30 days"* sounds simple, but it hides at
 
 **TDD** is a design technique that uses tests. Kent Beck's cycle:
 
-```mermaid
-flowchart LR
-  R["🔴 Red<br/>write one small failing test"] --> G["🟢 Green<br/>simplest code that passes"]
-  G --> F["🔵 Refactor<br/>clean up, stay green"]
-  F --> R
-```
+![The TDD cycle: red (write one small failing test), green (the simplest code that passes), refactor (clean up and stay green), then red again.](../../assets/diagrams/03-tdd-cycle.svg#only-light){ loading=lazy }
+![The TDD cycle: red (write one small failing test), green (the simplest code that passes), refactor (clean up and stay green), then red again.](../../assets/diagrams/03-tdd-cycle-dark.svg#only-dark){ loading=lazy }
 
 - **Red** proves the test can fail. A test you've never seen fail might not test anything.
 - **Green** says *simplest*: hard-code if you must. The next test forces generalisation (*triangulation*).
@@ -199,23 +183,8 @@ A **component test** treats a larger unit, such as a service, a module or a UI c
 
 ## 5. Architecture: where unit and component tests sit
 
-```mermaid
-flowchart TB
-  subgraph Test["Test process (node --test)"]
-    T1["returns.test.js"] --> R["createReturns()"]
-    T2["checkout.test.js"] --> C["createCheckout()"]
-    CLK(["clock: () => fixed Date"]) -. injected .-> R
-    C --> P["priceCart() — real"]
-    INV(["fakeInventory()"]) -. injected .-> C
-    PAY(["stub payments"]) -. injected .-> C
-    MAIL(["spy mailer — mock.fn()"]) -. injected .-> C
-  end
-  subgraph Real["Production wiring (later topics)"]
-    C2["createCheckout()"] --> INVS["Inventory service (HTTP) — Topic 4"]
-    C2 --> PSP["Payment provider"]
-    C2 --> SMTP["Email service"]
-  end
-```
+![Where unit and component tests sit: in the test process, returns.test.js drives createReturns() with an injected fixed clock, and checkout.test.js drives createCheckout() with the real priceCart() plus an injected fake inventory, stub payments and a spy mailer; in production the same createCheckout() is wired to the inventory service over HTTP, a payment provider and an email service.](../../assets/diagrams/03-architecture.svg#only-light){ loading=lazy }
+![Where unit and component tests sit: in the test process, returns.test.js drives createReturns() with an injected fixed clock, and checkout.test.js drives createCheckout() with the real priceCart() plus an injected fake inventory, stub payments and a spy mailer; in production the same createCheckout() is wired to the inventory service over HTTP, a payment provider and an email service.](../../assets/diagrams/03-architecture-dark.svg#only-dark){ loading=lazy }
 
 The same `createCheckout` runs in both worlds. Only the injected collaborators change. That's the whole trick: **design for injection, and the outside world becomes optional in tests.**
 

@@ -1,0 +1,7 @@
+flowchart LR
+  CASES["Test cases<br/>questions + expected properties"] --> APP["The AI feature<br/>(prompt + model + grounding)"]
+  APP --> OUT["Outputs"]
+  OUT --> G1["Deterministic checks<br/>contains · not-contains · regex · JS"]
+  OUT --> G2["Model-graded rubric<br/>(LLM-as-judge, validated)"]
+  OUT --> G3["Human review<br/>(samples, disagreements)"]
+  G1 & G2 & G3 --> SCORE{{"Pass rate per category<br/>→ quality gate"}}

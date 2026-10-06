@@ -28,22 +28,8 @@ Functional tests ask *"does it work?"* with one user and a healthy network. Prod
 
 ### How a load generator works
 
-```mermaid
-sequenceDiagram
-  participant K as k6 (load generator)
-  participant S as Shop
-  participant I as Inventory
-  Note over K: setup(): prepare data (e.g. stock via the test-data API)
-  loop each virtual user / each scheduled arrival
-    K->>S: POST /api/orders (tagged endpoint:order)
-    S->>I: POST /reservations
-    I-->>S: 201
-    S-->>K: 201 + timing recorded
-    K->>K: check(): content correct?
-  end
-  Note over K: aggregate: percentiles, rates, checks
-  Note over K: thresholds → exit code 0 (pass) or non-zero (fail)
-```
+![How k6 generates load: setup() prepares data first, then for each virtual user or scheduled arrival k6 places an order, the shop reserves stock in the inventory service, the response time is recorded and a check verifies the content; finally k6 aggregates percentiles, rates and checks, and its thresholds set the exit code.](../../assets/diagrams/08-load-generator.svg#only-light){ loading=lazy }
+![How k6 generates load: setup() prepares data first, then for each virtual user or scheduled arrival k6 places an order, the shop reserves stock in the inventory service, the response time is recorded and a check verifies the content; finally k6 aggregates percentiles, rates and checks, and its thresholds set the exit code.](../../assets/diagrams/08-load-generator-dark.svg#only-dark){ loading=lazy }
 
 k6 runs JavaScript test scripts in a fast Go engine. Each iteration is one user action; k6 records timings for every request and aggregates them into metrics. **Thresholds** turn those metrics into pass/fail, which is what lets a load test run in CI (Topic 6).
 
@@ -146,17 +132,8 @@ A load test tells you *that* it got slow; telemetry tells you *why*. Run load te
 
 ## 5. Architecture: performance and resilience testing around Quality Books
 
-```mermaid
-flowchart LR
-  K6["k6<br/>smoke · orders · stress"] -->|HTTP load| SHOP["Shop"]
-  SHOP -->|reservations| PROXY["chaos-proxy<br/>latency · errors"]
-  PROXY --> INV["Inventory service"]
-  K6 -. "setup(): PUT /stock (test-data API)" .-> INV
-  SHOP --> MET["/metrics<br/>(series per route)"]
-  K6 --> SUM["test-results/k6-summary.json"] --> GATE{{"Quality gate (Topic 6)"}}
-  RT["resilience.test.js<br/>(node:test)"] -. drives .-> SHOP
-  RT -. controls .-> PROXY
-```
+![Performance and resilience testing around Quality Books: k6 sends HTTP load to the shop and sets up stock through the test-data API; the shop reaches the inventory service through a chaos proxy that can add latency and errors; the shop exposes /metrics; the k6 summary feeds the quality gate; resilience.test.js drives the shop and controls the proxy.](../../assets/diagrams/08-architecture.svg#only-light){ loading=lazy }
+![Performance and resilience testing around Quality Books: k6 sends HTTP load to the shop and sets up stock through the test-data API; the shop reaches the inventory service through a chaos proxy that can add latency and errors; the shop exposes /metrics; the k6 summary feeds the quality gate; resilience.test.js drives the shop and controls the proxy.](../../assets/diagrams/08-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

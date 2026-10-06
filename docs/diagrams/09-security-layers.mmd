@@ -1,0 +1,8 @@
+flowchart LR
+  TM["Threat modelling<br/>(design: what could go wrong?)"] --> SAST["SAST + secret scanning<br/>(code, every commit)"]
+  SAST --> SCA["SCA<br/>(dependencies, every commit + daily)"]
+  SCA --> UT["Security unit/API tests<br/>(abuse cases, headers, authz)"]
+  UT --> DAST["DAST<br/>(running app: ZAP baseline/active scan)"]
+  DAST --> PT["Penetration testing<br/>(humans, periodically)"]
+  PT --> PROD["Production: WAF, monitoring,<br/>bug bounty, incident response"]
+  PROD -.->|new threats| TM

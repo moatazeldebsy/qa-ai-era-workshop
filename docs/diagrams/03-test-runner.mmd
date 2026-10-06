@@ -1,0 +1,12 @@
+sequenceDiagram
+  participant CLI as node --test "glob"
+  participant R as Runner (parent)
+  participant P as Child process per file
+  participant T as test() callbacks
+  CLI->>R: expand the glob to test files
+  R->>P: spawn one process per file (isolation)
+  P->>T: import the file → test() registers tests
+  P->>T: run each test: hooks → body → assertions
+  T-->>P: pass, or a thrown AssertionError (fail)
+  P-->>R: stream events (TAP/JSON): test:pass, test:fail, test:todo
+  R-->>CLI: reporter prints results, exit code 0 or 1

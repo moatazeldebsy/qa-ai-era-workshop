@@ -28,23 +28,8 @@ What E2E tests are **not** for: checking every pricing rule or every invalid inp
 
 ### How a Playwright test drives a browser
 
-```mermaid
-sequenceDiagram
-  participant T as Test code (Node.js)
-  participant PW as Playwright library
-  participant B as Browser (Chromium / Firefox / WebKit)
-  participant P as Page (your app)
-  T->>PW: page.getByRole('button', { name: 'Ask' }).click()
-  PW->>B: protocol message (CDP for Chromium; Playwright's patched protocols for Firefox and WebKit)
-  B->>P: find element via the locator, in the live DOM
-  Note over PW,P: Actionability checks: attached, visible, stable (not animating), enabled, receives events. Retry until true or timeout.
-  B->>P: dispatch real input events (mouse down/up, click)
-  T->>PW: await expect(answer).toHaveText(/34.00/)
-  loop until it matches or the expect timeout expires
-    PW->>B: read the element's text
-  end
-  PW-->>T: pass, or fail with the last value seen
-```
+![How a Playwright test drives a browser: the test calls click() on a locator, Playwright sends a protocol message to the browser, which finds the element in the live DOM and waits until it is attached, visible, stable, enabled and receives events before dispatching real input events; an expect() on the answer re-reads the element's text until it matches or times out, then passes or fails with the last value seen.](../../assets/diagrams/05-playwright-browser.svg#only-light){ loading=lazy }
+![How a Playwright test drives a browser: the test calls click() on a locator, Playwright sends a protocol message to the browser, which finds the element in the live DOM and waits until it is attached, visible, stable, enabled and receives events before dispatching real input events; an expect() on the answer re-reads the element's text until it matches or times out, then passes or fails with the last value seen.](../../assets/diagrams/05-playwright-browser-dark.svg#only-dark){ loading=lazy }
 
 Four mechanisms make modern browser tests reliable when used properly:
 
@@ -149,22 +134,8 @@ Between unit tests and E2E sits **component testing**: render one UI component (
 
 ## 5. Architecture: the E2E suite around Quality Books
 
-```mermaid
-flowchart TB
-  subgraph Runner["Playwright test runner"]
-    CFG["playwright.config.js<br/>projects, baseURL, webServer, retries, reporters"]
-    W1["Worker 1"] & W2["Worker 2"]
-  end
-  CFG --> W1 & W2
-  W1 --> CTX1["Browser context<br/>(fresh cookies, storage)"]
-  W2 --> CTX2["Browser context"]
-  CTX1 --> PO["Page objects<br/>e2e/pages/ShopPage.js"]
-  PO --> APP["Quality Books UI<br/>app/public"]
-  APP --> API["Shop API"] --> INV["Inventory service"]
-  CTX1 -. "page.route(): stub, delay, reorder" .-> APP
-  W1 --> EV["Evidence on failure:<br/>trace.zip, screenshot, video, junit.xml"]
-  MX["playwright.matrix.config.js<br/>Topic 2 pairwise → 10 projects"] -. reuses .-> CFG
-```
+![The E2E suite around Quality Books: playwright.config.js sets projects, baseURL, the web server, retries and reporters for parallel workers; each worker gets a fresh browser context and uses page objects to drive the Quality Books UI, which calls the shop API and the inventory service; page.route() can stub, delay or reorder requests; failures leave a trace, screenshot, video and junit.xml; the matrix config reuses the main config for Topic 2's ten pairwise projects.](../../assets/diagrams/05-architecture.svg#only-light){ loading=lazy }
+![The E2E suite around Quality Books: playwright.config.js sets projects, baseURL, the web server, retries and reporters for parallel workers; each worker gets a fresh browser context and uses page objects to drive the Quality Books UI, which calls the shop API and the inventory service; page.route() can stub, delay or reorder requests; failures leave a trace, screenshot, video and junit.xml; the matrix config reuses the main config for Topic 2's ten pairwise projects.](../../assets/diagrams/05-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

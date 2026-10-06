@@ -1,0 +1,8 @@
+flowchart TB
+  U(["Customers"]) --> LB{{"Load balancer<br/>routes by /ready"}}
+  SYN(["Synthetic monitor<br/>labelled requests"]) --> LB
+  LB --> SHOP["Shop<br/>/health · /ready · /metrics<br/>JSON logs with id"]
+  SHOP -- "x-request-id" --> INV["Inventory<br/>JSON logs with the same id"]
+  PROM[("Prometheus")] -. scrape .-> SHOP
+  PROM --> SLO["SLO: availability 99.5%,<br/>latency 99% < 250 ms<br/>(labs/10-observability/slo.json)"]
+  SLO --> BURN{{"Burn-rate alert"}} --> ONCALL(["On-call + runbook"])
