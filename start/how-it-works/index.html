@@ -3374,7 +3374,42 @@
 <li>Ask in the <a href="../community/">discussions</a> under the topic's category. Include the command you ran and its output.</li>
 </ol>
 <h2 id="your-progress-in-ci">Your progress in CI<a class="headerlink" href="#your-progress-in-ci" title="Permanent link">&para;</a></h2>
-<p>When you push to your fork, the <strong>Learner progress</strong> workflow runs <code>learn:status</code> and puts the table in the run's summary. Open the <strong>Actions</strong> tab of your fork to see it. You may need to enable Actions on the fork first.</p>
+<p>Your fork's CI checks your work too, so you get feedback even without running the checker yourself, for example from a Codespace or the GitHub web editor. Enable Actions on the fork first: on your fork's <strong>Actions</strong> tab, choose <strong>I understand my workflows, go ahead and enable them</strong>.</p>
+<ul>
+<li><strong>Feedback on a pull request.</strong> Push your topic branch and open a pull request from <code>topic-03</code> into <strong>your fork's</strong> <code>main</code>, not the course repo. The <strong>Lab feedback</strong> workflow runs <code>learn:check 3</code> and posts one comment on the pull request with ✔ or ✖ for each step and the hint for what's missing. Every push updates the same comment, so leave the pull request open while you work.</li>
+<li><strong>Progress across every topic.</strong> On every push, the <strong>Learner progress</strong> workflow runs <code>learn:status</code> and puts the table in the run's summary. Open the <strong>Actions</strong> tab of your fork to see it.</li>
+</ul>
+<p>The comment at the start of Topic 1 begins like this:</p>
+<blockquote>
+<p><strong>🧪 Topic 1: QA Engineering Foundations — 0/5 steps done</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Step</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✖</td>
+<td>1. Map the quality attributes</td>
+<td>notebook/01/quality-attributes.md does not exist<br>→ mkdir -p notebook/01 &amp;&amp; cp notebook/_templates/01/quality-attributes.md notebook/01/quality-attributes.md, then fill it in</td>
+</tr>
+<tr>
+<td>✖</td>
+<td>2. Explore with a charter and write a defect report</td>
+<td>notebook/01/charter.md does not exist<br>→ mkdir -p notebook/01 &amp;&amp; cp notebook/_templates/01/charter.md notebook/01/charter.md, then fill it in</td>
+</tr>
+<tr>
+<td>✖</td>
+<td>3. Resolve the free-shipping inconsistency</td>
+<td>the policy test is still a TODO<br>→ fix the policy text in app/src/catalog.js, then remove the { todo } option from the test</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>Neither workflow fails your build: they report, and the checker on your machine is the same one.</p>
 <h2 id="clear-your-progress">Clear your progress<a class="headerlink" href="#clear-your-progress" title="Permanent link">&para;</a></h2>
 <p>To start over on this device:</p>
 <p><button class="md-button" data-course-reset type="button">Clear my progress and quiz scores</button></p>
