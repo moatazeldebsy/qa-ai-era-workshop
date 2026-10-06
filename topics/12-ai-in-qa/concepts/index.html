@@ -2734,6 +2734,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LLM evaluation tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-promptfoo-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why promptfoo here
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -3670,6 +3687,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LLM evaluation tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-promptfoo-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why promptfoo here
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -4225,6 +4259,15 @@
 </tr>
 </tbody>
 </table>
+<h4 id="why-promptfoo-here">Why promptfoo here<a class="headerlink" href="#why-promptfoo-here" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>No API key needed.</strong> Almost every check in the lab is deterministic: <code>contains</code>, <code>not-icontains</code>, regex or JavaScript. They grade the shop's mock assistant offline, for free, with the same result every run, so every learner can do the lab and CI can run it on each pull request. The one model-graded check (<code>llm-rubric</code>) is commented out until you have a key.</li>
+<li><strong>It tests the shop from the outside.</strong> promptfoo calls <code>POST /api/assistant</code> over HTTP, like the Topic 4 API tests do. DeepEval and Ragas are Python libraries: you would write that HTTP call yourself, inside pytest.</li>
+<li><strong>One stack.</strong> It runs from <code>npm</code> scripts (<code>eval:llm</code>, <code>eval:redteam</code>) next to the rest of the course. DeepEval would add a Python environment just for this topic.</li>
+<li><strong>Its output feeds other topics.</strong> The Topic 6 quality gate reads promptfoo's JSON results, and the Topic 14 scorecard counts its cases.</li>
+<li><strong>Evals and red teaming in one format.</strong> The same YAML file layout holds both the assistant's eval suite and the prompt-injection attacks.</li>
+</ul>
+<p>Choose DeepEval or Ragas when your team works in Python, or when you need ready-made model-graded metrics, especially for RAG: faithfulness to the retrieved context, or context relevance. The shop's assistant puts the whole catalogue in its prompt instead of retrieving parts of it, so those metrics matter less here.</p>
 <h3 id="ai-assistance-for-testing">AI assistance for testing<a class="headerlink" href="#ai-assistance-for-testing" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
