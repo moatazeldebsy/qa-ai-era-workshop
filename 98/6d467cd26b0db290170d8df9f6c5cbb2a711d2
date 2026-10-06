@@ -1,0 +1,44 @@
+docs/topics/03-unit-component/index.md
+  s_bd0384c669aec1::t_0a1687c8a62959 27
+docs/topics/01-foundations/lab.md
+  s_bd0384c669aec1::t_8c80f9ab781e0d 30
+docs/start/setup.md
+  s_bd0384c669aec1::t_0a1687c8a62959 33,45
+CONTRIBUTING.md
+  s_bd0384c669aec1::t_0a1687c8a62959 70
+docs/topics/02-test-design/lab.md
+  s_bd0384c669aec1::t_8c80f9ab781e0d 29
+  s_bd0384c669aec1::t_0a1687c8a62959 282
+docs/topics/04-integration-contract/lab.md
+  s_bd0384c669aec1::t_0a1687c8a62959 204,208
+  s_bd0384c669aec1::t_8c80f9ab781e0d 29
+docs/topics/04-integration-contract/index.md
+  s_bd0384c669aec1::t_0a1687c8a62959 22
+README.md
+  s_bd0384c669aec1::t_0a1687c8a62959 41
+docs/topics/03-unit-component/lab.md
+  s_bd0384c669aec1::t_8c80f9ab781e0d 30
+  s_bd0384c669aec1::t_0a1687c8a62959 252
+scripts/doctor.mjs
+  s_bd0384c669aec1::t_0a1687c8a62959 43
+docs/topics/01-foundations/index.md
+  s_bd0384c669aec1::t_0a1687c8a62959 22
+docs/topics/02-test-design/index.md
+  s_bd0384c669aec1::t_0a1687c8a62959 29
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "986d467cd26b0db290170d8df9f6c5cbb2a711d2",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
