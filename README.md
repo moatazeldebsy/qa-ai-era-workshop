@@ -52,7 +52,7 @@ Full instructions: [Setup](https://moatazeldebsy.github.io/qa-engineering-deep-d
 
 ### 2. Study each topic (4–6 hours)
 
-Every topic follows the same loop. Start with Topic 1, or pick a [route for your role](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/routes/).
+Every topic follows the same loop. Start with Topic 1, or pick a [path for your role](https://moatazeldebsy.github.io/qa-engineering-deep-dive/start/routes/).
 
 | Step | Where | What you do |
 |---|---|---|

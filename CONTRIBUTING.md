@@ -23,7 +23,7 @@ app/                    Quality Books, the shop every lab tests
 services/inventory/     a second service the shop calls (Topic 4)
 docs/                   the course site (MkDocs)
   topics/NN-topic/      index, concepts, lab and quiz for topic NN
-  start/, reference/    setup, routes, cheat sheet, glossary, demo app reference
+  start/, reference/    setup, paths by role, cheat sheet, glossary, demo app reference
 labs/NN-topic/          the runnable lab for topic NN: check.mjs, tests/, acceptance/
 notebook/_templates/NN/ notes templates for topic NN; learners write to notebook/NN/
 platform/               the service template and conformance checks (Topic 13)
