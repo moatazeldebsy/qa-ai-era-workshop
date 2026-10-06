@@ -226,6 +226,16 @@ AI features can treat groups of users differently (bias), produce unexplainable 
 | LangSmith, Braintrust | Hosted tracing, datasets and evals | Commercial |
 | garak, PyRIT | Automated red teaming and vulnerability scanning | Security-focused |
 
+#### Why promptfoo here
+
+- **No API key needed.** Almost every check in the lab is deterministic: `contains`, `not-icontains`, regex or JavaScript. They grade the shop's mock assistant offline, for free, with the same result every run, so every learner can do the lab and CI can run it on each pull request. The one model-graded check (`llm-rubric`) is commented out until you have a key.
+- **It tests the shop from the outside.** promptfoo calls `POST /api/assistant` over HTTP, like the Topic 4 API tests do. DeepEval and Ragas are Python libraries: you would write that HTTP call yourself, inside pytest.
+- **One stack.** It runs from `npm` scripts (`eval:llm`, `eval:redteam`) next to the rest of the course. DeepEval would add a Python environment just for this topic.
+- **Its output feeds other topics.** The Topic 6 quality gate reads promptfoo's JSON results, and the Topic 14 scorecard counts its cases.
+- **Evals and red teaming in one format.** The same YAML file layout holds both the assistant's eval suite and the prompt-injection attacks.
+
+Choose DeepEval or Ragas when your team works in Python, or when you need ready-made model-graded metrics, especially for RAG: faithfulness to the retrieved context, or context relevance. The shop's assistant puts the whole catalogue in its prompt instead of retrieving parts of it, so those metrics matter less here.
+
 ### AI assistance for testing
 
 | Approach | Examples | Notes |
