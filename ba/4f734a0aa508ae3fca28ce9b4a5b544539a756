@@ -1,0 +1,29 @@
+CONTRIBUTING.md
+  s_bd0384c669aec1::t_45ae7a897fc0da 26
+docs/index.md
+  s_bd0384c669aec1::t_45ae7a897fc0da 15
+docs/start/setup.md
+  s_bd0384c669aec1::t_45ae7a897fc0da 145
+docs/start/routes.md
+  s_bd0384c669aec1::t_45ae7a897fc0da 1,3
+mkdocs.yml
+  s_bd0384c669aec1::t_45ae7a897fc0da 84
+README.md
+  s_bd0384c669aec1::t_45ae7a897fc0da 55
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "ba4f734a0aa508ae3fca28ce9b4a5b544539a756",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
