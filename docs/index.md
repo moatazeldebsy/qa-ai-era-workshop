@@ -44,7 +44,7 @@ Fourteen topics take you from *"what is quality?"* to running quality across an 
 
 ## What makes it different
 
-- **Deep, but simple.** Every new term is explained before it's used. Every topic covers the same thirteen angles: what it is, why it exists, how it works inside, how it scales, what it costs, how it fails, and how it compares.
+- **Deep, but simple.** Every new term is explained before it's used. Every topic covers the same fifteen angles: what it is, why it exists, how it works inside, how it scales, what it costs, how it fails and how it compares, then a hands-on lab and how to verify and troubleshoot it.
 - **One system, many lenses.** *Quality Books*, a tiny bookshop with a cart, orders and an AI support assistant, grows with the course. You test the same code with partitions, properties, contracts, browsers, load, attacks and telemetry.
 - **Real findings, not toy exercises.** The labs find genuine bugs and inconsistencies in this repo, and you fix them.
 - **Check your own work.** Automatic lab checks, quizzes with explanations, hints, and reference solutions you can diff against.
