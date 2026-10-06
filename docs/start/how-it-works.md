@@ -60,7 +60,22 @@ Some steps are thinking work: a partition table, a charter, an explanation. Thos
 
 ## Your progress in CI
 
-When you push to your fork, the **Learner progress** workflow runs `learn:status` and puts the table in the run's summary. Open the **Actions** tab of your fork to see it. You may need to enable Actions on the fork first.
+Your fork's CI checks your work too, so you get feedback even without running the checker yourself, for example from a Codespace or the GitHub web editor. Enable Actions on the fork first: on your fork's **Actions** tab, choose **I understand my workflows, go ahead and enable them**.
+
+- **Feedback on a pull request.** Push your topic branch and open a pull request from `topic-03` into **your fork's** `main`, not the course repo. The **Lab feedback** workflow runs `learn:check 3` and posts one comment on the pull request with ✔ or ✖ for each step and the hint for what's missing. Every push updates the same comment, so leave the pull request open while you work.
+- **Progress across every topic.** On every push, the **Learner progress** workflow runs `learn:status` and puts the table in the run's summary. Open the **Actions** tab of your fork to see it.
+
+The comment at the start of Topic 1 begins like this:
+
+> **🧪 Topic 1: QA Engineering Foundations — 0/5 steps done**
+>
+> | | Step | Detail |
+> |---|---|---|
+> | ✖ | 1. Map the quality attributes | notebook/01/quality-attributes.md does not exist<br>→ mkdir -p notebook/01 && cp notebook/_templates/01/quality-attributes.md notebook/01/quality-attributes.md, then fill it in |
+> | ✖ | 2. Explore with a charter and write a defect report | notebook/01/charter.md does not exist<br>→ mkdir -p notebook/01 && cp notebook/_templates/01/charter.md notebook/01/charter.md, then fill it in |
+> | ✖ | 3. Resolve the free-shipping inconsistency | the policy test is still a TODO<br>→ fix the policy text in app/src/catalog.js, then remove the { todo } option from the test |
+
+Neither workflow fails your build: they report, and the checker on your machine is the same one.
 
 ## Clear your progress
 
