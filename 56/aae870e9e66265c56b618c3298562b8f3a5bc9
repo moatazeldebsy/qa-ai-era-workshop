@@ -1,0 +1,19 @@
+docs/topics/index.md
+  s_bd0384c669aec1::t_e6d3a8337b1bad 29-52
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "56aae870e9e66265c56b618c3298562b8f3a5bc9",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
