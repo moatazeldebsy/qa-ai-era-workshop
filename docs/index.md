@@ -12,7 +12,7 @@ Fourteen topics take you from *"what is quality?"* to running quality across an 
 
     ---
 
-    How the course works, what to install (or open it in Codespaces), and which route fits your role.
+    How the course works, what to install (or open it in Codespaces), and which path fits your role.
 
     [→ How this course works](start/how-it-works.md)
 

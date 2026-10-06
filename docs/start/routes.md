@@ -1,6 +1,6 @@
-# Routes by role
+# Paths by role
 
-The topics are designed to be taken in order. If you have less time, or a specific goal, these routes pick the topics that matter most for your role. **Topics 1 and 2 are on every route**, because everything else builds on them.
+The topics are designed to be taken in order. If you have less time, or a specific goal, these paths pick the topics that matter most for your role. **Topics 1 and 2 are on every path**, because everything else builds on them.
 
 | Topic | QA engineer / SDET | Developer | Lead / manager |
 |---|:-:|:-:|:-:|
