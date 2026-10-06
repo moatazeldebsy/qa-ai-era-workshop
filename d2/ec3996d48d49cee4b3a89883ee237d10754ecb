@@ -1,0 +1,287 @@
+docs/diagrams/02-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-12
+docs/assets/diagrams/07-environment-assembly.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/topics/10-observability/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 32-33,127-128
+docs/diagrams/01-error-fault-failure.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-4
+docs/diagrams/12-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-17
+docs/assets/diagrams/04-pact-flow-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/05-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-14
+docs/diagrams/11-data-pipeline.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-11
+docs/assets/diagrams/08-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/11-data-pipeline-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/02-technique-pipeline.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-6
+docs/assets/diagrams/demo-app-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-tdd-cycle.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/04-pact-flow.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/08-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/11-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/10-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/topics/11-quality-intelligence/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 28-29,141-142
+docs/assets/diagrams/07-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/demo-app-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-11
+docs/assets/diagrams/demo-app-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/13-platform-loop-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+package.json
+  s_bd0384c669aec1::t_18573e2cf11a12 77
+  s_bd0384c669aec1::t_d04da4c2fd3e92 91
+docs/assets/diagrams/study-loop-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/11-data-pipeline.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/08-load-generator.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-14
+docs/assets/diagrams/14-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/01-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/11-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/04-integration-test.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/study-loop.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-7
+docs/topics/12-ai-in-qa/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 36-37,43-44,135-136
+docs/assets/diagrams/06-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/04-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/reference/demo-app.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 5-6
+docs/topics/index.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 28-29
+docs/assets/diagrams/01-quality-feedback-loop.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/topic-roadmap.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-24
+docs/topics/14-strategy/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 32-33,145-146
+docs/assets/diagrams/02-technique-pipeline-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/09-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-16
+docs/assets/diagrams/12-llm-evaluation-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/13-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/13-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/06-pipeline-dag.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-6
+CONTRIBUTING.md
+  s_bd0384c669aec1::t_18573e2cf11a12 79-85
+docs/assets/diagrams/05-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/14-strategy-loop.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/05-playwright-browser-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/01-defect-lifecycle-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-test-runner.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/03-tdd-cycle.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-4
+docs/diagrams/12-llm-evaluation.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-7
+docs/diagrams/07-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-16
+docs/diagrams/03-test-runner.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-12
+docs/topics/08-performance/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 31-32,135-136
+docs/topics/13-platform/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 29-30,129-130
+docs/assets/diagrams/01-quality-feedback-loop-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/08-load-generator-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/01-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-31
+docs/assets/diagrams/07-environment-assembly-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/04-pact-flow.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-11
+docs/topics/04-integration-contract/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 32-33,41-42,128-129
+docs/diagrams/05-playwright-browser.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-6,8-15
+  s_bd0384c669aec1::t_ec96ed0c659c0c 7
+docs/assets/diagrams/02-technique-pipeline.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/start/how-it-works.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 9-10
+docs/assets/diagrams/12-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/10-code-to-dashboards.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/09-security-layers-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/05-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/09-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/14-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-10
+docs/assets/diagrams/07-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+mkdocs.yml
+  s_bd0384c669aec1::t_18573e2cf11a12 45-46,48,70
+  s_bd0384c669aec1::t_3941c626f9f7a4 47
+docs/assets/diagrams/02-order-state-machine-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/topic-roadmap-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/topics/05-ui-e2e/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 31-32,137-138
+docs/topics/06-ci-cd/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 34-35,146-147
+docs/assets/diagrams/06-pipeline-dag-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/01-quality-feedback-loop.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-8
+docs/diagrams/02-order-state-machine.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-10
+docs/topics/01-foundations/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 44-45,59-60,180-181,189-190
+docs/diagrams/04-integration-test.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-11
+docs/assets/diagrams/10-code-to-dashboards-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/12-test-generation.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-7
+docs/diagrams/13-platform-loop.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-9
+docs/topics/09-security-a11y/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 31-32,134-135
+docs/assets/diagrams/10-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+scripts/render-diagrams.mjs
+  s_bd0384c669aec1::t_587e85195eecf4 1-69,82-98
+  s_bd0384c669aec1::t_cc4b0e53b1d821 70-81
+docs/topics/07-env-data/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 33-34,129-130
+docs/assets/diagrams/05-playwright-browser.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/03-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-15
+docs/assets/diagrams/01-defect-lifecycle.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/12-test-generation.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/14-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/04-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/02-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/12-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/study-loop.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-test-runner-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/09-security-layers.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/02-order-state-machine.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/11-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-7
+docs/topics/02-test-design/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 41-42,132-133,246-247
+docs/assets/diagrams/06-pipeline-dag.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/14-strategy-loop-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/01-error-fault-failure.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/01-defect-lifecycle.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-10
+docs/diagrams/14-strategy-loop.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-9
+docs/assets/diagrams/02-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/04-integration-test-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/06-architecture.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/13-platform-loop.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/06-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-15
+docs/diagrams/07-environment-assembly.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-11
+docs/diagrams/09-security-layers.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-8
+docs/assets/diagrams/12-llm-evaluation.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/12-test-generation-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/01-error-fault-failure-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/03-tdd-cycle-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/04-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-18
+docs/assets/diagrams/08-load-generator.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/13-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-14
+docs/diagrams/10-code-to-dashboards.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-12
+docs/diagrams/10-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-8
+docs/topics/03-unit-component/concepts.md
+  s_bd0384c669aec1::t_1f66e88943bd4a 34-35,121-122,186-187
+docs/assets/diagrams/topic-roadmap.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/assets/diagrams/01-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+docs/diagrams/08-architecture.mmd
+  s_bd0384c669aec1::t_1f66e88943bd4a 1-9
+docs/assets/diagrams/09-architecture-dark.svg
+  s_bd0384c669aec1::t_cc4b0e53b1d821 1
+package-lock.json
+  s_bd0384c669aec1::t_ad43f17461b8b0 21,114-127,1998-2004,2024-2065,2645-2663,3925-3937,6359-6642,6661-6667,6724-6731,6777-6787,7531-7547,7887-8457,8459-8462,8464-8471,8473,8476-8479,8481-8484,8486-8487,8490-8495,8497,8500-8503,8505-8511,8513-8516,8518-8521,8523,8526-8534,8536,8539-8544,8546,8549-8552,8554,8556-8560,8563,8565-8566,8569-8572,8574,8576-8580,8583,8586-8589,8591-8594,8617-8623,8789-8798,8857-8866,9083-9089,10602-10608,11115-11124,11663-11689,11718-11723,11745-11751,11824-11830,11956-11968,12092-12126,13246-13252,13307-13313,13954-13971,14908-14927,14958-14964,15881-15887,15995-16004,16118-16127
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d2ec3996d48d49cee4b3a89883ee237d10754ecb",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
