@@ -1,6 +1,0 @@
-flowchart LR
-  B["Test basis<br/>requirement, contract,<br/>code, experience"] --> M["Model<br/>partitions, table, state machine,<br/>parameter list, property"]
-  M --> C["Test conditions<br/>what to cover"]
-  C --> T["Test cases<br/>concrete inputs +<br/>expected results (oracle)"]
-  T --> X["Run & measure<br/>coverage of the model"]
-  X -->|gaps, surprises| M

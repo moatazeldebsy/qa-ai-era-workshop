@@ -1,7 +1,0 @@
-flowchart TB
-  RUNS["npm run qi:collect<br/>(N runs, optional --retries)"] --> HIST[("history/<br/>run-NN.xml + run-NN.json")]
-  HIST --> AN["analyze.mjs<br/>parse · normalise ids · summarise"]
-  AN --> REP["npm run qi:report<br/>runs strip · failing now · flaky + rates · slowest"]
-  CSV[("metrics/data/*.csv<br/>deployments · incidents · defects")] --> MET["npm run metrics<br/>MTTD · MTTR · DORA · escapes"]
-  REP & MET --> NB["Notebook: decisions<br/>fix · quarantine · invest"]
-  GATE{{"Quality gate (Topic 6)<br/>reads junit.xml"}} -. "can't see retried passes" .- HIST

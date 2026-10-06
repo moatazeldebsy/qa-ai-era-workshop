@@ -1,4 +1,0 @@
-flowchart LR
-  E["Error (mistake)<br/>a person misreads 'over 50'"] --> F["Fault / defect / bug<br/>code uses &gt; instead of &gt;="]
-  F -->|"only when the faulty code runs<br/>with the right input"| X["Failure<br/>customer with a 50.00 cart<br/>is charged 4.90"]
-  X --> I["Incident<br/>complaint, refund, lost trust"]
