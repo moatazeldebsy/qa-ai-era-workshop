@@ -38,7 +38,7 @@ Each topic has the same four pages: **Overview → Concepts → Lab → Quiz & w
     git clone https://github.com/<you>/qa-engineering-deep-dive.git
     cd qa-engineering-deep-dive
     nvm use                                  # Node 24
-    npm install
+    npm ci
     npx playwright install --with-deps chromium
     ```
 

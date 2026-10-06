@@ -26,7 +26,7 @@ You'll apply each technique to Quality Books, find and fix a real bug, generate 
 ### Step 0 — Baseline
 
 ```bash
-npm install             # adds fast-check if you're coming from Topic 1
+npm ci                  # adds fast-check if you're coming from Topic 1
 npm run learn:start 2
 mkdir -p notebook/02 && cp notebook/_templates/02/design-notes.md notebook/02/
 npm run design:test
@@ -279,7 +279,7 @@ Commit and push to your fork when you're done.
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `Cannot find package 'fast-check'` | Dependencies installed before Topic 2 | `npm install` |
+| `Cannot find package 'fast-check'` | Dependencies installed before Topic 2 | `npm ci` |
 | A property test fails with a seed you can't reproduce | Each run is random by design | Re-run with the printed seed: `FC_SEED=<seed> npm run design:test` |
 | After step 4, a *different* test fails: `assert.throws` … `only 3` | Your fix aggregates quantities, so the error message differs | Either is fine. The test accepts `more than once` or `only 3`; make your message contain one of them |
 | `design:test` shows `todo 3` after step 4 | The `{ todo: … }` options are still in place | Delete the whole `{ todo: '…' },` line in both tests |

@@ -26,7 +26,7 @@ You'll check the shop's API against its own contract and fix how it answers clie
 ### Step 0 — Baseline
 
 ```bash
-npm install                       # adds Pact, Ajv and yaml if you're coming from Topic 3
+npm ci                            # adds Pact, Ajv and yaml if you're coming from Topic 3
 npm run learn:start 4
 mkdir -p notebook/04 && cp notebook/_templates/04/contract-notes.md notebook/04/
 npm run contract:test
@@ -201,11 +201,11 @@ Commit and push to your fork when you're done.
 
 | Symptom | Likely cause | Fix |
 |---|---|---|
-| `Cannot find package '@pact-foundation/pact'` (or `ajv`, `yaml`) | Dependencies installed before Topic 4 | `npm install` |
+| `Cannot find package '@pact-foundation/pact'` (or `ajv`, `yaml`) | Dependencies installed before Topic 4 | `npm ci` |
 | `contract:verify`: `No contract file yet` | The consumer tests haven't run since a clean checkout | `npm run contract:test` first; it writes `labs/04-integration-contract/pacts/` |
 | Verification still fails after your fix | The contract file is stale | Re-run `npm run contract:test`, then verify again |
 | Consumer test: `Request was not matched` | The client sent something the interaction doesn't describe | Read the mismatch: method, path, headers and body must match the interaction |
-| Pact native library errors on install | An unsupported platform or a blocked download of Pact's binaries | Use Codespaces, or check `npm install` output for the Pact download error |
+| Pact native library errors on install | An unsupported platform or a blocked download of Pact's binaries | Use Codespaces, or check `npm ci` output for the Pact download error |
 | `EADDRINUSE` with `npm run start:all` | Something already uses port 3210 or 3220 | Stop it, or set `PORT` / `INVENTORY_PORT` |
 | Orders return `503 inventory service unavailable` | Only the shop is running | `npm run start:all`, not `npm start` |
 | Step 1 fix breaks other tests | Every error became a 4xx | Only keep the status when `err.status` is between 400 and 499; everything else stays 500 |
