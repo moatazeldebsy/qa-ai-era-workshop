@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3827,18 +3827,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="from-code-to-dashboards">From code to dashboards<a class="headerlink" href="#from-code-to-dashboards" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Services
-    S["Shop&lt;br/&gt;logs · /metrics · trace spans"]
-    I["Inventory&lt;br/&gt;logs · trace spans"]
-  end
-  S -- "x-request-id / traceparent" --&gt; I
-  S &amp; I --&gt;|stdout JSON lines| LC["Log collector&lt;br/&gt;(Fluent Bit, Vector)"] --&gt; LS[("Log store&lt;br/&gt;Loki, Elasticsearch")]
-  S --&gt;|scraped every 15 s| P[("Prometheus&lt;br/&gt;time series")]
-  S &amp; I --&gt;|OTLP| OC["OpenTelemetry Collector"] --&gt; T[("Trace store&lt;br/&gt;Tempo, Jaeger")]
-  P --&gt; AM["Alertmanager&lt;br/&gt;(SLO burn-rate alerts)"] --&gt; PAGE["On-call"]
-  LS &amp; P &amp; T --&gt; G["Grafana dashboards"]
-  SYN["Synthetic monitor&lt;br/&gt;(every minute)"] --&gt;|journey| S</code></pre>
+<p><img alt="From code to dashboards: the shop and inventory pass x-request-id and traceparent between them; their JSON logs go through a log collector to a log store, Prometheus scrapes the shop's metrics every 15 seconds, and OpenTelemetry sends traces to a trace store; Alertmanager pages on-call on SLO burn-rate alerts, Grafana shows all three, and a synthetic monitor runs a journey every minute." loading="lazy" src="../../../assets/diagrams/10-code-to-dashboards.svg#only-light" />
+<img alt="From code to dashboards: the shop and inventory pass x-request-id and traceparent between them; their JSON logs go through a log collector to a log store, Prometheus scrapes the shop's metrics every 15 seconds, and OpenTelemetry sends traces to a trace store; Alertmanager pages on-call on SLO burn-rate alerts, Grafana shows all three, and a synthetic monitor runs a journey every minute." loading="lazy" src="../../../assets/diagrams/10-code-to-dashboards-dark.svg#only-dark" /></p>
 <ul>
 <li><strong>Logs</strong> are written as structured JSON lines to stdout; a collector ships them to a store, where they can be searched by fields (<code>id</code>, <code>status</code>).</li>
 <li><strong>Metrics</strong> are counters, gauges and histograms kept in memory and exposed at <code>/metrics</code> in the Prometheus text format; Prometheus <strong>scrapes</strong> them on a schedule and stores time series.</li>
@@ -4005,14 +3995,8 @@
 <h3 id="48-testing-in-production">4.8 Testing in production<a class="headerlink" href="#48-testing-in-production" title="Permanent link">&para;</a></h3>
 <p>Observability makes it safe to test with real traffic: <strong>canary releases</strong> compare new and old versions' SLIs (Topic 6), <strong>feature flags</strong> let you enable code for a few users, <strong>dark launches</strong> run new code paths without showing the result, and <strong>chaos experiments</strong> (Topic 8) run with a measured steady state. All need good telemetry, or they're just risk.</p>
 <h2 id="5-architecture-quality-books-in-production">5. Architecture: Quality Books in production<a class="headerlink" href="#5-architecture-quality-books-in-production" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  U(["Customers"]) --&gt; LB{{"Load balancer&lt;br/&gt;routes by /ready"}}
-  SYN(["Synthetic monitor&lt;br/&gt;labelled requests"]) --&gt; LB
-  LB --&gt; SHOP["Shop&lt;br/&gt;/health · /ready · /metrics&lt;br/&gt;JSON logs with id"]
-  SHOP -- "x-request-id" --&gt; INV["Inventory&lt;br/&gt;JSON logs with the same id"]
-  PROM[("Prometheus")] -. scrape .-&gt; SHOP
-  PROM --&gt; SLO["SLO: availability 99.5%,&lt;br/&gt;latency 99% &lt; 250 ms&lt;br/&gt;(labs/10-observability/slo.json)"]
-  SLO --&gt; BURN{{"Burn-rate alert"}} --&gt; ONCALL(["On-call + runbook"])</code></pre>
+<p><img alt="Quality Books in production: customers and a synthetic monitor reach a load balancer that routes by /ready; the shop exposes /health, /ready and /metrics and logs JSON with a request id that it passes to the inventory service; Prometheus scrapes the shop, the SLOs (99.5% availability, 99% of requests under 250 ms) drive a burn-rate alert, and the alert pages on-call with a runbook." loading="lazy" src="../../../assets/diagrams/10-architecture.svg#only-light" />
+<img alt="Quality Books in production: customers and a synthetic monitor reach a load balancer that routes by /ready; the shop exposes /health, /ready and /metrics and logs JSON with a request id that it passes to the inventory service; Prometheus scrapes the shop, the SLOs (99.5% availability, 99% of requests under 250 ms) drive a burn-rate alert, and the alert pages on-call with a runbook." loading="lazy" src="../../../assets/diagrams/10-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3779,15 +3779,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="the-platform-loop">The platform loop<a class="headerlink" href="#the-platform-loop" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  STD["Standards&lt;br/&gt;(what 'good' means)"] --&gt; KIT["Conformance kit&lt;br/&gt;(executable checks)"]
-  STD --&gt; LIB["Paved road&lt;br/&gt;baseline library · templates · reusable CI"]
-  LIB --&gt; SVC["Services built on it&lt;br/&gt;(conform by default)"]
-  KIT --&gt; FLEET["Fleet report&lt;br/&gt;every service × every standard"]
-  SVC &amp; LEGACY["Legacy services"] --&gt; FLEET
-  FLEET --&gt; PRIOR["Adoption work,&lt;br/&gt;prioritised by risk"]
-  PRIOR --&gt; LEGACY
-  FLEET -. "feedback: which standards hurt" .-&gt; STD</code></pre>
+<p><img alt="The platform loop: standards become a conformance kit and a paved road of libraries, templates and reusable CI; services built on the paved road conform by default; the fleet report checks every service against every standard, legacy ones included, prioritises adoption work by risk, and feeds back which standards hurt." loading="lazy" src="../../../assets/diagrams/13-platform-loop.svg#only-light" />
+<img alt="The platform loop: standards become a conformance kit and a paved road of libraries, templates and reusable CI; services built on the paved road conform by default; the fleet report checks every service against every standard, legacy ones included, prioritises adoption work by risk, and feeds back which standards hurt." loading="lazy" src="../../../assets/diagrams/13-platform-loop-dark.svg#only-dark" /></p>
 <ol>
 <li><strong>Agree standards</strong> with the teams who'll live with them, and write them down as checks (<code>platform/conformance.mjs</code>).</li>
 <li><strong>Build the paved road</strong> so meeting the standards is the easiest path: a baseline library that implements them once (<code>platform/express-baseline.mjs</code>), a template that uses it, and reusable CI that runs the checks.</li>
@@ -3959,20 +3952,8 @@
 <li><strong>Cognitive load</strong> reported by teams.</li>
 </ul>
 <h2 id="5-architecture-a-small-qa-platform-for-quality-books">5. Architecture: a small QA platform for Quality Books<a class="headerlink" href="#5-architecture-a-small-qa-platform-for-quality-books" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Platform["platform/ (owned by the platform team)"]
-    CONF["conformance.mjs&lt;br/&gt;standards as checks"]
-    BASE["express-baseline.mjs&lt;br/&gt;request id · headers · JSON errors"]
-    TPL["templates/service&lt;br/&gt;app · server · tests · README"]
-    NEW["new-service.mjs&lt;br/&gt;scaffolder"]
-    RWF[".github/workflows/reusable-node-service.yml"]
-  end
-  NEW --&gt; TPL --&gt; SVC["services/&amp;lt;new&amp;gt;/&lt;br/&gt;uses BASE, runs CONF in its tests"]
-  NEW --&gt; WF[".github/workflows/service-&amp;lt;new&amp;gt;.yml"] --&gt; RWF
-  INV["services/inventory"] -. adopts .-&gt; BASE
-  SHOP["app/ (the shop)"] -. "legacy: own middleware" .- CONF
-  FLEET["labs/13-platform/fleet.mjs"] --&gt; CONF
-  FLEET --&gt; INV &amp; SHOP &amp; SVC</code></pre>
+<p><img alt="A small QA platform for Quality Books: platform/ holds the conformance checks, the Express baseline, a service template, a scaffolder and a reusable workflow; the scaffolder creates a new service and its workflow from them; the inventory service adopts the baseline, the shop is legacy with its own middleware; fleet.mjs runs the conformance checks against every service." loading="lazy" src="../../../assets/diagrams/13-architecture.svg#only-light" />
+<img alt="A small QA platform for Quality Books: platform/ holds the conformance checks, the Express baseline, a service template, a scaffolder and a reusable workflow; the scaffolder creates a new service and its workflow from them; the inventory service adopts the baseline, the shop is legacy with its own middleware; fleet.mjs runs the conformance checks against every service." loading="lazy" src="../../../assets/diagrams/13-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

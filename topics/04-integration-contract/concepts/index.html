@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3826,31 +3826,13 @@
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="integration-and-api-tests">Integration and API tests<a class="headerlink" href="#integration-and-api-tests" title="Permanent link">&para;</a></h3>
 <p>The test starts the real component(s), talks to them over the real protocol, and checks the response <em>and</em> the side effects:</p>
-<pre class="mermaid"><code>sequenceDiagram
-  participant T as Test (node:test)
-  participant S as Shop (real Express app, port 0)
-  participant I as Inventory service (real, port 0)
-  T-&gt;&gt;I: start, reset to a known state
-  T-&gt;&gt;S: start, pointing at I's URL
-  T-&gt;&gt;S: POST /api/orders (2 × book 1)
-  S-&gt;&gt;I: POST /reservations
-  I--&gt;&gt;S: 201 { reservationId, ... }
-  S--&gt;&gt;T: 201 { id, state: "paid", ... }
-  T-&gt;&gt;I: GET /stock/1 → check 10 left (the side effect)</code></pre>
+<p><img alt="An integration test: the test starts the inventory service in a known state and the shop pointing at it, places an order for two copies of book 1, the shop reserves stock in the inventory service, the order comes back paid, and the test checks the side effect: 10 copies left." loading="lazy" src="../../../assets/diagrams/04-integration-test.svg#only-light" />
+<img alt="An integration test: the test starts the inventory service in a known state and the shop pointing at it, places an order for two copies of book 1, the shop reserves stock in the inventory service, the order comes back paid, and the test checks the side effect: 10 copies left." loading="lazy" src="../../../assets/diagrams/04-integration-test-dark.svg#only-dark" /></p>
 <p>Starting servers on <strong>port 0</strong> asks the operating system for any free port, so tests never collide with each other or with a running copy of the app.</p>
 <h3 id="consumer-driven-contract-testing-pact">Consumer-driven contract testing (Pact)<a class="headerlink" href="#consumer-driven-contract-testing-pact" title="Permanent link">&para;</a></h3>
 <p>Pact splits one integration test into two halves that run in <strong>different pipelines</strong>, connected by a contract file:</p>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Consumer["Shop's pipeline"]
-    CT["Consumer test&lt;br/&gt;real client ↔ Pact mock provider"] --&gt; PF["Contract file (pact)&lt;br/&gt;requests + minimal expected responses"]
-  end
-  PF --&gt;|published to a Pact Broker| PB[("Broker")]
-  PB --&gt; PV
-  subgraph Provider["Inventory team's pipeline"]
-    PV["Provider verification&lt;br/&gt;replay each request against the REAL service,&lt;br/&gt;in the 'provider state' it asks for"]
-  end
-  PV --&gt;|results| PB
-  PB --&gt; CID{"can-i-deploy?"}</code></pre>
+<p><img alt="Consumer-driven contract testing: in the shop's pipeline, a consumer test of the real client against a Pact mock provider produces a contract file, which is published to a Pact broker; in the inventory team's pipeline, provider verification replays each request against the real service in the provider state it asks for, results go back to the broker, and the broker answers can-i-deploy." loading="lazy" src="../../../assets/diagrams/04-pact-flow.svg#only-light" />
+<img alt="Consumer-driven contract testing: in the shop's pipeline, a consumer test of the real client against a Pact mock provider produces a contract file, which is published to a Pact broker; in the inventory team's pipeline, provider verification replays each request against the real service in the provider state it asks for, results go back to the broker, and the broker answers can-i-deploy." loading="lazy" src="../../../assets/diagrams/04-pact-flow-dark.svg#only-dark" /></p>
 <ol>
 <li><strong>Consumer side.</strong> The shop's test describes each interaction: <em>given</em> a provider state, <em>upon receiving</em> this request, the provider <em>will respond with</em> at least this. Pact starts a <strong>mock provider</strong> that answers exactly that, and the test runs the shop's <strong>real client</strong> against it. If the client sends something else, or can't handle the response, the test fails. The output is a contract file (JSON).</li>
 <li><strong>Provider side.</strong> The inventory team's pipeline loads the contract, puts the <strong>real</strong> service into each <strong>provider state</strong> (<em>"book 1 has 12 copies in stock"</em>), replays each request, and compares the real response with the expected one.</li>
@@ -4029,24 +4011,8 @@
 <h3 id="48-test-doubles-at-the-http-level">4.8 Test doubles at the HTTP level<a class="headerlink" href="#48-test-doubles-at-the-http-level" title="Permanent link">&para;</a></h3>
 <p>When the real dependency can't run in your test, stub it at the network level rather than in code: WireMock, MockServer, nock, MSW, or Pact's own mock server. <strong>Service virtualisation</strong> tools record real traffic and replay it. Every one of these is a double, so its accuracy must be checked against the real provider. That's exactly what contract verification does.</p>
 <h2 id="5-architecture-the-shop-the-inventory-service-and-the-tests-around-them">5. Architecture: the shop, the inventory service, and the tests around them<a class="headerlink" href="#5-architecture-the-shop-the-inventory-service-and-the-tests-around-them" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Shop["quality-books-shop (app/)"]
-    API["Express routes&lt;br/&gt;/api/orders, /api/cart/price …"] --&gt; CO["createCheckout()"]
-    CO --&gt; IC["inventory-client.js"]
-  end
-  subgraph Inv["inventory-service (services/inventory/)"]
-    IAPI["POST /reservations&lt;br/&gt;DELETE /reservations/:id&lt;br/&gt;GET /stock/:bookId"]
-  end
-  IC -- HTTP --&gt; IAPI
-
-  UT["Topic 3 unit tests&lt;br/&gt;fake inventory"] -.-&gt; CO
-  AT["api.test.js&lt;br/&gt;shop over HTTP + OpenAPI schema"] -.-&gt; API
-  IT["integration.test.js&lt;br/&gt;shop + real inventory"] -.-&gt; API
-  CT["inventory.consumer.test.js&lt;br/&gt;real client ↔ Pact mock"] -.-&gt; IC
-  CT --&gt; PACT[("pacts/*.json")]
-  PACT --&gt; PV["verify-provider.mjs&lt;br/&gt;replays against real inventory"]
-  PV -.-&gt; IAPI
-  OAS["services/inventory/openapi.yaml&lt;br/&gt;the provider's published API"] -.- IAPI</code></pre>
+<p><img alt="The shop, the inventory service and the tests around them: the shop's routes call createCheckout(), which uses inventory-client.js to call the inventory service over HTTP. Topic 3 unit tests use a fake inventory; api.test.js tests the shop over HTTP against its OpenAPI schema; integration.test.js runs the shop with the real inventory; the consumer test checks the real client against a Pact mock and writes the pact files, which verify-provider.mjs replays against the real inventory service, described by its own OpenAPI file." loading="lazy" src="../../../assets/diagrams/04-architecture.svg#only-light" />
+<img alt="The shop, the inventory service and the tests around them: the shop's routes call createCheckout(), which uses inventory-client.js to call the inventory service over HTTP. Topic 3 unit tests use a fake inventory; api.test.js tests the shop over HTTP against its OpenAPI schema; integration.test.js runs the shop with the real inventory; the consumer test checks the real client against a Pact mock and writes the pact files, which verify-provider.mjs replays against the real inventory service, described by its own OpenAPI file." loading="lazy" src="../../../assets/diagrams/04-architecture-dark.svg#only-dark" /></p>
 <p>Each test covers a different seam. Only the integration test and the contract verification ever compare the client's assumptions with the real provider.</p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>

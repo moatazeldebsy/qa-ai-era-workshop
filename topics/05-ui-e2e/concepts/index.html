@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3823,21 +3823,8 @@
 <p>What E2E tests are <strong>not</strong> for: checking every pricing rule or every invalid input. Those belong at lower levels, where they're a thousand times cheaper (Topics 2–4).</p>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="how-a-playwright-test-drives-a-browser">How a Playwright test drives a browser<a class="headerlink" href="#how-a-playwright-test-drives-a-browser" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>sequenceDiagram
-  participant T as Test code (Node.js)
-  participant PW as Playwright library
-  participant B as Browser (Chromium / Firefox / WebKit)
-  participant P as Page (your app)
-  T-&gt;&gt;PW: page.getByRole('button', { name: 'Ask' }).click()
-  PW-&gt;&gt;B: protocol message (CDP for Chromium; Playwright's patched protocols for Firefox and WebKit)
-  B-&gt;&gt;P: find element via the locator, in the live DOM
-  Note over PW,P: Actionability checks: attached, visible, stable (not animating), enabled, receives events. Retry until true or timeout.
-  B-&gt;&gt;P: dispatch real input events (mouse down/up, click)
-  T-&gt;&gt;PW: await expect(answer).toHaveText(/34.00/)
-  loop until it matches or the expect timeout expires
-    PW-&gt;&gt;B: read the element's text
-  end
-  PW--&gt;&gt;T: pass, or fail with the last value seen</code></pre>
+<p><img alt="How a Playwright test drives a browser: the test calls click() on a locator, Playwright sends a protocol message to the browser, which finds the element in the live DOM and waits until it is attached, visible, stable, enabled and receives events before dispatching real input events; an expect() on the answer re-reads the element's text until it matches or times out, then passes or fails with the last value seen." loading="lazy" src="../../../assets/diagrams/05-playwright-browser.svg#only-light" />
+<img alt="How a Playwright test drives a browser: the test calls click() on a locator, Playwright sends a protocol message to the browser, which finds the element in the live DOM and waits until it is attached, visible, stable, enabled and receives events before dispatching real input events; an expect() on the answer re-reads the element's text until it matches or times out, then passes or fails with the last value seen." loading="lazy" src="../../../assets/diagrams/05-playwright-browser-dark.svg#only-dark" /></p>
 <p>Four mechanisms make modern browser tests reliable when used properly:</p>
 <ol>
 <li><strong>Locators are lazy.</strong> <code>page.getByRole(...)</code> doesn't search anything when created. It's resolved <em>every time it's used</em>, against the current page. A locator never goes stale, which was a constant source of flakiness with older element-handle APIs.</li>
@@ -4009,20 +3996,8 @@
 <h3 id="410-component-tests-in-the-browser">4.10 Component tests in the browser<a class="headerlink" href="#410-component-tests-in-the-browser" title="Permanent link">&para;</a></h3>
 <p>Between unit tests and E2E sits <strong>component testing</strong>: render one UI component (a cart widget, a date picker) in a real browser, in isolation, and interact with it (Playwright component testing, Cypress component testing, Storybook interaction tests). It's fast and precise for UI logic, without needing the whole app.</p>
 <h2 id="5-architecture-the-e2e-suite-around-quality-books">5. Architecture: the E2E suite around Quality Books<a class="headerlink" href="#5-architecture-the-e2e-suite-around-quality-books" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Runner["Playwright test runner"]
-    CFG["playwright.config.js&lt;br/&gt;projects, baseURL, webServer, retries, reporters"]
-    W1["Worker 1"] &amp; W2["Worker 2"]
-  end
-  CFG --&gt; W1 &amp; W2
-  W1 --&gt; CTX1["Browser context&lt;br/&gt;(fresh cookies, storage)"]
-  W2 --&gt; CTX2["Browser context"]
-  CTX1 --&gt; PO["Page objects&lt;br/&gt;e2e/pages/ShopPage.js"]
-  PO --&gt; APP["Quality Books UI&lt;br/&gt;app/public"]
-  APP --&gt; API["Shop API"] --&gt; INV["Inventory service"]
-  CTX1 -. "page.route(): stub, delay, reorder" .-&gt; APP
-  W1 --&gt; EV["Evidence on failure:&lt;br/&gt;trace.zip, screenshot, video, junit.xml"]
-  MX["playwright.matrix.config.js&lt;br/&gt;Topic 2 pairwise → 10 projects"] -. reuses .-&gt; CFG</code></pre>
+<p><img alt="The E2E suite around Quality Books: playwright.config.js sets projects, baseURL, the web server, retries and reporters for parallel workers; each worker gets a fresh browser context and uses page objects to drive the Quality Books UI, which calls the shop API and the inventory service; page.route() can stub, delay or reorder requests; failures leave a trace, screenshot, video and junit.xml; the matrix config reuses the main config for Topic 2's ten pairwise projects." loading="lazy" src="../../../assets/diagrams/05-architecture.svg#only-light" />
+<img alt="The E2E suite around Quality Books: playwright.config.js sets projects, baseURL, the web server, retries and reporters for parallel workers; each worker gets a fresh browser context and uses page objects to drive the Quality Books UI, which calls the shop API and the inventory service; page.route() can stub, delay or reorder requests; failures leave a trace, screenshot, video and junit.xml; the matrix config reuses the main config for Topic 2's ten pairwise projects." loading="lazy" src="../../../assets/diagrams/05-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

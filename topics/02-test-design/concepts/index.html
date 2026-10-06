@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3889,12 +3889,8 @@
 <p>The numbers in this repo make the point. The cart alone accepts around 19,000 valid single-line-per-book carts, plus infinitely many invalid ones. The order lifecycle has 30 state/event pairs. The shop's configuration matrix has 108 combinations. Techniques reduce each of these to a few dozen tests, and they tell you exactly what you gave up in the process.</p>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <p>Every technique follows the same pipeline. Only the <strong>model</strong> in the middle changes:</p>
-<pre class="mermaid"><code>flowchart LR
-  B["Test basis&lt;br/&gt;requirement, contract,&lt;br/&gt;code, experience"] --&gt; M["Model&lt;br/&gt;partitions, table, state machine,&lt;br/&gt;parameter list, property"]
-  M --&gt; C["Test conditions&lt;br/&gt;what to cover"]
-  C --&gt; T["Test cases&lt;br/&gt;concrete inputs +&lt;br/&gt;expected results (oracle)"]
-  T --&gt; X["Run &amp; measure&lt;br/&gt;coverage of the model"]
-  X --&gt;|gaps, surprises| M</code></pre>
+<p><img alt="Every test design technique follows one pipeline: a test basis becomes a model (partitions, a table, a state machine, parameters or a property), the model gives test conditions, the conditions give concrete test cases with expected results, and running them measures coverage of the model; gaps and surprises feed back into the model." loading="lazy" src="../../../assets/diagrams/02-technique-pipeline.svg#only-light" />
+<img alt="Every test design technique follows one pipeline: a test basis becomes a model (partitions, a table, a state machine, parameters or a property), the model gives test conditions, the conditions give concrete test cases with expected results, and running them measures coverage of the model; gaps and surprises feed back into the model." loading="lazy" src="../../../assets/diagrams/02-technique-pipeline-dark.svg#only-dark" /></p>
 <ol>
 <li><strong>Read the basis</strong> and pick a technique whose model fits its shape:<ul>
 <li>ranges of values → partitions and boundaries</li>
@@ -4069,16 +4065,8 @@
 <li><strong>Transition:</strong> a move from one state to another caused by an event (<code>paid --ship--&gt; shipped</code>).</li>
 <li><strong>Guard:</strong> a condition that must be true for the transition (<code>refund</code> only if the claim is accepted).</li>
 </ul>
-<pre class="mermaid"><code>stateDiagram-v2
-  [*] --&gt; placed
-  placed --&gt; paid: pay
-  placed --&gt; cancelled: cancel
-  paid --&gt; shipped: ship
-  paid --&gt; cancelled: cancel
-  shipped --&gt; delivered: deliver
-  delivered --&gt; refunded: refund [claim accepted]
-  cancelled --&gt; [*]
-  refunded --&gt; [*]</code></pre>
+<p><img alt="Order state machine: placed goes to paid (pay) or cancelled (cancel); paid goes to shipped (ship) or cancelled (cancel); shipped goes to delivered (deliver); delivered goes to refunded (refund, only if the claim is accepted); cancelled and refunded are final." loading="lazy" src="../../../assets/diagrams/02-order-state-machine.svg#only-light" />
+<img alt="Order state machine: placed goes to paid (pay) or cancelled (cancel); paid goes to shipped (ship) or cancelled (cancel); shipped goes to delivered (deliver); delivered goes to refunded (refund, only if the claim is accepted); cancelled and refunded are final." loading="lazy" src="../../../assets/diagrams/02-order-state-machine-dark.svg#only-dark" /></p>
 <p>Coverage criteria, from weakest to strongest:</p>
 <table>
 <thead>
@@ -4289,18 +4277,8 @@
 </tbody>
 </table>
 <h2 id="5-architecture-from-requirement-to-a-balanced-suite">5. Architecture: from requirement to a balanced suite<a class="headerlink" href="#5-architecture-from-requirement-to-a-balanced-suite" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  REQ["Requirement&lt;br/&gt;'Quantity 1-10, within stock;&lt;br/&gt;refunds within 30 days…'"] --&gt; Q{"Shape of&lt;br/&gt;the rule?"}
-  Q --&gt;|ranges| EP["EP + BVA&lt;br/&gt;partitions.test.js"]
-  Q --&gt;|combinations| DT["Decision table&lt;br/&gt;decision-table.test.js"]
-  Q --&gt;|history| ST["State transition&lt;br/&gt;state-transition.test.js"]
-  Q --&gt;|for all inputs| PBT["Properties&lt;br/&gt;properties.test.js"]
-  Q --&gt;|configurations| PW["Pairwise matrix&lt;br/&gt;pairwise.mjs"]
-  EXP["Experience:&lt;br/&gt;error guessing"] --&gt; EP
-  EP &amp; DT &amp; ST &amp; PBT --&gt; SUITE["Test suite"]
-  PW --&gt;|which environments&lt;br/&gt;to run it in| SUITE
-  SUITE --&gt; MUT["Mutation scorecard&lt;br/&gt;mutants.mjs"]
-  MUT --&gt;|survivors = blind spots| Q</code></pre>
+<p><img alt="From requirement to a balanced suite: the shape of the rule picks the technique (ranges: EP and BVA; combinations: decision table; history: state transition; for all inputs: properties; configurations: a pairwise matrix); error guessing adds to EP; their tests form the suite, the pairwise matrix chooses where to run it, and the mutation scorecard sends surviving mutants back as blind spots." loading="lazy" src="../../../assets/diagrams/02-architecture.svg#only-light" />
+<img alt="From requirement to a balanced suite: the shape of the rule picks the technique (ranges: EP and BVA; combinations: decision table; history: state transition; for all inputs: properties; configurations: a pairwise matrix); error guessing adds to EP; their tests form the suite, the pairwise matrix chooses where to run it, and the mutation scorecard sends surviving mutants back as blind spots." loading="lazy" src="../../../assets/diagrams/02-architecture-dark.svg#only-dark" /></p>
 <p>The mutation scorecard closes the loop. It measures the suite's ability to catch bugs, and a surviving mutant tells you which technique to add.</p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>

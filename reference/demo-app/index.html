@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3285,17 +3285,8 @@
 
 <h1 id="demo-app-quality-books">Demo app: Quality Books<a class="headerlink" href="#demo-app-quality-books" title="Permanent link">&para;</a></h1>
 <p>A deliberately small shop, built so every lab has something real to test. It grows with the course: each topic adds only what its lab needs.</p>
-<pre class="mermaid"><code>flowchart LR
-  UI["Browser pages&lt;br/&gt;app/public"] -- "/api" --&gt; S["Shop server&lt;br/&gt;server.js, port 3210"]
-  S --&gt; R["Catalogue and pricing&lt;br/&gt;catalog.js, cart.js"]
-  S --&gt; AC["Accounts&lt;br/&gt;accounts.js"]
-  S --&gt; CO["Checkout&lt;br/&gt;checkout.js"]
-  S --&gt; A["Assistant&lt;br/&gt;assistant.js"]
-  CO --&gt; PAY["Demo payments&lt;br/&gt;payments-demo.js"]
-  CO --&gt; IC["Inventory client&lt;br/&gt;inventory-client.js"]
-  IC -- HTTP --&gt; INV["Inventory service&lt;br/&gt;port 3220"]
-  A -- "ASSISTANT_MODE=claude" --&gt; L[("Claude API")]
-  UI --&gt; DP["Demo Pay&lt;br/&gt;card → token"]</code></pre>
+<p><img alt="Quality Books architecture: browser pages call the shop server over /api; the server uses catalogue and pricing, accounts, checkout and the assistant; checkout uses demo payments and an inventory client that calls the inventory service on port 3220 over HTTP; the assistant calls the Claude API only when ASSISTANT_MODE=claude; Demo Pay turns a card into a token in the browser." loading="lazy" src="../../assets/diagrams/demo-app-architecture.svg#only-light" />
+<img alt="Quality Books architecture: browser pages call the shop server over /api; the server uses catalogue and pricing, accounts, checkout and the assistant; checkout uses demo payments and an inventory client that calls the inventory service on port 3220 over HTTP; the assistant calls the Claude API only when ASSISTANT_MODE=claude; Demo Pay turns a card into a token in the browser." loading="lazy" src="../../assets/diagrams/demo-app-architecture-dark.svg#only-dark" /></p>
 <table>
 <thead>
 <tr>

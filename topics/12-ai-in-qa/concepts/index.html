@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3808,22 +3808,12 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="ai-assisted-test-generation">AI-assisted test generation<a class="headerlink" href="#ai-assisted-test-generation" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  SPEC["Context&lt;br/&gt;spec · code · requirements · examples"] --&gt; PROMPT["Prompt&lt;br/&gt;role · rules · format · 'VERIFY' markers"]
-  PROMPT --&gt; LLM(("LLM"))
-  LLM --&gt; DRAFT["Draft tests&lt;br/&gt;(not trusted)"]
-  DRAFT --&gt; REVIEW["Human review&lt;br/&gt;checklist: oracle? invented facts? would it fail?"]
-  DRAFT --&gt; SCORE["Objective scoring&lt;br/&gt;run on correct code · run on planted bugs · mutation"]
-  REVIEW &amp; SCORE --&gt; KEEP["Keep · fix · delete&lt;br/&gt;(track the ratio)"]</code></pre>
+<p><img alt="AI-assisted test generation: context (spec, code, requirements, examples) goes into a prompt with a role, rules, a format and VERIFY markers; the LLM writes draft tests that are not trusted; human review and objective scoring (on correct code, on planted bugs, with mutation testing) decide what to keep, fix or delete." loading="lazy" src="../../../assets/diagrams/12-test-generation.svg#only-light" />
+<img alt="AI-assisted test generation: context (spec, code, requirements, examples) goes into a prompt with a role, rules, a format and VERIFY markers; the LLM writes draft tests that are not trusted; human review and objective scoring (on correct code, on planted bugs, with mutation testing) decide what to keep, fix or delete." loading="lazy" src="../../../assets/diagrams/12-test-generation-dark.svg#only-dark" /></p>
 <p>The model only knows what's in its prompt and its training. Good prompts give it the <strong>spec</strong>, <strong>rules</strong> (only assert what the spec states; mark guesses with <code>// VERIFY:</code>), and a <strong>format</strong>. The output is a <strong>draft</strong>: it must be reviewed by a person and <strong>scored objectively</strong>. Does it pass on correct code? Does it fail on broken code? The lab's scorer does both.</p>
 <h3 id="how-an-llm-feature-is-evaluated">How an LLM feature is evaluated<a class="headerlink" href="#how-an-llm-feature-is-evaluated" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  CASES["Test cases&lt;br/&gt;questions + expected properties"] --&gt; APP["The AI feature&lt;br/&gt;(prompt + model + grounding)"]
-  APP --&gt; OUT["Outputs"]
-  OUT --&gt; G1["Deterministic checks&lt;br/&gt;contains · not-contains · regex · JS"]
-  OUT --&gt; G2["Model-graded rubric&lt;br/&gt;(LLM-as-judge, validated)"]
-  OUT --&gt; G3["Human review&lt;br/&gt;(samples, disagreements)"]
-  G1 &amp; G2 &amp; G3 --&gt; SCORE{{"Pass rate per category&lt;br/&gt;→ quality gate"}}</code></pre>
+<p><img alt="Evaluating an LLM feature: test cases with expected properties go to the AI feature; its outputs are checked deterministically, by a validated model-graded rubric and by human review of samples; all three give a pass rate per category that feeds the quality gate." loading="lazy" src="../../../assets/diagrams/12-llm-evaluation.svg#only-light" />
+<img alt="Evaluating an LLM feature: test cases with expected properties go to the AI feature; its outputs are checked deterministically, by a validated model-graded rubric and by human review of samples; all three give a pass rate per category that feeds the quality gate." loading="lazy" src="../../../assets/diagrams/12-llm-evaluation-dark.svg#only-dark" /></p>
 <p>You can't assert one exact answer, so you assert <strong>properties</strong>: the price mentioned is a real catalogue price; the answer never contains the system prompt; an off-topic question is declined. Deterministic checks are cheap, fast and reproducible. Model-graded checks handle meaning ("is this answer polite and correct?"), but a judge model is itself an AI feature that needs validating against human judgements.</p>
 <h3 id="how-an-agent-tests">How an agent tests<a class="headerlink" href="#how-an-agent-tests" title="Permanent link">&para;</a></h3>
 <p>An agent runs a loop: read the goal (a <strong>charter</strong>), observe (a page snapshot), decide on an action, call a <strong>tool</strong> (<code>click</code>, <code>fill</code>, <code>report_finding</code>), observe the result, repeat until done or out of steps. Its quality depends on three things that are classic QA:</p>
@@ -4003,23 +3993,8 @@
 <h3 id="48-responsible-ai-and-fairness">4.8 Responsible AI and fairness<a class="headerlink" href="#48-responsible-ai-and-fairness" title="Permanent link">&para;</a></h3>
 <p>AI features can treat groups of users differently (bias), produce unexplainable decisions, or be used in ways their makers didn't intend. Testing includes <strong>fairness checks</strong> (does the assistant answer equally well in other languages, for other names?), <strong>transparency</strong> (users know they're talking to an AI), and <strong>accountability</strong> (who owns a wrong answer, legally and operationally). Regulation is arriving: the EU AI Act sets obligations by risk level, including transparency for chatbots.</p>
 <h2 id="5-architecture-ai-in-and-around-quality-books">5. Architecture: AI in and around Quality Books<a class="headerlink" href="#5-architecture-ai-in-and-around-quality-books" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Feature["The AI feature (tested)"]
-    Q["Customer question"] --&gt; AS["Assistant&lt;br/&gt;system prompt + catalogue grounding"]
-    AS --&gt;|mock · buggy · claude| A["Answer (rendered as text)"]
-  end
-  subgraph Evals["Testing AI"]
-    E1["eval:llm&lt;br/&gt;grounding · scope · policies"]
-    E2["eval:redteam&lt;br/&gt;OWASP LLM Top 10 attacks"]
-  end
-  E1 &amp; E2 --&gt; AS
-  E1 &amp; E2 --&gt; GATE{{"Quality gate"}}
-  subgraph Helpers["AI for testing"]
-    TG["testgen prompt → draft → ai:score + review"]
-    AG["Agent: charter + tools + product rules → findings"]
-  end
-  TG -.-&gt; SUITE["Scripted suites (Topics 3–5)"]
-  AG -. "findings → regression tests" .-&gt; SUITE</code></pre>
+<p><img alt="AI in and around Quality Books: a customer question goes to the assistant (system prompt plus catalogue grounding, in mock, buggy or claude mode) and the answer is rendered as text; eval:llm and eval:redteam test the assistant and feed the quality gate; test generation and the exploring agent produce drafts and findings that become scripted regression tests." loading="lazy" src="../../../assets/diagrams/12-architecture.svg#only-light" />
+<img alt="AI in and around Quality Books: a customer question goes to the assistant (system prompt plus catalogue grounding, in mock, buggy or claude mode) and the answer is rendered as text; eval:llm and eval:redteam test the assistant and feed the quality gate; test generation and the exploring agent produce drafts and findings that become scripted regression tests." loading="lazy" src="../../../assets/diagrams/12-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

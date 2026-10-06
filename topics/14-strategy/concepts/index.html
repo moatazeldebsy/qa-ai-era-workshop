@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3831,15 +3831,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="the-strategy-loop">The strategy loop<a class="headerlink" href="#the-strategy-loop" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  CTX["Context&lt;br/&gt;users · business · constraints · regulation"] --&gt; GOALS["Quality goals&lt;br/&gt;(attributes that matter, measurably)"]
-  GOALS --&gt; RISK["Risks&lt;br/&gt;likelihood × impact (Topic 1)"]
-  RISK --&gt; APPROACH["Approach&lt;br/&gt;levels · techniques · environments · gates"]
-  APPROACH --&gt; INVEST["Investments&lt;br/&gt;people · platform · tools"]
-  INVEST --&gt; EVIDENCE["Evidence&lt;br/&gt;scorecard · metrics · incidents"]
-  EVIDENCE --&gt; REVIEW{{"Review&lt;br/&gt;quarterly"}}
-  REVIEW --&gt;|adjust| GOALS
-  REVIEW --&gt;|"escapes, incidents"| RISK</code></pre>
+<p><img alt="The strategy loop: context leads to quality goals, then risks, an approach, investments and evidence; a quarterly review adjusts the goals, and escapes and incidents update the risks." loading="lazy" src="../../../assets/diagrams/14-strategy-loop.svg#only-light" />
+<img alt="The strategy loop: context leads to quality goals, then risks, an approach, investments and evidence; a quarterly review adjusts the goals, and escapes and incidents update the risks." loading="lazy" src="../../../assets/diagrams/14-strategy-loop-dark.svg#only-dark" /></p>
 <ol>
 <li><strong>Understand the context:</strong> who the users are, what failure costs them and the business, what constraints exist (team size, regulation, legacy).</li>
 <li><strong>Set quality goals</strong> for the attributes that matter most (ISO 25010, Topic 1), each with a measure.</li>
@@ -4023,16 +4016,8 @@
 <h3 id="48-governance-and-compliance">4.8 Governance and compliance<a class="headerlink" href="#48-governance-and-compliance" title="Permanent link">&para;</a></h3>
 <p>Regulated domains (finance, health, automotive, aviation, government) add requirements: traceability from requirements to tests, documented validation, audit trails, standards such as ISO 13485, IEC 62304, DO-178C, or SOC 2 controls. Good strategy meets them with the same automation (traceable tests, gates, evidence stores) rather than parallel paperwork.</p>
 <h2 id="5-architecture-how-the-course-fits-together-as-a-strategy">5. Architecture: how the course fits together as a strategy<a class="headerlink" href="#5-architecture-how-the-course-fits-together-as-a-strategy" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  CTX["Context &amp; goals&lt;br/&gt;Topic 1: quality attributes, risks"] --&gt; DESIGN["Design the checks&lt;br/&gt;Topic 2: techniques"]
-  DESIGN --&gt; LEVELS["At the right level&lt;br/&gt;3 unit · 4 API &amp; contract · 5 E2E"]
-  LEVELS --&gt; PIPE["In the pipeline&lt;br/&gt;6 CI/CD &amp; gates · 7 environments &amp; data"]
-  PIPE --&gt; NFR["Beyond function&lt;br/&gt;8 performance · 9 security, a11y, compat · 12 AI"]
-  NFR --&gt; PROD["In production&lt;br/&gt;10 observability &amp; SLOs"]
-  PROD --&gt; INTEL["Turned into decisions&lt;br/&gt;11 quality intelligence"]
-  INTEL --&gt; SCALE["At scale&lt;br/&gt;13 platform"]
-  SCALE --&gt; STRAT{{"14 Strategy &amp; leadership&lt;br/&gt;evidence → priorities → investment → review"}}
-  STRAT -.-&gt; CTX</code></pre>
+<p><img alt="How the course fits together as a strategy: context and goals (Topic 1), designing the checks (2), at the right level (3 to 5), in the pipeline (6, 7), beyond function (8, 9, 12), in production (10), turned into decisions (11), at scale (13), and strategy and leadership (14), which feeds back into context." loading="lazy" src="../../../assets/diagrams/14-architecture.svg#only-light" />
+<img alt="How the course fits together as a strategy: context and goals (Topic 1), designing the checks (2), at the right level (3 to 5), in the pipeline (6, 7), beyond function (8, 9, 12), in production (10), turned into decisions (11), at scale (13), and strategy and leadership (14), which feeds back into context." loading="lazy" src="../../../assets/diagrams/14-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <p>Strategy connects <em>everything</em>: every earlier topic supplies one kind of evidence or one lever.</p>
 <table>

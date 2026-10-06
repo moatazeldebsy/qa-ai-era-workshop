@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3821,14 +3821,8 @@
 <p>You can't test quality <em>into</em> a product at the end. You can only find out how much is there. That's why modern QA is about <strong>fast, trustworthy feedback at every stage</strong>, not about a phase at the end.</p>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <p>Under every QA practice there is the same loop. Learn it once and you'll recognise it in every later topic.</p>
-<pre class="mermaid"><code>flowchart LR
-  A["1 Understand&lt;br/&gt;what matters&lt;br/&gt;(requirements, users)"] --&gt; B["2 Identify risks&lt;br/&gt;what could go wrong?"]
-  B --&gt; C["3 Design tests&lt;br/&gt;how would we notice?"]
-  C --&gt; D["4 Execute&lt;br/&gt;(automated checks,&lt;br/&gt;exploration)"]
-  D --&gt; E["5 Evaluate&lt;br/&gt;compare to an oracle"]
-  E --&gt; F["6 Report &amp; decide&lt;br/&gt;ship? fix? accept?"]
-  F --&gt; G["7 Learn&lt;br/&gt;escaped defects,&lt;br/&gt;production signals"]
-  G --&gt; A</code></pre>
+<p><img alt="The quality feedback loop: 1 understand what matters, 2 identify risks, 3 design tests, 4 execute, 5 evaluate against an oracle, 6 report and decide, 7 learn from escaped defects and production signals, then back to 1." loading="lazy" src="../../../assets/diagrams/01-quality-feedback-loop.svg#only-light" />
+<img alt="The quality feedback loop: 1 understand what matters, 2 identify risks, 3 design tests, 4 execute, 5 evaluate against an oracle, 6 report and decide, 7 learn from escaped defects and production signals, then back to 1." loading="lazy" src="../../../assets/diagrams/01-quality-feedback-loop-dark.svg#only-dark" /></p>
 <p>Step by step, using free shipping:</p>
 <ol>
 <li><strong>Understand.</strong> The rule: shipping 4.90 EUR, free from 50 EUR. Who cares? Customers (money), support (complaints), finance (margin).</li>
@@ -3840,10 +3834,8 @@
 <li><strong>Learn.</strong> When a defect escapes to production, ask <em>why our loop missed it</em> and change the loop, not just the code.</li>
 </ol>
 <p>The <strong>error → fault → failure</strong> chain explains what testing is actually observing:</p>
-<pre class="mermaid"><code>flowchart LR
-  E["Error (mistake)&lt;br/&gt;a person misreads 'over 50'"] --&gt; F["Fault / defect / bug&lt;br/&gt;code uses &amp;gt; instead of &amp;gt;="]
-  F --&gt;|"only when the faulty code runs&lt;br/&gt;with the right input"| X["Failure&lt;br/&gt;customer with a 50.00 cart&lt;br/&gt;is charged 4.90"]
-  X --&gt; I["Incident&lt;br/&gt;complaint, refund, lost trust"]</code></pre>
+<p><img alt="From error to incident: a person misreads &quot;over 50&quot; (error), so the code uses &gt; instead of &gt;= (fault); only when that code runs with the right input does a customer with a 50.00 cart get charged 4.90 (failure), which leads to a complaint, a refund and lost trust (incident)." loading="lazy" src="../../../assets/diagrams/01-error-fault-failure.svg#only-light" />
+<img alt="From error to incident: a person misreads &quot;over 50&quot; (error), so the code uses &gt; instead of &gt;= (fault); only when that code runs with the right input does a customer with a 50.00 cart get charged 4.90 (failure), which leads to a complaint, a refund and lost trust (incident)." loading="lazy" src="../../../assets/diagrams/01-error-fault-failure-dark.svg#only-dark" /></p>
 <p>Testing observes <strong>failures</strong> and infers <strong>faults</strong>. A fault that is never executed with a triggering input never causes a failure. That's why a test suite can pass on buggy code, and why <em>choosing inputs</em> matters so much.</p>
 <h2 id="4-main-components-and-concepts">4. Main components and concepts<a class="headerlink" href="#4-main-components-and-concepts" title="Permanent link">&para;</a></h2>
 <h3 id="quality-attributes-isoiec-25010">Quality attributes (ISO/IEC 25010)<a class="headerlink" href="#quality-attributes-isoiec-25010" title="Permanent link">&para;</a></h3>
@@ -4060,50 +4052,13 @@
 <li><strong>Priority:</strong> how soon to fix it (business decision).</li>
 </ul>
 <p>The two differ. A typo in the company name on the home page is low severity and high priority.</p>
-<pre class="mermaid"><code>stateDiagram-v2
-  [*] --&gt; New
-  New --&gt; Triaged: reproduced, severity/priority set
-  New --&gt; Rejected: not a bug / duplicate
-  Triaged --&gt; InProgress
-  InProgress --&gt; Fixed
-  Fixed --&gt; Verified: retest passes + regression check added
-  Fixed --&gt; Reopened: retest fails
-  Reopened --&gt; InProgress
-  Verified --&gt; [*]</code></pre>
+<p><img alt="Defect lifecycle: New goes to Triaged when reproduced and rated, or to Rejected if not a bug or a duplicate; Triaged to In progress to Fixed; Fixed goes to Verified when the retest passes and a regression check is added, or to Reopened when the retest fails, which goes back to In progress." loading="lazy" src="../../../assets/diagrams/01-defect-lifecycle.svg#only-light" />
+<img alt="Defect lifecycle: New goes to Triaged when reproduced and rated, or to Rejected if not a bug or a duplicate; Triaged to In progress to Fixed; Fixed goes to Verified when the retest passes and a regression check is added, or to Reopened when the retest fails, which goes back to In progress." loading="lazy" src="../../../assets/diagrams/01-defect-lifecycle-dark.svg#only-dark" /></p>
 <p>The step people skip is <em>"regression check added"</em>. A defect fixed without a check that would catch it again is a defect you'll meet a second time.</p>
 <h2 id="5-architecture-quality-engineering-as-a-system">5. Architecture: quality engineering as a system<a class="headerlink" href="#5-architecture-quality-engineering-as-a-system" title="Permanent link">&para;</a></h2>
 <p>Here is the full picture for Quality Books. Later topics zoom into each box.</p>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Inputs["What we test against"]
-    REQ["Requirements &amp; examples"]
-    CON["API contract&lt;br/&gt;app/openapi.yaml"]
-    POL["Policy text&lt;br/&gt;app/src/catalog.js"]
-    RISK["Risk register&lt;br/&gt;labs/01-foundations/risk-register.json"]
-  end
-
-  subgraph Activities["Evidence producers"]
-    ST["Static: reviews,&lt;br/&gt;lint, consistency checks"]
-    UT["Unit &amp; component&lt;br/&gt;node --test"]
-    AT["API tests&lt;br/&gt;Playwright request"]
-    E2E["E2E tests&lt;br/&gt;Playwright browser"]
-    EX["Exploratory sessions&lt;br/&gt;charters"]
-    PERF["Perf / LLM eval&lt;br/&gt;k6, promptfoo"]
-  end
-
-  subgraph Decision["Decision"]
-    GATE["Quality gate&lt;br/&gt;(Topic 6)"]
-    REL["Release / don't"]
-  end
-
-  subgraph Prod["Production feedback"]
-    OBS["Metrics, logs, traces&lt;br/&gt;/metrics, x-request-id"]
-    INC["Incidents &amp; escaped defects"]
-  end
-
-  Inputs --&gt; Activities
-  Activities --&gt; GATE --&gt; REL --&gt; OBS
-  OBS --&gt; INC --&gt; RISK
-  EX --&gt;|new risks| RISK</code></pre>
+<p><img alt="Quality engineering as a system: inputs (requirements, the API contract, policy text, the risk register) feed evidence producers (static checks, unit, API and E2E tests, exploratory sessions, performance and LLM evals), which feed the quality gate and the release decision; production metrics, logs and traces surface incidents and escaped defects that update the risk register, as do new risks from exploration." loading="lazy" src="../../../assets/diagrams/01-architecture.svg#only-light" />
+<img alt="Quality engineering as a system: inputs (requirements, the API contract, policy text, the risk register) feed evidence producers (static checks, unit, API and E2E tests, exploratory sessions, performance and LLM evals), which feed the quality gate and the release decision; production metrics, logs and traces surface incidents and escaped defects that update the risk register, as do new risks from exploration." loading="lazy" src="../../../assets/diagrams/01-architecture-dark.svg#only-dark" /></p>
 <p>The feedback arrows are the point. Production incidents and exploratory findings feed the <strong>risk register</strong>, which steers what gets tested next. A QA system with no arrows back into it stops learning.</p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>

@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3784,17 +3784,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="how-an-environment-is-assembled">How an environment is assembled<a class="headerlink" href="#how-an-environment-is-assembled" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Def["Defined as code"]
-    D["Dockerfile&lt;br/&gt;(how to build each service)"]
-    C["compose.yaml / Helm / Terraform&lt;br/&gt;(which services, how wired)"]
-    E["Environment variables&lt;br/&gt;(per-environment values)"]
-    S["Seed data and migrations"]
-  end
-  Def --&gt; P["Provision&lt;br/&gt;docker compose up --build --wait"]
-  P --&gt; H["Health checks pass"]
-  H --&gt; T["Tests run&lt;br/&gt;(each creates the data it needs)"]
-  T --&gt; X["Tear down&lt;br/&gt;docker compose down --volumes"]</code></pre>
+<p><img alt="How an environment is assembled: a Dockerfile, a compose file, environment variables and seed data, all defined as code, are provisioned with docker compose up --build --wait; once the health checks pass, the tests run, each creating the data it needs, and the environment is torn down with docker compose down --volumes." loading="lazy" src="../../../assets/diagrams/07-environment-assembly.svg#only-light" />
+<img alt="How an environment is assembled: a Dockerfile, a compose file, environment variables and seed data, all defined as code, are provisioned with docker compose up --build --wait; once the health checks pass, the tests run, each creating the data it needs, and the environment is torn down with docker compose down --volumes." loading="lazy" src="../../../assets/diagrams/07-environment-assembly-dark.svg#only-dark" /></p>
 <p>The key idea is <strong>the same artefacts, different configuration</strong> (the "Twelve-Factor App" principle). The shop reads <code>PORT</code> and <code>INVENTORY_URL</code> from its environment. In-process tests pass them as options, <code>npm run start:all</code> uses defaults, and <code>compose.yaml</code> sets them for containers. The code is identical in every case.</p>
 <h3 id="how-tests-get-their-data">How tests get their data<a class="headerlink" href="#how-tests-get-their-data" title="Permanent link">&para;</a></h3>
 <p>There are four common strategies, often combined:</p>
@@ -4008,22 +3999,8 @@
 <li><strong>Data minimisation:</strong> copy only the fields and rows a test needs. Most tests need none of the real data.</li>
 </ul>
 <h2 id="5-architecture-quality-books-environments-and-data">5. Architecture: Quality Books environments and data<a class="headerlink" href="#5-architecture-quality-books-environments-and-data" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Envs["Environments (same code, different configuration)"]
-    IP["In-process tests&lt;br/&gt;createApp({ inventoryUrl })"]
-    LOC["Local: npm run start:all&lt;br/&gt;ports 3210 + 3220"]
-    CMP["Ephemeral: docker compose up&lt;br/&gt;shop ↔ inventory over a container network"]
-  end
-  subgraph Data["Test data"]
-    SEED["Seed: DEFAULT_STOCK in the inventory service"]
-    OWN["Test-owned data: PUT /stock/:id&lt;br/&gt;(test-data API, test environments only)"]
-    GEN["Synthetic history: generate.mjs&lt;br/&gt;(seeded, valid by construction)"]
-    MASK["Masked export: mask.mjs → masked/*.csv&lt;br/&gt;(keyed pseudonyms, scrubbed text)"]
-  end
-  PROD[("Production export&lt;br/&gt;data/*.csv: fictitious, but treated as real")] --&gt; MASK
-  MASK --&gt; SCAN{{"pii-scan.mjs"}}
-  SEED &amp; OWN --&gt; LOC &amp; CMP
-  GEN --&gt; REP["reports.js tests"]</code></pre>
+<p><img alt="Quality Books environments and data: three environments run the same code with different configuration (in-process tests, local start:all on ports 3210 and 3220, and an ephemeral docker compose network). Seeded stock and test-owned data via the test-data API feed the local and compose environments; generate.mjs makes synthetic history for the reports tests; a production export is masked by mask.mjs and checked by pii-scan.mjs." loading="lazy" src="../../../assets/diagrams/07-architecture.svg#only-light" />
+<img alt="Quality Books environments and data: three environments run the same code with different configuration (in-process tests, local start:all on ports 3210 and 3220, and an ephemeral docker compose network). Seeded stock and test-owned data via the test-data API feed the local and compose environments; generate.mjs makes synthetic history for the reports tests; a production export is masked by mask.mjs and checked by pii-scan.mjs." loading="lazy" src="../../../assets/diagrams/07-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

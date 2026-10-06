@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3783,14 +3783,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="security-testing-layers-of-evidence">Security testing: layers of evidence<a class="headerlink" href="#security-testing-layers-of-evidence" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  TM["Threat modelling&lt;br/&gt;(design: what could go wrong?)"] --&gt; SAST["SAST + secret scanning&lt;br/&gt;(code, every commit)"]
-  SAST --&gt; SCA["SCA&lt;br/&gt;(dependencies, every commit + daily)"]
-  SCA --&gt; UT["Security unit/API tests&lt;br/&gt;(abuse cases, headers, authz)"]
-  UT --&gt; DAST["DAST&lt;br/&gt;(running app: ZAP baseline/active scan)"]
-  DAST --&gt; PT["Penetration testing&lt;br/&gt;(humans, periodically)"]
-  PT --&gt; PROD["Production: WAF, monitoring,&lt;br/&gt;bug bounty, incident response"]
-  PROD -.-&gt;|new threats| TM</code></pre>
+<p><img alt="Layers of security evidence, from design to production: threat modelling, SAST and secret scanning, SCA of dependencies, security unit and API tests, DAST against the running app, penetration testing, then production defences and monitoring, which feed new threats back into threat modelling." loading="lazy" src="../../../assets/diagrams/09-security-layers.svg#only-light" />
+<img alt="Layers of security evidence, from design to production: threat modelling, SAST and secret scanning, SCA of dependencies, security unit and API tests, DAST against the running app, penetration testing, then production defences and monitoring, which feed new threats back into threat modelling." loading="lazy" src="../../../assets/diagrams/09-security-layers-dark.svg#only-dark" /></p>
 <ul>
 <li><strong>Threat modelling</strong> asks four questions (Adam Shostack): what are we building, what can go wrong, what are we going to do about it, did we do a good job? <strong>STRIDE</strong> is a checklist for the second question: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.</li>
 <li><strong>SAST</strong> parses source code and looks for dangerous patterns and data flows: untrusted input reaching a SQL query, <code>eval</code>, a shell command, or HTML.</li>
@@ -4002,22 +3996,8 @@
 </tbody>
 </table>
 <h2 id="5-architecture-security-and-accessibility-checks-around-quality-books">5. Architecture: security and accessibility checks around Quality Books<a class="headerlink" href="#5-architecture-security-and-accessibility-checks-around-quality-books" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph CI["Every commit"]
-    AUD["sec:audit&lt;br/&gt;npm audit triage: prod vs dev"]
-    SEC["sec:test&lt;br/&gt;headers · test-data API off · service token"]
-    A11Y["a11y:test&lt;br/&gt;axe WCAG 2.2 · label-in-name · live region"]
-    RT["eval:redteam&lt;br/&gt;LLM attacks (Topic 12)"]
-  end
-  subgraph Periodic["Periodically"]
-    DAST["ZAP baseline / active scan"]
-    MAN["Manual a11y: keyboard, screen reader, zoom, voice"]
-    PEN["Penetration test, threat-model review"]
-  end
-  SHOP["Shop"] --&gt;|Bearer token| INV["Inventory (internal)"]
-  ATT(["Attacker"]) -. "no token → 401" .-&gt; INV
-  CI --&gt; SHOP
-  Periodic --&gt; SHOP</code></pre>
+<p><img alt="Security and accessibility checks around Quality Books: on every commit, the npm audit triage, security tests, axe accessibility tests and the LLM red team run against the shop; periodically, a ZAP scan, manual accessibility testing and a penetration test with a threat-model review; the shop calls the internal inventory service with a bearer token, and an attacker without a token gets 401." loading="lazy" src="../../../assets/diagrams/09-architecture.svg#only-light" />
+<img alt="Security and accessibility checks around Quality Books: on every commit, the npm audit triage, security tests, axe accessibility tests and the LLM red team run against the shop; periodically, a ZAP scan, manual accessibility testing and a penetration test with a threat-model review; the shop calls the internal inventory service with a bearer token, and an attacker without a token gets 401." loading="lazy" src="../../../assets/diagrams/09-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

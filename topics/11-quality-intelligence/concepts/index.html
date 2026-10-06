@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3822,17 +3822,8 @@
 </ul>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <h3 id="the-data-pipeline">The data pipeline<a class="headerlink" href="#the-data-pipeline" title="Permanent link">&para;</a></h3>
-<pre class="mermaid"><code>flowchart LR
-  subgraph Produce
-    CI["CI runs&lt;br/&gt;JUnit XML · Playwright JSON · coverage · mutation"]
-    PROD["Production&lt;br/&gt;incidents · SLOs · deployments"]
-    TRK["Trackers&lt;br/&gt;defects · stories · risks"]
-  end
-  Produce --&gt; STORE[("Results store&lt;br/&gt;one row per test per run&lt;br/&gt;(with commit, branch, env)")]
-  STORE --&gt; ANALYSE["Analysis&lt;br/&gt;flakiness · trends · clustering · escapes · DORA"]
-  ANALYSE --&gt; REPORT["Reports for an audience&lt;br/&gt;developer · team · leadership"]
-  REPORT --&gt; DECIDE{{"Decisions&lt;br/&gt;fix · quarantine · invest · release"}}
-  DECIDE -.-&gt;|new tests, rules| CI</code></pre>
+<p><img alt="The quality data pipeline: CI results, production signals and tracker data go into a results store with one row per test per run, analysis finds flakiness, trends, clusters, escapes and DORA metrics, reports are shaped for developers, teams or leadership, and decisions (fix, quarantine, invest, release) feed new tests and rules back into CI." loading="lazy" src="../../../assets/diagrams/11-data-pipeline.svg#only-light" />
+<img alt="The quality data pipeline: CI results, production signals and tracker data go into a results store with one row per test per run, analysis finds flakiness, trends, clusters, escapes and DORA metrics, reports are shaped for developers, teams or leadership, and decisions (fix, quarantine, invest, release) feed new tests and rules back into CI." loading="lazy" src="../../../assets/diagrams/11-data-pipeline-dark.svg#only-dark" /></p>
 <ol>
 <li><strong>Collect</strong> every run's results, not just the latest, with context: commit, branch, environment, retry count. The lab's <code>collect.mjs</code> keeps JUnit and Playwright JSON per run.</li>
 <li><strong>Normalise</strong> them into one shape: one record per test per run, with a stable test id (file › describe › title).</li>
@@ -4066,13 +4057,8 @@
 </table>
 <p>A good report answers a question its audience has, states its definitions, and ends with a decision or an action.</p>
 <h2 id="5-architecture-quality-intelligence-in-this-course">5. Architecture: quality intelligence in this course<a class="headerlink" href="#5-architecture-quality-intelligence-in-this-course" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  RUNS["npm run qi:collect&lt;br/&gt;(N runs, optional --retries)"] --&gt; HIST[("history/&lt;br/&gt;run-NN.xml + run-NN.json")]
-  HIST --&gt; AN["analyze.mjs&lt;br/&gt;parse · normalise ids · summarise"]
-  AN --&gt; REP["npm run qi:report&lt;br/&gt;runs strip · failing now · flaky + rates · slowest"]
-  CSV[("metrics/data/*.csv&lt;br/&gt;deployments · incidents · defects")] --&gt; MET["npm run metrics&lt;br/&gt;MTTD · MTTR · DORA · escapes"]
-  REP &amp; MET --&gt; NB["Notebook: decisions&lt;br/&gt;fix · quarantine · invest"]
-  GATE{{"Quality gate (Topic 6)&lt;br/&gt;reads junit.xml"}} -. "can't see retried passes" .- HIST</code></pre>
+<p><img alt="Quality intelligence in this course: qi:collect stores run history, analyze.mjs parses and summarises it, qi:report shows failing, flaky and slow tests; npm run metrics turns deployment, incident and defect CSVs into MTTD, MTTR, DORA and escape metrics; both feed decisions in the notebook; the quality gate reads junit.xml, which can't see passes after retries." loading="lazy" src="../../../assets/diagrams/11-architecture.svg#only-light" />
+<img alt="Quality intelligence in this course: qi:collect stores run history, analyze.mjs parses and summarises it, qi:report shows failing, flaky and slow tests; npm run metrics turns deployment, incident and defect CSVs into MTTD, MTTR, DORA and escape metrics; both feed decisions in the notebook; the quality gate reads junit.xml, which can't see passes after retries." loading="lazy" src="../../../assets/diagrams/11-architecture-dark.svg#only-dark" /></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

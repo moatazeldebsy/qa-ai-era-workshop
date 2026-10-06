@@ -411,7 +411,7 @@
   <span class="md-ellipsis">
     
   
-    Routes by role
+    Paths by role
   
 
     
@@ -3843,18 +3843,8 @@
 <p>Without them, teams push checks up to slower levels (the "ice-cream cone" from Topic 1). Feedback slows from seconds to tens of minutes, and refactoring becomes risky enough that nobody does it.</p>
 <h2 id="3-how-does-it-work-internally">3. How does it work internally?<a class="headerlink" href="#3-how-does-it-work-internally" title="Permanent link">&para;</a></h2>
 <p>A test runner discovers test functions, runs each one, and reports which assertions failed. Node's built-in runner, <code>node:test</code>, which this course uses, works like this:</p>
-<pre class="mermaid"><code>sequenceDiagram
-  participant CLI as node --test "glob"
-  participant R as Runner (parent)
-  participant P as Child process per file
-  participant T as test() callbacks
-  CLI-&gt;&gt;R: expand the glob to test files
-  R-&gt;&gt;P: spawn one process per file (isolation)
-  P-&gt;&gt;T: import the file → test() registers tests
-  P-&gt;&gt;T: run each test: hooks → body → assertions
-  T--&gt;&gt;P: pass, or a thrown AssertionError (fail)
-  P--&gt;&gt;R: stream events (TAP/JSON): test:pass, test:fail, test:todo
-  R--&gt;&gt;CLI: reporter prints results, exit code 0 or 1</code></pre>
+<p><img alt="How node --test runs tests: the runner expands the glob, spawns one child process per file, each child imports its file so test() registers the tests and runs each one (hooks, body, assertions), results stream back as events, and the reporter prints them and exits 0 or 1." loading="lazy" src="../../../assets/diagrams/03-test-runner.svg#only-light" />
+<img alt="How node --test runs tests: the runner expands the glob, spawns one child process per file, each child imports its file so test() registers the tests and runs each one (hooks, body, assertions), results stream back as events, and the reporter prints them and exits 0 or 1." loading="lazy" src="../../../assets/diagrams/03-test-runner-dark.svg#only-dark" /></p>
 <p>Key mechanics you'll rely on:</p>
 <ul>
 <li><strong>Isolation by process.</strong> Each test <em>file</em> runs in its own process, so global state can't leak between files. Tests <em>within</em> a file share module state, which is how <code>smelly.test.js</code> manages to make one test depend on another.</li>
@@ -4012,10 +4002,8 @@
 <p>Time deserves special respect. <em>"Within 30 days"</em> sounds simple, but it hides at least four decisions: calendar days or 24-hour periods? Whose time zone? Is day 30 inclusive? What happens on the days the clocks change? This topic's lab finds a real bug in exactly this.</p>
 <h3 id="45-test-driven-development-tdd">4.5 Test-driven development (TDD)<a class="headerlink" href="#45-test-driven-development-tdd" title="Permanent link">&para;</a></h3>
 <p><strong>TDD</strong> is a design technique that uses tests. Kent Beck's cycle:</p>
-<pre class="mermaid"><code>flowchart LR
-  R["🔴 Red&lt;br/&gt;write one small failing test"] --&gt; G["🟢 Green&lt;br/&gt;simplest code that passes"]
-  G --&gt; F["🔵 Refactor&lt;br/&gt;clean up, stay green"]
-  F --&gt; R</code></pre>
+<p><img alt="The TDD cycle: red (write one small failing test), green (the simplest code that passes), refactor (clean up and stay green), then red again." loading="lazy" src="../../../assets/diagrams/03-tdd-cycle.svg#only-light" />
+<img alt="The TDD cycle: red (write one small failing test), green (the simplest code that passes), refactor (clean up and stay green), then red again." loading="lazy" src="../../../assets/diagrams/03-tdd-cycle-dark.svg#only-dark" /></p>
 <ul>
 <li><strong>Red</strong> proves the test can fail. A test you've never seen fail might not test anything.</li>
 <li><strong>Green</strong> says <em>simplest</em>: hard-code if you must. The next test forces generalisation (<em>triangulation</em>).</li>
@@ -4123,21 +4111,8 @@
 <li><strong>Snapshot tests</strong> store an output once and fail when it changes. They're useful for large, stable outputs (a rendered email, a CLI help text) and dangerous for everything else: people approve changed snapshots without reading them, and the "oracle" becomes <em>"whatever it did last time"</em>.</li>
 </ul>
 <h2 id="5-architecture-where-unit-and-component-tests-sit">5. Architecture: where unit and component tests sit<a class="headerlink" href="#5-architecture-where-unit-and-component-tests-sit" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>flowchart TB
-  subgraph Test["Test process (node --test)"]
-    T1["returns.test.js"] --&gt; R["createReturns()"]
-    T2["checkout.test.js"] --&gt; C["createCheckout()"]
-    CLK(["clock: () =&gt; fixed Date"]) -. injected .-&gt; R
-    C --&gt; P["priceCart() — real"]
-    INV(["fakeInventory()"]) -. injected .-&gt; C
-    PAY(["stub payments"]) -. injected .-&gt; C
-    MAIL(["spy mailer — mock.fn()"]) -. injected .-&gt; C
-  end
-  subgraph Real["Production wiring (later topics)"]
-    C2["createCheckout()"] --&gt; INVS["Inventory service (HTTP) — Topic 4"]
-    C2 --&gt; PSP["Payment provider"]
-    C2 --&gt; SMTP["Email service"]
-  end</code></pre>
+<p><img alt="Where unit and component tests sit: in the test process, returns.test.js drives createReturns() with an injected fixed clock, and checkout.test.js drives createCheckout() with the real priceCart() plus an injected fake inventory, stub payments and a spy mailer; in production the same createCheckout() is wired to the inventory service over HTTP, a payment provider and an email service." loading="lazy" src="../../../assets/diagrams/03-architecture.svg#only-light" />
+<img alt="Where unit and component tests sit: in the test process, returns.test.js drives createReturns() with an injected fixed clock, and checkout.test.js drives createCheckout() with the real priceCart() plus an injected fake inventory, stub payments and a spy mailer; in production the same createCheckout() is wired to the inventory service over HTTP, a payment provider and an email service." loading="lazy" src="../../../assets/diagrams/03-architecture-dark.svg#only-dark" /></p>
 <p>The same <code>createCheckout</code> runs in both worlds. Only the injected collaborators change. That's the whole trick: <strong>design for injection, and the outside world becomes optional in tests.</strong></p>
 <h2 id="6-how-it-connects-with-other-practices">6. How it connects with other practices<a class="headerlink" href="#6-how-it-connects-with-other-practices" title="Permanent link">&para;</a></h2>
 <table>
