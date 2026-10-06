@@ -42,10 +42,6 @@ theme:
     - content.tabs.link
     - content.action.edit
 
-# Diagram sources: rendered to docs/assets/diagrams/ by npm run docs:diagrams.
-exclude_docs: |
-  /diagrams/
-
 extra_css:
   - stylesheets/extra.css
 

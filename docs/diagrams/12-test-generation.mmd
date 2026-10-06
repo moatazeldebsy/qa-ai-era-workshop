@@ -1,7 +1,0 @@
-flowchart LR
-  SPEC["Context<br/>spec · code · requirements · examples"] --> PROMPT["Prompt<br/>role · rules · format · 'VERIFY' markers"]
-  PROMPT --> LLM(("LLM"))
-  LLM --> DRAFT["Draft tests<br/>(not trusted)"]
-  DRAFT --> REVIEW["Human review<br/>checklist: oracle? invented facts? would it fail?"]
-  DRAFT --> SCORE["Objective scoring<br/>run on correct code · run on planted bugs · mutation"]
-  REVIEW & SCORE --> KEEP["Keep · fix · delete<br/>(track the ratio)"]

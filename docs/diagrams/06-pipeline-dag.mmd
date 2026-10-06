@@ -1,6 +1,0 @@
-flowchart LR
-  P["push / PR"] --> U["unit<br/>0.3 s"]
-  U --> F["foundations"] & D["test-design<br/>+ mutants"] & M["unit + Stryker"] & C["contract"] & B["browser<br/>E2E + API"]
-  F & D & M & C & B --> G{{"quality gate<br/>(always runs)"}}
-  G -->|ready| R["release candidate"]
-  G -->|blocked| X["stop, with reasons"]

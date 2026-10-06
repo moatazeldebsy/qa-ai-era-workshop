@@ -1,9 +1,0 @@
-flowchart LR
-  STD["Standards<br/>(what 'good' means)"] --> KIT["Conformance kit<br/>(executable checks)"]
-  STD --> LIB["Paved road<br/>baseline library · templates · reusable CI"]
-  LIB --> SVC["Services built on it<br/>(conform by default)"]
-  KIT --> FLEET["Fleet report<br/>every service × every standard"]
-  SVC & LEGACY["Legacy services"] --> FLEET
-  FLEET --> PRIOR["Adoption work,<br/>prioritised by risk"]
-  PRIOR --> LEGACY
-  FLEET -. "feedback: which standards hurt" .-> STD
