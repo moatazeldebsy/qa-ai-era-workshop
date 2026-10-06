@@ -3449,7 +3449,7 @@
 </tbody>
 </table>
 <h3 id="step-0-baseline">Step 0 — Baseline<a class="headerlink" href="#step-0-baseline" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w">                       </span><span class="c1"># adds Pact, Ajv and yaml if you're coming from Topic 3</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>ci<span class="w">                            </span><span class="c1"># adds Pact, Ajv and yaml if you're coming from Topic 3</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>npm<span class="w"> </span>run<span class="w"> </span>learn:start<span class="w"> </span><span class="m">4</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>notebook/04<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cp<span class="w"> </span>notebook/_templates/04/contract-notes.md<span class="w"> </span>notebook/04/
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>npm<span class="w"> </span>run<span class="w"> </span>contract:test
@@ -3594,7 +3594,7 @@
 <tr>
 <td><code>Cannot find package '@pact-foundation/pact'</code> (or <code>ajv</code>, <code>yaml</code>)</td>
 <td>Dependencies installed before Topic 4</td>
-<td><code>npm install</code></td>
+<td><code>npm ci</code></td>
 </tr>
 <tr>
 <td><code>contract:verify</code>: <code>No contract file yet</code></td>
@@ -3614,7 +3614,7 @@
 <tr>
 <td>Pact native library errors on install</td>
 <td>An unsupported platform or a blocked download of Pact's binaries</td>
-<td>Use Codespaces, or check <code>npm install</code> output for the Pact download error</td>
+<td>Use Codespaces, or check <code>npm ci</code> output for the Pact download error</td>
 </tr>
 <tr>
 <td><code>EADDRINUSE</code> with <code>npm run start:all</code></td>
