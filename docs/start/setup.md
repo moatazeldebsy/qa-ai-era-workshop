@@ -74,8 +74,8 @@ npm test              # end-to-end and API tests; starts the app for you
 ```
 
 ```text title="Expected output (end)"
-ℹ tests 25
-ℹ pass 25
+ℹ tests 30
+ℹ pass 30
 ℹ fail 0
 
   38 passed (8.1s)
