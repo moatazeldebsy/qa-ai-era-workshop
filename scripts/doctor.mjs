@@ -40,7 +40,7 @@ atLeast(node, '22.22.0')
 // npm dependencies
 fs.existsSync(path.join(root, 'node_modules', '@playwright', 'test'))
   ? add('ok', 'npm dependencies', 'installed')
-  : add('fail', 'npm dependencies', 'not installed', 'npm install');
+  : add('fail', 'npm dependencies', 'not installed', 'npm ci');
 
 // Playwright's Chromium
 let chromium = null;

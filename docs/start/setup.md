@@ -30,7 +30,7 @@ On [the course repository](https://github.com/moatazeldebsy/qa-engineering-deep-
     git clone https://github.com/<you>/qa-engineering-deep-dive.git
     cd qa-engineering-deep-dive
     nvm use                                    # Node from .nvmrc
-    npm install
+    npm ci
     npx playwright install --with-deps chromium
     ```
 
@@ -42,7 +42,7 @@ git fetch upstream main solutions
 ```
 
 !!! warning "Node 22.22 or newer"
-    promptfoo (Topic 12) refuses to start on older versions, and `npm install` prints `EBADENGINE` warnings. The repo has an `.nvmrc`, so `nvm use` picks the right version.
+    promptfoo (Topic 12) refuses to start on older versions, and `npm ci` prints `EBADENGINE` warnings. The repo has an `.nvmrc`, so `nvm use` picks the right version.
 
 ## 3. Check your machine
 

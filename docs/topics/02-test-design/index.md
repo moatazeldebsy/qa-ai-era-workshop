@@ -26,7 +26,7 @@ The lab finds a **real bug** in this repo that every single-input technique miss
 
 ## Before you start
 
-Finish [Topic 1](../01-foundations/index.md) first; this topic uses its oracles and its mutation idea. Run `npm install` again if you set up before Topic 2: it adds fast-check.
+Finish [Topic 1](../01-foundations/index.md) first; this topic uses its oracles and its mutation idea. Run `npm ci` again if you set up before Topic 2: it adds fast-check.
 
 ## How to work through this topic
 

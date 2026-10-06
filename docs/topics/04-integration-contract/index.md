@@ -19,7 +19,7 @@ You'll test the shop's HTTP API against its published OpenAPI contract, wire the
 
 ## Before you start
 
-Finish [Topic 3](../03-unit-component/index.md) first; this topic tests the same checkout through the real network. Run `npm install` again if you set up before Topic 4: it adds Pact, Ajv and a YAML parser.
+Finish [Topic 3](../03-unit-component/index.md) first; this topic tests the same checkout through the real network. Run `npm ci` again if you set up before Topic 4: it adds Pact, Ajv and a YAML parser.
 
 ## How to work through this topic
 

@@ -19,7 +19,7 @@ We'll use one running example the whole way through: **the free-shipping rule in
 
 ## Before you start
 
-Nothing beyond the [setup](../../start/setup.md): Node.js and `npm install`. No browser, no API key, no testing experience.
+Nothing beyond the [setup](../../start/setup.md): Node.js and `npm ci`. No browser, no API key, no testing experience.
 
 ## How to work through this topic
 

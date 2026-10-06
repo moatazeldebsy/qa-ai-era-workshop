@@ -24,7 +24,7 @@ The lab adds two new parts to Quality Books: a **returns service** that depends 
 
 ## Before you start
 
-Finish [Topics 1 and 2](../index.md) first; this topic uses their oracles, boundaries and mutants. Run `npm install` again if you set up before Topic 3: it adds Stryker.
+Finish [Topics 1 and 2](../index.md) first; this topic uses their oracles, boundaries and mutants. Run `npm ci` again if you set up before Topic 3: it adds Stryker.
 
 ## How to work through this topic
 
