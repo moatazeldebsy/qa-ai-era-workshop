@@ -8,3 +8,5 @@ docs
 .git
 .stryker-tmp
 reports
+.env
+.env.*

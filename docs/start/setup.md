@@ -170,12 +170,17 @@ MkDocs Material prints a red warning box about MkDocs 2.0 at startup. That's onl
 
 ## (Optional) Use a real model
 
-Every lab works without an API key. Some AI labs in Topic 12 have an optional real-model route:
+Every lab works without an API key. Some AI labs in Topic 12 have an optional real-model route. Put your key in a `.env` file once, instead of exporting it in every terminal:
 
 ```bash
-export ANTHROPIC_API_KEY=sk-ant-...
+cp .env.example .env                 # then set ANTHROPIC_API_KEY=sk-ant-... in .env
+npm run learn:doctor                 # ✅ Anthropic API key   set in .env
 ASSISTANT_MODE=claude npm start      # the assistant answers with a real model
 ```
 
+`.env` is git-ignored, and the shop, the doctor, the Topic 12 scripts and promptfoo all read it. Only the key and the model names (`ASSISTANT_MODEL`, `TESTGEN_MODEL`, `AGENT_MODEL`) are read from it. The assistant's mode is deliberately not: with `ASSISTANT_MODE=claude` in `.env`, every `npm start`, `npm test` and eval would call the paid model, so the shop ignores it there and says so. Switch the mode per command, as above.
+
+An `export ANTHROPIC_API_KEY=...` in your shell still works and wins over `.env`. In a Codespace, use a [Codespaces secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces) instead: it is set before the codespace starts and never touches the disk.
+
 !!! note "Model and cost"
-    The default model is `claude-opus-5-5` at low effort (change it with `ASSISTANT_MODEL`). Each exercise costs cents. Never commit your key: it belongs in your shell or a Codespaces secret.
+    The default model is `claude-opus-5-5` at low effort (change it with `ASSISTANT_MODEL`). Each exercise costs cents. Never commit your key: keep it in `.env`, your shell or a Codespaces secret.

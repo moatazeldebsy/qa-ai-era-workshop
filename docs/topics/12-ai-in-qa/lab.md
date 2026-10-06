@@ -172,10 +172,11 @@ Read `tools.mjs` and its tests (`tests/tools.spec.js`), which you ran in step 0.
 
 === "With an API key (route A)"
 
+    Put your key in `.env` first (see [Setup](../../start/setup.md#optional-use-a-real-model)).
+
     ```bash
     npm run start:bug-cart                      # terminal 1: the planted pricing bug
-    export ANTHROPIC_API_KEY=sk-ant-...         # terminal 2
-    npm run agent -- free-shipping              # add --headed to watch; --no-oracle to remove the rules
+    npm run agent -- free-shipping              # terminal 2; add --headed to watch, --no-oracle to remove the rules
     ```
 
     Each run makes up to 30 model calls. Compare a run with and without the oracle.
@@ -226,5 +227,5 @@ The checker starts the shop in both modes itself (ports 3950 and 3951). Commit a
 | The safe assistant fails a red-team case after your fix | A new assertion matches honest answers too | Use phrases only the system prompt contains |
 | `ai:score`: `The draft has no runnable tests` | The file isn't a Playwright test file, or has a syntax error | Check the code block you copied; run `node --check <file>` |
 | `ai:score` reports different numbers for your own draft | Every model writes a different suite | Expected: that's the point of scoring each draft |
-| `npm run agent` without a key | Route A needs `ANTHROPIC_API_KEY` | Use route B, or the "without either" tab |
+| `npm run agent` without a key | Route A needs `ANTHROPIC_API_KEY` | Put it in `.env` ([Setup](../../start/setup.md#optional-use-a-real-model)), or use route B or the "without either" tab |
 | The agent reports a bug that isn't there | Stale page state, or no oracle | Replay its trace (`test-results/agent/`), and check the claim yourself |
