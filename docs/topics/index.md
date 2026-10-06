@@ -26,19 +26,30 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 Times include reading, the lab and the quiz; the wrap-up challenge is extra. The column on the right fills in as you mark pages done (it's stored in this browser).
 
 ```mermaid
-flowchart LR
-  T1[1 Foundations] --> T2[2 Test design]
-  T2 --> T3[3 Unit & component] --> T4[4 Integration, API, contract] --> T5[5 UI & E2E]
-  T5 --> T6[6 CI/CD & continuous testing]
-  T6 --> T7[7 Environments & data]
-  T7 --> T8[8 Performance & resilience]
-  T7 --> T9[9 Security, a11y, compatibility]
-  T8 --> T10[10 Production & observability]
-  T9 --> T10
-  T10 --> T11[11 Quality intelligence]
-  T11 --> T12[12 AI in QA]
-  T12 --> T13[13 QA platform engineering]
-  T13 --> T14[14 Strategy & leadership]
+flowchart TB
+  subgraph A["Foundations"]
+    direction LR
+    T1["1 · Foundations"] --> T2["2 · Test design"]
+  end
+  subgraph B["Testing layers"]
+    direction LR
+    T3["3 · Unit & component"] --> T4["4 · Integration & contract"] --> T5["5 · UI & E2E"]
+  end
+  subgraph C["Delivery and non-functional quality"]
+    direction LR
+    T6["6 · CI/CD"] --> T7["7 · Environments & data"]
+    T7 --> T8["8 · Performance"]
+    T7 --> T9["9 · Security & a11y"]
+  end
+  subgraph D["Production and scale"]
+    direction LR
+    T10["10 · Observability"] --> T11["11 · Quality intelligence"] --> T12["12 · AI in QA"]
+  end
+  subgraph E["Leadership"]
+    direction LR
+    T13["13 · QA platform"] --> T14["14 · Strategy"]
+  end
+  A --> B --> C --> D --> E
 ```
 
 ## Inside every topic
