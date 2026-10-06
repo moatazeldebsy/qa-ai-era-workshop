@@ -1,0 +1,42 @@
+scripts/doctor.mjs
+  s_bd0384c669aec1::t_45b08470503655 12
+  s_bd0384c669aec1::t_deaf89b32a9f83 99,101
+docs/topics/12-ai-in-qa/lab.md
+  s_bd0384c669aec1::t_4b2edfa8a8820b 230
+  s_bd0384c669aec1::t_fda4da14e9337f 175-176,179
+app/src/server.js
+  s_bd0384c669aec1::t_5980425e828438 14
+  s_bd0384c669aec1::t_2ac4cca90d9f98 163
+.env.example
+  s_bd0384c669aec1::t_ae674b6217ade1 1-12
+app/src/env.js
+  s_bd0384c669aec1::t_0f320cb8e22d0d 1-40
+labs/12-ai-in-qa/agent/explore.mjs
+  s_bd0384c669aec1::t_f4a6d77012e79c 21,23
+.gitignore
+  s_bd0384c669aec1::t_ae674b6217ade1 20
+app/test/env.test.js
+  s_bd0384c669aec1::t_573e5762e42531 1-47
+docs/start/setup.md
+  s_bd0384c669aec1::t_4b2edfa8a8820b 143,146-147,151-154,156
+.dockerignore
+  s_bd0384c669aec1::t_ae674b6217ade1 11-12
+labs/12-ai-in-qa/testgen/generate.mjs
+  s_bd0384c669aec1::t_1f1f5ff144b3ca 13,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "f995d74e923a0c314a18d11007179a0185e8d1e9",
+  "prompts": {},
+  "sessions": {
+    "s_bd0384c669aec1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9f4dfb8d-5d4f-4692-ada4-3a0b50aeef82",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "moatazeldebsy <moataznabil2019@gmail.com>"
+    }
+  }
+}
