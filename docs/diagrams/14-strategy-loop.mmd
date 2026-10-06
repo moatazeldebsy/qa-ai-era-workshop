@@ -1,0 +1,9 @@
+flowchart LR
+  CTX["Context<br/>users · business · constraints · regulation"] --> GOALS["Quality goals<br/>(attributes that matter, measurably)"]
+  GOALS --> RISK["Risks<br/>likelihood × impact (Topic 1)"]
+  RISK --> APPROACH["Approach<br/>levels · techniques · environments · gates"]
+  APPROACH --> INVEST["Investments<br/>people · platform · tools"]
+  INVEST --> EVIDENCE["Evidence<br/>scorecard · metrics · incidents"]
+  EVIDENCE --> REVIEW{{"Review<br/>quarterly"}}
+  REVIEW -->|adjust| GOALS
+  REVIEW -->|"escapes, incidents"| RISK

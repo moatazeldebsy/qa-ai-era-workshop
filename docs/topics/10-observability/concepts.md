@@ -29,20 +29,8 @@ Plus the practices built on them:
 
 ### From code to dashboards
 
-```mermaid
-flowchart LR
-  subgraph Services
-    S["Shop<br/>logs · /metrics · trace spans"]
-    I["Inventory<br/>logs · trace spans"]
-  end
-  S -- "x-request-id / traceparent" --> I
-  S & I -->|stdout JSON lines| LC["Log collector<br/>(Fluent Bit, Vector)"] --> LS[("Log store<br/>Loki, Elasticsearch")]
-  S -->|scraped every 15 s| P[("Prometheus<br/>time series")]
-  S & I -->|OTLP| OC["OpenTelemetry Collector"] --> T[("Trace store<br/>Tempo, Jaeger")]
-  P --> AM["Alertmanager<br/>(SLO burn-rate alerts)"] --> PAGE["On-call"]
-  LS & P & T --> G["Grafana dashboards"]
-  SYN["Synthetic monitor<br/>(every minute)"] -->|journey| S
-```
+![From code to dashboards: the shop and inventory pass x-request-id and traceparent between them; their JSON logs go through a log collector to a log store, Prometheus scrapes the shop's metrics every 15 seconds, and OpenTelemetry sends traces to a trace store; Alertmanager pages on-call on SLO burn-rate alerts, Grafana shows all three, and a synthetic monitor runs a journey every minute.](../../assets/diagrams/10-code-to-dashboards.svg#only-light){ loading=lazy }
+![From code to dashboards: the shop and inventory pass x-request-id and traceparent between them; their JSON logs go through a log collector to a log store, Prometheus scrapes the shop's metrics every 15 seconds, and OpenTelemetry sends traces to a trace store; Alertmanager pages on-call on SLO burn-rate alerts, Grafana shows all three, and a synthetic monitor runs a journey every minute.](../../assets/diagrams/10-code-to-dashboards-dark.svg#only-dark){ loading=lazy }
 
 - **Logs** are written as structured JSON lines to stdout; a collector ships them to a store, where they can be searched by fields (`id`, `status`).
 - **Metrics** are counters, gauges and histograms kept in memory and exposed at `/metrics` in the Prometheus text format; Prometheus **scrapes** them on a schedule and stores time series.
@@ -136,16 +124,8 @@ Observability makes it safe to test with real traffic: **canary releases** compa
 
 ## 5. Architecture: Quality Books in production
 
-```mermaid
-flowchart TB
-  U(["Customers"]) --> LB{{"Load balancer<br/>routes by /ready"}}
-  SYN(["Synthetic monitor<br/>labelled requests"]) --> LB
-  LB --> SHOP["Shop<br/>/health · /ready · /metrics<br/>JSON logs with id"]
-  SHOP -- "x-request-id" --> INV["Inventory<br/>JSON logs with the same id"]
-  PROM[("Prometheus")] -. scrape .-> SHOP
-  PROM --> SLO["SLO: availability 99.5%,<br/>latency 99% < 250 ms<br/>(labs/10-observability/slo.json)"]
-  SLO --> BURN{{"Burn-rate alert"}} --> ONCALL(["On-call + runbook"])
-```
+![Quality Books in production: customers and a synthetic monitor reach a load balancer that routes by /ready; the shop exposes /health, /ready and /metrics and logs JSON with a request id that it passes to the inventory service; Prometheus scrapes the shop, the SLOs (99.5% availability, 99% of requests under 250 ms) drive a burn-rate alert, and the alert pages on-call with a runbook.](../../assets/diagrams/10-architecture.svg#only-light){ loading=lazy }
+![Quality Books in production: customers and a synthetic monitor reach a load balancer that routes by /ready; the shop exposes /health, /ready and /metrics and logs JSON with a request id that it passes to the inventory service; Prometheus scrapes the shop, the SLOs (99.5% availability, 99% of requests under 250 ms) drive a burn-rate alert, and the alert pages on-call with a runbook.](../../assets/diagrams/10-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

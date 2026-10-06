@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> placed
+  placed --> paid: pay
+  placed --> cancelled: cancel
+  paid --> shipped: ship
+  paid --> cancelled: cancel
+  shipped --> delivered: deliver
+  delivered --> refunded: refund [claim accepted]
+  cancelled --> [*]
+  refunded --> [*]

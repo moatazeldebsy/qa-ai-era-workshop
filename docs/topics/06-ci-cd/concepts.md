@@ -31,14 +31,8 @@ Without it: integration hell before every release, long manual regression phases
 
 A pipeline isn't a list, it's a **directed acyclic graph (DAG)**: stages with dependencies. A runner starts every stage whose dependencies have finished, up to the available concurrency.
 
-```mermaid
-flowchart LR
-  P["push / PR"] --> U["unit<br/>0.3 s"]
-  U --> F["foundations"] & D["test-design<br/>+ mutants"] & M["unit + Stryker"] & C["contract"] & B["browser<br/>E2E + API"]
-  F & D & M & C & B --> G{{"quality gate<br/>(always runs)"}}
-  G -->|ready| R["release candidate"]
-  G -->|blocked| X["stop, with reasons"]
-```
+![A pipeline as a graph: a push or pull request runs the unit stage first, then the foundations, test design and mutants, unit and Stryker, contract, and browser E2E and API stages in parallel; all of them feed a quality gate that always runs and either marks a release candidate or stops with reasons.](../../assets/diagrams/06-pipeline-dag.svg#only-light){ loading=lazy }
+![A pipeline as a graph: a push or pull request runs the unit stage first, then the foundations, test design and mutants, unit and Stryker, contract, and browser E2E and API stages in parallel; all of them feed a quality gate that always runs and either marks a release candidate or stops with reasons.](../../assets/diagrams/06-pipeline-dag-dark.svg#only-dark){ loading=lazy }
 
 The total time is set by the **critical path**: the longest chain of dependent stages. Adding machines only helps until the critical path is all that's left. That's why the lab measures it.
 
@@ -149,23 +143,8 @@ The pipeline has access to your code, secrets and production, so it's a prime ta
 
 ## 5. Architecture: this repo's pipeline
 
-```mermaid
-flowchart TB
-  subgraph CI[".github/workflows/ci.yml: one job, in feedback-speed order"]
-    direction TB
-    S1["checkout · setup-node (cached) · npm ci · browsers · k6"] --> S2["doctor"]
-    S2 --> S3["unit tests"] --> S4["Topic labs: foundations, design, unit + Stryker, contract"]
-    S4 --> S5["E2E + API (Playwright) → junit.xml"]
-    S5 --> S6["agent tools"] --> S7["start app"]
-    S7 --> S8["LLM eval + red team → json"] --> S9["k6 smoke → summary"] --> S10["metrics"]
-    S10 --> S11{{"quality gate → job summary"}}
-    S11 --> S12["upload reports (always)"]
-  end
-  subgraph Other["Other workflows"]
-    D["docs.yml: build + smoke-test the site, deploy from the course repo only"]
-    L["learner-progress.yml: forks only, progress table"]
-  end
-```
+![This repo's pipeline: ci.yml is one job in feedback-speed order: setup, the doctor, unit tests, the topic labs, E2E and API tests, the agent tools, starting the app, the LLM eval and red team, the k6 smoke test, metrics, then the quality gate and an upload of every report. Other workflows: docs.yml builds, smoke-tests and deploys the site; learner-progress.yml writes the progress table in forks.](../../assets/diagrams/06-architecture.svg#only-light){ loading=lazy }
+![This repo's pipeline: ci.yml is one job in feedback-speed order: setup, the doctor, unit tests, the topic labs, E2E and API tests, the agent tools, starting the app, the LLM eval and red team, the k6 smoke test, metrics, then the quality gate and an upload of every report. Other workflows: docs.yml builds, smoke-tests and deploys the site; learner-progress.yml writes the progress table in forks.](../../assets/diagrams/06-architecture-dark.svg#only-dark){ loading=lazy }
 
 It's deliberately simple, one job in a sensible order. The lab's pipeline runner shows what you gain by modelling dependencies as a graph instead.
 

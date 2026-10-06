@@ -28,16 +28,8 @@ Terms you'll meet:
 
 ### Security testing: layers of evidence
 
-```mermaid
-flowchart LR
-  TM["Threat modelling<br/>(design: what could go wrong?)"] --> SAST["SAST + secret scanning<br/>(code, every commit)"]
-  SAST --> SCA["SCA<br/>(dependencies, every commit + daily)"]
-  SCA --> UT["Security unit/API tests<br/>(abuse cases, headers, authz)"]
-  UT --> DAST["DAST<br/>(running app: ZAP baseline/active scan)"]
-  DAST --> PT["Penetration testing<br/>(humans, periodically)"]
-  PT --> PROD["Production: WAF, monitoring,<br/>bug bounty, incident response"]
-  PROD -.->|new threats| TM
-```
+![Layers of security evidence, from design to production: threat modelling, SAST and secret scanning, SCA of dependencies, security unit and API tests, DAST against the running app, penetration testing, then production defences and monitoring, which feed new threats back into threat modelling.](../../assets/diagrams/09-security-layers.svg#only-light){ loading=lazy }
+![Layers of security evidence, from design to production: threat modelling, SAST and secret scanning, SCA of dependencies, security unit and API tests, DAST against the running app, penetration testing, then production defences and monitoring, which feed new threats back into threat modelling.](../../assets/diagrams/09-security-layers-dark.svg#only-dark){ loading=lazy }
 
 - **Threat modelling** asks four questions (Adam Shostack): what are we building, what can go wrong, what are we going to do about it, did we do a good job? **STRIDE** is a checklist for the second question: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege.
 - **SAST** parses source code and looks for dangerous patterns and data flows: untrusted input reaching a SQL query, `eval`, a shell command, or HTML.
@@ -139,24 +131,8 @@ The **first rule of ARIA**: don't use ARIA if a native HTML element does the job
 
 ## 5. Architecture: security and accessibility checks around Quality Books
 
-```mermaid
-flowchart TB
-  subgraph CI["Every commit"]
-    AUD["sec:audit<br/>npm audit triage: prod vs dev"]
-    SEC["sec:test<br/>headers · test-data API off · service token"]
-    A11Y["a11y:test<br/>axe WCAG 2.2 · label-in-name · live region"]
-    RT["eval:redteam<br/>LLM attacks (Topic 12)"]
-  end
-  subgraph Periodic["Periodically"]
-    DAST["ZAP baseline / active scan"]
-    MAN["Manual a11y: keyboard, screen reader, zoom, voice"]
-    PEN["Penetration test, threat-model review"]
-  end
-  SHOP["Shop"] -->|Bearer token| INV["Inventory (internal)"]
-  ATT(["Attacker"]) -. "no token → 401" .-> INV
-  CI --> SHOP
-  Periodic --> SHOP
-```
+![Security and accessibility checks around Quality Books: on every commit, the npm audit triage, security tests, axe accessibility tests and the LLM red team run against the shop; periodically, a ZAP scan, manual accessibility testing and a penetration test with a threat-model review; the shop calls the internal inventory service with a bearer token, and an attacker without a token gets 401.](../../assets/diagrams/09-architecture.svg#only-light){ loading=lazy }
+![Security and accessibility checks around Quality Books: on every commit, the npm audit triage, security tests, axe accessibility tests and the LLM red team run against the shop; periodically, a ZAP scan, manual accessibility testing and a penetration test with a threat-model review; the shop calls the internal inventory service with a bearer token, and an attacker without a token gets 401.](../../assets/diagrams/09-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

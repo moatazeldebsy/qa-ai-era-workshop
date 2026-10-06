@@ -33,29 +33,15 @@ Terms you'll meet:
 
 ### AI-assisted test generation
 
-```mermaid
-flowchart LR
-  SPEC["Context<br/>spec · code · requirements · examples"] --> PROMPT["Prompt<br/>role · rules · format · 'VERIFY' markers"]
-  PROMPT --> LLM(("LLM"))
-  LLM --> DRAFT["Draft tests<br/>(not trusted)"]
-  DRAFT --> REVIEW["Human review<br/>checklist: oracle? invented facts? would it fail?"]
-  DRAFT --> SCORE["Objective scoring<br/>run on correct code · run on planted bugs · mutation"]
-  REVIEW & SCORE --> KEEP["Keep · fix · delete<br/>(track the ratio)"]
-```
+![AI-assisted test generation: context (spec, code, requirements, examples) goes into a prompt with a role, rules, a format and VERIFY markers; the LLM writes draft tests that are not trusted; human review and objective scoring (on correct code, on planted bugs, with mutation testing) decide what to keep, fix or delete.](../../assets/diagrams/12-test-generation.svg#only-light){ loading=lazy }
+![AI-assisted test generation: context (spec, code, requirements, examples) goes into a prompt with a role, rules, a format and VERIFY markers; the LLM writes draft tests that are not trusted; human review and objective scoring (on correct code, on planted bugs, with mutation testing) decide what to keep, fix or delete.](../../assets/diagrams/12-test-generation-dark.svg#only-dark){ loading=lazy }
 
 The model only knows what's in its prompt and its training. Good prompts give it the **spec**, **rules** (only assert what the spec states; mark guesses with `// VERIFY:`), and a **format**. The output is a **draft**: it must be reviewed by a person and **scored objectively**. Does it pass on correct code? Does it fail on broken code? The lab's scorer does both.
 
 ### How an LLM feature is evaluated
 
-```mermaid
-flowchart LR
-  CASES["Test cases<br/>questions + expected properties"] --> APP["The AI feature<br/>(prompt + model + grounding)"]
-  APP --> OUT["Outputs"]
-  OUT --> G1["Deterministic checks<br/>contains · not-contains · regex · JS"]
-  OUT --> G2["Model-graded rubric<br/>(LLM-as-judge, validated)"]
-  OUT --> G3["Human review<br/>(samples, disagreements)"]
-  G1 & G2 & G3 --> SCORE{{"Pass rate per category<br/>→ quality gate"}}
-```
+![Evaluating an LLM feature: test cases with expected properties go to the AI feature; its outputs are checked deterministically, by a validated model-graded rubric and by human review of samples; all three give a pass rate per category that feeds the quality gate.](../../assets/diagrams/12-llm-evaluation.svg#only-light){ loading=lazy }
+![Evaluating an LLM feature: test cases with expected properties go to the AI feature; its outputs are checked deterministically, by a validated model-graded rubric and by human review of samples; all three give a pass rate per category that feeds the quality gate.](../../assets/diagrams/12-llm-evaluation-dark.svg#only-dark){ loading=lazy }
 
 You can't assert one exact answer, so you assert **properties**: the price mentioned is a real catalogue price; the answer never contains the system prompt; an off-topic question is declined. Deterministic checks are cheap, fast and reproducible. Model-graded checks handle meaning ("is this answer polite and correct?"), but a judge model is itself an AI feature that needs validating against human judgements.
 
@@ -146,25 +132,8 @@ AI features can treat groups of users differently (bias), produce unexplainable 
 
 ## 5. Architecture: AI in and around Quality Books
 
-```mermaid
-flowchart TB
-  subgraph Feature["The AI feature (tested)"]
-    Q["Customer question"] --> AS["Assistant<br/>system prompt + catalogue grounding"]
-    AS -->|mock · buggy · claude| A["Answer (rendered as text)"]
-  end
-  subgraph Evals["Testing AI"]
-    E1["eval:llm<br/>grounding · scope · policies"]
-    E2["eval:redteam<br/>OWASP LLM Top 10 attacks"]
-  end
-  E1 & E2 --> AS
-  E1 & E2 --> GATE{{"Quality gate"}}
-  subgraph Helpers["AI for testing"]
-    TG["testgen prompt → draft → ai:score + review"]
-    AG["Agent: charter + tools + product rules → findings"]
-  end
-  TG -.-> SUITE["Scripted suites (Topics 3–5)"]
-  AG -. "findings → regression tests" .-> SUITE
-```
+![AI in and around Quality Books: a customer question goes to the assistant (system prompt plus catalogue grounding, in mock, buggy or claude mode) and the answer is rendered as text; eval:llm and eval:redteam test the assistant and feed the quality gate; test generation and the exploring agent produce drafts and findings that become scripted regression tests.](../../assets/diagrams/12-architecture.svg#only-light){ loading=lazy }
+![AI in and around Quality Books: a customer question goes to the assistant (system prompt plus catalogue grounding, in mock, buggy or claude mode) and the answer is rendered as text; eval:llm and eval:redteam test the assistant and feed the quality gate; test generation and the exploring agent produce drafts and findings that become scripted regression tests.](../../assets/diagrams/12-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

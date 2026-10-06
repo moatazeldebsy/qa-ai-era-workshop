@@ -1,0 +1,11 @@
+sequenceDiagram
+  participant T as Test (node:test)
+  participant S as Shop (real Express app, port 0)
+  participant I as Inventory service (real, port 0)
+  T->>I: start, reset to a known state
+  T->>S: start, pointing at I's URL
+  T->>S: POST /api/orders (2 × book 1)
+  S->>I: POST /reservations
+  I-->>S: 201 { reservationId, ... }
+  S-->>T: 201 { id, state: "paid", ... }
+  T->>I: GET /stock/1 → check 10 left (the side effect)

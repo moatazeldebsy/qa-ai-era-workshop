@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> New
+  New --> Triaged: reproduced, severity/priority set
+  New --> Rejected: not a bug / duplicate
+  Triaged --> InProgress
+  InProgress --> Fixed
+  Fixed --> Verified: retest passes + regression check added
+  Fixed --> Reopened: retest fails
+  Reopened --> InProgress
+  Verified --> [*]

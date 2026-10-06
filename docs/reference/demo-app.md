@@ -2,19 +2,8 @@
 
 A deliberately small shop, built so every lab has something real to test. It grows with the course: each topic adds only what its lab needs.
 
-```mermaid
-flowchart LR
-  UI["Browser pages<br/>app/public"] -- "/api" --> S["Shop server<br/>server.js, port 3210"]
-  S --> R["Catalogue and pricing<br/>catalog.js, cart.js"]
-  S --> AC["Accounts<br/>accounts.js"]
-  S --> CO["Checkout<br/>checkout.js"]
-  S --> A["Assistant<br/>assistant.js"]
-  CO --> PAY["Demo payments<br/>payments-demo.js"]
-  CO --> IC["Inventory client<br/>inventory-client.js"]
-  IC -- HTTP --> INV["Inventory service<br/>port 3220"]
-  A -- "ASSISTANT_MODE=claude" --> L[("Claude API")]
-  UI --> DP["Demo Pay<br/>card → token"]
-```
+![Quality Books architecture: browser pages call the shop server over /api; the server uses catalogue and pricing, accounts, checkout and the assistant; checkout uses demo payments and an inventory client that calls the inventory service on port 3220 over HTTP; the assistant calls the Claude API only when ASSISTANT_MODE=claude; Demo Pay turns a card into a token in the browser.](../assets/diagrams/demo-app-architecture.svg#only-light){ loading=lazy }
+![Quality Books architecture: browser pages call the shop server over /api; the server uses catalogue and pricing, accounts, checkout and the assistant; checkout uses demo payments and an inventory client that calls the inventory service on port 3220 over HTTP; the assistant calls the Claude API only when ASSISTANT_MODE=claude; Demo Pay turns a card into a token in the browser.](../assets/diagrams/demo-app-architecture-dark.svg#only-dark){ loading=lazy }
 
 | Module | Added in | What it is |
 |---|---|---|

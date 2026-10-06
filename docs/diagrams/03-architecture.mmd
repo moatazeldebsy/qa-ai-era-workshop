@@ -1,0 +1,15 @@
+flowchart TB
+  subgraph Test["Test process (node --test)"]
+    T1["returns.test.js"] --> R["createReturns()"]
+    T2["checkout.test.js"] --> C["createCheckout()"]
+    CLK(["clock: () => fixed Date"]) -. injected .-> R
+    C --> P["priceCart() — real"]
+    INV(["fakeInventory()"]) -. injected .-> C
+    PAY(["stub payments"]) -. injected .-> C
+    MAIL(["spy mailer — mock.fn()"]) -. injected .-> C
+  end
+  subgraph Real["Production wiring (later topics)"]
+    C2["createCheckout()"] --> INVS["Inventory service (HTTP) — Topic 4"]
+    C2 --> PSP["Payment provider"]
+    C2 --> SMTP["Email service"]
+  end

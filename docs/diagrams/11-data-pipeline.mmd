@@ -1,0 +1,11 @@
+flowchart LR
+  subgraph Produce
+    CI["CI runs<br/>JUnit XML · Playwright JSON · coverage · mutation"]
+    PROD["Production<br/>incidents · SLOs · deployments"]
+    TRK["Trackers<br/>defects · stories · risks"]
+  end
+  Produce --> STORE[("Results store<br/>one row per test per run<br/>(with commit, branch, env)")]
+  STORE --> ANALYSE["Analysis<br/>flakiness · trends · clustering · escapes · DORA"]
+  ANALYSE --> REPORT["Reports for an audience<br/>developer · team · leadership"]
+  REPORT --> DECIDE{{"Decisions<br/>fix · quarantine · invest · release"}}
+  DECIDE -.->|new tests, rules| CI

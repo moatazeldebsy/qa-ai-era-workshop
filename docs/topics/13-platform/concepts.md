@@ -26,17 +26,8 @@ Everything in Topics 1–12 was built for one shop. Now imagine fifty services, 
 
 ### The platform loop
 
-```mermaid
-flowchart LR
-  STD["Standards<br/>(what 'good' means)"] --> KIT["Conformance kit<br/>(executable checks)"]
-  STD --> LIB["Paved road<br/>baseline library · templates · reusable CI"]
-  LIB --> SVC["Services built on it<br/>(conform by default)"]
-  KIT --> FLEET["Fleet report<br/>every service × every standard"]
-  SVC & LEGACY["Legacy services"] --> FLEET
-  FLEET --> PRIOR["Adoption work,<br/>prioritised by risk"]
-  PRIOR --> LEGACY
-  FLEET -. "feedback: which standards hurt" .-> STD
-```
+![The platform loop: standards become a conformance kit and a paved road of libraries, templates and reusable CI; services built on the paved road conform by default; the fleet report checks every service against every standard, legacy ones included, prioritises adoption work by risk, and feeds back which standards hurt.](../../assets/diagrams/13-platform-loop.svg#only-light){ loading=lazy }
+![The platform loop: standards become a conformance kit and a paved road of libraries, templates and reusable CI; services built on the paved road conform by default; the fleet report checks every service against every standard, legacy ones included, prioritises adoption work by risk, and feeds back which standards hurt.](../../assets/diagrams/13-platform-loop-dark.svg#only-dark){ loading=lazy }
 
 1. **Agree standards** with the teams who'll live with them, and write them down as checks (`platform/conformance.mjs`).
 2. **Build the paved road** so meeting the standards is the easiest path: a baseline library that implements them once (`platform/express-baseline.mjs`), a template that uses it, and reusable CI that runs the checks.
@@ -135,22 +126,8 @@ Measure what the platform changes for developers:
 
 ## 5. Architecture: a small QA platform for Quality Books
 
-```mermaid
-flowchart TB
-  subgraph Platform["platform/ (owned by the platform team)"]
-    CONF["conformance.mjs<br/>standards as checks"]
-    BASE["express-baseline.mjs<br/>request id · headers · JSON errors"]
-    TPL["templates/service<br/>app · server · tests · README"]
-    NEW["new-service.mjs<br/>scaffolder"]
-    RWF[".github/workflows/reusable-node-service.yml"]
-  end
-  NEW --> TPL --> SVC["services/&lt;new&gt;/<br/>uses BASE, runs CONF in its tests"]
-  NEW --> WF[".github/workflows/service-&lt;new&gt;.yml"] --> RWF
-  INV["services/inventory"] -. adopts .-> BASE
-  SHOP["app/ (the shop)"] -. "legacy: own middleware" .- CONF
-  FLEET["labs/13-platform/fleet.mjs"] --> CONF
-  FLEET --> INV & SHOP & SVC
-```
+![A small QA platform for Quality Books: platform/ holds the conformance checks, the Express baseline, a service template, a scaffolder and a reusable workflow; the scaffolder creates a new service and its workflow from them; the inventory service adopts the baseline, the shop is legacy with its own middleware; fleet.mjs runs the conformance checks against every service.](../../assets/diagrams/13-architecture.svg#only-light){ loading=lazy }
+![A small QA platform for Quality Books: platform/ holds the conformance checks, the Express baseline, a service template, a scaffolder and a reusable workflow; the scaffolder creates a new service and its workflow from them; the inventory service adopts the baseline, the shop is legacy with its own middleware; fleet.mjs runs the conformance checks against every service.](../../assets/diagrams/13-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

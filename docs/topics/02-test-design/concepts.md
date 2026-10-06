@@ -38,14 +38,8 @@ The numbers in this repo make the point. The cart alone accepts around 19,000 va
 
 Every technique follows the same pipeline. Only the **model** in the middle changes:
 
-```mermaid
-flowchart LR
-  B["Test basis<br/>requirement, contract,<br/>code, experience"] --> M["Model<br/>partitions, table, state machine,<br/>parameter list, property"]
-  M --> C["Test conditions<br/>what to cover"]
-  C --> T["Test cases<br/>concrete inputs +<br/>expected results (oracle)"]
-  T --> X["Run & measure<br/>coverage of the model"]
-  X -->|gaps, surprises| M
-```
+![Every test design technique follows one pipeline: a test basis becomes a model (partitions, a table, a state machine, parameters or a property), the model gives test conditions, the conditions give concrete test cases with expected results, and running them measures coverage of the model; gaps and surprises feed back into the model.](../../assets/diagrams/02-technique-pipeline.svg#only-light){ loading=lazy }
+![Every test design technique follows one pipeline: a test basis becomes a model (partitions, a table, a state machine, parameters or a property), the model gives test conditions, the conditions give concrete test cases with expected results, and running them measures coverage of the model; gaps and surprises feed back into the model.](../../assets/diagrams/02-technique-pipeline-dark.svg#only-dark){ loading=lazy }
 
 1. **Read the basis** and pick a technique whose model fits its shape:
     - ranges of values → partitions and boundaries
@@ -135,18 +129,8 @@ Collapsed columns are **claims**. "If late, nothing else matters" is a claim wor
 - **Transition:** a move from one state to another caused by an event (`paid --ship--> shipped`).
 - **Guard:** a condition that must be true for the transition (`refund` only if the claim is accepted).
 
-```mermaid
-stateDiagram-v2
-  [*] --> placed
-  placed --> paid: pay
-  placed --> cancelled: cancel
-  paid --> shipped: ship
-  paid --> cancelled: cancel
-  shipped --> delivered: deliver
-  delivered --> refunded: refund [claim accepted]
-  cancelled --> [*]
-  refunded --> [*]
-```
+![Order state machine: placed goes to paid (pay) or cancelled (cancel); paid goes to shipped (ship) or cancelled (cancel); shipped goes to delivered (deliver); delivered goes to refunded (refund, only if the claim is accepted); cancelled and refunded are final.](../../assets/diagrams/02-order-state-machine.svg#only-light){ loading=lazy }
+![Order state machine: placed goes to paid (pay) or cancelled (cancel); paid goes to shipped (ship) or cancelled (cancel); shipped goes to delivered (deliver); delivered goes to refunded (refund, only if the claim is accepted); cancelled and refunded are final.](../../assets/diagrams/02-order-state-machine-dark.svg#only-dark){ loading=lazy }
 
 Coverage criteria, from weakest to strongest:
 
@@ -259,20 +243,8 @@ The catch: **generators encode assumptions.** In the lab the "sellable cart" gen
 
 ## 5. Architecture: from requirement to a balanced suite
 
-```mermaid
-flowchart TB
-  REQ["Requirement<br/>'Quantity 1-10, within stock;<br/>refunds within 30 days…'"] --> Q{"Shape of<br/>the rule?"}
-  Q -->|ranges| EP["EP + BVA<br/>partitions.test.js"]
-  Q -->|combinations| DT["Decision table<br/>decision-table.test.js"]
-  Q -->|history| ST["State transition<br/>state-transition.test.js"]
-  Q -->|for all inputs| PBT["Properties<br/>properties.test.js"]
-  Q -->|configurations| PW["Pairwise matrix<br/>pairwise.mjs"]
-  EXP["Experience:<br/>error guessing"] --> EP
-  EP & DT & ST & PBT --> SUITE["Test suite"]
-  PW -->|which environments<br/>to run it in| SUITE
-  SUITE --> MUT["Mutation scorecard<br/>mutants.mjs"]
-  MUT -->|survivors = blind spots| Q
-```
+![From requirement to a balanced suite: the shape of the rule picks the technique (ranges: EP and BVA; combinations: decision table; history: state transition; for all inputs: properties; configurations: a pairwise matrix); error guessing adds to EP; their tests form the suite, the pairwise matrix chooses where to run it, and the mutation scorecard sends surviving mutants back as blind spots.](../../assets/diagrams/02-architecture.svg#only-light){ loading=lazy }
+![From requirement to a balanced suite: the shape of the rule picks the technique (ranges: EP and BVA; combinations: decision table; history: state transition; for all inputs: properties; configurations: a pairwise matrix); error guessing adds to EP; their tests form the suite, the pairwise matrix chooses where to run it, and the mutation scorecard sends surviving mutants back as blind spots.](../../assets/diagrams/02-architecture-dark.svg#only-dark){ loading=lazy }
 
 The mutation scorecard closes the loop. It measures the suite's ability to catch bugs, and a surviving mutant tells you which technique to add.
 

@@ -1,0 +1,16 @@
+flowchart TB
+  subgraph Envs["Environments (same code, different configuration)"]
+    IP["In-process tests<br/>createApp({ inventoryUrl })"]
+    LOC["Local: npm run start:all<br/>ports 3210 + 3220"]
+    CMP["Ephemeral: docker compose up<br/>shop ↔ inventory over a container network"]
+  end
+  subgraph Data["Test data"]
+    SEED["Seed: DEFAULT_STOCK in the inventory service"]
+    OWN["Test-owned data: PUT /stock/:id<br/>(test-data API, test environments only)"]
+    GEN["Synthetic history: generate.mjs<br/>(seeded, valid by construction)"]
+    MASK["Masked export: mask.mjs → masked/*.csv<br/>(keyed pseudonyms, scrubbed text)"]
+  end
+  PROD[("Production export<br/>data/*.csv: fictitious, but treated as real")] --> MASK
+  MASK --> SCAN{{"pii-scan.mjs"}}
+  SEED & OWN --> LOC & CMP
+  GEN --> REP["reports.js tests"]

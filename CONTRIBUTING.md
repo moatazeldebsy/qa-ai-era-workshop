@@ -76,6 +76,13 @@ mkdocs build --strict                    # the site builds without warnings
 npm run test:docs                        # the site's quizzes and progress still work
 ```
 
+**Diagrams are images.** Each one's source is a Mermaid file in `docs/diagrams/<name>.mmd`. After editing it, run `npm run docs:diagrams` (or `npm run docs:diagrams -- <name>`) and commit the source together with both rendered SVGs in `docs/assets/diagrams/`: `<name>.svg` for the light theme and `<name>-dark.svg` for the dark one. A page shows them with a light/dark pair whose alt text describes the diagram:
+
+```markdown
+![What the diagram shows, in a sentence or two](../assets/diagrams/<name>.svg#only-light){ loading=lazy }
+![What the diagram shows, in a sentence or two](../assets/diagrams/<name>-dark.svg#only-dark){ loading=lazy }
+```
+
 If your change affects a lab's solution, update the `solutions` branch too:
 
 ```bash

@@ -6,15 +6,8 @@ The course is self-paced. There are no deadlines and no sign-up: you need a GitH
 
 Every topic follows the same loop:
 
-```mermaid
-flowchart LR
-  O["1 Overview<br/>goals, prerequisites"] --> C["2 Concepts<br/>sections 1–13"]
-  C --> L["3 Lab<br/>learn:start → steps → learn:check"]
-  L --> Q["4 Quiz<br/>10 questions"]
-  Q --> W["5 Wrap-up<br/>mental model, challenge"]
-  W --> S["6 Share<br/>notebook or challenge<br/>in the discussions"]
-  S --> N(["Next topic:<br/>back to 1"])
-```
+![The study loop: 1 Overview, 2 Concepts (sections 1–13), 3 Lab (learn:start, steps, learn:check), 4 Quiz (10 questions), 5 Wrap-up (mental model, challenge), 6 Share in the discussions, then the next topic starts again at 1.](../assets/diagrams/study-loop.svg#only-light){ loading=lazy }
+![The study loop: 1 Overview, 2 Concepts (sections 1–13), 3 Lab (learn:start, steps, learn:check), 4 Quiz (10 questions), 5 Wrap-up (mental model, challenge), 6 Share in the discussions, then the next topic starts again at 1.](../assets/diagrams/study-loop-dark.svg#only-dark){ loading=lazy }
 
 1. **Overview.** Read what you'll be able to do and check the prerequisites.
 2. **Concepts.** Read sections 1–13. They're long, so take breaks between sections. Every new term is defined before it's used.

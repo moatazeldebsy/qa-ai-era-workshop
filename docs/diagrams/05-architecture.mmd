@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph Runner["Playwright test runner"]
+    CFG["playwright.config.js<br/>projects, baseURL, webServer, retries, reporters"]
+    W1["Worker 1"] & W2["Worker 2"]
+  end
+  CFG --> W1 & W2
+  W1 --> CTX1["Browser context<br/>(fresh cookies, storage)"]
+  W2 --> CTX2["Browser context"]
+  CTX1 --> PO["Page objects<br/>e2e/pages/ShopPage.js"]
+  PO --> APP["Quality Books UI<br/>app/public"]
+  APP --> API["Shop API"] --> INV["Inventory service"]
+  CTX1 -. "page.route(): stub, delay, reorder" .-> APP
+  W1 --> EV["Evidence on failure:<br/>trace.zip, screenshot, video, junit.xml"]
+  MX["playwright.matrix.config.js<br/>Topic 2 pairwise → 10 projects"] -. reuses .-> CFG

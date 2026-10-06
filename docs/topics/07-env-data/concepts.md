@@ -30,19 +30,8 @@ Most "the tests are unreliable" complaints are really environment and data probl
 
 ### How an environment is assembled
 
-```mermaid
-flowchart LR
-  subgraph Def["Defined as code"]
-    D["Dockerfile<br/>(how to build each service)"]
-    C["compose.yaml / Helm / Terraform<br/>(which services, how wired)"]
-    E["Environment variables<br/>(per-environment values)"]
-    S["Seed data and migrations"]
-  end
-  Def --> P["Provision<br/>docker compose up --build --wait"]
-  P --> H["Health checks pass"]
-  H --> T["Tests run<br/>(each creates the data it needs)"]
-  T --> X["Tear down<br/>docker compose down --volumes"]
-```
+![How an environment is assembled: a Dockerfile, a compose file, environment variables and seed data, all defined as code, are provisioned with docker compose up --build --wait; once the health checks pass, the tests run, each creating the data it needs, and the environment is torn down with docker compose down --volumes.](../../assets/diagrams/07-environment-assembly.svg#only-light){ loading=lazy }
+![How an environment is assembled: a Dockerfile, a compose file, environment variables and seed data, all defined as code, are provisioned with docker compose up --build --wait; once the health checks pass, the tests run, each creating the data it needs, and the environment is torn down with docker compose down --volumes.](../../assets/diagrams/07-environment-assembly-dark.svg#only-dark){ loading=lazy }
 
 The key idea is **the same artefacts, different configuration** (the "Twelve-Factor App" principle). The shop reads `PORT` and `INVENTORY_URL` from its environment. In-process tests pass them as options, `npm run start:all` uses defaults, and `compose.yaml` sets them for containers. The code is identical in every case.
 
@@ -137,24 +126,8 @@ From the Twelve-Factor App: keep development, test and production as similar as 
 
 ## 5. Architecture: Quality Books environments and data
 
-```mermaid
-flowchart TB
-  subgraph Envs["Environments (same code, different configuration)"]
-    IP["In-process tests<br/>createApp({ inventoryUrl })"]
-    LOC["Local: npm run start:all<br/>ports 3210 + 3220"]
-    CMP["Ephemeral: docker compose up<br/>shop ↔ inventory over a container network"]
-  end
-  subgraph Data["Test data"]
-    SEED["Seed: DEFAULT_STOCK in the inventory service"]
-    OWN["Test-owned data: PUT /stock/:id<br/>(test-data API, test environments only)"]
-    GEN["Synthetic history: generate.mjs<br/>(seeded, valid by construction)"]
-    MASK["Masked export: mask.mjs → masked/*.csv<br/>(keyed pseudonyms, scrubbed text)"]
-  end
-  PROD[("Production export<br/>data/*.csv: fictitious, but treated as real")] --> MASK
-  MASK --> SCAN{{"pii-scan.mjs"}}
-  SEED & OWN --> LOC & CMP
-  GEN --> REP["reports.js tests"]
-```
+![Quality Books environments and data: three environments run the same code with different configuration (in-process tests, local start:all on ports 3210 and 3220, and an ephemeral docker compose network). Seeded stock and test-owned data via the test-data API feed the local and compose environments; generate.mjs makes synthetic history for the reports tests; a production export is masked by mask.mjs and checked by pii-scan.mjs.](../../assets/diagrams/07-architecture.svg#only-light){ loading=lazy }
+![Quality Books environments and data: three environments run the same code with different configuration (in-process tests, local start:all on ports 3210 and 3220, and an ephemeral docker compose network). Seeded stock and test-owned data via the test-data API feed the local and compose environments; generate.mjs makes synthetic history for the reports tests; a production export is masked by mask.mjs and checked by pii-scan.mjs.](../../assets/diagrams/07-architecture-dark.svg#only-dark){ loading=lazy }
 
 ## 6. How it connects with other practices
 

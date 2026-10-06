@@ -1,0 +1,18 @@
+flowchart TB
+  subgraph Shop["quality-books-shop (app/)"]
+    API["Express routes<br/>/api/orders, /api/cart/price …"] --> CO["createCheckout()"]
+    CO --> IC["inventory-client.js"]
+  end
+  subgraph Inv["inventory-service (services/inventory/)"]
+    IAPI["POST /reservations<br/>DELETE /reservations/:id<br/>GET /stock/:bookId"]
+  end
+  IC -- HTTP --> IAPI
+
+  UT["Topic 3 unit tests<br/>fake inventory"] -.-> CO
+  AT["api.test.js<br/>shop over HTTP + OpenAPI schema"] -.-> API
+  IT["integration.test.js<br/>shop + real inventory"] -.-> API
+  CT["inventory.consumer.test.js<br/>real client ↔ Pact mock"] -.-> IC
+  CT --> PACT[("pacts/*.json")]
+  PACT --> PV["verify-provider.mjs<br/>replays against real inventory"]
+  PV -.-> IAPI
+  OAS["services/inventory/openapi.yaml<br/>the provider's published API"] -.- IAPI

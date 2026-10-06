@@ -1,0 +1,12 @@
+flowchart LR
+  subgraph Services
+    S["Shop<br/>logs · /metrics · trace spans"]
+    I["Inventory<br/>logs · trace spans"]
+  end
+  S -- "x-request-id / traceparent" --> I
+  S & I -->|stdout JSON lines| LC["Log collector<br/>(Fluent Bit, Vector)"] --> LS[("Log store<br/>Loki, Elasticsearch")]
+  S -->|scraped every 15 s| P[("Prometheus<br/>time series")]
+  S & I -->|OTLP| OC["OpenTelemetry Collector"] --> T[("Trace store<br/>Tempo, Jaeger")]
+  P --> AM["Alertmanager<br/>(SLO burn-rate alerts)"] --> PAGE["On-call"]
+  LS & P & T --> G["Grafana dashboards"]
+  SYN["Synthetic monitor<br/>(every minute)"] -->|journey| S

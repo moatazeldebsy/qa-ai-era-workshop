@@ -25,21 +25,8 @@ Every topic is taught on the same small system, the [Quality Books demo app](../
 
 Times include reading, the lab and the quiz; the wrap-up challenge is extra. The column on the right fills in as you mark pages done (it's stored in this browser).
 
-```mermaid
-flowchart LR
-  T1[1 Foundations] --> T2[2 Test design]
-  T2 --> T3[3 Unit & component] --> T4[4 Integration, API, contract] --> T5[5 UI & E2E]
-  T5 --> T6[6 CI/CD & continuous testing]
-  T6 --> T7[7 Environments & data]
-  T7 --> T8[8 Performance & resilience]
-  T7 --> T9[9 Security, a11y, compatibility]
-  T8 --> T10[10 Production & observability]
-  T9 --> T10
-  T10 --> T11[11 Quality intelligence]
-  T11 --> T12[12 AI in QA]
-  T12 --> T13[13 QA platform engineering]
-  T13 --> T14[14 Strategy & leadership]
-```
+![The topic roadmap in five stages. Foundations: 1 Foundations, 2 Test design. Testing layers: 3 Unit and component, 4 Integration and contract, 5 UI and E2E. Delivery and non-functional quality: 6 CI/CD, 7 Environments and data, then 8 Performance and 9 Security and accessibility in parallel. Production and scale: 10 Observability, 11 Quality intelligence, 12 AI in QA. Leadership: 13 QA platform, 14 Strategy.](../assets/diagrams/topic-roadmap.svg#only-light){ loading=lazy }
+![The topic roadmap in five stages. Foundations: 1 Foundations, 2 Test design. Testing layers: 3 Unit and component, 4 Integration and contract, 5 UI and E2E. Delivery and non-functional quality: 6 CI/CD, 7 Environments and data, then 8 Performance and 9 Security and accessibility in parallel. Production and scale: 10 Observability, 11 Quality intelligence, 12 AI in QA. Leadership: 13 QA platform, 14 Strategy.](../assets/diagrams/topic-roadmap-dark.svg#only-dark){ loading=lazy }
 
 ## Inside every topic
 

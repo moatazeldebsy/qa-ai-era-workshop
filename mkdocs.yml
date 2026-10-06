@@ -42,6 +42,10 @@ theme:
     - content.tabs.link
     - content.action.edit
 
+# Diagram sources: rendered to docs/assets/diagrams/ by npm run docs:diagrams.
+exclude_docs: |
+  /diagrams/
+
 extra_css:
   - stylesheets/extra.css
 
@@ -63,11 +67,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:

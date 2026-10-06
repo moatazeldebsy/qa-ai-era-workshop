@@ -1,0 +1,14 @@
+flowchart TB
+  subgraph Platform["platform/ (owned by the platform team)"]
+    CONF["conformance.mjs<br/>standards as checks"]
+    BASE["express-baseline.mjs<br/>request id · headers · JSON errors"]
+    TPL["templates/service<br/>app · server · tests · README"]
+    NEW["new-service.mjs<br/>scaffolder"]
+    RWF[".github/workflows/reusable-node-service.yml"]
+  end
+  NEW --> TPL --> SVC["services/&lt;new&gt;/<br/>uses BASE, runs CONF in its tests"]
+  NEW --> WF[".github/workflows/service-&lt;new&gt;.yml"] --> RWF
+  INV["services/inventory"] -. adopts .-> BASE
+  SHOP["app/ (the shop)"] -. "legacy: own middleware" .- CONF
+  FLEET["labs/13-platform/fleet.mjs"] --> CONF
+  FLEET --> INV & SHOP & SVC
